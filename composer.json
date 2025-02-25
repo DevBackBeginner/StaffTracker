@@ -1,0 +1,7 @@
+{
+    "require": {
+        "setasign/fpdf": "^1.8",
+        "dompdf/dompdf": "^3.1",
+        "endroid/qr-code": "^6.0"
+    }
+}
