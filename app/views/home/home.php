@@ -64,7 +64,7 @@
                 <div class="col-md-7">
                     <div class="titlepage">
                         <h2>Sobre el Registro Biométrico</h2>
-                        <p>El sistema de registro biométrico del SENA garantiza un acceso rápido y seguro mediante el uso de huellas digitales. Con esta tecnología, registramos la entrada y salida de estudiantes, instructores y personal administrativo, asegurando un control eficiente y preciso del ingreso a las instalaciones.</p>
+                        <p>El sistema de registro biométrico del SENA garantiza un acceso rápido y seguro mediante el uso de huellas digitales. Con esta tecnología, registramos la entrada y salida de instructores y personal administrativo, asegurando un control eficiente y preciso del ingreso a las instalaciones.</p>
                     </div>
                     <a class="read_more" href="#">Más Información</a>
                 </div>
@@ -78,7 +78,7 @@
                 <div class="col-md-7">
                     <div class="titlepage">
                         <h2>Sobre el Registro con Carnet</h2> 
-                        <p>El sistema de registro con carnet del SENA garantiza un acceso rápido y seguro mediante el escaneo de credenciales personalizadas. Con esta tecnología, registramos la entrada y salida de estudiantes, instructores y personal administrativo, asegurando un control eficiente y preciso del ingreso a las instalaciones. Este método facilita la identificación inmediata y reduce los tiempos de espera en el acceso.</p>
+                        <p>El sistema de registro con carnet del SENA garantiza un acceso rápido y seguro mediante el escaneo de credenciales personalizadas. Con esta tecnología, registramos la entrada y salida de instructores y personal administrativo, asegurando un control eficiente y preciso del ingreso a las instalaciones. Este método facilita la identificación inmediata y reduce los tiempos de espera en el acceso.</p>
                     </div>
                     <a class="read_more" href="#">Más Información</a>
                 </div>
