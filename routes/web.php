@@ -12,6 +12,7 @@
     // Ruta para mostrar la página principal después de iniciar sesión
     Router::get("Inicio", [PaginaController::class, "mostrarMain"]);
 
+    Router::get("panel_administracion", [PaginaController::class, "mostrarAdmin"]);
     // Ruta para procesar el login
     Router::post("procesarLogin", [LoginController::class, "procesarLogin"]);
     
