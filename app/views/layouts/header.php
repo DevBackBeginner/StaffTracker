@@ -64,13 +64,10 @@
                                     <a class="nav-link" href="Inicio">Inicio</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="panel">Registro De Asistencia</a>
+                                    <a class="nav-link" href="registro_asistencia ">Registro De Asistencia</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href=".html">Reportes</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href=".html">Acerca De</a>
+                                    <a class="nav-link" href="panel_asistencias">Panel de Asistencias</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href=".html">Contactos</a>

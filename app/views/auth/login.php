@@ -1,8 +1,11 @@
 <?php  include_once  __DIR__ . '/../../views/layouts/header.php'; ?>
 <link rel="stylesheet" href="/ControlAssistance/public/assets/css/login.css">
 
+
+
 <div class="login-container">
     <div class="login-card">
+        
         <h2 class="login-title">Iniciar Sesión</h2>
 
         <!-- Mensajes de error -->

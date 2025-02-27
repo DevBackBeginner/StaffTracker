@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
      */
     function cargarFichas(pagina = 1, actualizarHistorial = true) {
         // Construir la URL con el parámetro de página
-        const url = `/ControlAssistance/public/panel?pagina=${pagina}`;
+        const url = `/ControlAssistance/public/panel_asistencias?pagina=${pagina}`;
 
         // Si se requiere, actualizamos la URL en el historial del navegador sin recargar la página
         if (actualizarHistorial) {
@@ -73,71 +73,3 @@ document.getElementById('filterForm').addEventListener('input', function(event) 
     })
     .catch(error => console.error('Error al filtrar aprendices:', error));
 });
-
-
-// Función para abrir un modal de Bootstrap, recibiendo el ID del modal a abrir
-function abrirModal(modalId) {
-    // Obtener el elemento modal por su ID
-    var modalElement = document.getElementById(modalId);
-    if (modalElement) {
-        // Remover el atributo aria-hidden para mejorar la accesibilidad
-        modalElement.removeAttribute('aria-hidden');
-
-        // Crear una instancia del modal usando la clase Modal de Bootstrap y mostrarlo
-        var modalInstance = new bootstrap.Modal(modalElement);
-        modalInstance.show();
-    } else {
-        // Mostrar error en la consola si no se encuentra el modal con el ID proporcionado
-        console.error("No se encontró el modal con el ID: " + modalId);
-    }
-}
-
-/**
- * Función para cerrar el modal activo.
- * Realiza varias tareas:
- *  - Busca y oculta el modal activo.
- *  - Remueve el backdrop (fondo oscuro) generado por Bootstrap.
- *  - Restaura el scroll en el body.
- *  - Dispara eventos para imitar el comportamiento estándar de Bootstrap.
- *  - Finalmente, recarga la página.
- */
-function closeActiveModal() {
-    // Buscar el modal que está activo (con la clase "show")
-    const activeModal = document.querySelector('.modal.show');
-    if (activeModal) {
-        // Disparar un evento "beforeClose" para que otros scripts puedan reaccionar antes de cerrar
-        activeModal.dispatchEvent(new Event('beforeClose'));
-
-        // Remover todos los elementos de backdrop creados por Bootstrap
-        document.querySelectorAll('.modal-backdrop').forEach(backdrop => {
-            backdrop.parentNode.removeChild(backdrop);
-        });
-
-        // Ocultar el modal removiendo la clase "show" y ajustando estilos
-        activeModal.classList.remove('show');
-        activeModal.style.display = 'none';
-        activeModal.setAttribute('aria-hidden', 'true');
-
-        // Restaurar el scroll del body, eliminando la clase que bloquea el scroll y reseteando el overflow
-        document.body.classList.remove('modal-open');
-        document.body.style.overflow = '';
-
-        // Disparar un evento "hidden.bs.modal" para imitar el comportamiento de Bootstrap al ocultar el modal
-        activeModal.dispatchEvent(new Event('hidden.bs.modal'));
-
-        // Recargar la página después de cerrar el modal
-        location.reload();
-    } else {
-        console.error('No hay un modal activo para cerrar.');
-    }
-}
-
-// Escuchar el evento 'input' en el campo de "Código" para enviar el formulario automáticamente
-document.getElementById('codigo').addEventListener('input', function() {
-    // Si hay algún valor ingresado en el input
-    if (this.value.length > 0) {
-        // Enviar el formulario de escaneo
-        document.getElementById('form-escaneo').submit();
-    }
-});
-

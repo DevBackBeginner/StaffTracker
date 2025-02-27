@@ -15,6 +15,11 @@
             include_once __DIR__ . '/../views/home/home.php';
         }
 
+        public function mostrarRegistro()
+        {
+            include_once __DIR__ . '/../views/auth/registro.php';
+        }
+
     }
 
 ?>
