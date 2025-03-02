@@ -43,7 +43,7 @@ class RegistroAsistenciaController {
      */
     public function mostrarVistaRegistro() {
         // Se obtiene el último registro de asistencia guardado en la BD.
-        $ultimoRegistro = $this->registroModelo->obtenerUltimoRegistro();
+        $ultimosRegistros = $this->registroModelo->obtenerUltimosRegistros();
 
         // Se incluye la vista que muestra el formulario y la tabla de últimos registros.
         include_once __DIR__ . '/../views/asistencia/registro_asistencia.php';

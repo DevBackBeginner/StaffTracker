@@ -1,5 +1,5 @@
 <?php  include_once  __DIR__ . '/../../views/layouts/header.php'; ?>
-<link rel="stylesheet" href="/ControlAssistance/public/assets/css/login.css">
+<link rel="stylesheet" href="assets/css/login.css">
 
 <div class="login-container">
     <div class="login-card">
@@ -66,4 +66,4 @@
 </div>
 <?php  include_once  __DIR__ . '/../../views/layouts/footer.php'; ?>
 
-<script src="/ControlAssistance/public/assets/js/login.js"></script>
+<script src="assets/js/login.js"></script>

@@ -20,13 +20,13 @@
 
         
         <!-- Responsive-->
-        <link rel="stylesheet" href="/ControlAssistance/public/assets/css/responsive.css">
+        <link rel="stylesheet" href="assets/css/responsive.css">
         <!-- fevicon -->
-        <link rel="icon" href="/ControlAssistance/public/assets/img/logo.png" type="image/gif" />
+        <link rel="icon" href="assets/img/logo.png" type="image/gif" />
         <!-- Scrollbar Custom CSS -->
-        <link rel="stylesheet" href="/ControlAssistance/public/assets/css/jquery.mCustomScrollbar.min.css">
+        <link rel="stylesheet" href="assets/css/jquery.mCustomScrollbar.min.css">
         
-        <link rel="stylesheet" href="/ControlAssistance/public/assets/css/style.css">
+        <link rel="stylesheet" href="assets/css/style.css">
 
         <!-- Tweaks for older IEs-->
         <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
@@ -48,7 +48,7 @@
                         <div class="full">
                             <div class="center-desk">
                             <div class="logo">
-                                <a href=""><img src="/ControlAssistance/public/assets/img/logo.png" alt="#" /></a>
+                                <a href=""><img src="assets/img/logo.png" alt="#" /></a>
                             </div>
                             </div>
                         </div>
@@ -59,30 +59,19 @@
                             <span class="navbar-toggler-icon"></span>
                             </button>
                             <div class="collapse navbar-collapse" id="navbarsExample04">
-                            <ul class="navbar-nav mr-auto">
-                                <li class="nav-item active">
-                                    <a class="nav-link" href="Inicio">Inicio</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="registro_asistencia ">Registro De Asistencia</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="panel_asistencias">Panel de Asistencias</a>
-                                </li>
+                                <ul class="navbar-nav mr-auto">
+                                    <li class="nav-item active">
+                                        <a class="nav-link" href="Inicio">Inicio</a>
+                                    </li>
+                        
+                                    <li class="nav-item">
+                                        <a class="nav-link" href=".html">Contactos</a>
+                                    </li>
+                                    <li class="nav-item d_none login_btn">
+                                        <a class="nav-link" href="login">Login</a>
+                                    </li>
 
-                                <li class="nav-item">
-                                    <a class="nav-link" href=".html">Contactos</a>
-                                </li>
-                                <li class="nav-item d_none login_btn">
-                                    <a class="nav-link" href="login">Login</a>
-                                </li>
-                                <li class="nav-item d_none">
-                                    <a class="nav-link" href="#">Register</a>
-                                </li>
-                                <li class="nav-item d_none sea_icon">
-                                    <a class="nav-link" href="#"><i class="fa fa-shopping-bag" aria-hidden="true"></i><i class="fa fa-search" aria-hidden="true"></i></a>
-                                </li>
-                            </ul>
+                                </ul>
                             </div>
                         </nav>
                     </div>

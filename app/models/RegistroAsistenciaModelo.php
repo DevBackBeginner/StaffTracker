@@ -53,28 +53,28 @@ class RegistroModelo {
         return $stmt->fetch(PDO::FETCH_ASSOC); // Retorna false si no tiene computador
     }
 
-    public function obtenerUltimoRegistro() {
+    public function obtenerUltimosRegistros() {
         $sql = "SELECT 
-                ra.id,
-                ra.fecha,
-                ra.hora_entrada,
-                ra.hora_salida,
-                ra.estado,
-                u.nombre,
-                u.numero_identidad,
-                c.marca,
-                c.codigo,
-                c.tipo_computador AS tipo
-            FROM registro_asistencia ra
-            JOIN asignaciones_computadores ac ON ra.asignacion_id = ac.id
-            JOIN usuarios u ON ac.usuario_id = u.id
-            JOIN computadores c ON ac.computador_id = c.id
-            ORDER BY ra.id DESC
-            LIMIT 1";
-
-        $stmt =$this->db->prepare($sql);
+                    ra.id,
+                    ra.fecha,
+                    ra.hora_entrada,
+                    ra.hora_salida,
+                    ra.estado,
+                    u.nombre,
+                    u.numero_identidad,
+                    c.marca,
+                    c.codigo,
+                    c.tipo_computador AS tipo
+                FROM registro_asistencia ra
+                JOIN asignaciones_computadores ac ON ra.asignacion_id = ac.id
+                JOIN usuarios u ON ac.usuario_id = u.id
+                JOIN computadores c ON ac.computador_id = c.id
+                ORDER BY ra.id DESC
+                LIMIT 5";
+    
+        $stmt = $this->db->prepare($sql);
         $stmt->execute();
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC); // Cambia fetch() por fetchAll()
     }
 }
 ?>

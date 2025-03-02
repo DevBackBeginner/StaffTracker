@@ -12,12 +12,12 @@
 
         public function mostrarMain()
         {
-            include_once __DIR__ . '/../views/home/home.php';
+            include_once __DIR__ . '/../views/home/main.php';
         }
 
         public function mostrarAdmin()
         {
-            include_once __DIR__ . '/../views/home/homeAdmin.php';
+            include_once __DIR__ . '/../views/home/main_home.php';
         }
 
         public function mostrarRegistro()

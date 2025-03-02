@@ -43,12 +43,9 @@
             $totalPaginas = ($totalUsuarios > 0) ? ceil($totalUsuarios / $limit) : 1;
         
             // 7) Cargar la vista con los datos
-            include_once __DIR__ . '/../views/reports/panel_reportes.php';
+            include_once __DIR__ . '/../views/registros/panel_reportes.php';
         }
         
-        
-
-
         public function filtrarFuncionarios() {
             // 1. Capturar los valores GET
             $tipo = $_GET['tipo'] ?? '';          // Puede ser 'Instructor', 'Directiva', 'Funcionario' o ''
@@ -58,7 +55,7 @@
             $resultado = $this->panelAsistenciaModelo->filtroFuncionario($tipo, $documento);
     
             // 3. Cargar la vista que mostrará los resultados
-            include_once __DIR__ . '/../views/reports/tabla_funcionarios.php';
+            include_once __DIR__ . '/../views/registros/tabla_funcionarios.php';
         }
         
 

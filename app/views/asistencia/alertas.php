@@ -12,11 +12,9 @@
                 $alertClass = 'warning';
                 break;
             case 'salida':
-                // Podrías usar success también
                 $alertClass = 'success';
                 break;
             case 'entrada':
-                // También success
                 $alertClass = 'success';
                 break;
             default:
@@ -27,13 +25,13 @@
 
     <!-- Modal -->
     <div class="modal fade" id="mensajeModal" tabindex="-1" aria-labelledby="mensajeModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
+      <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
 
           <!-- Encabezado del Modal -->
-          <div class="modal-header">
+          <div class="modal-header bg-<?php echo $alertClass; ?> text-white">
             <h5 class="modal-title" id="mensajeModalLabel">Registro de Asistencia</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
 
           <!-- Cuerpo del Modal -->
@@ -46,23 +44,29 @@
                 <div class="alert alert-<?php echo $alertClass; ?>">
                   <?php echo htmlspecialchars($texto); ?>
                 </div>
-                <p>¿Tienes computador?</p>
-                <button class="btn btn-success" id="btnSiComputador">Sí</button>
-                <button class="btn btn-danger" id="btnNoComputador">No</button>
+                <p class="mb-3">¿Tienes computador?</p>
+                <div class="d-grid gap-2">
+                  <button class="btn btn-success" id="btnSiComputador">Sí</button>
+                  <button class="btn btn-danger" id="btnNoComputador">No</button>
+                </div>
               </div>
 
               <!-- Fase 2 (oculta inicialmente) -->
               <div id="fase2" class="fase d-none mt-3">
-                <p>¿El computador es Propio o del SENA?</p>
-                <button class="btn btn-primary" id="btnPropio">Propio</button>
-                <button class="btn btn-info" id="btnSena">SENA</button>
+                <p class="mb-3">¿El computador es Propio o del SENA?</p>
+                <div class="d-grid gap-2">
+                  <button class="btn btn-primary" id="btnPropio">Propio</button>
+                  <button class="btn btn-info" id="btnSena">SENA</button>
+                </div>
               </div>
 
               <!-- Fase 3: Listado de computadores (oculta inicialmente) -->
               <div id="fase3" class="fase d-none mt-3">
-                <p>Selecciona un computador:</p>
-                <select id="selectComputadores" class="form-select"></select>
-                <button class="btn btn-success mt-3" id="btnConfirmarPC">Confirmar</button>
+                <p class="mb-3">Selecciona un computador:</p>
+                <select id="selectComputadores" class="form-select mb-3"></select>
+                <div class="d-grid">
+                  <button class="btn btn-success" id="btnConfirmarPC">Confirmar</button>
+                </div>
               </div>
 
             <?php else: ?>
@@ -71,6 +75,11 @@
                 <?php echo htmlspecialchars($texto); ?>
               </div>
             <?php endif; ?>
+          </div>
+
+          <!-- Pie del Modal -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
           </div>
         </div>
       </div>
