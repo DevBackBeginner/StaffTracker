@@ -22,7 +22,7 @@
     Router::get("logout", [LoginController::class, "Logout"]);
 
 
-    Router::get("panel_administracion", [PaginaController::class, "mostrarHomeMain"]);
+    Router::get("panel_administracion", [PaginaController::class, "mostrarDashBoard"]);
     
 
     Router::get("registrar_guardas", [PaginaController::class, "mostrarRegistro"]);

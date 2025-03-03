@@ -1,6 +1,6 @@
 <?php 
     // Incluimos el encabezado (header) que contiene la estructura HTML inicial, head, etc.
-    include_once  __DIR__ . '/../../gestion/layouts/header_main.php' ; 
+    include_once  __DIR__ . '/../dashboard/layouts/header_main.php' ; 
 ?>
 
     <!-- Enlace al archivo CSS específico para el panel -->
@@ -55,7 +55,7 @@
 
 <?php 
     // Incluimos el encabezado (header) que contiene la estructura HTML inicial, head, etc.
-    include_once  __DIR__ . '/../../gestion/layouts/footer_main.php' ; 
+    include_once  __DIR__ . '/../dashboard/layouts/footer_main.php' ; 
 ?>
 
     <script src="assets/js/registro_asistencia.js"></script>

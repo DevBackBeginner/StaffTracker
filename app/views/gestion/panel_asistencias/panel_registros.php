@@ -1,6 +1,6 @@
 <?php 
     // Incluimos el encabezado (header) que contiene la estructura HTML inicial, head, etc.
-    include_once  __DIR__ . '/../../gestion/layouts/header_main.php' ; 
+    include_once  __DIR__ . '/../dashboard/layouts/header_main.php' ; 
 ?>
 
 <!-- Enlace al archivo CSS específico para el panel -->
@@ -78,27 +78,27 @@
 
 <script>
 document.addEventListener("DOMContentLoaded", () => {
-  const filterForm = document.getElementById("filterForm");
-  const tipoSelect = document.getElementById("tipoSelect");
-  const documentoInput = document.getElementById("documentoInput");
+    const filterForm = document.getElementById("filterForm");
+    const tipoSelect = document.getElementById("tipoSelect");
+    const documentoInput = document.getElementById("documentoInput");
 
-  // Evento para escuchar cambios en el formulario
-  filterForm.addEventListener("change", function() {
-    let tipo = tipoSelect.value;
-    let documento = documentoInput.value;
+    // Evento para escuchar cambios en el formulario
+    filterForm.addEventListener("change", function() {
+        let tipo = tipoSelect.value;
+        let documento = documentoInput.value;
 
-    // Llamada AJAX o fetch para enviar estos filtros
-    fetch(`filtrar_funcionarios?tipo=${encodeURIComponent(tipo)}&documento=${encodeURIComponent(documento)}`)
-      .then(response => response.text())
-      .then(html => {
-        // Reemplazar contenido de la tabla con los resultados
-        document.getElementById("tabla-body").innerHTML = html;
-      })
-      .catch(error => console.error("Error al filtrar:", error));
-  });
+        // Llamada AJAX o fetch para enviar estos filtros
+        fetch(`filtrar_funcionarios?tipo=${encodeURIComponent(tipo)}&documento=${encodeURIComponent(documento)}`)
+        .then(response => response.text())
+        .then(html => {
+            // Reemplazar contenido de la tabla con los resultados
+            document.getElementById("tabla-body").innerHTML = html;
+        })
+        .catch(error => console.error("Error al filtrar:", error));
+    });
 });
 </script>
 <?php 
     // Incluimos el encabezado (header) que contiene la estructura HTML inicial, head, etc.
-    include_once  __DIR__ . '/../../gestion/layouts/footer_main.php' ; 
+    include_once  __DIR__ . '/../dashboard/layouts/footer_main.php' ; 
 ?>

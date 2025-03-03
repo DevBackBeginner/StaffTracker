@@ -1,5 +1,5 @@
-<?php  include_once  __DIR__ . '/../../gestion/layouts/header_main.php' ; ?>
-    <!-- ======= Sidebar ======= -->
+<?php include_once __DIR__ . '/layouts/header_main.php'; ?>
+<!-- ======= Sidebar ======= -->
   
     <main id="main" class="main">
 
@@ -648,4 +648,4 @@
       </section>
 
     </main><!-- End #main -->
-<?php  include_once  __DIR__ . '/../../gestion/layouts/footer_main.php' ; ?>
+  <?php include_once __DIR__ . '/layouts/footer_main.php'; ?>
