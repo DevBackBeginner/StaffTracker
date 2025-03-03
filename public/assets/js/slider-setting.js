@@ -30,26 +30,26 @@
 						drag_block_vertical: false
 					},
 					arrows: {
-						style: "gyges",
-						enable: true,
-						hide_onmobile: false,
-						hide_onleave: true,
-						hide_delay: 200,
-						hide_delay_mobile: 1200,
-						tmp: '',
-						left: {
-							h_align: "left",
-							v_align: "center",
-							h_offset: 0,
-							v_offset: 0
-						},
-						right: {
-							h_align: "right",
-							v_align: "center",
-							h_offset: 0,
-							v_offset: 0
-						}
-					},
+						  style: "gyges",
+						  enable: true,
+						  hide_onmobile: false,
+						  hide_onleave: true,
+						  hide_delay: 200,
+						  hide_delay_mobile: 1200,
+						  tmp: '',
+						  left: {
+							  h_align: "left",
+							  v_align: "center",
+							  h_offset: 0,
+							  v_offset: 0
+						  },
+						  right: {
+							  h_align: "right",
+							  v_align: "center",
+							  h_offset: 0,
+							  v_offset: 0
+						  }
+					  },
 					bullets: {
 						enable: true,
 						hide_onmobile: true,

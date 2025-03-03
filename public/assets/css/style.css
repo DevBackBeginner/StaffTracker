@@ -21,7 +21,7 @@ html {
 body {
      color: #666666;
      font-size: 14px;
-     font-family: 'SemiBold';
+     font-family: 'Poppins', sans-serif;
      line-height: 1.80857;
      font-weight: normal;
 }
@@ -137,7 +137,7 @@ img {
      height: auto;
 }
 
-:focus {
+ :focus {
      outline: 0;
 }
 
@@ -246,7 +246,7 @@ button {
 .navigation.navbar-dark .navbar-nav .nav-link {
      padding: 0 20px;
      color: #070404;
-     font-size: 14px;
+     font-size: 17px;
      line-height: 20px;
      font-weight: 500;
 }
@@ -285,12 +285,12 @@ button {
 }
 
 .header {
-    width: 100%;
-    padding: 30px 30px;
-    background: transparent;
-    position: absolute;
-    z-index: 999;
-    border-top: #090102 solid 11px;
+     width: 100%;
+     padding: 30px 30px;
+     background: transparent;
+     position: absolute;
+     z-index: 999;
+     border-top: #090102 solid 11px;
 }
 
 .logo {
@@ -811,7 +811,6 @@ ul.location_icon li a {
 
 .position_head .header {
      position: inherit;
-     margin-bottom: 200px;
      background: #03fc62;
 }
 

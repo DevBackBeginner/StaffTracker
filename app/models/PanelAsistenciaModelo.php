@@ -29,10 +29,10 @@
 
         public function obtenerUsuariosPorRol($rol, $limit, $offset) {
             $tablas = [
-                'Instructor' => ['tabla' => 'usuarios_instructores', 'campos' => 'curso, ubicacion'],
-                'Funcionario' => ['tabla' => 'usuarios_funcionarios', 'campos' => 'area, puesto'],
-                'Directiva' => ['tabla' => 'usuarios_directivas', 'campos' => 'cargo, departamento'],
-                'Apoyo' => ['tabla' => 'usuarios_apoyo', 'campos' => 'area_trabajo']
+                'Instructor' => ['tabla' => 'instructores', 'campos' => 'curso, ubicacion'],
+                'Funcionario' => ['tabla' => 'funcionarios', 'campos' => 'area, puesto'],
+                'Directiva' => ['tabla' => 'directivas', 'campos' => 'cargo, departamento'],
+                'Apoyo' => ['tabla' => 'apoyo', 'campos' => 'area_trabajo']
             ];
         
             if (!isset($tablas[$rol])) {
@@ -42,14 +42,12 @@
             $tabla = $tablas[$rol]['tabla'];
             $camposExtras = $tablas[$rol]['campos'];
         
-            $sql = "SELECT u.nombre, u.numero_identidad, u.rol, t.$camposExtras
+            $sql = "SELECT u.nombre, u.numero_identidad, t.$camposExtras
                     FROM usuarios u
-                    LEFT JOIN $tabla t ON u.id = t.usuario_id
-                    WHERE u.rol = :rol
+                    INNER JOIN $tabla t ON u.id = t.usuario_id
                     LIMIT :limit OFFSET :offset";
         
             $stmt = $this->db->prepare($sql);
-            $stmt->bindValue(':rol', $rol, PDO::PARAM_STR);
             $stmt->bindValue(':limit', (int)$limit, PDO::PARAM_INT);
             $stmt->bindValue(':offset', (int)$offset, PDO::PARAM_INT);
             $stmt->execute();
@@ -57,18 +55,27 @@
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
         
-        
-        
-        
         public function contarUsuariosPorRol($rol) {
-            $sql = "SELECT COUNT(*) FROM usuarios WHERE rol = :rol";
+            $tablas = [
+                'Instructor' => 'instructores',
+                'Funcionario' => 'funcionarios',
+                'Directiva' => 'directivas',
+                'Apoyo' => 'apoyo'
+            ];
         
+            if (!isset($tablas[$rol])) {
+                return 0;
+            }
+        
+            $tabla = $tablas[$rol];
+        
+            $sql = "SELECT COUNT(*) FROM $tabla";
             $stmt = $this->db->prepare($sql);
-            $stmt->bindValue(':rol', $rol, PDO::PARAM_STR);
             $stmt->execute();
         
             return $stmt->fetchColumn();
         }
+        
         
 
         public function filtrofuncionario($tipo, $documento) {

@@ -14,12 +14,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     let tipoMensaje = "<?php echo $tipo; ?>";  // Evita confusión con "tipoComputador"
 
-    if (tipoMensaje !== "entrada") {
-        setTimeout(() => {
-            modal.hide();
-        }, 3000);
-    }
-
     if (tipoMensaje === "entrada") {
         const fase1 = document.getElementById("fase1");
         const fase2 = document.getElementById("fase2");

@@ -1,23 +1,22 @@
-<?php  include_once  __DIR__ . '/../../views/layouts/header.php'; ?>
+<?php include_once __DIR__ . '/../../views/layouts/header.php'; ?>
+
 <link rel="stylesheet" href="assets/css/login.css">
 
 <div class="login-container">
     <div class="login-card">
-        
         <h2 class="login-title">Iniciar Sesión</h2>
 
-        <!-- Mensajes de error -->
-        <?php 
-            if (isset($_SESSION['error'])) {
-                echo '<div class="error-message">';
-                echo '<strong>Error:</strong> ' . htmlspecialchars($_SESSION['error'], ENT_QUOTES, 'UTF-8');
-                echo '</div>';
-                unset($_SESSION['error']); // Limpia la variable de sesión después de mostrar el mensaje
-            }
+        <!-- Mostrar mensajes flash utilizando cookies -->
+        <?php
+        if (isset($_COOKIE['flash_error'])) {
+            echo "<p class='error-message'>" . htmlspecialchars($_COOKIE['flash_error']) . "</p>";
+        }
+        if (isset($_COOKIE['flash_success'])) {
+            echo "<p class='success-message'>" . htmlspecialchars($_COOKIE['flash_success']) . "</p>";
+        }
         ?>
 
-        <form action="procesarLogin" method="POST">
-        
+        <form action="enviarLogin" method="POST">
             <!-- Correo -->
             <div class="input-group">
                 <label for="correo" class="input-label">Correo Electrónico</label>
@@ -64,6 +63,27 @@
         </form>
     </div>
 </div>
-<?php  include_once  __DIR__ . '/../../views/layouts/footer.php'; ?>
+
+<?php include_once __DIR__ . '/../../views/layouts/footer.php'; ?>
 
 <script src="assets/js/login.js"></script>
+
+<script>
+    // Función para eliminar los mensajes flash y limpiar las cookies después de 2 segundos
+    setTimeout(function() {
+        // Remover los mensajes del DOM
+        const errorMsg = document.querySelector('.error-message');
+        if (errorMsg) {
+            errorMsg.remove();
+        }
+        const successMsg = document.querySelector('.success-message');
+        if (successMsg) {
+            successMsg.remove();
+        }
+        // Borrar las cookies flash (para que no se muestren en recargas posteriores)
+        document.cookie = "flash_error=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        document.cookie = "flash_success=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        // Opcional: limpiar la URL eliminando los parámetros
+        history.replaceState(null, "", window.location.pathname);
+    }, 2000);
+</script>

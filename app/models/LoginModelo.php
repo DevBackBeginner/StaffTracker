@@ -11,18 +11,20 @@
             $this->db = $conn->getConnection();        
         }
 
-        public function obtenerPorCorreo($correo) {
-            try {
-                $stmt = $this->db->prepare("SELECT * FROM porteros WHERE correo = :correo");
-                $stmt->bindParam(':correo', $correo, PDO::PARAM_STR);
-                $stmt->execute();
-        
-                return $stmt->fetch(PDO::FETCH_ASSOC); // Retorna el portero o `false`
-            } catch (PDOException $e) {
-                // Manejar el error según tus necesidades
-                error_log("Error en la consulta: " . $e->getMessage());
-                return false; // Opcional: devuelve `false` o lanza una excepción
-            }
+        public function buscarPorCorreo($correo) {
+            $stmt = $this->db->prepare("SELECT * FROM usuarios_autenticados WHERE correo = :correo LIMIT 1");
+            $stmt->execute(['correo' => $correo]);
+            return $stmt->fetch(PDO::FETCH_ASSOC);
+        }
+    
+        /**
+         * Verifica la contraseña ingresada contra el hash almacenado.
+         * @param string $passwordInput
+         * @param string $passwordHasheado
+         * @return bool
+         */
+        public function verificarPassword($passwordInput, $passwordHasheado) {
+            return password_verify($passwordInput, $passwordHasheado);
         }
         
         

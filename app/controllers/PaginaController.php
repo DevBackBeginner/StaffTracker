@@ -2,6 +2,12 @@
     
     class PaginaController{
 
+    
+        public function mostrarHome()
+        {
+            include_once __DIR__ . '/../views/home/main.php';
+        }
+
         /**
          * Método para mostrar la vista de login
         */
@@ -10,19 +16,14 @@
             include_once __DIR__ . '/../views/auth/login.php';
         }
 
-        public function mostrarMain()
+        public function mostrarHomeMain()
         {
-            include_once __DIR__ . '/../views/home/main.php';
-        }
-
-        public function mostrarAdmin()
-        {
-            include_once __DIR__ . '/../views/home/main_home.php';
+            include_once __DIR__ . '/../views/gestion/dashboard/main_home.php';
         }
 
         public function mostrarRegistro()
         {
-            include_once __DIR__ . '/../views/auth/registro.php';
+            include_once __DIR__ . '/../views/gestion/auth/registro_guardas.php';
         }
 
     }

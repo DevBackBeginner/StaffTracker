@@ -1,15 +1,3 @@
- // Ocultar el mensaje después de 3 segundos
-window.onload = function() {
-    const errorMessage = document.getElementById('error-message');
-    if (errorMessage) {
-        setTimeout(() => {
-            errorMessage.style.transition = 'opacity 1s ease-out';
-            errorMessage.style.opacity = '0';
-            setTimeout(() => errorMessage.style.display = 'none', 1000); // Ocultar después de la transición
-        }, 3000); // Espera de 3 segundos antes de iniciar la transición
-    }
-};
-
 // Mostrar/ocultar contraseña
 function togglePassword() {
     const passwordInput = document.getElementById('password');
@@ -26,3 +14,24 @@ function togglePassword() {
         iconHide.classList.add('hidden');
     }
 }
+
+console.log("login.js cargado");
+
+document.addEventListener("DOMContentLoaded", function() {
+    console.log("DOM fully loaded");
+    setTimeout(function() {
+        console.log("Intentando remover mensajes flash");
+        const errorMsg = document.querySelector('.error-message');
+        const successMsg = document.querySelector('.success-message');
+        if (errorMsg) {
+            errorMsg.remove();
+            console.log("Mensaje de error removido");
+        }
+        if (successMsg) {
+            successMsg.remove();
+            console.log("Mensaje de éxito removido");
+        }
+        // Opcional: Limpiar la URL
+        history.replaceState(null, "", window.location.pathname);
+    }, 2000);
+});
