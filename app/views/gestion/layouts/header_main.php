@@ -1,4 +1,10 @@
-
+<?php
+  session_start();
+  if (!isset($_SESSION['usuario']) || ($_SESSION['rol'] !== 'admin' && $_SESSION['rol'] !== 'guarda')) {
+      header("Location: Inicio");
+      exit();
+  }
+?>
 <!DOCTYPE html>
   <html lang="en">
 
@@ -276,9 +282,9 @@
           </a>
         </li><!-- End Registrar Visitantes Nav -->
 
-        <!-- Entrada/Salida (Menú Desplegable) -->
+        <!-- Entrada/Salida -->
         <li class="nav-item">
-          <a class="nav-link collapsed" data-bs-toggle="collapse" href="#entradaSalida">
+          <a class="nav-link collapsed" data-bs-toggle="collapse" href="#entradaSalida" role="button" aria-expanded="false" aria-controls="entradaSalida">
             <i class="bi bi-door-open"></i>
             <span>Entrada/Salida</span>
             <i class="bi bi-chevron-down ms-auto"></i>
@@ -287,13 +293,13 @@
             <li>
               <a href="Acceso_visitante">
                 <i class="bi bi-person"></i>
-                <span>Entrada/Salida Visitantes</span>
+                <span>Visitantes</span>
               </a>
             </li>
             <li>
               <a href="registro_asistencia">
                 <i class="bi bi-people"></i>
-                <span>Entrada/Salida Personal</span>
+                <span>Personal</span>
               </a>
             </li>
           </ul>
@@ -307,25 +313,14 @@
           </a>
         </li><!-- End Consultar Registros Nav -->
 
-        <!-- Separador -->
-        <li class="nav-heading">Otras Opciones</li>
-
-        <li class="nav-item">
-          <a class="nav-link collapsed" href="registrar_guardas">
-            <i class="bi bi-person"></i>
-            <span>Registrar Guardas</span>
-          </a>
-        </li><!-- End Perfil Nav -->
-
-        <!-- Perfil -->
+        <!-- Opciones Generales -->
+        <li class="nav-heading">Opciones Generales</li>
         <li class="nav-item">
           <a class="nav-link collapsed" href="perfil.html">
             <i class="bi bi-person"></i>
             <span>Perfil</span>
           </a>
         </li><!-- End Perfil Nav -->
-
-        <!-- Contáctenos -->
         <li class="nav-item">
           <a class="nav-link collapsed" href="contacto.html">
             <i class="bi bi-envelope"></i>
@@ -333,12 +328,50 @@
           </a>
         </li><!-- End Contáctenos Nav -->
 
-        <!-- Login -->
+        <!-- Cerrar Sesión -->
         <li class="nav-item">
           <a class="nav-link collapsed" href="logout">
             <i class="bi bi-box-arrow-in-right"></i>
             <span>Cerrar Sección</span>
           </a>
-        </li><!-- End Login Nav -->
+        </li><!-- End Cerrar Sección Nav -->
+
+        <!-- Opciones exclusivas para Administradores -->
+        <?php if (isset($_SESSION['rol']) && $_SESSION['rol'] === 'admin'): ?>
+          <li class="nav-heading">Administración</li>
+          <li class="nav-item">
+            <a class="nav-link collapsed" href="registrar_guardas">
+              <i class="bi bi-person"></i>
+              <span>Registrar Guardas</span>
+            </a>
+          </li><!-- End Registrar Guardas Nav -->
+          <li class="nav-item">
+              <a class="nav-link collapsed" data-bs-toggle="collapse" href="#gestionUsuarios" role="button" aria-expanded="false" aria-controls="gestionUsuarios">
+                <i class="bi bi-people"></i>
+                <span>Gestión de Usuarios</span>
+                <i class="bi bi-chevron-down ms-auto"></i>
+              </a>
+              <ul id="gestionUsuarios" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+                <li>
+                  <a href="crear_usuario">
+                    <i class="bi bi-plus-circle"></i>
+                    <span>Crear Usuario</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="editar_usuario">
+                    <i class="bi bi-pencil"></i>
+                    <span>Editar Usuario</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="eliminar_usuario">
+                    <i class="bi bi-trash"></i>
+                    <span>Eliminar Usuario</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+        <?php endif; ?>
       </ul>
     </aside><!-- End Sidebar -->

@@ -7,6 +7,7 @@ body {
   font-family: "'Poppins', sans-serif";
   background: #f6f9ff;
   color: #444444;
+  
 }
 
 a {
@@ -27,6 +28,7 @@ h5,
 h6 {
   font-family: "Nunito", sans-serif;
 }
+
 
 /*--------------------------------------------------------------
 # Main
@@ -1205,6 +1207,8 @@ h6 {
 --------------------------------------------------------------*/
 .footer {
   padding: 20px 0;
+  margin-top: auto;
+
   font-size: 14px;
   transition: all 0.3s;
   border-top: 1px solid #cddfff;

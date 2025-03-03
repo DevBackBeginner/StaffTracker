@@ -12,10 +12,16 @@
         }
 
         public function buscarPorCorreo($correo) {
-            $stmt = $this->db->prepare("SELECT * FROM usuarios_autenticados WHERE correo = :correo LIMIT 1");
+            $stmt = $this->db->prepare("
+                SELECT ua.*, u.nombre, u.numero_identidad 
+                FROM usuarios_autenticados ua
+                JOIN usuarios u ON ua.usuario_id = u.id
+                WHERE ua.correo = :correo
+            ");
             $stmt->execute(['correo' => $correo]);
             return $stmt->fetch(PDO::FETCH_ASSOC);
         }
+        
     
         /**
          * Verifica la contraseña ingresada contra el hash almacenado.
