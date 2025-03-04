@@ -1,7 +1,9 @@
 <?php
+
+    session_start();
+
     // Se importa el modelo 'panelAsistenciaModelo' para poder interactuar con la base de datos
     require_once __DIR__ . '/../models/PanelAsistenciaModelo.php';
-
     class PanelAsistenciaController {
 
         // Se declara la propiedad para almacenar la instancia del modelo de aprendiz

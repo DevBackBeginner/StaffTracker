@@ -51,7 +51,6 @@
 
     <?php  include "alertas.php"?>
 
-    <!-- Enlace al archivo JavaScript que maneja la actualización de la tabla en tiempo real -->
 
 <?php 
     // Incluimos el encabezado (header) que contiene la estructura HTML inicial, head, etc.

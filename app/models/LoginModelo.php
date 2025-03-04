@@ -12,27 +12,24 @@
         }
 
         public function buscarPorCorreo($correo) {
-            $stmt = $this->db->prepare("
-                SELECT ua.*, u.nombre, u.numero_identidad 
-                FROM usuarios_autenticados ua
-                JOIN usuarios u ON ua.usuario_id = u.id
-                WHERE ua.correo = :correo
-            ");
+            $sql = "SELECT  ua.*,
+                            u.nombre, u.numero_identidad
+                    FROM usuarios_autenticados ua
+                    JOIN usuarios u ON ua.usuario_id = u.id
+                    WHERE ua.correo = :correo";
+            $stmt = $this->db->prepare($sql);
+            $stmt->bindParam(':correo', $correo, PDO::PARAM_STR_CHAR);
             $stmt->execute(['correo' => $correo]);
             return $stmt->fetch(PDO::FETCH_ASSOC);
         }
         
-    
-        /**
-         * Verifica la contraseña ingresada contra el hash almacenado.
-         * @param string $passwordInput
-         * @param string $passwordHasheado
-         * @return bool
-         */
-        public function verificarPassword($passwordInput, $passwordHasheado) {
-            return password_verify($passwordInput, $passwordHasheado);
+        public function obtenerPorIdentidad($numero_identidad) {
+            $sql = "SELECT * FROM usuarios WHERE numero_identidad = :codigo LIMIT 1"; // Verifica que 'codigo' sea la columna correcta
+            $stmt = $this->db->prepare($sql);
+            $stmt->bindParam(':codigo', $numero_identidad, PDO::PARAM_STR);
+            $stmt->execute();
+            return $stmt->fetch(PDO::FETCH_ASSOC);
         }
-        
         
     }
 ?>

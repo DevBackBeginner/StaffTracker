@@ -11,13 +11,16 @@
             $this->db = $conn->getConnection();        
         }
 
-        public function registrarGuarda($nombre, $numero_identidad, $correo, $password, $turno) {
+        public function registrarGuarda($nombre, $numero_identidad, $correo, $passwordHash, $turno, $foto_perfil) {
             try {
                 // Inicia la transacción
                 $this->db->beginTransaction();
         
                 // Inserta datos en la tabla "usuarios"
-                $stmt = $this->db->prepare("INSERT INTO usuarios (nombre, numero_identidad) VALUES (:nombre, :numero_identidad)");
+                $stmt = $this->db->prepare("
+                    INSERT INTO usuarios (nombre, numero_identidad)
+                    VALUES (:nombre, :numero_identidad)
+                ");
                 $stmt->execute([
                     'nombre' => $nombre,
                     'numero_identidad' => $numero_identidad
@@ -25,20 +28,25 @@
                 // Obtiene el ID generado
                 $usuario_id = $this->db->lastInsertId();
         
-                // Hashea la contraseña
-                $passwordHash = password_hash($password, PASSWORD_DEFAULT);
-        
-                // Inserta datos en la tabla "usuarios_autenticados" con rol "guarda"
-                $stmt = $this->db->prepare("INSERT INTO usuarios_autenticados (usuario_id, correo, password, rol) VALUES (:usuario_id, :correo, :password, :rol)");
+                
+                // Inserta datos en la tabla "usuarios_autenticados" con rol "guarda" y la foto de perfil
+                $stmt = $this->db->prepare("
+                    INSERT INTO usuarios_autenticados (usuario_id, correo, password, rol, foto_perfil)
+                    VALUES (:usuario_id, :correo, :password, :rol, :foto_perfil)
+                ");
                 $stmt->execute([
                     'usuario_id' => $usuario_id,
                     'correo'     => $correo,
                     'password'   => $passwordHash,
-                    'rol'        => 'guarda'
+                    'rol'        => 'guarda',
+                    'foto_perfil' => $foto_perfil
                 ]);
         
                 // Inserta el turno en la tabla "guardas"
-                $stmt = $this->db->prepare("INSERT INTO guardas (usuario_id, turno) VALUES (:usuario_id, :turno)");
+                $stmt = $this->db->prepare("
+                    INSERT INTO guardas (usuario_id, turno)
+                    VALUES (:usuario_id, :turno)
+                ");
                 $stmt->execute([
                     'usuario_id' => $usuario_id,
                     'turno'      => $turno

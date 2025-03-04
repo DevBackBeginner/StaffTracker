@@ -22,10 +22,10 @@
     Router::get("logout", [LoginController::class, "Logout"]);
 
 
-    Router::get("panel_administracion", [PaginaController::class, "mostrarDashBoard"]);
-    
+    Router::get("panel_administracion", [DashboardController::class, "mostrarDashBoard"]);
 
-    Router::get("registrar_guardas", [PaginaController::class, "mostrarRegistro"]);
+
+    Router::get("registrar_guardas", [RegistrarGuardasController::class, "formularioRegistroGuardias"]);
 
     Router::post("registro_guarda", [RegistrarGuardasController::class, "registrarGuardas"]);
 

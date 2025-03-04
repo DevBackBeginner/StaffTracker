@@ -16,15 +16,7 @@
             include_once __DIR__ . '/../views/auth/login.php';
         }
 
-        public function mostrarDashBoard()
-        {
-            include_once __DIR__ . '/../views/gestion/dashboard/main_home.php';
-        }
-
-        public function mostrarRegistro()
-        {
-            include_once __DIR__ . '/../views/gestion/registro_guardas/registro_guardas.php';
-        }
+      
 
     }
 

@@ -30,14 +30,21 @@
         
                 // Obtener el usuario de la base de datos según el correo
                 $usuario = $this->loginModel->buscarPorCorreo($correo);
-        
+    
+                // $contrasenaIngresada = 'nicolas020';
+                // var_dump(password_verify($contrasenaIngresada, $usuario['password'])); // Debe ser true si es correcta
+                // exit;
+                
                 // Verificar si el usuario existe y si la contraseña es correcta
                 if ($usuario && password_verify($contrasena, $usuario['password'])) {
-                    session_start();
-                    $_SESSION['usuario'] = $usuario['nombre'];
-                    $_SESSION['rol'] = $usuario['rol'];
+                    $_SESSION['usuario'] = [
+                        'id' => $usuario['id'],
+                        'nombre' => $usuario['nombre'],
+                        'correo' => $usuario['correo'],
+                        'rol' => $usuario['rol'],
+                        'foto_perfil' => $usuario['foto_perfil'] ?? 'assets/img/perfiles/default.png' // Asegurar valor
+                    ];
                     // Establece un mensaje de éxito en una cookie
-                    setcookie("flash_success", "Bienvenido " . $usuario['nombre'], time() + 5, "/");
                     header("Location: panel_administracion");
                     exit;
                 } else {

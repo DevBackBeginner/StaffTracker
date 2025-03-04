@@ -1,10 +1,10 @@
 <?php 
+    session_start();
 
     require_once __DIR__ . '/../models/RegistroAsistenciaModelo.php';
     require_once __DIR__ . '/../models/PanelAsistenciaModelo.php';
 
     // Iniciar la sesión para manejar la autenticación y almacenar mensajes (feedback) entre peticiones
-    session_start();
 
     /**
      * Clase RegistroAsistenciaController

@@ -1,4 +1,7 @@
-<?php include_once __DIR__ . '/../../views/layouts/header_main.php'; ?>
+<?php 
+    // Incluimos el encabezado (header) que contiene la estructura HTML inicial, head, etc.
+    include_once  __DIR__ . '/../dashboard/layouts/header_main.php' ; 
+?>
 
 <body>
     <main>
@@ -27,7 +30,7 @@
                                         </div>
                                     <?php endif; ?>
 
-                                    <form class="row g-3 needs-validation" action="registro_guarda" method="POST">
+                                    <form class="row g-3 needs-validation" action="registro_guarda" method="POST" enctype="multipart/form-data">
                                         <div class="col-12">
                                             <label for="nombre" class="form-label">Nombre</label>
                                             <input type="text" name="nombre" class="form-control" id="nombre" required>
@@ -42,6 +45,11 @@
                                             <label for="correo" class="form-label">Correo Electrónico</label>
                                             <input type="email" name="correo" class="form-control" id="correo" required>
                                             <div class="invalid-feedback">Por favor, ingresa un correo electrónico válido.</div>
+                                        </div>
+                                        <div class="col-12">
+                                            <label for="foto_perfil" class="form-label">Foto de Perfil</label>
+                                            <input type="file" name="foto_perfil" class="form-control" id="foto_perfil" accept="image/*">
+                                            <div class="invalid-feedback">Por favor, sube una foto de perfil.</div>
                                         </div>
                                         <div class="col-12">
                                             <label for="password" class="form-label">Contraseña</label>
@@ -95,4 +103,7 @@
         </div>
     </main><!-- End #main -->
     <script src="assets/js/registro_guardas.js"></script>
-    <?php include_once __DIR__ . '/../../views/layouts/footer_main.php'; ?>
+    <?php 
+        // Incluimos el pie de pagina (footer) que contiene la estructura HTML final, footer, js, etc.
+        include_once  __DIR__ . '/../dashboard/layouts/footer_main.php' ; 
+    ?>

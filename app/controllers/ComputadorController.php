@@ -1,8 +1,9 @@
 
 <?php
-    require_once __DIR__ . '/../models/ComputadorModelo.php';
 
     session_start();
+    
+    require_once __DIR__ . '/../models/ComputadorModelo.php';
 
     class ComputadorController {
         private $computadorModelo;
