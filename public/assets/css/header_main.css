@@ -4,7 +4,7 @@
 }
 
 body {
-  font-family: "'Poppins', sans-serif";
+  font-family: "'Nunito', sans-serif";
   background: #f6f9ff;
   color: #444444;
   
@@ -229,7 +229,7 @@ h6 {
   font-size: 18px;
   font-weight: 500;
   color: #012970;
-  font-family: "Poppins", sans-serif;
+  font-family: "Nunito", sans-serif;
 }
 
 .card-title span {
@@ -249,7 +249,7 @@ h6 {
 /* Alerts */
 .alert-heading {
   font-weight: 500;
-  font-family: "Poppins", sans-serif;
+  font-family: "Nunito", sans-serif;
   font-size: 20px;
 }
 

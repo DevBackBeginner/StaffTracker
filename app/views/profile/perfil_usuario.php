@@ -1,23 +1,36 @@
 <?php include_once __DIR__ . '/../../views/gestion/dashboard/layouts/header_main.php'; ?>
+    <!-- Incluir SweetAlert2 desde un CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <main id="main" class="main">
         <!-- end header -->
         <div class="pagetitle">
-          <h1>Perfil</h1>
-          <nav>
-            <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="panel_administracion">Home</a></li>
-              <li class="breadcrumb-item active">Perfil</li>
-            </ol>
-          </nav>
+            <h1>Perfil</h1>
+            <nav>
+                <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="panel_administracion">Home</a></li>
+                <li class="breadcrumb-item active">Perfil</li>
+                </ol>
+            </nav>
         </div><!-- End Page Title -->
         <section class="section profile">
             <div class="row">
                 <div class="col-xl-4">
                     <div class="card" style="width: 100%;">
+                            <?php if (!empty($_SESSION['mensaje'])): ?>
+                                <div class="alert <?= $_SESSION['tipo_mensaje'] === 'error' ? 'alert-danger' : 'alert-success' ?> alert-dismissible fade show" role="alert">
+                                    <?= htmlspecialchars($_SESSION['mensaje']) ?>
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                                <?php
+                                // Limpiar el mensaje después de mostrarlo
+                                unset($_SESSION['mensaje']);
+                                unset($_SESSION['tipo_mensaje']);
+                                ?>
+                            <?php endif; ?>
                         <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
                             <img src="<?= $_SESSION['usuario']['foto_perfil'] ?>" alt="Profile" class="rounded-circle">
                             <h2><?= $_SESSION['usuario']['nombre']?></h2>
-                            <h3><?= ($_SESSION['usuario']['rol'] === 'admin') ? 'Administrador' : htmlspecialchars($_SESSION['usuario']['rol'])?>
+                            <h3><?= ($_SESSION['usuario']['rol'] === 'admin') ? 'Administrador' : (htmlspecialchars($_SESSION['usuario']['rol']) === 'guarda' ? 'Guardia de portería' : htmlspecialchars($_SESSION['usuario']['rol'])) ?></h3>
                             <div class="social-links mt-2">
                                 <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
                                 <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
@@ -56,7 +69,7 @@
 
                                     <div class="row">
                                         <div class="col-lg-3 col-md-4 label">Full Name</div>
-                                        <div class="col-lg-9 col-md-8"><?= $_SESSION['usuario']['nombre_completo']?></div>
+                                        <div class="col-lg-9 col-md-8"><?= $_SESSION['usuario']['nombre'] . ' ' . $_SESSION['usuario']['apellidos']?></div>
                                     </div>
 
                                     <div class="row">
@@ -87,22 +100,35 @@
 
                                 <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
                                     <!-- Profile Edit Form -->
-                                    <form>
+                                 
+
+                                    <form method="POST" action="actualizar" enctype="multipart/form-data">
                                         <div class="row mb-3">
                                             <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile Image</label>
                                             <div class="col-md-8 col-lg-9">
-                                                <img src="<?= $_SESSION['usuario']['foto_perfil'] ?>" alt="Profile" class="rounded-circle">
+                                                <!-- Mostrar la imagen de perfil actual o una imagen por defecto -->
+                                                <img src="<?= $_SESSION['usuario']['foto_perfil'] ?? 'default.png' ?>" alt="Profile" class="rounded-circle">
                                                 <div class="pt-2">
-                                                  <a href="#" class="btn btn-primary btn-sm" title="Upload new profile image"><i class="bi bi-upload"></i></a>
-                                                  <a href="#" class="btn btn-danger btn-sm" title="Remove my profile image"><i class="bi bi-trash"></i></a>
+                                                    <!-- Input de archivo (oculto) -->
+                                                    <input type="file" name="imagen" id="imagen" style="display: none;" accept="image/*">
+
+                                                    <!-- Botón para subir una nueva imagen -->
+                                                    <a href="#" class="btn btn-primary btn-sm" onclick="document.getElementById('imagen').click(); return false;">
+                                                        <i class="bi bi-upload"></i> Upload new profile image
+                                                    </a>
+                                                    <!-- Botón para eliminar la imagen -->
+                                                    <button class="btn btn-danger btn-sm" onclick="eliminarImagen()">
+                                                        <i class="bi bi-trash"></i> Remove my profile image
+                                                    </button>
                                                 </div>
                                             </div>
                                         </div>
+
                                         <div class="row mb-3">
                                             <label for="nombre" class="col-md-4 col-lg-3 col-form-label">Nombre</label>
                                             <div class="col-md-8 col-lg-9">
                                                 <input name="nombre" type="text" class="form-control" id="nombre" 
-                                                      value="<?php echo isset($_SESSION['usuario']['nombre']) ? $_SESSION['usuario']['nombre'] : ''; ?>">
+                                                    value="<?= htmlspecialchars($_SESSION['usuario']['nombre'] ?? '') ?>">
                                             </div>
                                         </div>
 
@@ -110,58 +136,30 @@
                                             <label for="apellidos" class="col-md-4 col-lg-3 col-form-label">Apellidos</label>
                                             <div class="col-md-8 col-lg-9">
                                                 <input name="apellidos" type="text" class="form-control" id="apellidos" 
-                                                      value="<?php echo isset($_SESSION['usuario']['apellidos']) ? $_SESSION['usuario']['apellidos'] : ''; ?>">
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="row mb-3">
-                                            <label for="Phone" class="col-md-4 col-lg-3 col-form-label">Phone</label>
-                                            <div class="col-md-8 col-lg-9">
-                                                <input name="phone" type="text" class="form-control" id="Phone" value="<?php echo isset($_SESSION['usuario']['telefono']) ? $_SESSION['usuario']['telefono'] : ''; ?>">
+                                                    value="<?= htmlspecialchars($_SESSION['usuario']['apellidos'] ?? '') ?>">
                                             </div>
                                         </div>
 
+                                        <div class="row mb-3">
+                                            <label for="Phone" class="col-md-4 col-lg-3 col-form-label">Phone</label>
+                                            <div class="col-md-8 col-lg-9">
+                                                <input name="phone" type="text" class="form-control" id="Phone" 
+                                                    value="<?= htmlspecialchars($_SESSION['usuario']['telefono'] ?? '') ?>">
+                                            </div>
+                                        </div>
 
                                         <div class="row mb-3">
                                             <label for="Email" class="col-md-4 col-lg-3 col-form-label">Email</label>
                                             <div class="col-md-8 col-lg-9">
                                                 <input name="email" type="email" class="form-control" id="Email" 
-                                                      value="<?php echo isset($_SESSION['usuario']['correo']) ? $_SESSION['usuario']['correo'] : ''; ?>">
+                                                    value="<?= htmlspecialchars($_SESSION['usuario']['correo'] ?? '') ?>">
                                             </div>
                                         </div>
-
-                                        <!-- <div class="row mb-3">
-                                            <label for="Twitter" class="col-md-4 col-lg-3 col-form-label">Twitter Profile</label>
-                                            <div class="col-md-8 col-lg-9">
-                                                <input name="twitter" type="text" class="form-control" id="Twitter" value="https://twitter.com/#">
-                                            </div>
-                                        </div>
-
-                                        <div class="row mb-3">
-                                            <label for="Facebook" class="col-md-4 col-lg-3 col-form-label">Facebook Profile</label>
-                                            <div class="col-md-8 col-lg-9">
-                                                <input name="facebook" type="text" class="form-control" id="Facebook" value="https://facebook.com/#">
-                                            </div>
-                                        </div>
-
-                                        <div class="row mb-3">
-                                            <label for="Instagram" class="col-md-4 col-lg-3 col-form-label">Instagram Profile</label>
-                                            <div class="col-md-8 col-lg-9">
-                                                <input name="instagram" type="text" class="form-control" id="Instagram" value="https://instagram.com/#">
-                                            </div>
-                                        </div>
-
-                                        <div class="row mb-3">
-                                            <label for="Linkedin" class="col-md-4 col-lg-3 col-form-label">Linkedin Profile</label>
-                                            <div class="col-md-8 col-lg-9">
-                                                <input name="linkedin" type="text" class="form-control" id="Linkedin" value="https://linkedin.com/#">
-                                            </div>
-                                        </div> -->
 
                                         <div class="text-center">
                                             <button type="submit" class="btn btn-primary">Save Changes</button>
                                         </div>
-                                    </form><!-- End Profile Edit Form -->
+                                    </form>
                                 </div>
 
                                 <div class="tab-pane fade pt-3" id="profile-settings">
@@ -243,3 +241,66 @@
     </main><!-- End #main -->
 
 <?php include_once __DIR__ . '/../../views/gestion/dashboard/layouts/footer_main.php'; ?>
+
+<script>
+    // Función para subir la imagen
+    // Función para manejar la selección de la imagen
+    document.getElementById('imagen').addEventListener('change', function(event) {
+    const archivo = event.target.files[0]; // Obtener el archivo seleccionado
+    if (archivo) {
+        console.log("Archivo seleccionado:", archivo.name); // Verificar en la consola
+        subirImagen(archivo);
+    }
+    });
+        
+    // Función para subir la imagen
+    function subirImagen(archivo) {
+        console.log("Subiendo imagen:", archivo.name); // Verificar en la consola
+        const formData = new FormData();
+        formData.append('imagen', archivo);
+
+        fetch('subir-imagen', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log("Respuesta del servidor:", data); // Verificar en la consola
+            if (data.success) {
+                // Recargar la página para mostrar el mensaje de éxito
+                window.location.reload();
+            } else {
+                // Recargar la página para mostrar el mensaje de error
+                window.location.reload();
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            // Recargar la página incluso si hay un error
+            window.location.reload();
+        });
+    }
+    // Función para eliminar la imagen
+    function eliminarImagen() {
+        if (confirm('¿Estás seguro de que deseas eliminar la imagen de perfil?')) {
+            fetch('eliminar-imagen', {
+                method: 'POST'
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Recargar la página para mostrar el mensaje de éxito
+                    window.location.reload();
+                } else {
+                    // Recargar la página para mostrar el mensaje de error
+                    window.location.reload();
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                // Recargar la página incluso si hay un error
+                window.location.reload();
+            });
+        }
+    }
+</script>

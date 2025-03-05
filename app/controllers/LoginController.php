@@ -11,6 +11,11 @@
             $this->loginModel = new LoginModel();
         }
 
+        public function mostrarLogin() 
+        {
+            include_once __DIR__ . '/../views/auth/login.php';
+        }
+
         /**
          * Procesa el inicio de sesión del usuario.
          */
@@ -41,14 +46,13 @@
                         'id' => $usuario['id'],
                         'nombre' => $usuario['nombre'],
                         'apellidos' => $usuario['apellidos'],
-                        'nombre_completo' => $usuario['nombre'] . ' ' . $usuario['apellidos'],
                         'telefono' => $usuario['telefono'],
                         'correo' => $usuario['correo'],
                         'rol' => $usuario['rol'],
                         'foto_perfil' => $usuario['foto_perfil'] ?? 'assets/img/perfiles/default.png' // Asegurar valor
                     ];
                     // Establece un mensaje de éxito en una cookie
-                    header("Location: panel_administracion");
+                    header("Location: Inicio");
                     exit;
                 } else {
                     // Establece un mensaje de error en una cookie

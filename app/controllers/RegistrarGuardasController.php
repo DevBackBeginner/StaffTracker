@@ -67,14 +67,6 @@ class RegistrarGuardasController {
                 exit();
             }
     
-            // Validar que el número de documento no exceda el valor máximo (1072745267)
-            if ($numeroIdentidad > 1072745267) {
-                $_SESSION['mensaje'] = "El número de documento no puede ser mayor a 1072745267.";
-                $_SESSION['tipo_mensaje'] = 'error';
-                header('Location: registrar_guardas'); // Redirigir al formulario
-                exit();
-            }
-    
             // Manejo de la foto de perfil
             $fotoPerfil = 'assets/img/perfiles/default.png'; // Imagen por defecto
     

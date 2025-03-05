@@ -12,6 +12,7 @@
       <meta name="keywords" content="">
       <meta name="description" content="">
       <meta name="author" content="">
+
       <!-- bootstrap css -->
       <link rel="stylesheet" href="assets/css/bootstrap.min.css">
       <!-- style css -->
@@ -19,8 +20,9 @@
       <!-- Responsive-->
       <link rel="stylesheet" href="assets/css/responsive.css">
       <!-- fevicon -->
-      <link rel="icon" href="assets/img/fevicon.png" type="image/gif" />
-      <!-- Scrollbar Custom CSS -->
+      <!-- Favicons -->
+      <link href="assets/img/logo.png" rel="icon">
+      <link href="assets/img/logo.png" rel="apple-touch-icon">      <!-- Scrollbar Custom CSS -->
       <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css">
       <!-- Tweaks for older IEs-->
       <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
