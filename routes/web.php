@@ -24,6 +24,8 @@
 
     Router::get("panel_administracion", [DashboardController::class, "mostrarDashBoard"]);
 
+    Router::get("perfil", [PerfilController::class, "mostrarPerfil"]);
+
 
     Router::get("registrar_guardas", [RegistrarGuardasController::class, "formularioRegistroGuardias"]);
 

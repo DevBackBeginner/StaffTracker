@@ -1,0 +1,91 @@
+/* Estilos para las tarjetas */
+.custom-card {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.custom-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilos para el encabezado de las tarjetas */
+.bg-custom {
+    background-color: #28a745; /* Verde */
+    border-radius: 10px 10px 0 0;
+}
+
+.bg-custom h2 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+/* Estilos para el formulario */
+#form-escaneo .form-control {
+    border-radius: 5px;
+    border: 1px solid #ced4da;
+    padding: 10px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#form-escaneo .form-control:focus {
+    border-color: #28a745; /* Verde */
+    box-shadow: 0 0 5px rgba(40, 167, 69, 0.5);
+}
+
+/* Estilos para la tabla */
+.custom-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #ffffff; /* Fondo blanco */
+    color: #000000; /* Texto negro */
+}
+
+.custom-table th,
+.custom-table td {
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #dddddd; /* Borde gris claro */
+}
+
+.thead-custom {
+    background-color: #28a745; /* Verde */
+    color: #ffffff; /* Texto blanco */
+}
+
+.custom-table tbody tr:nth-child(even) {
+    background-color: #f8f9fa; /* Gris claro */
+}
+
+.custom-table tbody tr:hover {
+    background-color: #e2e6ea; /* Gris más oscuro al pasar el mouse */
+}
+
+/* Estilos para los badges */
+.badge {
+    padding: 6px 10px;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.bg-success {
+    background-color: #28a745; /* Verde */
+    color: #ffffff; /* Texto blanco */
+}
+
+.bg-danger {
+    background-color: #dc3545; /* Rojo */
+    color: #ffffff; /* Texto blanco */
+}
+
+/* Estilos para el mensaje de alerta */
+.alert-info {
+    background-color: #d1ecf1; /* Azul claro */
+    color: #0c5460; /* Texto azul oscuro */
+    border-color: #bee5eb;
+    padding: 10px;
+    border-radius: 4px;
+    text-align: center;
+}

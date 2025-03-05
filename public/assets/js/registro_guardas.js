@@ -21,3 +21,20 @@ function togglePassword(inputId, iconId) {
         icon.classList.add("bi-eye");
     }
 }
+// Validación en tiempo real para el número de identidad
+document.getElementById('numero_identidad').addEventListener('input', function () {
+    if (!this.checkValidity()) {
+        this.classList.add('is-invalid');
+    } else {
+        this.classList.remove('is-invalid');
+    }
+});
+
+// Validación en tiempo real para el teléfono
+document.getElementById('telefono').addEventListener('input', function () {
+    if (!this.checkValidity()) {
+        this.classList.add('is-invalid');
+    } else {
+        this.classList.remove('is-invalid');
+    }
+});

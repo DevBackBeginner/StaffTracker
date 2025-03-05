@@ -1,6 +1,4 @@
     <?php  include_once  __DIR__ . '/../../views/layouts/header.php' ; ?>
-    
-    <!-- end header inner -->
     <!-- end header -->
 
     <!-- banner -->

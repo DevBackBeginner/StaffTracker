@@ -11,25 +11,26 @@
             $this->db = $conn->getConnection();        
         }
 
-        public function registrarGuarda($nombre, $numero_identidad, $correo, $passwordHash, $turno, $foto_perfil) {
+        public function registrarGuarda($nombre, $apellidos, $telefono, $numero_identidad, $correo, $passwordHash, $turno, $foto_perfil) {
             try {
                 // Inicia la transacción
                 $this->db->beginTransaction();
         
-                // Inserta datos en la tabla "usuarios"
+                // Inserta datos en la tabla "usuarios" (incluyendo apellidos y teléfono)
                 $stmt = $this->db->prepare("
-                    INSERT INTO usuarios (nombre, numero_identidad)
-                    VALUES (:nombre, :numero_identidad)
+                    INSERT INTO usuarios (nombre, apellidos, telefono, numero_identidad)
+                    VALUES (:nombre, :apellidos, :telefono, :numero_identidad)
                 ");
                 $stmt->execute([
                     'nombre' => $nombre,
+                    'apellidos' => $apellidos, 
+                    'telefono' => $telefono,    // Agregar teléfono
                     'numero_identidad' => $numero_identidad
                 ]);
+        
                 // Obtiene el ID generado
                 $usuario_id = $this->db->lastInsertId();
         
-                
-                // Inserta datos en la tabla "usuarios_autenticados" con rol "guarda" y la foto de perfil
                 $stmt = $this->db->prepare("
                     INSERT INTO usuarios_autenticados (usuario_id, correo, password, rol, foto_perfil)
                     VALUES (:usuario_id, :correo, :password, :rol, :foto_perfil)

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 03-03-2025 a las 14:17:28
+-- Tiempo de generación: 05-03-2025 a las 02:22:23
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -134,6 +134,14 @@ CREATE TABLE `guardas` (
   `turno` enum('mañana','tarde','noche') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `guardas`
+--
+
+INSERT INTO `guardas` (`id`, `usuario_id`, `turno`) VALUES
+(3, 35, 'tarde'),
+(4, 37, 'noche');
+
 -- --------------------------------------------------------
 
 --
@@ -173,7 +181,7 @@ CREATE TABLE `registro_asistencia` (
 --
 
 INSERT INTO `registro_asistencia` (`id`, `asignacion_id`, `fecha`, `hora_entrada`, `hora_salida`, `estado`) VALUES
-(44, 4, '2025-03-02', '18:09:56', '18:10:52', 'Finalizado');
+(46, 4, '2025-03-03', '12:12:13', '12:12:26', 'Finalizado');
 
 -- --------------------------------------------------------
 
@@ -184,6 +192,8 @@ INSERT INTO `registro_asistencia` (`id`, `asignacion_id`, `fecha`, `hora_entrada
 CREATE TABLE `usuarios` (
   `id` int(11) NOT NULL,
   `nombre` varchar(100) NOT NULL,
+  `apellidos` varchar(260) NOT NULL,
+  `telefono` varchar(255) NOT NULL,
   `numero_identidad` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -191,12 +201,14 @@ CREATE TABLE `usuarios` (
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`id`, `nombre`, `numero_identidad`) VALUES
-(1, 'Juan Pérez', '123456789'),
-(2, 'María Gómez', '987654321'),
-(3, 'Carlos López', '456789123'),
-(4, 'Andrea Ruiz', '789123456'),
-(12, 'Andres', '1072756367');
+INSERT INTO `usuarios` (`id`, `nombre`, `apellidos`, `telefono`, `numero_identidad`) VALUES
+(1, 'Juan Pérez', '', '', '123456789'),
+(2, 'María Gómez', '', '', '987654321'),
+(3, 'Carlos López', '', '', '456789123'),
+(4, 'Andrea Ruiz', '', '', '789123456'),
+(31, 'Helbert Dubler', 'Morera Hernández', '3105738706', '1072745267'),
+(35, 'Andres', 'Morera', '3103899573', '1072745627'),
+(37, 'Luis', 'Martinez', '3103899573', '1074756271');
 
 -- --------------------------------------------------------
 
@@ -208,16 +220,19 @@ CREATE TABLE `usuarios_autenticados` (
   `id` int(11) NOT NULL,
   `usuario_id` int(11) NOT NULL,
   `correo` varchar(100) NOT NULL,
-  `password` varchar(255) NOT NULL,
+  `foto_perfil` varchar(255) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
   `rol` enum('admin','guarda') NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `usuarios_autenticados`
 --
 
-INSERT INTO `usuarios_autenticados` (`id`, `usuario_id`, `correo`, `password`, `rol`) VALUES
-(6, 12, 'morerahelbert9@gmail.com', '$2y$10$aVwoWRwsMW6S5iysSwbh9ucmO7ZwYNB4SJbbVliNt4jjEWV7Xzi8q', 'admin');
+INSERT INTO `usuarios_autenticados` (`id`, `usuario_id`, `correo`, `foto_perfil`, `password`, `rol`) VALUES
+(1, 31, 'morerahelbert9@gmail.com', 'assets/img/perfiles/helbert_morera_perfil.webp', '$2y$10$0s.Jwa/EMk93wCH1enhU5.tC4xcGhUOrTjdJweIQuVs7mvCS/OL26', 'admin'),
+(4, 35, 'AndresNa@gmail.com', 'assets/img/perfiles/default.png', '$2y$10$THEYeQIUKAEF.1bx.27Cj.U4XuieUOlRisLWKJ//rA2cgUDjA6SAq', 'guarda'),
+(5, 37, 'kindred@gmail.com', 'assets/img/perfiles/default.png', '$2y$10$di3DF7sgPCM2.dtLmmHaPeK8.TQ5/VnyDOwsJAF8HL9lyXWhNGH4m', 'guarda');
 
 --
 -- Índices para tablas volcadas
@@ -301,7 +316,7 @@ ALTER TABLE `usuarios_autenticados`
 -- AUTO_INCREMENT de la tabla `asignaciones_computadores`
 --
 ALTER TABLE `asignaciones_computadores`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `computadores`
@@ -313,25 +328,25 @@ ALTER TABLE `computadores`
 -- AUTO_INCREMENT de la tabla `guardas`
 --
 ALTER TABLE `guardas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `registro_asistencia`
 --
 ALTER TABLE `registro_asistencia`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios_autenticados`
 --
 ALTER TABLE `usuarios_autenticados`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Restricciones para tablas volcadas

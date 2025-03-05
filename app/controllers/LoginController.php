@@ -40,6 +40,9 @@
                     $_SESSION['usuario'] = [
                         'id' => $usuario['id'],
                         'nombre' => $usuario['nombre'],
+                        'apellidos' => $usuario['apellidos'],
+                        'nombre_completo' => $usuario['nombre'] . ' ' . $usuario['apellidos'],
+                        'telefono' => $usuario['telefono'],
                         'correo' => $usuario['correo'],
                         'rol' => $usuario['rol'],
                         'foto_perfil' => $usuario['foto_perfil'] ?? 'assets/img/perfiles/default.png' // Asegurar valor
@@ -62,11 +65,32 @@
         
         
 
-        public function Logout(){
-            session_start();
-            session_unset(); // Elimina todas las variables de sesión
-            session_destroy(); // Destruye la sesión
-            header("Location: Inicio"); // Redirige al usuario a la página de inicio de sesión
+        public function Logout() {
+            // Iniciar la sesión si no está iniciada
+            if (session_status() === PHP_SESSION_NONE) {
+                session_start();
+            }
+        
+            // Eliminar todas las variables de sesión
+            $_SESSION = array();
+        
+            // Si desea destruir la sesión completamente, borra también la cookie de sesión.
+            if (ini_get("session.use_cookies")) {
+                $params = session_get_cookie_params();
+                setcookie(session_name(), '', time() - 42000,
+                    $params["path"], $params["domain"],
+                    $params["secure"], $params["httponly"]
+                );
+            }
+        
+            // Destruir la sesión
+            session_destroy();
+        
+            // Regenerar el ID de sesión para prevenir la fijación de sesión
+            session_regenerate_id(true);
+        
+            // Redirigir al usuario a la página de inicio de sesión
+            header("Location: Inicio");
             exit();
         }
     }

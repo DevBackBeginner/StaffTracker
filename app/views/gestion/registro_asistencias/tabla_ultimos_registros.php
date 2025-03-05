@@ -1,16 +1,16 @@
 <?php if (!empty($ultimosRegistros)): ?>
-    <table class="table table-bordered table-hover">
-        <thead class="thead-dark">
+    <table class="table table-bordered table-hover custom-table">
+        <thead class="thead-custom">
             <tr>
-                <th>Nombre</th>
-                <th>Cédula</th>
-                <th>Marca PC</th>
-                <th>Código PC</th>
-                <th>Tipo PC</th>
-                <th>Fecha</th>
-                <th>Hora Entrada</th>
-                <th>Hora Salida</th>
-                <th>Estado</th>
+                <th class="fs-6">Nombre</th>
+                <th class="fs-6">Cédula</th>
+                <th class="fs-6">Marca del Equipo</th>
+                <th class="fs-6">Código del Equipo</th>
+                <th class="fs-6">Tipo de Equipo</th>
+                <th class="fs-6">Fecha</th>
+                <th class="fs-6">Hora Entrada</th>
+                <th class="fs-6">Hora Salida</th>
+                <th class="fs-6">Estado</th>
             </tr>
         </thead>
         <tbody>

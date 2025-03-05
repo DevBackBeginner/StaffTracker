@@ -13,6 +13,12 @@
             $this->perfilModelo = new PerfilModelo();
         }
 
-    
-    }
+        public function mostrarPerfil()
+        {
+            $id = $_SESSION['usuario']['id'];
+            $usuario = $this->perfilModelo->obtenerPerfilPorId($id);
+            include_once __DIR__ . '/../views/profile/perfil_usuario.php';
+        }
+    }            
+
 ?>

@@ -1,18 +1,27 @@
 <?php 
     // Incluimos el encabezado (header) que contiene la estructura HTML inicial, head, etc.
     include_once  __DIR__ . '/../dashboard/layouts/header_main.php' ; 
+
 ?>
 
     <!-- Enlace al archivo CSS específico para el panel -->
-    <link rel="stylesheet" href="assets/css/panel_asistencia.css">
-
-    <!-- Contenedor principal -->
-    <div class="container-fluid mb-4 bg-light" >
-        <div class="row justify-content-center" style="padding-top: 100px; padding-left: 250px">
-            <!-- Card: Registrar Asistencia -->
-            <div class="col-lg-10 col-md-10">
-                <div class="card mb-4 shadow-sm">
-                    <div class="card-header bg-primary text-white">
+    <link rel="stylesheet" href="assets/css/registro_asistencias.css">
+    <main id="main" class="main">
+        <div class="pagetitle">
+            <h1>Registro Asistencia</h1>
+            <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="panel_administracion">Home</a></li>
+                <li class="breadcrumb-item active">Registrar Asistencias</li>
+            </ol>
+            </nav>
+        </div><!-- End Page Title -->
+        <!-- Contenedor principal -->
+        <div class="row">
+            <!-- Fila para el formulario de registro -->
+            <div class="col-12"> <!-- Ocupa el 100% del ancho -->
+                <div class="card mb-4 shadow-sm custom-card">
+                    <div class="card-header bg-custom text-white">
                         <h2 class="h5 mb-0">Registrar Asistencia</h2>
                     </div>
                     <div class="card-body">
@@ -31,13 +40,11 @@
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Nueva tabla: Últimos registros de asistencia -->
-        <div class="row justify-content-center" style=" padding-left: 250px"> 
-            <div class="col-lg-10">
-                <div class="card shadow-sm">
-                    <div class="card-header bg-primary text-white">
+            <!-- Fila para la tabla de últimos registros -->
+            <div class="col-12"> <!-- Ocupa el 100% del ancho -->
+                <div class="card shadow-sm custom-card">
+                    <div class="card-header bg-custom text-white">
                         <h2 class="h5 mb-0">Últimos Registros de Asistencia</h2>
                     </div>
                     <div class="card-body">
@@ -46,12 +53,10 @@
                 </div>
             </div>
         </div>
-        <br>
-    </div>
 
-    <?php  include "alertas.php"?>
+        <?php  include "alertas.php"?>
 
-
+    </main>
 <?php 
     // Incluimos el encabezado (header) que contiene la estructura HTML inicial, head, etc.
     include_once  __DIR__ . '/../dashboard/layouts/footer_main.php' ; 

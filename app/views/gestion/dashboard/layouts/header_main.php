@@ -4,6 +4,7 @@
       header("Location: Inicio");
       exit();
   }
+
 ?>
 
 <!DOCTYPE html>
@@ -30,7 +31,8 @@
     <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
     <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
     
-    <link href="assets/css/main_home.css" rel="stylesheet">
+    <link href="assets/css/header_main.css" rel="stylesheet">
+    <link href="assets/css/footer_main.css" rel="stylesheet">
 
   </head>
 
@@ -223,7 +225,7 @@
                 <li><hr class="dropdown-divider"></li>
 
                 <li>
-                    <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+                    <a class="dropdown-item d-flex align-items-center" href="perfil">
                         <i class="bi bi-person"></i>
                         <span>My Profile</span>
                     </a>
@@ -247,7 +249,7 @@
                 <li><hr class="dropdown-divider"></li>
 
                 <li>
-                    <a class="dropdown-item d-flex align-items-center" href="logout.php">
+                    <a class="dropdown-item d-flex align-items-center" href="logout">
                         <i class="bi bi-box-arrow-right"></i>
                         <span>Sign Out</span>
                     </a>
@@ -312,7 +314,7 @@
         <!-- Opciones Generales -->
         <li class="nav-heading">Opciones Generales</li>
         <li class="nav-item">
-          <a class="nav-link collapsed" href="perfil.html">
+          <a class="nav-link collapsed" href="perfil">
             <i class="bi bi-person"></i>
             <span>Perfil</span>
           </a>
@@ -320,7 +322,7 @@
         <li class="nav-item">
           <a class="nav-link collapsed" href="contacto.html">
             <i class="bi bi-envelope"></i>
-            <span>Contáctenos</span>
+            <span>Reportar Bugs</span>
           </a>
         </li><!-- End Contáctenos Nav -->
 
