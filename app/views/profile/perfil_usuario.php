@@ -7,7 +7,7 @@
             <h1>Perfil</h1>
             <nav>
                 <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="panel_administracion">Home</a></li>
+                <li class="breadcrumb-item"><a href="Inicio">Home</a></li>
                 <li class="breadcrumb-item active">Perfil</li>
                 </ol>
             </nav>

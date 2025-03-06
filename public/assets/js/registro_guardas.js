@@ -5,7 +5,7 @@ setTimeout(() => {
         alerta.classList.add("fade");
         setTimeout(() => alerta.remove(), 500); // Remueve el div después de la animación
     }
-}, 5000);
+});
 
 function togglePassword(inputId, iconId) {
     let input = document.getElementById(inputId);

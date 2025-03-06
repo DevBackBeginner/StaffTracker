@@ -165,6 +165,7 @@ class PerfilController
 
         exit();
     }
+    
     // Método para procesar la eliminación de la imagen de perfil
     public function eliminarImagenPerfil()
     {
@@ -188,7 +189,7 @@ class PerfilController
                         // Actualizar la sesión con la imagen por defecto
                         $_SESSION['usuario']['foto_perfil'] = $imagenPorDefecto;
                         // Guardar mensaje de éxito
-                        $_SESSION['mensaje'] = "La imagen de perfil se elimino correctamente.";
+                        $_SESSION['mensaje'] = "La imagen de perfil se eliminó correctamente.";
                         $_SESSION['tipo_mensaje'] = "success";
                     } else {
                         // Guardar mensaje de error
@@ -205,6 +206,8 @@ class PerfilController
                 $_SESSION['mensaje'] = "No se encontró la imagen de perfil actual.";
                 $_SESSION['tipo_mensaje'] = "error";
             }
+            // Redirigir al perfil
+            header('Location: perfil');
             exit();
         }
     }

@@ -58,10 +58,7 @@
                               <li class="nav-item active">
                                  <a class="nav-link" href="index.html">Inicio</a>
                               </li>
-                    
-                              <li class="nav-item">
-                                 <a class="nav-link" href=".html">Acerca De</a>
-                              </li>
+   
                               <li class="nav-item">
                                  <a class="nav-link" href=".html">Contactos</a>
                               </li>

@@ -91,13 +91,16 @@
           let modal = new bootstrap.Modal(modalEl);
           modal.show();
 
-          let tipoMensaje = "<?php echo $tipo; ?>";  // Evita confusión con "tipoComputador"
+          modalEl.addEventListener('hidden.bs.modal', function () {
+              console.log('Modal cerrado correctamente');
+              document.body.classList.remove('modal-open');
+              let backdrop = document.querySelector('.modal-backdrop');
+              if (backdrop) {
+                  backdrop.remove();
+              }
+          });
 
-          if (tipoMensaje !== "entrada") {
-              setTimeout(() => {
-                  modal.hide();
-              }, 3000);
-          }
+          let tipoMensaje = "<?php echo $tipo; ?>";  // Evita confusión con "tipoComputador"
 
           if (tipoMensaje === "entrada") {
               const fase1 = document.getElementById("fase1");

@@ -11,7 +11,7 @@
             <h1>Registro Asistencia</h1>
             <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="panel_administracion">Home</a></li>
+                <li class="breadcrumb-item"><a href="Inicio">Home</a></li>
                 <li class="breadcrumb-item active">Registrar Asistencias</li>
             </ol>
             </nav>

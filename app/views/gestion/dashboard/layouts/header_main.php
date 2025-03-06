@@ -41,7 +41,7 @@
     <header id="header" class="header fixed-top d-flex align-items-center">
 
       <div class="d-flex align-items-center justify-content-between">
-        <a href="panel_administracion" class="logo d-flex align-items-center">
+        <a href="Inicio" class="logo d-flex align-items-center">
           <img src="assets/img/logo.png" alt="">
           <span class="d-none d-lg-block">ControlAssistance</span>
         </a>
@@ -265,7 +265,7 @@
 
         <!-- Dashboard -->
         <li class="nav-item">
-          <a class="nav-link" href="panel_administracion">
+          <a class="nav-link" href="Inicio">
             <i class="bi bi-grid"></i>
             <span>Dashboard</span>
           </a>
