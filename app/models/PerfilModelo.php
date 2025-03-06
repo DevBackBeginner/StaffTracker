@@ -87,5 +87,23 @@
             $stmt->bindParam(':idUsuario', $idUsuario, PDO::PARAM_INT);
             return $stmt->execute(); // Devuelve true si la ejecución fue exitosa
         }
+
+        public function verificarContraseña($idUsuario, $contraseñaActual){
+            $sql = "SELECT contrasena FROM usuarios_autenticados WHERE id = :id";
+            $stmt = $this->db->prepare($sql);
+            $stmt->bindParam(':id', $idUsuario, PDO::PARAM_INT);
+            $stmt->execute();
+            $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
+            return password_verify($contraseñaActual, $resultado['contrasena']);
+        }
+
+        public function actualizarContraseña($idUsuario, $nuevaContraseña){
+            $hash = password_hash($nuevaContraseña, PASSWORD_DEFAULT);
+            $sql = "UPDATE usuarios_autenticados SET contrasena = :contrasena WHERE id = :id";
+            $stmt = $this->db->prepare($sql);
+            $stmt->bindParam(':contrasena', $hash, PDO::PARAM_STR);
+            $stmt->bindParam(':id', $idUsuario, PDO::PARAM_INT);
+            return $stmt->execute();
+        }
     }
 ?>

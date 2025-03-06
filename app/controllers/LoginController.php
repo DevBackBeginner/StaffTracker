@@ -41,7 +41,7 @@
                 // exit;
                 
                 // Verificar si el usuario existe y si la contraseña es correcta
-                if ($usuario && password_verify($contrasena, $usuario['password'])) {
+                if ($usuario && password_verify($contrasena, $usuario['contrasena'])) {
                     $_SESSION['usuario'] = [
                         'id' => $usuario['id'],
                         'nombre' => $usuario['nombre'],

@@ -163,11 +163,6 @@ class PerfilController
             $_SESSION['tipo_mensaje'] = "error";
         }
 
-        var_dump($_SESSION['mensaje']);
-        var_dump($_SESSION['tipo_mensaje']);
-        exit();
-        // Redirigir al perfil
-        header('Location: perfil');
         exit();
     }
     // Método para procesar la eliminación de la imagen de perfil
@@ -192,9 +187,8 @@ class PerfilController
                     if ($actualizado) {
                         // Actualizar la sesión con la imagen por defecto
                         $_SESSION['usuario']['foto_perfil'] = $imagenPorDefecto;
-
                         // Guardar mensaje de éxito
-                        $_SESSION['mensaje'] = "La imagen de perfil se restableció correctamente.";
+                        $_SESSION['mensaje'] = "La imagen de perfil se elimino correctamente.";
                         $_SESSION['tipo_mensaje'] = "success";
                     } else {
                         // Guardar mensaje de error
@@ -211,7 +205,48 @@ class PerfilController
                 $_SESSION['mensaje'] = "No se encontró la imagen de perfil actual.";
                 $_SESSION['tipo_mensaje'] = "error";
             }
+            exit();
+        }
+    }
 
+    public function actualizarContrasena(){
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            // Obtener el ID del usuario desde la sesión
+            $idUsuario = $_SESSION['usuario']['id'];
+
+            // Obtener los datos del formulario
+            $contraseñaActual = $_POST['contrasena_actual'];
+            $nuevaContraseña = $_POST['nueva_contrasena'];
+            $confirmarContraseña = $_POST['confirmar_contrasena'];
+
+            // Verificar que la nueva contraseña y la confirmación coincidan
+            if ($nuevaContraseña === $confirmarContraseña) {
+                // Verificar que la contraseña actual sea correcta
+                $contraseñaCorrecta = $this->perfilModelo->verificarContraseña($idUsuario, $contraseñaActual);
+
+                if ($contraseñaCorrecta) {
+                    // Actualizar la contraseña en la base de datos
+                    $actualizado = $this->perfilModelo->actualizarContraseña($idUsuario, $nuevaContraseña);
+
+                    if ($actualizado) {
+                        // Guardar mensaje de éxito
+                        $_SESSION['mensaje'] = "La contraseña se actualizó correctamente.";
+                        $_SESSION['tipo_mensaje'] = "success";
+                    } else {
+                        // Guardar mensaje de error
+                        $_SESSION['mensaje'] = "Hubo un error al actualizar la contraseña.";
+                        $_SESSION['tipo_mensaje'] = "error";
+                    }
+                } else {
+                    // Guardar mensaje de error
+                    $_SESSION['mensaje'] = "La contraseña actual es incorrecta.";
+                    $_SESSION['tipo_mensaje'] = "error";
+                }
+            } else {
+                // Guardar mensaje de error
+                $_SESSION['mensaje'] = "Las contraseñas no coinciden.";
+                $_SESSION['tipo_mensaje'] = "error";
+            }
             // Redirigir al perfil
             header('Location: perfil');
             exit();

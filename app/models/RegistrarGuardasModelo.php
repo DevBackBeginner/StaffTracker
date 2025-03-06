@@ -20,6 +20,7 @@
                 $stmt = $this->db->prepare("
                     INSERT INTO usuarios (nombre, apellidos, telefono, numero_identidad)
                     VALUES (:nombre, :apellidos, :telefono, :numero_identidad)
+                    
                 ");
                 $stmt->execute([
                     'nombre' => $nombre,
@@ -32,13 +33,14 @@
                 $usuario_id = $this->db->lastInsertId();
         
                 $stmt = $this->db->prepare("
-                    INSERT INTO usuarios_autenticados (usuario_id, correo, password, rol, foto_perfil)
-                    VALUES (:usuario_id, :correo, :password, :rol, :foto_perfil)
+                    INSERT INTO usuarios_autenticados (usuario_id, correo, contrasena, rol, foto_perfil)
+                    VALUES (:usuario_id, :correo, :contrasena, :rol, :foto_perfil)
                 ");
+                
                 $stmt->execute([
                     'usuario_id' => $usuario_id,
                     'correo'     => $correo,
-                    'password'   => $passwordHash,
+                    'contrasena'   => $passwordHash,
                     'rol'        => 'guarda',
                     'foto_perfil' => $foto_perfil
                 ]);

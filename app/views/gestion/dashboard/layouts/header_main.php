@@ -4,7 +4,6 @@
       header("Location: Inicio");
       exit();
   }
-
 ?>
 
 <!DOCTYPE html>

@@ -35,6 +35,8 @@
   Router::post('subir-imagen', [PerfilController::class, 'subirImagenPerfil']);
   // Ruta para elimiar una imagen de perfil
   Router::post('eliminar-imagen', [PerfilController::class, 'eliminarImagenPerfil']);
+  // Ruta para actualizar la contraseña
+  Router::post('actualizar-contrasena', [PerfilController::class, 'actualizarContrasena']);
   // ==================================================
   // Rutas para el registro de guardias
   // ==================================================
