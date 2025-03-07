@@ -31,7 +31,7 @@
             $tablas = [
             'Instructor' => ['tabla' => 'instructores', 'campos' => 'curso, ubicacion'],
             'Funcionario' => ['tabla' => 'funcionarios', 'campos' => 'area, puesto'],
-            'Directivos' => ['tabla' => 'directivos', 'campos' => 'cargo, departamento'],
+            'Directivo' => ['tabla' => 'directivos', 'campos' => 'cargo, departamento'],
             'Apoyo' => ['tabla' => 'apoyo', 'campos' => 'area_trabajo']
             ];
         
@@ -59,7 +59,7 @@
             $tablas = [
             'Instructor' => 'instructores',
             'Funcionario' => 'funcionarios',
-            'Directivos' => 'directivos',
+            'Directivo' => 'directivos',
             'Apoyo' => 'apoyo'
             ];
         
@@ -88,7 +88,7 @@
                         CASE
                             WHEN i.usuario_id IS NOT NULL THEN 'Instructor'
                             WHEN f.usuario_id IS NOT NULL THEN 'Funcionario'
-                            WHEN d.usuario_id IS NOT NULL THEN 'Directiva'
+                            WHEN d.usuario_id IS NOT NULL THEN 'Directivo'
                             WHEN a.usuario_id IS NOT NULL THEN 'Apoyo'
                             ELSE 'Sin Rol'
                         END AS rol,
@@ -107,7 +107,7 @@
                         (:rol = '' OR 
                             (:rol = 'Instructor' AND i.usuario_id IS NOT NULL) OR
                             (:rol = 'Funcionario' AND f.usuario_id IS NOT NULL) OR
-                            (:rol = 'Directiva' AND d.usuario_id IS NOT NULL) OR
+                            (:rol = 'Directivo' AND d.usuario_id IS NOT NULL) OR
                             (:rol = 'Apoyo' AND a.usuario_id IS NOT NULL))
                         AND (u.numero_identidad LIKE :documento OR :documento = '')";
     

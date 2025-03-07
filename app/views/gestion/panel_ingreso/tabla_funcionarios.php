@@ -9,7 +9,7 @@
             <?php elseif ($rol === 'Funcionario'): ?>
                 <th>Área</th>
                 <th>Puesto</th>
-            <?php elseif ($rol === 'Directiva'): ?>
+            <?php elseif ($rol === 'Directivo'): ?>
                 <th>Cargo</th>
                 <th>Departamento</th>
             <?php elseif ($rol === 'Apoyo'): ?>
@@ -30,7 +30,7 @@
                     <?php elseif ($rol === 'Funcionario'): ?>
                         <td><?= htmlspecialchars($u['area'] ?? '') ?></td>
                         <td><?= htmlspecialchars($u['puesto'] ?? '') ?></td>
-                    <?php elseif ($rol === 'Directiva'): ?>
+                    <?php elseif ($rol === 'Directivo'): ?>
                         <td><?= htmlspecialchars($u['cargo'] ?? '') ?></td>
                         <td><?= htmlspecialchars($u['departamento'] ?? '') ?></td>
                     <?php elseif ($rol === 'Apoyo'): ?>

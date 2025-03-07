@@ -29,7 +29,7 @@
             $page = max(1, $page);
         
             // 3) Definir roles permitidos
-            $rolesPermitidos = ['Instructor', 'Funcionario', 'Directiva', 'Apoyo'];
+            $rolesPermitidos = ['Instructor', 'Funcionario', 'Directivo', 'Apoyo'];
             if (!in_array($rol, $rolesPermitidos)) {
                 $rol = 'Instructor'; // Si el rol no es válido, asignamos uno por defecto
             }
@@ -56,7 +56,7 @@
             $documento = $_GET['documento'] ?? '';
 
             // Validar que el rol sea permitido
-            $rolesPermitidos = ['Instructor', 'Funcionario', 'Directiva', 'Apoyo'];
+            $rolesPermitidos = ['Instructor', 'Funcionario', 'Directivo', 'Apoyo'];
             if (!in_array($rol, $rolesPermitidos)) {
                 $rol = ''; // Buscar en todos los tipos
             }

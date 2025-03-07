@@ -48,7 +48,7 @@ include_once __DIR__ . '/../dashboard/layouts/header_main.php';
                     $roles = [
                         'Instructor' => 'Instructores',
                         'Funcionario' => 'Funcionarios',
-                        'Directiva' => 'Directivos',
+                        'Directivo' => 'Directivos',
                         'Apoyo' => 'Apoyos'
                     ]; 
                     ?>
