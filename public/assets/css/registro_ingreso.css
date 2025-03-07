@@ -16,7 +16,7 @@
 
 /* Estilos para el encabezado de las tarjetas */
 .bg-custom {
-    background-color: #f8f9fa; /* Gris claro */
+    background-color: #ffffff; /* Gris claro */
     border-radius: 10px 10px 0 0;
     padding: 15px;
     text-align: center;
@@ -31,13 +31,13 @@
 /* Estilos para el formulario */
 #form-escaneo .form-control {
     border-radius: 5px;
-    border: 1px solid #ced4da;
+    border: 1px solid #ffffff;
     padding: 10px;
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 #form-escaneo .form-control:focus {
-    border-color: #007bff; /* Azul */
+    border-color: #007832; /* verde */
     box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 
@@ -54,20 +54,20 @@
 .custom-table td {
     padding: 12px;
     text-align: left;
-    border: 1px solid #dddddd; /* Borde gris claro */
+    border: 1px solid #ffffff; /* Borde gris claro */
 }
 
 .thead-custom {
-    background-color: #007bff; /* Azul */
+    background-color: #007832; /* Azul */
     color: #ffffff; /* Texto blanco */
 }
 
 .custom-table tbody tr:nth-child(even) {
-    background-color: #f8f9fa; /* Gris claro */
+    background-color: #ffffff; /* Gris claro */
 }
 
 .custom-table tbody tr:hover {
-    background-color: #e2e6ea; /* Gris más oscuro al pasar el mouse */
+    background-color: #ffffff; /* Gris más oscuro al pasar el mouse */
 }
 
 /* Estilos para los badges */
@@ -78,7 +78,7 @@
 }
 
 .bg-success {
-    background-color: #28a745; /* Verde */
+    background-color: #007832; /* Verde */
     color: #ffffff; /* Texto blanco */
 }
 
@@ -89,9 +89,9 @@
 
 /* Estilos para el mensaje de alerta */
 .alert-info {
-    background-color: #d1ecf1; /* Azul claro */
+    background-color: #ffffff; /* Azul claro */
     color: #0c5460; /* Texto azul oscuro */
-    border-color: #bee5eb;
+    border-color: #ffffff;
     padding: 10px;
     border-radius: 4px;
     text-align: center;

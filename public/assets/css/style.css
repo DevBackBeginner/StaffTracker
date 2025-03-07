@@ -17,7 +17,7 @@ html {
 }
 
 body {
-     color: #666666;
+     color: #00304D;
      font-size: 14px;
      font-family: 'work sans', sans-serif;
      line-height: 1.80857;
@@ -150,7 +150,7 @@ img {
 .lead {
      font-size: 18px;
      line-height: 30px;
-     color: #767676;
+     color: #00304D;
      margin: 0;
      padding: 0;
 }
@@ -201,7 +201,7 @@ button {
 .loader_bg {
      position: fixed;
      z-index: 9999999;
-     background: #fff;
+     background: #ffffff;
      width: 100%;
      height: 100%;
 }
@@ -235,7 +235,7 @@ button {
 
 .navigation.navbar {
      float: right;
-     background: #fff;
+     background: #ffffff;
      clear: both;
      padding: 23px 25px !important;
      border-radius: 64px;
@@ -270,7 +270,7 @@ button {
      padding: 9px 32px !important;
      display: inline;
      border-radius: 20px;
-     color: #fff !important;
+     color: #ffffff!important;
      margin: 0 10px;
 }
 
@@ -279,10 +279,10 @@ button {
 }
 
 .sea_icon a {
-     color: #8c8c8c !important;
+     color: #00304D tant;
 }
 
-.header {
+.header { 
      width: 100%;
      padding: 30px 30px;
      background: transparent;
@@ -300,7 +300,7 @@ button {
 /** banner section **/
 
 .banner_main {
-     background: #f5f6f6;
+     background: #ffffff;
      padding: 198px 0px 90px 0px;
 }
 
@@ -465,7 +465,7 @@ button {
 /** Our  Glasses section **/
 
 .glasses {
-     background: #fff;
+     background: #ffffff;
      margin-top: 90px;
 }
 
@@ -488,7 +488,7 @@ button {
 
 .glasses .glasses_box {
      text-align: center;
-     border: #555556 solid 1px;
+     border: #00304D solid 1px;
      border-radius: 2px;
      padding: 120px 0px 30px 0px;
      margin-bottom: 30px;
@@ -528,9 +528,9 @@ button {
 
 .shop {
      margin-top: 90px;
-     background: #fefdf9;
-     border-top: #f2f1ed solid 1px;
-     border-bottom: #f2f1ed solid 1px;
+     background: #ffffff;
+     border-top: #ffffff solid 1px;
+     border-bottom: #ffffff solid 1px;
 }
 
 .shop .shop_img figure {
@@ -563,15 +563,15 @@ button {
 }
 
 .shop .titlepage h2 {
-     color: #fff;
-     border-bottom: #fff solid 1px;
+     color: #ffffff;
+     border-bottom: #ffffff solid 1px;
      padding-bottom: 10px;
      float: left;
      clear: both;
 }
 
 .shop .titlepage p {
-     color: #fff;
+     color: #ffffff;
      font-size: 17px;
      line-height: 30px;
      padding: 40px 0px 80px 0;
@@ -580,7 +580,7 @@ button {
 }
 
 .shop .titlepage .read_more {
-     color: #fff !important
+     color: #ffffff !important
 }
 
 
@@ -625,7 +625,7 @@ button {
 }
 
 .clients_box {
-     border: #606060 solid 1px;
+     border: #00304D solid 1px;
      padding: 40px 32px 40px 0px;
      float: left;
      text-align: left;
@@ -647,11 +647,11 @@ button {
      width: 20px;
      height: 20px;
      border-radius: 20px;
-     background: #111;
+     background: #00304D;
 }
 
 #myCarousel .carousel-indicators .active {
-     background: #8c8a8a;
+     background: #00304D;
 }
 
 #myCarousel .carousel-control-prev,
@@ -670,7 +670,7 @@ button {
 }
 
 .contact .main_form h3 {
-     color: #4b4b4c;
+     color: #00304D;
      font-size: 27px;
      line-height: 30px;
      text-align: center;
@@ -687,7 +687,7 @@ button {
 .main_form {
      position: absolute;
      z-index: 999;
-     background: #fff;
+     background: #ffffff;
      padding: 40px 50px;
      margin-top: 107px;
 }
@@ -698,7 +698,7 @@ button {
      width: 100%;
      height: 57px;
      background: transparent;
-     color: #4b4b4c;
+     color: #00304D;
      font-size: 18px;
      font-weight: normal;
      border-top: inherit;
@@ -713,7 +713,7 @@ button {
      padding-top: 40px;
      padding-bottom: 14px;
      background: transparent;
-     color: #4b4b4c;
+     color: #00304D;
      ;
      font-size: 18px;
      font-weight: normal;
@@ -727,7 +727,7 @@ button {
      font-weight: 600;
      font-size: 18px;
      width: 100%;
-     color: #fff;
+     color: #ffffff;
      height: 50px;
      border-radius: 30px;
      margin-top: 20px;
@@ -736,12 +736,12 @@ button {
 }
 
 .send_btn:hover {
-     background: #4b4b4c;
+     background: #00304D;
      transition: ease-in all 0.5s;
 }
 
 #request *::placeholder {
-     color: #4b4b4c;
+     color: #00304D;
      opacity: 1;
 }
 
@@ -766,14 +766,14 @@ ul.location_icon li {
      display: inline-block;
      font-size: 17px;
      line-height: 20px;
-     color: #fff;
+     color: #ffffff;
      text-align: center;
      padding: 0 40px;
 }
 
 ul.location_icon li a {
      font-size: 40px;
-     color: #fff;
+     color: #ffffff;
      line-height: 30px;
      display: block;
 }
@@ -781,7 +781,7 @@ ul.location_icon li a {
 .copyright {
      margin-top: 30px;
      padding-bottom: 20px;
-     background: #fbfdfd;
+     background: #ffffff;
 }
 
 .copyright p {
