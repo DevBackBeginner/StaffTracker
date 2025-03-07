@@ -115,7 +115,7 @@ h6 {
 }
 
 .dropdown-menu .dropdown-footer a {
-  color: #444444;
+  color: #00304D;
   text-decoration: underline;
 }
 
@@ -541,7 +541,7 @@ h6 {
   font-size: 16px;
   font-weight: 600;
   margin-bottom: 5px;
-  color: #444444;
+  color: #00304D;
 }
 
 .header-nav .messages .message-item p {
@@ -564,7 +564,7 @@ h6 {
   font-size: 18px;
   margin-bottom: 0;
   font-weight: 600;
-  color: #444444;
+  color: #00304D;
 }
 
 .header-nav .profile .dropdown-header span {
@@ -691,7 +691,7 @@ h6 {
 }
 
 .sidebar-nav .nav-link.collapsed {
-  color: #007832;
+  color: #00304D;
   background: #fff;
 }
 

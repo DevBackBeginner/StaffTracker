@@ -3,7 +3,7 @@
      display: none;
 }
  .mean-container .mean-bar {
-     background: #000;
+     background: #00304D;
      float: left;
      min-height: 40px;
      padding: 5px 0;
@@ -13,7 +13,7 @@
      margin-top: 15px;
 }
  .mean-container a.meanmenu-reveal {
-     color: #fff;
+     color: #ffffff;
      cursor: pointer;
      display: block;
      font-family: 'Roboto', sans-serif;
@@ -55,8 +55,8 @@
      width: 100%;
 }
  .mean-container .mean-nav ul li a {
-     border-bottom: 1px solid #ccc;
-     color: #383838;
+     border-bottom: 1px solid #ffffff;
+     color: #00304D;
      display: block;
      float: left;
      font-size: 12px;
@@ -74,15 +74,15 @@
  .mean-container .mean-nav ul li li a {
      width: 80%;
      padding: 1em 10%;
-     border-top: 1px solid #ccc;
-     border-top: 1px solid #ccc;
+     border-top: 1px solid #ffffff;
+     border-top: 1px solid #ffffff;
      opacity: 1;
      filter: alpha(opacity=1);
      text-shadow: none !important;
      visibility: visible;
 }
  .mean-container .mean-nav ul li.mean-last a {
-     border-bottom: 1px solid #cccccc;
+     border-bottom: 1px solid #ffffff;
      margin-bottom: 0;
 }
  .mean-container .mean-nav ul li li li a {

@@ -25,7 +25,7 @@
 .bg-custom h2 {
     margin: 0;
     font-size: 1.5rem;
-    color: #343a40; /* Gris oscuro */
+    color: #00304D; /* Gris oscuro */
 }
 
 /* Estilos para el formulario */
@@ -46,7 +46,7 @@
     width: 100%;
     border-collapse: collapse;
     background-color: #ffffff; /* Fondo blanco */
-    color: #000000; /* Texto negro */
+    color: #00304D; /* Texto negro */
     margin-top: 20px;
 }
 
@@ -90,7 +90,7 @@
 /* Estilos para el mensaje de alerta */
 .alert-info {
     background-color: #ffffff; /* Azul claro */
-    color: #0c5460; /* Texto azul oscuro */
+    color: #00304D; /* Texto azul oscuro */
     border-color: #ffffff;
     padding: 10px;
     border-radius: 4px;
@@ -105,12 +105,12 @@
 
 .dashboard-header h1 {
     font-size: 2.5rem;
-    color: #343a40; /* Gris oscuro */
+    color: #00304D; /* Gris oscuro */
 }
 
 .dashboard-header p {
     font-size: 1rem;
-    color: #6c757d; /* Gris medio */
+    color: #00304D; /* Gris medio */
 }
 
 .chart-container {

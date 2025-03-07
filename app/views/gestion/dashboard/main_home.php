@@ -4,11 +4,11 @@
     <main id="main" class="main">
 
       <div class="pagetitle">
-        <h1>Dashboard</h1>
+        <h1>Registro de Ingreso</h1>
         <nav>
           <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="Inicio">Inicio</a></li>
-            <li class="breadcrumb-item active">Dashboard</li>
+            <li class="breadcrumb-item active">Registro Ingreso</li>
           </ol>
         </nav>
       </div><!-- End Page Title -->
@@ -38,7 +38,7 @@
                   </div>
 
                   <div class="card-body">
-                    <h5 class="card-title">Ingresos <span>| Diarios</span></h5>
+                    <h5 class="card-title">Personal <span>| Diarios</span></h5>
 
                     <div class="d-flex align-items-center">
                       <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">

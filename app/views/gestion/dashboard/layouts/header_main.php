@@ -1,4 +1,10 @@
-
+<?php
+  // Verificar si el usuario está logueado y tiene el rol adecuado
+  if (($_SESSION['usuario']['rol'] !== 'Admin' && $_SESSION['usuario']['rol'] !== 'Guarda')) {
+      header("Location: Inicio");
+      exit();
+  }
+?>
 
 <!DOCTYPE html>
   <html lang="en">
@@ -8,7 +14,7 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600&display=swap" rel="stylesheet">
 
-    <title>ControlAssistance</title>
+    <title>StaffTracker</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -36,7 +42,7 @@
       <div class="d-flex align-items-center justify-content-between">
         <a href="Inicio" class="logo d-flex align-items-center">
           <img src="assets/img/logo.png" alt="">
-          <span class="d-none d-lg-block">ControlAssistance</span>
+          <span class="d-none d-lg-block">StaffTracker</span>
         </a>
         <i class="bi bi-list toggle-sidebar-btn"></i>
       </div><!-- End Logo -->
