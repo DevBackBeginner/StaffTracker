@@ -3,6 +3,8 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <main id="main" class="main">
         <!-- end header -->
+        <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600&display=swap" rel="stylesheet">
+
         <div class="pagetitle">
             <h1>Perfil</h1>
             <nav>

@@ -13,7 +13,7 @@
 
         public function buscarPorCorreo($correo) {
             $sql = "SELECT  ua.*,
-                            u.nombre, u.apellidos, u.telefono, u.numero_identidad 
+                            u.nombre, u.apellidos, u.telefono, u.numero_identidad, u.rol
                     FROM usuarios_autenticados ua
                     JOIN usuarios u ON ua.usuario_id = u.id
                     WHERE ua.correo = :correo";
