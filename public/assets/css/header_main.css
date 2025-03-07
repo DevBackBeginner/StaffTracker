@@ -4,9 +4,10 @@
 }
 
 body {
-  font-family: "work sans";
-  background: #f6f9ff;
-  color: #444444;
+  background-image: url('../img/fondo.png');
+  background-size: cover; /* Asegura que la imagen cubra toda el área del fondo */
+  background-position: center; /* Centra la imagen */
+  background-repeat: no-repeat; /* Evita que la imagen se repita */
   
 }
 

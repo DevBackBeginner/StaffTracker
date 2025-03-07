@@ -4,6 +4,8 @@
 ?>
     <!-- Enlace al archivo CSS específico para el panel -->
     <link rel="stylesheet" href="assets/css/registro_ingreso.css">
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600&display=swap" rel="stylesheet">
+
     <main id="main" class="main">
         <div class="pagetitle">
             <h1>Registro Ingresos</h1>
