@@ -8,8 +8,6 @@
 @import url('https://fonts.googleapis.com/css?family=Raleway:100,400,600,700,900&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,700i,900&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800,800i&display=swap');
-
-
 * {
      box-sizing: border-box !important;
 }
@@ -27,7 +25,7 @@ body {
 }
 
 a {
-     color: #1f1f1f;
+     color: #00304D;
      text-decoration: none !important;
      outline: none !important;
      -webkit-transition: all .3s ease-in-out;
@@ -49,7 +47,7 @@ h6 {
      padding: 0 0 10px 0;
      font-weight: normal;
      line-height: normal;
-     color: #111111;
+     color: #00304D;
      margin: 0
 }
 
@@ -91,7 +89,7 @@ h3 a,
 h4 a,
 h5 a,
 h6 a {
-     color: #212121;
+     color: #00304D;
      text-decoration: none!important;
      opacity: 1
 }
@@ -116,7 +114,7 @@ p {
 }
 
 a {
-     color: #222222;
+     color: #00304D;
      text-decoration: none;
      outline: none !important;
 }
@@ -245,7 +243,7 @@ button {
 
 .navigation.navbar-dark .navbar-nav .nav-link {
      padding: 0 20px;
-     color: #070404;
+     color: #00304D;
      font-size: 17px;
      line-height: 20px;
      font-weight: 500;
@@ -253,14 +251,14 @@ button {
 
 .navigation.navbar-dark .navbar-nav .nav-link:focus,
 .navigation.navbar-dark .navbar-nav .nav-link:hover {
-     color: #03fc62;
+     color: #007832;
 }
 
 .navigation.navbar-dark .navbar-nav .active>.nav-link,
 .navigation.navbar-dark .navbar-nav .nav-link.active,
 .navigation.navbar-dark .navbar-nav .nav-link.show,
 .navigation.navbar-dark .navbar-nav .show>.nav-link {
-     color: #03fc62;
+     color: #007832;
 }
 
 .navbar-expand-md .navbar-nav {
@@ -268,7 +266,7 @@ button {
 }
 
 .login_btn a {
-     background: #03fc62;
+     background: #007832;
      padding: 9px 32px !important;
      display: inline;
      border-radius: 20px;
@@ -277,7 +275,7 @@ button {
 }
 
 .login_btn a:hover {
-     background: #000 !important;
+     background: #00304D !important;
 }
 
 .sea_icon a {
@@ -290,7 +288,7 @@ button {
      background: transparent;
      position: absolute;
      z-index: 999;
-     border-top: #090102 solid 11px;
+     border-top: #00304D solid 11px;
 }
 
 .logo {
@@ -311,7 +309,7 @@ button {
 }
 
 .text-bg h1 {
-     color: #070404;
+     color: #00304D;
      font-size: 60px;
      line-height: 76px;
      padding-bottom: 45px;
@@ -320,8 +318,8 @@ button {
 }
 
 .text-bg .read_more {
-     border: #1a1a1a solid 2px;
-     color: #1a1a1a !important;
+     border: #00304D solid 2px;
+     color: #00304D !important;
      font-weight: 500;
      display: block;
      margin: 0 auto;
@@ -342,10 +340,10 @@ button {
      width: 62px;
      height: 60px;
      background: transparent;
-     border: #1a1a1a solid 2px;
+     border: #00304D solid 2px;
      opacity: 1;
      font-size: 30px;
-     color: #131215;
+     color: #00304D;
      border-radius: 60px;
      top: 43%;
 }
@@ -355,8 +353,8 @@ button {
 #banner1 .carousel-control-prev:focus,
 #banner1 .carousel-control-next:focus {
      background: transparent;
-     border: #03fc62 solid 2px;
-     color: #03fc62;
+     border: #007832 solid 2px;
+     color: #007832;
 }
 
 #banner1 a.carousel-control-prev {
@@ -376,7 +374,7 @@ button {
 
 .titlepage h2 {
      font-size: 35px;
-     color: #2a2a2c;
+     color: #00304D;
      line-height: 45px;
      font-weight: bold;
      padding: 0;
@@ -392,7 +390,7 @@ button {
      font-size: 17px;
      background-color: transparent;
      border: #ffffff solid 2px;
-     color: #1a1a1a;
+     color: #00304D;
      padding: 15px 0px;
      width: 100%;
      max-width: 222px;
@@ -404,7 +402,7 @@ button {
 }
 
 .read_more:hover {
-     background: #03fc62;
+     background: #007832;
      color: #fff !important;
      transition: ease-in all 0.5s;
 }
@@ -413,7 +411,7 @@ button {
 /** about section **/
 
 .about {
-     border-bottom: #000 solid 1px;
+     border-bottom: #00304D solid 1px;
      padding: 130px 0 90px 0;
 }
 
@@ -438,7 +436,7 @@ button {
 }
 
 .about .titlepage {
-     border: #000 solid 1px;
+     border: #00304D solid 1px;
      padding: 40px 40px;
      z-index: 10018;
      background: #fff;
@@ -446,7 +444,7 @@ button {
 }
 
 .about .titlepage p {
-     color: #2a2a2c;
+     color: #00304D;
      font-size: 17px;
      line-height: 35px;
      font-weight: 400;
@@ -454,8 +452,8 @@ button {
 }
 
 .about .read_more {
-     border: #1a1a1a solid 2px;
-     color: #1a1a1a;
+     border: #00304D solid 2px;
+     color: #00304D;
      font-weight: 500;
      margin-top: 44px;
 }
@@ -484,7 +482,7 @@ button {
 }
 
 .blu {
-     color: #03fc62;
+     color: #007832;
      text-transform: initial;
 }
 
@@ -501,21 +499,21 @@ button {
 }
 
 .glasses .glasses_box h3 {
-     color: #100d0d;
+     color: #00304D;
      font-size: 22px;
      line-height: 20px;
      padding: 70px 0px 9px 0px;
 }
 
 .glasses .glasses_box p {
-     color: #2a2a2c;
+     color: #00304D;
      font-size: 18px;
      line-height: 28px;
      font-weight: 400;
 }
 
 .glasses .read_more {
-     border: #1a1a1a solid 2px;
+     border: #00304D solid 2px;
      font-weight: 500;
      display: block;
      margin: 0 auto;
@@ -549,7 +547,7 @@ button {
 
 .shop .max_width {
      text-align: left;
-     background: #030404;
+     background: #00304D;
      height: 100%;
      padding-top: 86px;
      padding-left: 50px;
@@ -601,14 +599,14 @@ button {
 }
 
 .clients .titlepage p {
-     color: #2a2a2c;
+     color: #00304D;
      font-size: 17px;
      line-height: 29px;
      padding-top: 10px;
 }
 
 .clients_box h3 {
-     color: #2a2a2c;
+     color: #00304D;
      font-size: 26px;
      line-height: 30px;
      padding-top: 23px;
@@ -616,7 +614,7 @@ button {
 }
 
 .clients_box p {
-     color: #2a2a2c;
+     color: #00304D;
      font-size: 17px;
      line-height: 30px;
 }
@@ -695,7 +693,7 @@ button {
 }
 
 .main_form .contactus {
-     border-bottom: #111111 solid 1px;
+     border-bottom: #00304D solid 1px;
      margin-bottom: 25px;
      width: 100%;
      height: 57px;
@@ -709,7 +707,7 @@ button {
 }
 
 .main_form .contactusmess {
-     border-bottom: #111111 solid 1px;
+     border-bottom: #00304D solid 1px;
      margin-bottom: 25px;
      width: 100%;
      padding-top: 40px;
@@ -725,7 +723,7 @@ button {
 }
 
 .send_btn {
-     background: #03fc62;
+     background: #007832;
      font-weight: 600;
      font-size: 18px;
      width: 100%;
@@ -754,7 +752,7 @@ button {
 /** footer **/
 
 .footer {
-     background: #252525;
+     background: #00304D;
      padding-top: 20px;
      text-align: center;
      font-family: 'Roboto', sans-serif;
@@ -787,7 +785,7 @@ ul.location_icon li a {
 }
 
 .copyright p {
-     color: #292929;
+     color: #00304D;
      font-size: 18px;
      line-height: 22px;
      text-align: center;
@@ -796,11 +794,11 @@ ul.location_icon li a {
 }
 
 .copyright a {
-     color: #292929;
+     color: #00304D;
 }
 
 .copyright a:hover {
-     color: #03fc62;
+     color: #007832;
 }
 
 
@@ -811,7 +809,7 @@ ul.location_icon li a {
 
 .position_head .header {
      position: inherit;
-     background: #03fc62;
+     background: #007832;
 }
 
 .position_head .glasses,

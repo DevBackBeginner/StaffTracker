@@ -1,6 +1,6 @@
     <?php  include_once  __DIR__ . '/../../views/layouts/header.php' ; ?>
     <!-- end header -->
-
+    <link rel="stylesheet" href="/ControlAsistencia/public/assets/css/style.css">
     <!-- banner -->
     <section class="banner_main">
         <div id="banner1" class="carousel slide" data-ride="carousel">
@@ -15,7 +15,7 @@
                     <div class="carousel-caption">
                     <div class="text-bg">
                         <h1> <span class="blu">Bienvenido <br></span> al Sistema de Registro Biométrico</h1>
-                        <figure><img src="assets/img/banner_img.png" alt="Registro de Huella"/></figure>
+                        <figure><img src="/ControlAsistencia/public/assets/img/banner_img.png" alt="Registro de Huella"/></figure>
                         <a class="read_more" href="#">Ingresar</a>
                     </div>
                     </div>
@@ -26,7 +26,7 @@
                     <div class="carousel-caption">
                     <div class="text-bg">
                         <h1> <span class="blu">Registro Seguro <br></span> de Entrada y Salida</h1>
-                        <figure><img src="assets/img/banner_img.png" alt="Huella Digital"/></figure>
+                        <figure><img src="/ControlAsistencia/public/assets/img/banner_img.png" alt="Huella Digital"/></figure>
                         <a class="read_more" href="#">Ver Más</a>
                     </div>
                     </div>
@@ -37,7 +37,7 @@
                     <div class="carousel-caption">
                     <div class="text-bg">
                         <h1> <span class="blu">Acceso Rápido <br></span> y Sin Contacto</h1>
-                        <figure><img src="assets/img/banner_img.png" alt="Acceso Biométrico"/></figure>
+                        <figure><img src="/ControlAsistencia/public/assets/img/banner_img.png" alt="Acceso Biométrico"/></figure>
                         <a class="read_more" href="#">Más Información</a>
                     </div>
                     </div>
@@ -60,7 +60,7 @@
         <div class="row d_flex">
             <div class="col-md-5">
                 <div class="about_img">
-                    <figure><img src="assets/img/about_img.png" alt="Registro de Huella"/></figure>
+                    <figure><img src="/ControlAsistencia/public/assets/img/about_img.png" alt="Registro de Huella"/></figure>
                 </div>
             </div>
             <div class="col-md-7">
@@ -86,7 +86,7 @@
             </div>
             <div class="col-md-5">
                 <div class="about_img">
-                    <figure><img src="assets/img/about_img.png" alt="Registro de Huella"/></figure>
+                    <figure><img src="/ControlAsistencia/public/assets/img/about_img.png" alt="Registro de Huella"/></figure>
                 </div>
             </div>
         </div>
@@ -97,8 +97,8 @@
     <?php  include_once  __DIR__ . '/../../views/layouts/footer.php' ; ?>
     <!-- end footer -->
     <!-- sidebar -->
-    <script src="assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
-    <script src="assets/js/custom.js"></script>
+    <script src="/ControlAsistencia/public/assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="/ControlAsistencia/public/assets/js/custom.js"></script>
 </body>
 </html>
 
