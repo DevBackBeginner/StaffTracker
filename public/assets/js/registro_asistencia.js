@@ -6,11 +6,19 @@ document.getElementById('codigo').addEventListener('input', function() {
         document.getElementById('form-escaneo').submit();
     }
 });
-
 document.addEventListener("DOMContentLoaded", function () {
     let modalEl = document.getElementById('mensajeModal');
     let modal = new bootstrap.Modal(modalEl);
     modal.show();
+
+    modalEl.addEventListener('hidden.bs.modal', function () {
+        console.log('Modal cerrado correctamente');
+        document.body.classList.remove('modal-open');
+        let backdrop = document.querySelector('.modal-backdrop');
+        if (backdrop) {
+            backdrop.remove();
+        }
+    });
 
     let tipoMensaje = "<?php echo $tipo; ?>";  // Evita confusión con "tipoComputador"
 

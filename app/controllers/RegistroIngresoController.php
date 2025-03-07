@@ -1,8 +1,8 @@
 <?php 
     session_start();
 
-    require_once __DIR__ . '/../models/RegistroAsistenciaModelo.php';
-    require_once __DIR__ . '/../models/PanelAsistenciaModelo.php';
+    require_once __DIR__ . '/../models/RegistroIngresoModelo.php';
+    require_once __DIR__ . '/../models/panelIngresoModelo.php';
 
     // Iniciar la sesión para manejar la autenticación y almacenar mensajes (feedback) entre peticiones
 
@@ -12,7 +12,7 @@
      * Controlador encargado de manejar las operaciones relacionadas con el registro de asistencia,
      * incluyendo la visualización de la página principal de asistencia y el registro de entradas/salidas.
      */
-    class RegistroAsistenciaController {
+    class RegistroIngresoController {
         /**
          * @var RegistroModelo $registroModelo
          *      Instancia del modelo que maneja la lógica de la tabla registro_asistencia.
@@ -20,10 +20,10 @@
         private $registroModelo;
 
         /**
-         * @var PanelAsistenciaModelo $panelAsistenciaModelo
+         * @var panelIngresoModelo $panelIngresoModelo
          *      Instancia del modelo que maneja la lógica de la tabla de usuarios (o panel) para obtener datos de personal.
          */
-        private $panelAsistenciaModelo;
+        private $panelIngresoModelo;
 
         /**
          * Constructor:
@@ -31,9 +31,9 @@
          */
         public function __construct() {
             // Instancia el modelo de registro de asistencia
-            $this->registroModelo = new RegistroModelo();
+            $this->registroModelo = new RegistroIngresoModelo();
             // Instancia el modelo para panel de asistencia (para obtener información del personal)
-            $this->panelAsistenciaModelo = new PanelAsistenciaModelo();
+            $this->panelIngresoModelo = new PanelIngresoModelo();
         }
 
         /**
@@ -45,7 +45,7 @@
             $ultimosRegistros = $this->registroModelo->obtenerUltimosRegistros();
 
             // Se incluye la vista que muestra el formulario y la tabla de últimos registros.
-            include_once __DIR__ . '/../views/gestion/registro_asistencias/registro_asistencia.php';
+            include_once __DIR__ . '/../views/gestion/registro_ingreso/registro_ingresos.php';
         }
 
         /**
@@ -62,7 +62,7 @@
                 if (!empty($numero_identidad)) {
                     try {
                         // Se busca al usuario/personal en la BD a través de su número de identidad
-                        $personal = $this->panelAsistenciaModelo->obtenerPorIdentidad($numero_identidad);
+                        $personal = $this->panelIngresoModelo->obtenerPorIdentidad($numero_identidad);
 
                         // Si se encontró un usuario/personal con ese número de identidad
                         if ($personal) {
@@ -106,7 +106,7 @@
                             $_SESSION['usuario_id'] = $personal['id'];
 
                             // Redirigimos a la misma página de registro de asistencia
-                            header('Location: registro_asistencia');
+                            header('Location: registro_ingreso');
                             exit;
                             
                         } else {
@@ -133,7 +133,7 @@
                 }
 
                 // Redirigimos a la misma página para mostrar el mensaje (o refrescar el formulario)
-                header('Location: registro_asistencia');
+                header('Location: registro_ingreso');
                 exit;
             }
         }

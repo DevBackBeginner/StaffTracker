@@ -1,18 +1,16 @@
 <?php 
     // Incluimos el encabezado (header) que contiene la estructura HTML inicial, head, etc.
     include_once  __DIR__ . '/../dashboard/layouts/header_main.php' ; 
-
 ?>
-
     <!-- Enlace al archivo CSS específico para el panel -->
-    <link rel="stylesheet" href="assets/css/registro_asistencias.css">
+    <link rel="stylesheet" href="assets/css/registro_ingreso.css">
     <main id="main" class="main">
         <div class="pagetitle">
-            <h1>Registro Asistencia</h1>
+            <h1>Registro Ingresos</h1>
             <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="Inicio">Home</a></li>
-                <li class="breadcrumb-item active">Registrar Asistencias</li>
+                <li class="breadcrumb-item active">Registrar Ingresos</li>
             </ol>
             </nav>
         </div><!-- End Page Title -->
@@ -25,7 +23,7 @@
                         <h2 class="h5 mb-0">Registrar Asistencia</h2>
                     </div>
                     <div class="card-body">
-                        <form id="form-escaneo" action="registrar_asistencia" method="POST">
+                        <form id="form-escaneo" action="registro_ingreso" method="POST">
                             <div class="mt-2">
                                 <label for="codigo" class="form-label">Código</label>
                                 <input 
@@ -45,7 +43,7 @@
             <div class="col-12"> <!-- Ocupa el 100% del ancho -->
                 <div class="card shadow-sm custom-card">
                     <div class="card-header bg-custom text-white">
-                        <h2 class="h5 mb-0">Últimos Registros de Asistencia</h2>
+                        <h2 class="h5 mb-0">Últimos Registros de Ingreso</h2>
                     </div>
                     <div class="card-body">
                         <?php include_once "tabla_ultimos_registros.php"; ?>
@@ -57,9 +55,9 @@
         <?php  include "alertas.php"?>
 
     </main>
-<?php 
-    // Incluimos el encabezado (header) que contiene la estructura HTML inicial, head, etc.
-    include_once  __DIR__ . '/../dashboard/layouts/footer_main.php' ; 
-?>
+    <?php 
+        // Incluimos el encabezado (header) que contiene la estructura HTML inicial, head, etc.
+        include_once  __DIR__ . '/../dashboard/layouts/footer_main.php' ; 
+    ?>
 
     <script src="assets/js/registro_asistencia.js"></script>

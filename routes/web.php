@@ -52,10 +52,10 @@
   // ==================================================
 
   // Ruta para mostrar la vista de registro de asistencia
-  Router::get('registro_asistencia', [RegistroAsistenciaController::class, "mostrarVistaRegistro"]);
+  Router::get('registro_ingreso', [RegistroIngresoController::class, "mostrarVistaRegistro"]);
 
   // Ruta para procesar el registro de asistencia (envío de formulario)
-  Router::post('registrar_asistencia', [RegistroAsistenciaController::class, 'registrarAsistencia']);
+  Router::post('registro_ingreso', [RegistroIngresoController::class, 'registrarAsistencia']);
 
   // ==================================================
   // Rutas para el manejo de computadores
@@ -72,9 +72,8 @@
   // ==================================================
 
   // Ruta para mostrar el panel de asistencias con la lista de funcionarios
-  Router::get('panel_asistencias', [PanelAsistenciaController::class, "mostrarFuncionarios"]);
+  Router::get('panel_ingreso', [PanelIngresoController::class, "mostrarUsuarios"]);
 
-  // Ruta para filtrar funcionarios en el panel de asistencias (usada probablemente en AJAX)
-  Router::get('filtrar_funcionarios', [PanelAsistenciaController::class, "filtrarFuncionarios"]);
+  Router::get('filtro_usuarios', [PanelIngresoController::class, "filtroUsuarios"]);
 
 ?>

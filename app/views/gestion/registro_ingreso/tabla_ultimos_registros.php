@@ -1,6 +1,6 @@
 <?php if (!empty($ultimosRegistros)): ?>
-    <table class="table table-bordered table-hover custom-table">
-        <thead class="thead-custom">
+    <table class="table table-bordered table-hover">
+        <thead class="thead-light">
             <tr>
                 <th class="fs-6">Nombre</th>
                 <th class="fs-6">Cédula</th>
@@ -47,7 +47,8 @@
         </tbody>
     </table>
 <?php else: ?>
-    <div class="alert alert-info text-center" role="alert">
+    <div class="alert alert-info text-center mt-4" role="alert">
         No hay registros de asistencia aún.
     </div>
 <?php endif; ?>
+<?php include_once "tabla_ultimos_registros.php"; ?>

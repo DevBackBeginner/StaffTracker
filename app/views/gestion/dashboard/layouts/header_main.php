@@ -13,7 +13,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Dashboard - ControlAssistance</title>
+    <title>ControlAssistance</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -32,9 +32,7 @@
     
     <link href="assets/css/header_main.css" rel="stylesheet">
     <link href="assets/css/footer_main.css" rel="stylesheet">
-
   </head>
-
   <body>
 
     <!-- ======= Header ======= -->
@@ -267,7 +265,7 @@
         <li class="nav-item">
           <a class="nav-link" href="Inicio">
             <i class="bi bi-grid"></i>
-            <span>Dashboard</span>
+            <span>Inicio</span>
           </a>
         </li><!-- End Dashboard Nav -->
 
@@ -288,15 +286,15 @@
           </a>
           <ul id="entradaSalida" class="nav-content collapse" data-bs-parent="#sidebar-nav">
             <li>
-              <a href="Acceso_visitante">
-                <i class="bi bi-person"></i>
-                <span>Visitantes</span>
+              <a href="registro_ingreso">
+                <i class="bi bi-people"></i>
+                <span>Personal</span>
               </a>
             </li>
             <li>
-              <a href="registro_asistencia">
-                <i class="bi bi-people"></i>
-                <span>Personal</span>
+              <a href="Acceso_visitante">
+                <i class="bi bi-person"></i>
+                <span>Visitantes</span>
               </a>
             </li>
           </ul>
@@ -304,34 +302,11 @@
 
         <!-- Consultar Registros -->
         <li class="nav-item">
-          <a class="nav-link collapsed" href="panel_asistencias">
+          <a class="nav-link collapsed" href="panel_ingreso">
             <i class="bi bi-list-check"></i>
             <span>Consultar Registros</span>
           </a>
         </li><!-- End Consultar Registros Nav -->
-
-        <!-- Opciones Generales -->
-        <li class="nav-heading">Opciones Generales</li>
-        <li class="nav-item">
-          <a class="nav-link collapsed" href="perfil">
-            <i class="bi bi-person"></i>
-            <span>Perfil</span>
-          </a>
-        </li><!-- End Perfil Nav -->
-        <li class="nav-item">
-          <a class="nav-link collapsed" href="contacto.html">
-            <i class="bi bi-envelope"></i>
-            <span>Reportar Bugs</span>
-          </a>
-        </li><!-- End Contáctenos Nav -->
-
-        <!-- Cerrar Sesión -->
-        <li class="nav-item">
-          <a class="nav-link collapsed" href="logout">
-            <i class="bi bi-box-arrow-in-right"></i>
-            <span>Cerrar Sección</span>
-          </a>
-        </li><!-- End Cerrar Sección Nav -->
 
         <!-- Opciones exclusivas para Administradores -->
         <?php if (isset($_SESSION['usuario']['rol']) && $_SESSION['usuario']['rol'] === 'admin'): ?>
@@ -370,5 +345,30 @@
               </ul>
             </li>
         <?php endif; ?>
+
+        <!-- Opciones Generales -->
+        <li class="nav-heading">Ajustes Generales</li>
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="perfil">
+            <i class="bi bi-person"></i>
+            <span>Perfil</span>
+          </a>
+        </li><!-- End Perfil Nav -->
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="contacto.html">
+            <i class="bi bi-envelope"></i>
+            <span>Reportar Bugs</span>
+          </a>
+        </li><!-- End Contáctenos Nav -->
+
+        <!-- Cerrar Sesión -->
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="logout">
+            <i class="bi bi-box-arrow-in-right"></i>
+            <span>Cerrar Sección</span>
+          </a>
+        </li><!-- End Cerrar Sección Nav -->
+
+       
       </ul>
     </aside><!-- End Sidebar -->
