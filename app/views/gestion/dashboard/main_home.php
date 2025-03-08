@@ -23,35 +23,34 @@
               <!-- Sales Card -->
               <div class="col-xxl-4 col-md-6">
                 <div class="card info-card sales-card">
-
-                  <div class="filter">
-                    <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                      <li class="dropdown-header text-start">
-                        <h6>Filtro</h6>
-                      </li>
-
-                      <li><a class="dropdown-item" href="#">Diarios</a></li>
-                      <li><a class="dropdown-item" href="#">Semanales</a></li>
-                      <li><a class="dropdown-item" href="#">Anuales</a></li>
-                    </ul>
-                  </div>
-
-                  <div class="card-body">
-                    <h5 class="card-title">Personal <span>| Diarios</span></h5>
-
-                    <div class="d-flex align-items-center">
-                      <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                        <i class="bi bi-cart"></i>
-                      </div>
-                      <div class="ps-3">
-                        <h6>145</h6>
-                        <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span>
-
-                      </div>
+                    <div class="filter">
+                        <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                            <li class="dropdown-header text-start">
+                                <h6>Filtro</h6>
+                            </li>
+                            <li><a class="dropdown-item" href="#" onclick="cambiarFiltro('diarios')">Diarios</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="cambiarFiltro('semanales')">Semanales</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="cambiarFiltro('mensuales')">Mensuales</a></li>
+                        </ul>
                     </div>
-                  </div>
 
+                    <div class="card-body">
+                        <h5 class="card-title">Registros <span id="filtro-activo">| Diarios</span></h5>
+
+                        <div class="d-flex align-items-center">
+                            <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                <i class="bi bi-cart"></i>
+                            </div>
+                            <div class="ps-3">
+                                <h6 id="total-registros"><?php echo $registrosDiarios; ?></h6>
+                                <span id="porcentaje-aumento" class="text-success small pt-1 fw-bold"><?php echo round($porcentajeAumentoDiario, 2); ?>%</span>
+                                <span id="texto-aumento" class="text-muted small pt-2 ps-1">
+                                    <?php echo ($porcentajeAumentoDiario >= 0) ? 'aumento' : 'disminución'; ?>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
               </div><!-- End Sales Card -->
 
@@ -215,3 +214,4 @@
 
     </main><!-- End #main -->
   <?php include_once __DIR__ . '/layouts/footer_main.php'; ?>
+  <script src="assets/js/main_home.js"></script>

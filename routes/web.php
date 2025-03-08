@@ -23,6 +23,9 @@
   // Ruta para cerrar sesión
   Router::get("logout", [LoginController::class, "Logout"]);
 
+  Router::post("obtenerdatosD/S/M", [DashboardController::class, "obtenerDatosFiltrados"]);
+
+
   // ==================================================
   // Rutas para el perfil de usuario
   // ==================================================

@@ -13,7 +13,7 @@ class RegistroIngresoModelo {
     }
     // Obtener asistencia del día por usuario
     public function obtenerAsistenciaDelDia($asignacion_id, $fecha) {
-        $sql = "SELECT * FROM registro_ingreso WHERE asignacion_id  = :asignacion_id AND fecha = :fecha LIMIT 1";
+        $sql = "SELECT * FROM registro_acceso WHERE asignacion_id  = :asignacion_id AND fecha = :fecha LIMIT 1";
         $stmt = $this->db->prepare($sql);
         $stmt->bindParam(':asignacion_id', $asignacion_id, PDO::PARAM_INT);
         $stmt->bindParam(':fecha', $fecha);
@@ -22,7 +22,7 @@ class RegistroIngresoModelo {
     }
 
     public function registrarEntrada($asignacion_id, $fecha, $hora_entrada) {
-        $sql = "INSERT INTO registro_ingreso (asignacion_id, fecha, hora_entrada, estado) 
+        $sql = "INSERT INTO registro_acceso (asignacion_id, fecha, hora_entrada, estado) 
                 VALUES (:asignacion_id, :fecha, :hora_entrada, 'Activo')";
         $stmt = $this->db->prepare($sql);
         $stmt->bindParam(':asignacion_id', $asignacion_id, PDO::PARAM_INT);
@@ -34,7 +34,7 @@ class RegistroIngresoModelo {
 
     // Registrar salida
     public function registrarSalida($asignacion_id, $fecha, $hora_salida) {
-        $sql = "UPDATE registro_ingreso 
+        $sql = "UPDATE registro_acceso 
                 SET hora_salida = :hora_salida, estado = 'Finalizado' 
                 WHERE asignacion_id = :asignacion_id AND fecha = :fecha";
         $stmt = $this->db->prepare($sql);
@@ -65,7 +65,7 @@ class RegistroIngresoModelo {
                     c.marca,
                     c.codigo,
                     c.tipo_computador AS tipo
-                FROM registro_ingreso ra
+                FROM registro_acceso ra
                 JOIN asignaciones_computadores ac ON ra.asignacion_id = ac.id
                 JOIN usuarios u ON ac.usuario_id = u.id
                 JOIN computadores c ON ac.computador_id = c.id
