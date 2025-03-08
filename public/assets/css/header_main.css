@@ -4,7 +4,7 @@
 }
 
 body {
-  font-family: "'Nunito', sans-serif";
+  font-family: "work sans";
   background: #f6f9ff;
   color: #444444;
   
@@ -26,7 +26,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Nunito", sans-serif;
+  font-family: "work sans";
 }
 
 
@@ -229,7 +229,7 @@ h6 {
   font-size: 18px;
   font-weight: 500;
   color: #012970;
-  font-family: "Nunito", sans-serif;
+  font-family: "work sans";
 }
 
 .card-title span {
@@ -249,7 +249,7 @@ h6 {
 /* Alerts */
 .alert-heading {
   font-weight: 500;
-  font-family: "Nunito", sans-serif;
+  font-family: "work sans";
   font-size: 20px;
 }
 
@@ -298,7 +298,7 @@ h6 {
 /* Breadcrumbs */
 .breadcrumb {
   font-size: 14px;
-  font-family: "Nunito", sans-serif;
+  font-family: "work sans";
   color: #899bbd;
   font-weight: 600;
 }
@@ -365,7 +365,7 @@ h6 {
   font-size: 26px;
   font-weight: 700;
   color: #012970;
-  font-family: "Nunito", sans-serif;
+  font-family: "work sans";
 }
 
 .header {

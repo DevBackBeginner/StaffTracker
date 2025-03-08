@@ -1,10 +1,4 @@
-<?php
-  // Verificar si el usuario está logueado y tiene el rol adecuado
-  if (($_SESSION['usuario']['rol'] !== 'admin' && $_SESSION['usuario']['rol'] !== 'guarda')) {
-      header("Location: Inicio");
-      exit();
-  }
-?>
+
 
 <!DOCTYPE html>
   <html lang="en">
