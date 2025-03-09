@@ -44,15 +44,16 @@ class RegistroIngresoModelo {
         return $stmt->execute();
     }
     
-    
-    public function verificarComputadorAsignado($usuario_id) {
-        $sql = "SELECT id FROM asignaciones_computadores WHERE usuario_id = :usuario_id LIMIT 1";
-        $stmt = $this->db->prepare($sql);
-        $stmt->bindParam(':usuario_id', $usuario_id);
-        $stmt->execute();
-        return $stmt->fetch(PDO::FETCH_ASSOC); // Retorna false si no tiene computador
-    }
 
+    public function obtenerAsignacionId($usuario_id, $computador_id) {
+        $sql = "SELECT id FROM asignaciones_computadores 
+                WHERE usuario_id = :usuario_id AND computador_id = :computador_id";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindParam(':usuario_id', $usuario_id, PDO::PARAM_INT);
+        $stmt->bindParam(':computador_id', $computador_id, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC); // Devuelve un array de computadores
+    }
     public function obtenerUltimosRegistros() {
         $sql = "SELECT 
                     ra.id,

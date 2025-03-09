@@ -59,17 +59,16 @@
   Router::get('registro_ingreso', [RegistroIngresoController::class, "mostrarVistaRegistro"]);
 
   // Ruta para procesar el registro de asistencia (envío de formulario)
-  Router::post('registro_ingreso', [RegistroIngresoController::class, 'registrarAsistencia']);
+  Router::post('registrar_ingreso', [RegistroIngresoController::class, 'registrarAsistencia']);
 
   // ==================================================
   // Rutas para el manejo de computadores
   // ==================================================
 
   // Ruta para obtener la lista de computadores disponibles
-  Router::post('obtener_computadores', [ComputadorController::class, 'obtenerComputadores']);
+  Router::post('obtener_computadores', [RegistroIngresoController::class, 'obtenerComputadores']);
 
   // Ruta para registrar un computador seleccionado
-  Router::post('registrar_computador', [ComputadorController::class, 'registrarComputadorSeleccionado']);
 
   // ==================================================
   // Rutas para el panel de asistencias

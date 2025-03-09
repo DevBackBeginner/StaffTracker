@@ -20,7 +20,7 @@
         }
 
         public function obtenerPorIdentidad($numero_identidad) {
-            $sql = "SELECT * FROM usuarios WHERE numero_identidad = :codigo LIMIT 1"; // Verifica que 'codigo' sea la columna correcta
+            $sql = "SELECT id, nombre FROM usuarios WHERE numero_identidad = :codigo LIMIT 1"; // Verifica que 'codigo' sea la columna correcta
             $stmt = $this->db->prepare($sql);
             $stmt->bindParam(':codigo', $numero_identidad, PDO::PARAM_STR);
             $stmt->execute();

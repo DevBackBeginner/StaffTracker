@@ -5,7 +5,6 @@
       exit();
   }
 ?>
-
 <!DOCTYPE html>
   <html lang="en">
 
@@ -370,4 +369,4 @@
           </a>
         </li><!-- End Cerrar Sección Nav -->
       </ul>
-    </aside><!-- End Sidebar -->
+    </aside>End Sidebar

@@ -6,6 +6,7 @@ document.getElementById('codigo').addEventListener('input', function() {
         document.getElementById('form-escaneo').submit();
     }
 });
+
 document.addEventListener("DOMContentLoaded", function () {
     let modalEl = document.getElementById('mensajeModal');
     let modal = new bootstrap.Modal(modalEl);

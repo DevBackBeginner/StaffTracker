@@ -19,15 +19,18 @@
         
         // Obtener computadores según el tipo ("SENA", "Personal")
         public function obtenerComputadoresPorUsuario($usuarioId, $tipo) {
-            $sql = "SELECT c.id, c.marca, c.codigo, c.tipo_computador
-                    FROM asignaciones_computadores ac
-                    JOIN computadores c ON ac.computador_id = c.id
-                    WHERE ac.usuario_id = :usuario_id
-                      AND c.tipo_computador = :tipo";  // Eliminamos la comilla extra
+            // Consulta SQL para obtener los computadores asignados al usuario
+            $sql = "SELECT c.id, c.marca, c.codigo 
+                    FROM computadores c
+                    INNER JOIN asignaciones_computadores ac ON c.id = ac.computador_id
+                    INNER JOIN usuarios u ON ac.usuario_id = u.id
+                    WHERE u.id = :usuario_id AND c.tipo_computador = :tipo"; // Cambia :codigo por :usuario_id
             $stmt = $this->db->prepare($sql);
-            $stmt->bindParam(':usuario_id', $usuarioId, PDO::PARAM_INT);
+            $stmt->bindParam(':usuario_id', $usuarioId, PDO::PARAM_INT); // Asegúrate de que coincida con el nombre en la consulta
             $stmt->bindParam(':tipo', $tipo, PDO::PARAM_STR);
             $stmt->execute();
+        
+            // Retornar los resultados como un array asociativo
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
         
