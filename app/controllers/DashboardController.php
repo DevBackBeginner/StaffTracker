@@ -5,18 +5,21 @@
 
     // Incluye el archivo del modelo DashboardModelo, que contiene la lógica para interactuar con la base de datos.
     require_once __DIR__ . '/../models/DashboardModelo.php';
+    require_once __DIR__ . '/../models/PanelIngresoModelo.php';
 
     // Define la clase DashboardController, que maneja la lógica del controlador del dashboard.
     class DashboardController
     {
         // Propiedad privada para almacenar una instancia del modelo DashboardModelo.
         private $dashboardModelo;
-
+        private $panelIngresoModelo;
         // Constructor de la clase. Se ejecuta automáticamente al crear una instancia de DashboardController.
         public function __construct()
         {
             // Inicializa la propiedad $dashboardModelo con una nueva instancia de DashboardModelo.
             $this->dashboardModelo = new DashboardModelo();
+            $this->panelIngresoModelo = new PanelIngresoModelo();
+
         }
 
         /**
@@ -40,6 +43,19 @@
                 // Si no tiene un rol, incluye la vista de inicio de sesión.
                 include_once __DIR__ . '/../views/home/main.php';
             } else {
+
+                $rol = $_GET['rol'] ?? '';          // Rol (Instructor, Funcionario, etc.)
+                $documento = $_GET['documento'] ?? ''; // Número de documento
+    
+                // Obtener los usuarios filtrados
+                $usuarios = $this->panelIngresoModelo->filtrarUsuarios($rol, $documento);
+    
+                // Pasar los datos a la vista del dashboard
+                $data = [
+                    'usuarios' => $usuarios,
+                    'rol' => $rol,                  // Asegúrate de pasar el rol
+                    'documento' => $documento        // Asegúrate de pasar el documento
+                ];
                 // Si tiene un rol, obtiene los datos necesarios para el dashboard.
                 $datosDashboard = $this->obtenerDatosDashboard();
 

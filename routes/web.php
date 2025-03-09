@@ -26,6 +26,7 @@
   Router::post("obtenerdatosfiltrados", [DashboardController::class, "obtenerDatosFiltrados"]);
 
 
+
   // ==================================================
   // Rutas para el perfil de usuario
   // ==================================================

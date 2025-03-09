@@ -2,6 +2,7 @@
   $datosDashboard = $this->obtenerDatosDashboard();
   extract($datosDashboard); // Convierte las claves del array en variables
 ?>
+
 <!-- ======= Sidebar ======= -->
   
   <main id="main" class="main">
@@ -123,6 +124,17 @@
                     </div>
                 </div>
             </div><!-- End Customers Card -->
+            <div class="col-12">
+              <div class="card">
+                <?php
+                  // Extraer las variables del arreglo $data
+                  extract($data);
+
+                  // Incluir la tabla de usuarios
+                  include_once __DIR__ . "/../partials/tabla_usuarios.php"; 
+                  ?>
+              </div>
+            </div>
           </div>
         </div>
       </div>

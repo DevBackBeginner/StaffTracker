@@ -41,35 +41,8 @@ include_once __DIR__ . '/../dashboard/layouts/header_main.php';
             </div>
 
             <!-- Contenedor de resultados -->
-            <div id="tabla-resultados" class="card shadow-sm rounded-lg mt-12" style="border: 1px solid #005f2f; ">
-                <div id="tabla-body" class="card-body">
-                    <!-- Sección de tabs o bullet points -->
-                    <ul class="nav nav-tabs">
-                        <?php 
-                        $roles = [
-                            'Instructor' => 'Instructores',
-                            'Funcionario' => 'Funcionarios',
-                            'Directivo' => 'Directivos',
-                            'Apoyo' => 'Apoyos',
-                            'Visitante' => 'Visitantes'
-                        ]; 
-                        ?>
-                        <?php foreach ($roles as $clave => $valor): ?>
-                            <li class="nav-item">
-                                <a class="nav-link <?= ($rol === $clave) ? 'active' : '' ?>" 
-                                    href="?rol=<?= urlencode($clave) ?>">
-                                    <?= $valor ?>
-                                </a>
-                            </li>
-                        <?php endforeach; ?>
-                    </ul>
+            <?php include_once __DIR__ . "/../partials/tabla_usuarios.php"; ?>
 
-                    <!-- Tabla de resultados -->
-                    <div id="resultados">
-                        <?php include "tabla_funcionarios.php"; ?>
-                    </div>
-                </div>
-            </div>
         </div>
     </main>
     <script src="assets/js/panel_registros.js"></script>
