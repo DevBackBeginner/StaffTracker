@@ -1,3 +1,20 @@
+<?php
+
+// Calcular el número de columnas dinámicamente
+$numColumnas = 2; // Nombre y Documento son columnas fijas
+if ($rol === 'Instructor') {
+    $numColumnas += 2; // Curso y Ubicación
+} elseif ($rol === 'Funcionario') {
+    $numColumnas += 2; // Área y Puesto
+} elseif ($rol === 'Directivo') {
+    $numColumnas += 2; // Cargo y Departamento
+} elseif ($rol === 'Apoyo') {
+    $numColumnas += 1; // Área de Trabajo
+} elseif ($rol === 'Visitante') {
+    $numColumnas += 1; // Asunto
+}
+?>
+
 <table class="table table-bordered mt-3">
     <thead>
         <tr>
@@ -14,6 +31,9 @@
                 <th>Departamento</th>
             <?php elseif ($rol === 'Apoyo'): ?>
                 <th>Área de Trabajo</th>
+            <?php endif; ?>
+            <?php if ($rol === 'Visitante'): ?>
+                <th>Asunto</th>
             <?php endif; ?>
         </tr>
     </thead>
@@ -36,11 +56,14 @@
                     <?php elseif ($rol === 'Apoyo'): ?>
                         <td><?= htmlspecialchars($u['area_trabajo'] ?? '') ?></td>
                     <?php endif; ?>
+                    <?php if ($rol === 'Visitante'): ?>
+                        <td><?= htmlspecialchars($u['asunto'] ?? '') ?></td>
+                    <?php endif; ?>
                 </tr>
             <?php endforeach; ?>
         <?php else: ?>
             <tr>
-                <td colspan="6" class="text-center">No hay usuarios en esta categoría.</td>
+                <td colspan="<?= $numColumnas ?>" class="text-center">No hay usuarios en esta categoría.</td>
             </tr>
         <?php endif; ?>
     </tbody>

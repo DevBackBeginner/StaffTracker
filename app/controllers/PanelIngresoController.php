@@ -29,7 +29,7 @@
             $page = max(1, $page);
         
             // 3) Definir roles permitidos
-            $rolesPermitidos = ['Instructor', 'Funcionario', 'Directivo', 'Apoyo'];
+            $rolesPermitidos = ['Instructor', 'Funcionario', 'Directivo', 'Apoyo', 'Visitante'];
             if (!in_array($rol, $rolesPermitidos)) {
                 $rol = 'Instructor'; // Si el rol no es válido, asignamos uno por defecto
             }
@@ -56,9 +56,15 @@
             $documento = $_GET['documento'] ?? '';
 
             // Validar que el rol sea permitido
-            $rolesPermitidos = ['Instructor', 'Funcionario', 'Directivo', 'Apoyo'];
+            $rolesPermitidos = ['Instructor', 'Funcionario', 'Directivo', 'Apoyo', 'Visitante'];
             if (!in_array($rol, $rolesPermitidos)) {
-                $rol = ''; // Buscar en todos los tipos
+                $rol = ''; // Si el rol no es válido, buscar en todos los tipos
+            }
+
+            // Validar el documento (solo números y longitud máxima)
+            if (!empty($documento)) {
+                $documento = preg_replace('/[^0-9]/', '', $documento); // Eliminar caracteres no numéricos
+                $documento = substr($documento, 0, 20); // Limitar la longitud del documento
             }
 
             // Obtener los usuarios filtrados por rol y documento
@@ -68,12 +74,14 @@
             $data = [
                 'usuarios' => $usuarios,
                 'rol' => $rol,
-                'documento' => $documento
+                'documento' => $documento // Asegúrate de incluir 'documento' en el arreglo
             ];
 
-            // Cargar solo la vista de la tabla
+            // var_dump($data); // Verificar los datos antes de enviarlos a la vista
+
             include_once __DIR__ . '/../views/gestion/panel_ingreso/tabla_funcionarios.php';
         }
+        
     }
 
 ?>
