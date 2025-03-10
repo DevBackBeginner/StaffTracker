@@ -1,5 +1,4 @@
 <!-- Contenido de la tabla -->
-<div id="tabla-resultados" class="card shadow-sm rounded-lg mt-12" style="border: 1px solid #005f2f;">
     <div id="tabla-body" class="card-body">
         <!-- Sección de tabs o bullet points -->
         <ul class="nav nav-tabs">
@@ -80,41 +79,42 @@
         </div>
 
         <!-- Controles de paginación -->
-        <nav aria-label="Paginación">
-            <ul class="pagination justify-content-center">
-                <!-- Botón "Anterior" -->
-                <?php if ($page > 1): ?>
-                    <li class="page-item">
-                        <a class="page-link" href="?rol=<?= urlencode($rol) ?>&page=<?= $page - 1 ?>" aria-label="Anterior">
-                            <span aria-hidden="true">&laquo;</span>
-                        </a>
-                    </li>
-                <?php else: ?>
-                    <li class="page-item disabled">
-                        <span class="page-link" aria-hidden="true">&laquo;</span>
-                    </li>
-                <?php endif; ?>
+        <?php if ($totalPaginas > 1): ?>
+            <nav aria-label="Paginación">
+                <ul class="pagination justify-content-center">
+                    <!-- Botón "Anterior" -->
+                    <?php if ($page > 1): ?>
+                        <li class="page-item">
+                            <a class="page-link" href="?rol=<?= urlencode($rol) ?>&page=<?= $page - 1 ?>" aria-label="Anterior">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                    <?php else: ?>
+                        <li class="page-item disabled">
+                            <span class="page-link" aria-hidden="true">&laquo;</span>
+                        </li>
+                    <?php endif; ?>
 
-                <!-- Números de página -->
-                <?php for ($i = 1; $i <= $totalPaginas; $i++): ?>
-                    <li class="page-item <?= ($i === $page) ? 'active' : '' ?>">
-                        <a class="page-link" href="?rol=<?= urlencode($rol) ?>&page=<?= $i ?>"><?= $i ?></a>
-                    </li>
-                <?php endfor; ?>
+                    <!-- Números de página -->
+                    <?php for ($i = 1; $i <= $totalPaginas; $i++): ?>
+                        <li class="page-item <?= ($i === $page) ? 'active' : '' ?>">
+                            <a class="page-link" href="?rol=<?= urlencode($rol) ?>&page=<?= $i ?>"><?= $i ?></a>
+                        </li>
+                    <?php endfor; ?>
 
-                <!-- Botón "Siguiente" -->
-                <?php if ($page < $totalPaginas): ?>
-                    <li class="page-item">
-                        <a class="page-link" href="?rol=<?= urlencode($rol) ?>&page=<?= $page + 1 ?>" aria-label="Siguiente">
-                            <span aria-hidden="true">&raquo;</span>
-                        </a>
-                    </li>
-                <?php else: ?>
-                    <li class="page-item disabled">
-                        <span class="page-link" aria-hidden="true">&raquo;</span>
-                    </li>
-                <?php endif; ?>
-            </ul>
-        </nav>
+                    <!-- Botón "Siguiente" -->
+                    <?php if ($page < $totalPaginas): ?>
+                        <li class="page-item">
+                            <a class="page-link" href="?rol=<?= urlencode($rol) ?>&page=<?= $page + 1 ?>" aria-label="Siguiente">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    <?php else: ?>
+                        <li class="page-item disabled">
+                            <span class="page-link" aria-hidden="true">&raquo;</span>
+                        </li>
+                    <?php endif; ?>
+                </ul>
+            </nav>
+        <?php endif; ?>
     </div>
-</div>

@@ -3,8 +3,7 @@
   extract($datosDashboard); // Convierte las claves del array en variables
 ?>
 
-<!-- ======= Sidebar ======= -->
-    <main id="main" class="main">
+        <!-- ======= Sidebar ======= -->
         <div class="pagetitle">
         <h1>Registro de Ingreso</h1>
         <nav>

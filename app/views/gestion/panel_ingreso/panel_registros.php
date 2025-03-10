@@ -5,7 +5,6 @@ include_once __DIR__ . '/../dashboard/layouts/header_main.php';
     <!-- Enlace al archivo CSS específico para el panel -->
     <link rel="stylesheet" href="assets/css/panel.css">
 
-    <main id="main" class="main">
         <div class="pagetitle">
             <h1>Panel de Registros</h1>
             <nav>

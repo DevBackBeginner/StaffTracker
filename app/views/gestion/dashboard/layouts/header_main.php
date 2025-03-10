@@ -46,7 +46,7 @@
           </a>
           <i class="bi bi-list toggle-sidebar-btn"></i>
         </div><!-- End Logo -->
-        
+
         <nav class="header-nav ms-auto">
           <ul class="d-flex align-items-center">
             <li class="nav-item d-block d-lg-none">
@@ -348,13 +348,15 @@
               <span>Perfil</span>
             </a>
           </li><!-- End Perfil Nav -->
-          <li class="nav-item">
-            <a class="nav-link collapsed" href="contacto.html">
-              <i class="bi bi-envelope"></i>
-              <span>Reportar Bugs</span>
-            </a>
-          </li><!-- End Contáctenos Nav -->
+          <?php if (isset($_SESSION['usuario']['rol']) && $_SESSION['usuario']['rol'] === 'Guarda'): ?>
 
+            <li class="nav-item">
+              <a class="nav-link collapsed" href="contacto.html">
+                <i class="bi bi-envelope"></i>
+                <span>Reportar Bugs</span>
+              </a>
+            </li><!-- End Contáctenos Nav -->
+          <?php endif ?>
           <!-- Cerrar Sesión -->
           <li class="nav-item">
             <a class="nav-link collapsed" href="logout">
@@ -364,3 +366,5 @@
           </li><!-- End Cerrar Sección Nav -->
         </ul>
       </aside>End Sidebar
+
+      <main id="main" class="main">

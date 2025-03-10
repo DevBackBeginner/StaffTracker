@@ -1,9 +1,9 @@
 <?php include_once __DIR__ . '/../../views/gestion/dashboard/layouts/header_main.php'; ?>
+    <link href="assets/css/perfil_usuario.css" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600&display=swap" rel="stylesheet">
     <!-- Incluir SweetAlert2 desde un CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <main id="main" class="main">
-        <!-- end header -->
-        <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>       
 
         <div class="pagetitle">
             <h1>Perfil</h1>
@@ -109,7 +109,7 @@
                                                     <input type="file" name="imagen" id="imagen" style="display: none;" accept="image/*">
 
                                                     <!-- Botón para subir una nueva imagen -->
-                                                    <a href="#" class="btn btn-primary btn-sm" onclick="document.getElementById('imagen').click(); return false;">
+                                                    <a href="#" class="btn btn-primary btn-sm" id="boton_subir" onclick="document.getElementById('imagen').click(); return false;">
                                                     <i class="bi bi-upload me-1"></i> Subir imagen de perfil
                                                 </a>
                                                 <!-- Botón para eliminar la imagen -->
