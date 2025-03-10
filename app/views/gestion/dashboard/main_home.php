@@ -124,9 +124,6 @@
                     <div class="col-12">
                         <div class="card">
                             <?php
-                            // Extraer las variables del arreglo $data
-                            extract($data);
-
                             // Incluir la tabla de usuarios
                             include_once __DIR__ . "/../partials/tabla_usuarios.php"; 
                             ?>

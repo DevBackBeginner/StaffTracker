@@ -67,6 +67,9 @@ class RegistroIngresoModelo {
     
     
     public function obtenerUltimosRegistros() {
+        // Obtener la fecha actual en formato YYYY-MM-DD
+        $fechaHoy = date('Y-m-d');
+    
         $sql = "SELECT 
                     ra.id,
                     ra.fecha,
@@ -82,12 +85,14 @@ class RegistroIngresoModelo {
                 JOIN asignaciones_computadores ac ON ra.asignacion_id = ac.id
                 JOIN usuarios u ON ac.usuario_id = u.id
                 JOIN computadores c ON ac.computador_id = c.id
+                WHERE ra.fecha = :fechaHoy -- Filtra por la fecha de hoy
                 ORDER BY ra.id DESC
                 LIMIT 5";
     
         $stmt = $this->db->prepare($sql);
+        $stmt->bindParam(':fechaHoy', $fechaHoy); // Asignar el valor de la fecha actual
         $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_ASSOC); // Cambia fetch() por fetchAll()
-    }
+        return $stmt->fetchAll(PDO::FETCH_ASSOC); // Retorna todos los registros de hoy
+    }   
 }
 ?>

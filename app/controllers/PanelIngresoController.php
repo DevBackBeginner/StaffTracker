@@ -79,7 +79,7 @@
 
             // var_dump($data); // Verificar los datos antes de enviarlos a la vista
 
-            include_once __DIR__ . '/../views/gestion/partials/tabla_funcionarios.php';
+            include_once __DIR__ . '/../views/gestion/partials/tabla_usuarios.php';
         }
         
     }
