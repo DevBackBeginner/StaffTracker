@@ -4,6 +4,11 @@
 
 <div class="login-container">
     <div class="login-card">
+        <!-- Imagen arriba del título -->
+        <div class="login-image" style="max-width: 150px; margin: 0 auto;">
+            <img src="/ControlAsistencia/public/assets/img/logo.png" alt="Login Image" style="width: 100%;">
+        </div>
+        
         <h2 class="login-title">Iniciar Sesión</h2>
 
         <!-- Mostrar mensajes flash utilizando cookies -->

@@ -56,11 +56,11 @@
                         <div class="collapse navbar-collapse" id="navbarsExample04">
                            <ul class="navbar-nav mr-auto">
                               <li class="nav-item active">
-                                 <a class="nav-link" href="index.html">Inicio</a>
+                                 <a class="nav-link" href="main.php">Inicio</a>
                               </li>
    
                               <li class="nav-item">
-                                 <a class="nav-link" href=".html">Contactos</a>
+                                 <a class="nav-link" href="contacto.php">Contactos</a>
                               </li>
                               <li class="nav-item d_none login_btn">
                                  <a class="nav-link" href="login">Login</a>
