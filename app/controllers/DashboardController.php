@@ -42,6 +42,7 @@
             if (!$this->tieneRol()) {
                 // Si no tiene un rol, incluye la vista de inicio de sesión.
                 include_once __DIR__ . '/../views/home/main.php';
+                
             } else {
 
                 $rol = $_GET['rol'] ?? 'Instructor';  // Valor por defecto
@@ -57,7 +58,7 @@
                 }
             
                 // 4) Definir el límite de usuarios por página y el offset
-                $limit = 30;
+                $limit = 1;
                 $offset = ($page - 1) * $limit;
             
                 // 5) Obtener los usuarios del rol seleccionado
@@ -66,7 +67,7 @@
                 // 6) Obtener el total de usuarios con ese rol
                 $totalUsuarios = $this->panelIngresoModelo->contarUsuariosPorRol($rol);
                 $totalPaginas = ($totalUsuarios > 0) ? ceil($totalUsuarios / $limit) : 1;
-                
+
                 // Si tiene un rol, obtiene los datos necesarios para el dashboard.
                 $datosDashboard = $this->obtenerDatosDashboard();
 

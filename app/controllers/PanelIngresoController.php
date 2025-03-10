@@ -35,7 +35,7 @@
             }
         
             // 4) Definir el límite de usuarios por página y el offset
-            $limit = 30;
+            $limit = 1;
             $offset = ($page - 1) * $limit;
         
             // 5) Obtener los usuarios del rol seleccionado
@@ -44,7 +44,7 @@
             // 6) Obtener el total de usuarios con ese rol
             $totalUsuarios = $this->panelIngresoModelo->contarUsuariosPorRol($rol);
             $totalPaginas = ($totalUsuarios > 0) ? ceil($totalUsuarios / $limit) : 1;
-        
+                    
             // 7) Cargar la vista con los datos
             include_once __DIR__ . '/../views/gestion/panel_ingreso/panel_registros.php';
         }

@@ -73,30 +73,18 @@
         }
         
         public function contarUsuariosPorRol($rol) {
-            $tablas = [
-                'Instructor' => 'instructores',
-                'Funcionario' => 'funcionarios',
-                'Directivo' => 'directivos',
-                'Apoyo' => 'apoyo',
-                'Visitante' => 'visitantes'
-            ];
-        
-            if (!isset($tablas[$rol])) {
-                return 0;
-            }
-        
-            $tabla = $tablas[$rol];
-        
-            // Modificar la consulta SQL para incluir un INNER JOIN con registro_acceso
-            $sql = "SELECT COUNT(*)
-                    FROM $tabla t
-                    INNER JOIN usuarios u ON t.usuario_id = u.id
-                    INNER JOIN registro_acceso ra ON u.id = ra.asignacion_id";
+            $sql = "SELECT COUNT(*) as total 
+                    FROM registro_acceso ra
+                    INNER JOIN asignaciones_computadores ac ON ra.asignacion_id = ac.id
+                    INNER JOIN usuarios u ON ac.usuario_id = u.id
+                    WHERE u.rol = :rol";
         
             $stmt = $this->db->prepare($sql);
+            $stmt->bindValue(':rol', $rol, PDO::PARAM_STR);
             $stmt->execute();
+            $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
         
-            return $stmt->fetchColumn();
+            return (int)$resultado['total']; // Devuelve el total de registros
         }
 
         public function filtrarUsuarios($rol = '', $documento = '')
