@@ -31,13 +31,43 @@
                     <div class="row">
                         <div class="col-md-12 text-center">
                             <p class="mb-0">&copy; 2024 SENA Villeta - Todos los derechos reservados.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <style>
+                                        footer {
+                                            position: relative; /* Cambiado de fixed a relative */
+                                            bottom: 0;
+                                            width: 100%;
+                                            z-index: 1000;
+                                            background-color: #222;
+                                            color: white;
+                                            padding: 90px 0; /* Aumentado el padding para mayor separación */
+                                            text-align: center;
+                                        }
 
+                                        @media (max-width: 768px) {
+                                            footer {
+                                                padding: 40px 0; /* Aumentado el padding para mayor separación en dispositivos móviles */
+                                                text-align: center;
+                                            }
+
+                                            .footer .container .row .col-md-8.offset-md-2 {
+                                                padding: 0 15px;
+                                            }
+
+                                            .footer ul {
+                                                flex-direction: column;
+                                                align-items: center;
+                                            }
+
+                                            .footer ul li {
+                                                margin: 10px 0;
+                                            }
+                                        }
+                                    </style>
     <!-- Scripts -->
     <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
     <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

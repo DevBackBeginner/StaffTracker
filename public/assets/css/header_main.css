@@ -301,25 +301,25 @@ h6 {
 .breadcrumb {
   font-size: 14px;
   font-family: "work sans";
-  color: #899bbd;
+  color: #00304D;
   font-weight: 600;
 }
 
 .breadcrumb a {
-  color: #899bbd;
+  color: #00304D;
   transition: 0.3s;
 }
 
 .breadcrumb a:hover {
-  color: #51678f;
+  color: #00304D;
 }
 
 .breadcrumb .breadcrumb-item::before {
-  color: #899bbd;
+  color: #00304D;
 }
 
 .breadcrumb .active {
-  color: #51678f;
+  color: #00304D;
   font-weight: 600;
 }
 
@@ -331,7 +331,7 @@ h6 {
 .nav-tabs-bordered .nav-link {
   margin-bottom: -2px;
   border: none;
-  color: #2c384e;
+  color: #00304D;
 }
 
 .nav-tabs-bordered .nav-link:hover,
@@ -998,7 +998,7 @@ h6 {
 .profile .profile-card h2 {
   font-size: 24px;
   font-weight: 700;
-  color: #2c384e;
+  color: #00304D;
   margin: 10px 0 0 0;
 }
 
@@ -1030,12 +1030,12 @@ h6 {
 
 .profile .profile-overview .label {
   font-weight: 600;
-  color: rgba(1, 41, 112, 0.6);
+  color: #007832;
 }
 
 .profile .profile-edit label {
   font-weight: 600;
-  color: rgba(1, 41, 112, 0.6);
+  color: #007832;
 }
 
 .profile .profile-edit img {

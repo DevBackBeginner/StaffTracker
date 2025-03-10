@@ -22,7 +22,10 @@ body {
      font-family: 'work sans', sans-serif;
      line-height: 1.80857;
      font-weight: normal;
+     
 }
+
+ 
 
 a {
      color: #00304D;
@@ -318,7 +321,7 @@ button {
 }
 
 .text-bg .read_more {
-     border: #00304D solid 2px;
+     border: #007832 solid 2px;
      color: #00304D !important;
      font-weight: 500;
      display: block;
@@ -340,10 +343,10 @@ button {
      width: 62px;
      height: 60px;
      background: transparent;
-     border: #00304D solid 2px;
+     border: #007832 solid 2px;
      opacity: 1;
      font-size: 30px;
-     color: #00304D;
+     color: #007832;
      border-radius: 60px;
      top: 43%;
 }
@@ -374,7 +377,7 @@ button {
 
 .titlepage h2 {
      font-size: 35px;
-     color: #00304D;
+     color: #007832;
      line-height: 45px;
      font-weight: bold;
      padding: 0;
@@ -436,7 +439,7 @@ button {
 }
 
 .about .titlepage {
-     border: #00304D solid 1px;
+     border: #007832 solid 1px;
      padding: 40px 40px;
      z-index: 10018;
      background: #fff;
@@ -452,7 +455,7 @@ button {
 }
 
 .about .read_more {
-     border: #00304D solid 2px;
+     border: #007832 solid 2px;
      color: #00304D;
      font-weight: 500;
      margin-top: 44px;
@@ -752,7 +755,7 @@ button {
 /** footer **/
 
 .footer {
-     background: #00304D;
+     background: #ffffff;
      padding-top: 20px;
      text-align: center;
      font-family: 'Roboto', sans-serif;

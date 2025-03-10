@@ -9,7 +9,7 @@
             <h1>Perfil</h1>
             <nav>
                 <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="Inicio">Home</a></li>
+                <li class="breadcrumb-item"><a href="Inicio">Inicio</a></li>
                 <li class="breadcrumb-item active">Perfil</li>
                 </ol>
             </nav>
@@ -22,7 +22,7 @@
                             <?php if (!empty($_SESSION['mensaje'])): ?>
                                 <div class="alert <?= $_SESSION['tipo_mensaje'] === 'error' ? 'alert-danger' : 'alert-success' ?> alert-dismissible fade show" role="alert">
                                     <?= htmlspecialchars($_SESSION['mensaje']) ?>
-                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
                                 </div>
                                 <?php
                                 // Limpiar el mensaje después de mostrarlo
@@ -31,15 +31,10 @@
                                 ?>
                             <?php endif; ?>
                         <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
-                            <img src="<?= $_SESSION['usuario']['foto_perfil'] ?>" alt="Profile" class="rounded-circle">
+                            <img src="<?= $_SESSION['usuario']['foto_perfil'] ?>" alt="Perfil" class="rounded-circle">
                             <h2><?= $_SESSION['usuario']['nombre']?></h2>
                             <h3><?= ($_SESSION['usuario']['rol'] === 'admin') ? 'Administrador' : (htmlspecialchars($_SESSION['usuario']['rol']) === 'guarda' ? 'Guardia de portería' : htmlspecialchars($_SESSION['usuario']['rol'])) ?></h3>
-                            <div class="social-links mt-2">
-                                <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
-                                <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-                                <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-                                <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
-                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -50,76 +45,76 @@
                             <!-- Bordered Tabs -->
                             <ul class="nav nav-tabs nav-tabs-bordered">
                                 <li class="nav-item">
-                                    <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview">Overview</button>
+                                    <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview">Resumen</button>
                                 </li>
                                 <li class="nav-item">
-                                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit">Edit Profile</button>
+                                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit">Editar Perfil</button>
                                 </li>
                                 <!-- <li class="nav-item">
-                                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-settings">Settings</button>
+                                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-settings">Configuraciones</button>
                                 </li> -->
                                 <li class="nav-item">
-                                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-change-password">Change Password</button>
+                                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-change-password">Cambiar Contraseña</button>
                                 </li>
                             </ul>
                             <div class="tab-content pt-2">
 
                                 <div class="tab-pane fade show active profile-overview" id="profile-overview">
-                                    <h5 class="card-title">About</h5>
-                                    <p class="">Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Tempora libero non est unde veniam est qui dolor. Ut sunt iure rerum quae quisquam autem eveniet perspiciatis odit. Fuga sequi sed ea saepe at unde.</p>
+                                    <h5 class="card-title">Acerca de</h5>
+                                    <p class="" style="color: #00304D;">Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Tempora libero non est unde veniam est qui dolor. Ut sunt iure rerum quae quisquam autem eveniet perspiciatis odit. Fuga sequi sed ea saepe at unde.</p>
 
-                                    <h5 class="card-title">Profile Details</h5>
+                                    <h5 class="card-title">Detalles del Perfil</h5>
 
                                     <div class="row">
-                                        <div class="col-lg-3 col-md-4 label">Full Name</div>
-                                        <div class="col-lg-9 col-md-8"><?= $_SESSION['usuario']['nombre'] . ' ' . $_SESSION['usuario']['apellidos']?></div>
+                                        <div class="col-lg-3 col-md-4 label">Nombre Completo</div>
+                                        <div class="col-lg-9 col-md-8" style="color: #00304D;"><?= $_SESSION['usuario']['nombre'] . ' ' . $_SESSION['usuario']['apellidos']?></div>
                                     </div>
 
                                     <div class="row">
-                                        <div class="col-lg-3 col-md-4 label">Company</div>
-                                        <div class="col-lg-9 col-md-8">Centro de Desarrollo Agroindustrial y Empresarial - CDAE (Villeta, Cundinamarca)</div>
+                                        <div class="col-lg-3 col-md-4 label">Compañía</div>
+                                        <div class="col-lg-9 col-md-8" style="color: #00304D;">Centro de Desarrollo Agroindustrial y Empresarial - CDAE (Villeta, Cundinamarca)</div>
                                     </div>
 
                                     <div class="row">
-                                        <div class="col-lg-3 col-md-4 label">Job</div>
-                                        <div class="col-lg-9 col-md-8"><?= ($_SESSION['usuario']['rol'] === 'admin') ? 'Administrador' : htmlspecialchars($_SESSION['usuario']['rol'])?> del sistema</div>
+                                        <div class="col-lg-3 col-md-4 label">Trabajo</div>
+                                        <div class="col-lg-9 col-md-8" style="color: #00304D;"><?= ($_SESSION['usuario']['rol'] === 'admin') ? 'Administrador' : htmlspecialchars($_SESSION['usuario']['rol'])?> del sistema</div>
                                     </div>
 
                                     <div class="row">
-                                        <div class="col-lg-3 col-md-4 label">Address</div>
-                                        <div class="col-lg-9 col-md-8">Cl. 2 #13 - 3, Villeta, Cundinamarca</div>
+                                        <div class="col-lg-3 col-md-4 label">Dirección</div>
+                                        <div class="col-lg-9 col-md-8" style="color: #00304D;">Cl. 2 #13 - 3, Villeta, Cundinamarca</div>
                                     </div>
 
                                     <div class="row">
-                                        <div class="col-lg-3 col-md-4 label">Phone</div>
-                                        <div class="col-lg-9 col-md-8"><?= $_SESSION['usuario']['telefono'] ?></div>
+                                        <div class="col-lg-3 col-md-4 label">Teléfono</div>
+                                        <div class="col-lg-9 col-md-8" style="color: #00304D;"><?= $_SESSION['usuario']['telefono'] ?></div>
                                     </div>
 
                                     <div class="row">
-                                        <div class="col-lg-3 col-md-4 label">Email</div>
-                                        <div class="col-lg-9 col-md-8"><?= $_SESSION['usuario']['correo'] ?></div>
+                                        <div class="col-lg-3 col-md-4 label">Correo Electrónico</div>
+                                        <div class="col-lg-9 col-md-8" style="color: #00304D;"><?= $_SESSION['usuario']['correo'] ?></div>
                                     </div>
                                 </div>
 
                                 <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
                                     <!-- Profile Edit Form -->
                                     <form method="POST" action="actualizar" enctype="multipart/form-data">
-                                        <div class="row mb-3">
-                                            <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile Image</label>
-                                            <div class="col-md-8 col-lg-9">
+                                        <div class="row mb-3 justify-content-center">
+                                            <label for="profileImage" class="col-md-4 col-lg-3 col-form-label text-center">Imagen de Perfil</label>
+                                            <div class="col-md-8 col-lg-9 text-center">
                                                 <!-- Mostrar la imagen de perfil actual o una imagen por defecto -->
-                                                <img src="<?= $_SESSION['usuario']['foto_perfil'] ?? 'default.png' ?>" alt="Profile" class="rounded-circle">
+                                                <img src="<?= $_SESSION['usuario']['foto_perfil'] ?? 'default.png' ?>" alt="Perfil" class="rounded-circle">
                                                 <div class="pt-2">
                                                     <!-- Input de archivo (oculto) -->
                                                     <input type="file" name="imagen" id="imagen" style="display: none;" accept="image/*">
 
                                                     <!-- Botón para subir una nueva imagen -->
                                                     <a href="#" class="btn btn-primary btn-sm" onclick="document.getElementById('imagen').click(); return false;">
-                                                    <i class="bi bi-upload me-1"></i> Upload profile image
+                                                    <i class="bi bi-upload me-1"></i> Subir imagen de perfil
                                                 </a>
                                                 <!-- Botón para eliminar la imagen -->
                                                 <button class="btn btn-danger btn-sm" onclick="eliminarImagen()">
-                                                    <i class="bi bi-trash me-1"></i> Remove my profile image
+                                                    <i class="bi bi-trash me-1"></i> Eliminar mi imagen de perfil
                                                 </button>
                                                 </div>
                                             </div>
@@ -142,7 +137,7 @@
                                         </div>
 
                                         <div class="row mb-3">
-                                            <label for="Phone" class="col-md-4 col-lg-3 col-form-label">Phone</label>
+                                            <label for="Phone" class="col-md-4 col-lg-3 col-form-label">Teléfono</label>
                                             <div class="col-md-8 col-lg-9">
                                                 <input name="phone" type="text" class="form-control" id="Phone" 
                                                     value="<?= htmlspecialchars($_SESSION['usuario']['telefono'] ?? '') ?>">
@@ -150,7 +145,7 @@
                                         </div>
 
                                         <div class="row mb-3">
-                                            <label for="Email" class="col-md-4 col-lg-3 col-form-label">Email</label>
+                                            <label for="Email" class="col-md-4 col-lg-3 col-form-label">Correo Electrónico</label>
                                             <div class="col-md-8 col-lg-9">
                                                 <input name="email" type="email" class="form-control" id="Email" 
                                                     value="<?= htmlspecialchars($_SESSION['usuario']['correo'] ?? '') ?>">
@@ -158,7 +153,7 @@
                                         </div>
 
                                         <div class="text-center">
-                                            <button type="submit" class="btn btn-primary">Save Changes</button>
+                                            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
                                         </div>
                                     </form>
                                 </div>
@@ -167,37 +162,37 @@
                                     <!-- Settings Form
                                     <form>
                                         <div class="row mb-3">
-                                            <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Email Notifications</label>
+                                            <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Notificaciones por Correo</label>
                                             <div class="col-md-8 col-lg-9">
                                                 <div class="form-check">
                                                     <input class="form-check-input" type="checkbox" id="changesMade" checked>
                                                     <label class="form-check-label" for="changesMade">
-                                                        Changes made to your account
+                                                        Cambios realizados en tu cuenta
                                                     </label>
                                                 </div>
                                                 <div class="form-check">
                                                     <input class="form-check-input" type="checkbox" id="newProducts" checked>
                                                     <label class="form-check-label" for="newProducts">
-                                                        Information on new products and services
+                                                        Información sobre nuevos productos y servicios
                                                     </label>
                                                 </div>
                                                 <div class="form-check">
                                                     <input class="form-check-input" type="checkbox" id="proOffers">
                                                     <label class="form-check-label" for="proOffers">
-                                                        Marketing and promo offers
+                                                        Ofertas de marketing y promociones
                                                     </label>
                                                 </div>
                                                 <div class="form-check">
                                                     <input class="form-check-input" type="checkbox" id="securityNotify" checked disabled>
                                                     <label class="form-check-label" for="securityNotify">
-                                                        Security alerts
+                                                        Alertas de seguridad
                                                     </label>
                                                 </div>
                                             </div>
                                         </div> -->
 
                                         <!-- <div class="text-center">
-                                            <button type="submit" class="btn btn-primary">Save Changes</button>
+                                            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
                                         </div>
                                     </form>End settings Form -->
                                 <!-- </div> -->
@@ -206,7 +201,7 @@
                                     <!-- Change Password Form -->
                                     <form action="actualizar-contrasena" method="POST">
                                     <div class="row mb-3">
-                                        <label for="contrasena_actual" class="col-md-4 col-lg-3 col-form-label">Current Password</label>
+                                        <label for="contrasena_actual" class="col-md-4 col-lg-3 col-form-label" style="color: #007832;">Contraseña Actual</label>
                                         <div class="col-md-8 col-lg-9 input-group">
                                             <input name="contrasena_actual" type="password" class="form-control" id="contrasena_actual">
                                             <button type="button" class="btn btn-outline-secondary" onclick="togglePassword('contrasena_actual')">
@@ -216,7 +211,7 @@
                                     </div>
 
                                     <div class="row mb-3">
-                                        <label for="nueva_contrasena" class="col-md-4 col-lg-3 col-form-label">New Password</label>
+                                        <label for="nueva_contrasena" class="col-md-4 col-lg-3 col-form-label" style="color: #007832;">Nueva Contraseña</label>
                                         <div class="col-md-8 col-lg-9 input-group">
                                             <input name="nueva_contrasena" type="password" class="form-control" id="nueva_contrasena">
                                             <button type="button" class="btn btn-outline-secondary" onclick="togglePassword('nueva_contrasena')">
@@ -226,7 +221,7 @@
                                     </div>
 
                                     <div class="row mb-3">
-                                        <label for="confirmar_contrasena" class="col-md-4 col-lg-3 col-form-label">Re-enter New Password</label>
+                                        <label for="confirmar_contrasena" class="col-md-4 col-lg-3 col-form-label" style="color: #007832;">Reingresa la Nueva Contraseña</label>
                                         <div class="col-md-8 col-lg-9 input-group">
                                             <input name="confirmar_contrasena" type="password" class="form-control" id="confirmar_contrasena">
                                             <button type="button" class="btn btn-outline-secondary" onclick="togglePassword('confirmar_contrasena')">
@@ -237,7 +232,7 @@
 
 
                                         <div class="text-center">
-                                            <button type="submit" class="btn btn-primary">Change Password</button>
+                                            <button type="submit" class="btn btn-primary">Cambiar Contraseña</button>
                                         </div>
                                     </form><!-- End Change Password Form -->
                                 </div>
