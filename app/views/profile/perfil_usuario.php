@@ -54,7 +54,7 @@
                                     <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-settings">Configuraciones</button>
                                 </li> -->
                                 <li class="nav-item">
-                                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-change-password">Cambiar Contraseña</button>
+                                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-change-password">Contraseña</button>
                                 </li>
                             </ul>
                             <div class="tab-content pt-2">

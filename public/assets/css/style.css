@@ -238,7 +238,7 @@ button {
 
 .navigation.navbar {
      float: right;
-     background: #ffffff;
+     background: #b9ff9d;
      clear: both;
      padding: 23px 25px !important;
      border-radius: 64px;
@@ -754,12 +754,6 @@ button {
 
 /** footer **/
 
-.footer {
-     background: #ffffff;
-     padding-top: 20px;
-     text-align: center;
-     font-family: 'Roboto', sans-serif;
-}
 
 ul.location_icon {
      text-align: center;

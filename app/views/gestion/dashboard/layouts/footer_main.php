@@ -42,7 +42,7 @@
                                             bottom: 0;
                                             width: 100%;
                                             z-index: 1000;
-                                            background-color: #222;
+                                            background-color: black;
                                             color: white;
                                             padding: 90px 0; /* Aumentado el padding para mayor separación */
                                             text-align: center;

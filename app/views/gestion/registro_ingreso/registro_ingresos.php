@@ -56,17 +56,13 @@
                         </form>
                     </div>
                 </div>
-            </div>
-
-            <!-- Fila para la tabla de últimos registros -->
-            <div class="col-12"> <!-- Ocupa el 100% del ancho -->
-                <div class="card shadow-sm custom-card">
-                    <div class="card-header bg-custom text-white">
-                        <h2 class="h5 mb-0">Últimos Registros de Ingreso</h2>
-                    </div>
-                    <div class="card-body">
-                        <?php include_once "tabla_ultimos_registros.php"; ?>
-                    </div>
+                <div class="card-body">
+                    <form id="form-escaneo" method="POST">
+                        <div class="mt-2">
+                            <label for="codigo" class="form-label" style="color: #00304D;">Código</label>
+                            <input type="text" id="codigo" name="codigo" placeholder="Escanea el código aquí" class="form-control" style="color: #00304D;" autofocus>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
