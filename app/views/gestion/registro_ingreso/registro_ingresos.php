@@ -51,8 +51,8 @@
                 <div class="card-body">
                     <form id="form-escaneo" method="POST">
                         <div class="mt-2">
-                            <label for="codigo" class="form-label">Código</label>
-                            <input type="text" id="codigo" name="codigo" placeholder="Escanea el código aquí" class="form-control" autofocus>
+                            <label for="codigo" class="form-label" style="color: #00304D;">Código</label>
+                            <input type="text" id="codigo" name="codigo" placeholder="Escanea el código aquí" class="form-control" style="color: #00304D;" autofocus>
                         </div>
                     </form>
                 </div>

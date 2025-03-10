@@ -10,10 +10,7 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-8 col-md-8 d-flex flex-column align-items-center justify-content-center">
                         <div class="d-flex justify-content-center py-4">
-                            <a href="index.html" class="logo d-flex align-items-center w-auto">
-                                <img src="assets/img/logo.png" alt="" class="me-2" style="height: 40px;">
-                                <span class="d-none d-lg-block fs-4 fw-bold">ControlAssistance</span>
-                            </a>
+                          
                         </div><!-- End Logo -->
                         <div class="card mb-3 shadow-sm">
                             <div class="card-body p-4">
@@ -37,7 +34,7 @@
                                 <form class="row g-3 needs-validation" action="registro_guarda" method="POST" enctype="multipart/form-data" novalidate>
                                     <!-- Primera fila: Nombre y Apellidos -->
                                     <div class="col-md-6">
-                                        <label for="nombre" class="form-label fw-bold">Nombre</label>
+                                        <label for="nombre" class="form-label fw-bold" style="color: #007832;">Nombre</label>
                                         <div class="input-group">
                                             <span class="input-group-text"><i class="bi bi-person"></i></span>
                                             <input type="text" name="nombre" class="form-control" id="nombre" required>
@@ -45,7 +42,7 @@
                                         <div class="invalid-feedback">Por favor, ingrese su nombre.</div>
                                     </div>
                                     <div class="col-md-6">
-                                        <label for="apellido" class="form-label fw-bold">Apellidos</label>
+                                        <label for="apellido" class="form-label fw-bold" style="color: #007832;">Apellidos</label>
                                         <div class="input-group">
                                             <span class="input-group-text"><i class="bi bi-person"></i></span>
                                             <input type="text" name="apellido" class="form-control" id="apellido" required>
@@ -55,7 +52,7 @@
 
                                     <!-- Segunda fila: Número de Identidad y Teléfono -->
                                     <div class="col-md-6">
-                                        <label for="numero_identidad" class="form-label fw-bold">Número de Identidad</label>
+                                        <label for="numero_identidad" class="form-label fw-bold" style="color: #007832;">Número de Identidad</label>
                                         <div class="input-group">
                                             <span class="input-group-text"><i class="bi bi-card-text"></i></span>
                                             <input type="text" name="numero_identidad" class="form-control" id="numero_identidad" required
@@ -64,7 +61,7 @@
                                         <div class="invalid-feedback">El número de identidad debe tener exactamente 10 dígitos.</div>
                                     </div>
                                     <div class="col-md-6">
-                                        <label for="telefono" class="form-label fw-bold">Teléfono</label>
+                                        <label for="telefono" class="form-label fw-bold" style="color: #007832;">Teléfono</label>
                                         <div class="input-group">
                                             <span class="input-group-text"><i class="bi bi-telephone"></i></span>
                                             <input type="text" name="telefono" class="form-control" id="telefono" required
@@ -75,7 +72,7 @@
 
                                     <!-- Tercera fila: Correo Electrónico y Turno -->
                                     <div class="col-md-6">
-                                        <label for="correo" class="form-label fw-bold">Correo Electrónico</label>
+                                        <label for="correo" class="form-label fw-bold" style="color: #007832;">Correo Electrónico</label>
                                         <div class="input-group">
                                             <span class="input-group-text"><i class="bi bi-envelope"></i></span>
                                             <input type="email" name="correo" class="form-control" id="correo" required>
@@ -83,7 +80,7 @@
                                         <div class="invalid-feedback">Por favor, ingrese un correo electrónico válido.</div>
                                     </div>
                                     <div class="col-md-6">
-                                        <label for="turno" class="form-label fw-bold">Turno</label>
+                                        <label for="turno" class="form-label fw-bold" style="color: #007832;">Turno</label>
                                         <div class="input-group">
                                             <span class="input-group-text"><i class="bi bi-clock"></i></span>
                                             <select name="turno" id="turno" class="form-control" required>
@@ -98,7 +95,7 @@
 
                                     <!-- Cuarta fila: Contraseña y Confirmar Contraseña -->
                                     <div class="col-md-6">
-                                        <label for="password" class="form-label fw-bold">Contraseña</label>
+                                        <label for="password" class="form-label fw-bold" style="color: #007832;">Contraseña</label>
                                         <div class="input-group">
                                             <span class="input-group-text"><i class="bi bi-lock"></i></span>
                                             <input type="password" name="password" class="form-control" id="password" required>
@@ -109,7 +106,7 @@
                                         <div class="invalid-feedback">Por favor, ingrese una contraseña.</div>
                                     </div>
                                     <div class="col-md-6">
-                                        <label for="confirm_password" class="form-label fw-bold">Confirmar Contraseña</label>
+                                        <label for="confirm_password" class="form-label fw-bold" style="color: #007832;">Confirmar Contraseña</label>
                                         <div class="input-group">
                                             <span class="input-group-text"><i class="bi bi-lock"></i></span>
                                             <input type="password" name="confirm_password" class="form-control" id="confirm_password" required>
@@ -122,7 +119,7 @@
 
                                     <!-- Quinta fila: Foto de Perfil (sola) -->
                                     <div class="col-12">
-                                        <label for="foto_perfil" class="form-label fw-bold">Foto de Perfil</label>
+                                        <label for="foto_perfil" class="form-label fw-bold" style="color: #007832;">Foto de Perfil</label>
                                         <input type="file" name="foto_perfil" class="form-control" id="foto_perfil" accept="image/*">
                                         <div class="invalid-feedback">Por favor, suba una foto de perfil.</div>
                                     </div>

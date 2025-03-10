@@ -219,7 +219,7 @@
                 <li>
                     <a class="dropdown-item d-flex align-items-center" href="perfil">
                         <i class="bi bi-person"></i>
-                        <span>My Profile</span>
+                        <span style="color: #00304D;">Mi Perfil</span>
                     </a>
                 </li>
                 <li><hr class="dropdown-divider"></li>
@@ -227,7 +227,7 @@
                 <li>
                     <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
                         <i class="bi bi-gear"></i>
-                        <span>Account Settings</span>
+                        <span style="color: #00304D;">Configuracion</span>
                     </a>
                 </li>
                 <li><hr class="dropdown-divider"></li>
@@ -235,7 +235,7 @@
                 <li>
                     <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
                         <i class="bi bi-question-circle"></i>
-                        <span>Need Help?</span>
+                        <span style="color: #00304D;">Soporte</span>
                     </a>
                 </li>
                 <li><hr class="dropdown-divider"></li>
@@ -243,7 +243,7 @@
                 <li>
                     <a class="dropdown-item d-flex align-items-center" href="logout">
                         <i class="bi bi-box-arrow-right"></i>
-                        <span>Sign Out</span>
+                        <span style="color: #00304D;">Cerrar Sesion</span>
                     </a>
                 </li>
             </ul>
@@ -304,7 +304,7 @@
         </li><!-- End Consultar Registros Nav -->
 
         <!-- Opciones exclusivas para Administradores -->
-        <?php if (isset($_SESSION['usuario']['rol']) && $_SESSION['usuario']['rol'] === 'admin'): ?>
+        <?php if (isset($_SESSION['usuario']['rol']) && $_SESSION['usuario']['rol'] === 'Admin'): ?>
           <li class="nav-heading">Administración</li>
           <li class="nav-item">
             <a class="nav-link collapsed" href="registrar_guardas">
