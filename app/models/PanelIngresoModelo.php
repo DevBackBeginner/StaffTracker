@@ -28,29 +28,43 @@
         }
 
         public function obtenerUsuariosPorRol($rol, $limit, $offset) {
+            // Definir las tablas y campos adicionales según el rol
             $tablas = [
                 'Instructor' => ['tabla' => 'instructores', 'campos' => 'curso, ubicacion'],
                 'Funcionario' => ['tabla' => 'funcionarios', 'campos' => 'area, puesto'],
                 'Directivo' => ['tabla' => 'directivos', 'campos' => 'cargo, departamento'],
                 'Apoyo' => ['tabla' => 'apoyo', 'campos' => 'area_trabajo'],
-                'Visitante' => ['tabla' => 'visitantes', 'campos' => 'asunto'] // Agregar Visitante
+                'Visitante' => ['tabla' => 'visitantes', 'campos' => 'asunto']
             ];
         
+            // Verificar si el rol existe
             if (!isset($tablas[$rol])) {
                 return [];
             }
         
-            $tabla = $tablas[$rol]['tabla'];
+            // Obtener la tabla y campos adicionales para el rol
+            $tablaRol = $tablas[$rol]['tabla'];
             $camposExtras = $tablas[$rol]['campos'];
         
-            // Modificar la consulta SQL para incluir un INNER JOIN con registro_acceso
-            $sql = "SELECT u.nombre, u.numero_identidad, t.$camposExtras
-                    FROM $tabla t
-                    INNER JOIN usuarios u ON t.usuario_id = u.id
-                    INNER JOIN registro_acceso ra ON u.id = ra.asignacion_id
+            // Consulta SQL para obtener usuarios registrados en registro_acceso
+            $sql = "SELECT 
+                        u.nombre, 
+                        u.numero_identidad, 
+                        ra.fecha, 
+                        ra.hora_entrada, 
+                        ra.hora_salida, 
+                        ra.estado,
+                        tr.$camposExtras
+                    FROM registro_acceso ra
+                    INNER JOIN asignaciones_computadores ac ON ra.asignacion_id = ac.id
+                    INNER JOIN usuarios u ON ac.usuario_id = u.id
+                    INNER JOIN $tablaRol tr ON u.id = tr.usuario_id -- Unión con la tabla específica del rol
+                    WHERE u.rol = :rol -- Filtra por el rol especificado
+                    ORDER BY ra.fecha DESC, ra.hora_entrada DESC
                     LIMIT :limit OFFSET :offset";
         
             $stmt = $this->db->prepare($sql);
+            $stmt->bindValue(':rol', $rol, PDO::PARAM_STR); // Filtra por el rol
             $stmt->bindValue(':limit', (int)$limit, PDO::PARAM_INT);
             $stmt->bindValue(':offset', (int)$offset, PDO::PARAM_INT);
             $stmt->execute();
@@ -59,30 +73,18 @@
         }
         
         public function contarUsuariosPorRol($rol) {
-            $tablas = [
-                'Instructor' => 'instructores',
-                'Funcionario' => 'funcionarios',
-                'Directivo' => 'directivos',
-                'Apoyo' => 'apoyo',
-                'Visitante' => 'visitantes'
-            ];
-        
-            if (!isset($tablas[$rol])) {
-                return 0;
-            }
-        
-            $tabla = $tablas[$rol];
-        
-            // Modificar la consulta SQL para incluir un INNER JOIN con registro_acceso
-            $sql = "SELECT COUNT(*)
-                    FROM $tabla t
-                    INNER JOIN usuarios u ON t.usuario_id = u.id
-                    INNER JOIN registro_acceso ra ON u.id = ra.asignacion_id";
+            $sql = "SELECT COUNT(*) as total 
+                    FROM registro_acceso ra
+                    INNER JOIN asignaciones_computadores ac ON ra.asignacion_id = ac.id
+                    INNER JOIN usuarios u ON ac.usuario_id = u.id
+                    WHERE u.rol = :rol";
         
             $stmt = $this->db->prepare($sql);
+            $stmt->bindValue(':rol', $rol, PDO::PARAM_STR);
             $stmt->execute();
+            $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
         
-            return $stmt->fetchColumn();
+            return (int)$resultado['total']; // Devuelve el total de registros
         }
 
         public function filtrarUsuarios($rol = '', $documento = '')

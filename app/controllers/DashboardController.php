@@ -42,20 +42,32 @@
             if (!$this->tieneRol()) {
                 // Si no tiene un rol, incluye la vista de inicio de sesión.
                 include_once __DIR__ . '/../views/home/main.php';
+                
             } else {
 
-                $rol = $_GET['rol'] ?? '';          // Rol (Instructor, Funcionario, etc.)
-                $documento = $_GET['documento'] ?? ''; // Número de documento
-    
-                // Obtener los usuarios filtrados
-                $usuarios = $this->panelIngresoModelo->filtrarUsuarios($rol, $documento);
-    
-                // Pasar los datos a la vista del dashboard
-                $data = [
-                    'usuarios' => $usuarios,
-                    'rol' => $rol,                  // Asegúrate de pasar el rol
-                    'documento' => $documento        // Asegúrate de pasar el documento
-                ];
+                $rol = $_GET['rol'] ?? 'Instructor';  // Valor por defecto
+                $page = isset($_GET['page']) ? (int)$_GET['page'] : 1; // Convertimos a int
+            
+                // 2) Validamos que la página sea al menos 1
+                $page = max(1, $page);
+            
+                // 3) Definir roles permitidos
+                $rolesPermitidos = ['Instructor', 'Funcionario', 'Directivo', 'Apoyo', 'Visitante'];
+                if (!in_array($rol, $rolesPermitidos)) {
+                    $rol = 'Instructor'; // Si el rol no es válido, asignamos uno por defecto
+                }
+            
+                // 4) Definir el límite de usuarios por página y el offset
+                $limit = 1;
+                $offset = ($page - 1) * $limit;
+            
+                // 5) Obtener los usuarios del rol seleccionado
+                $usuarios = $this->panelIngresoModelo->obtenerUsuariosPorRol($rol, $limit, $offset);
+            
+                // 6) Obtener el total de usuarios con ese rol
+                $totalUsuarios = $this->panelIngresoModelo->contarUsuariosPorRol($rol);
+                $totalPaginas = ($totalUsuarios > 0) ? ceil($totalUsuarios / $limit) : 1;
+
                 // Si tiene un rol, obtiene los datos necesarios para el dashboard.
                 $datosDashboard = $this->obtenerDatosDashboard();
 
