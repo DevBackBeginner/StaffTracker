@@ -21,14 +21,43 @@ class RegistroIngresoModelo {
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
+    public function crearAsignacion($usuario_id, $computador_id) {
+        $sql = "INSERT INTO asignaciones_computadores (usuario_id, computador_id) 
+                VALUES (:usuario_id, :computador_id)";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':usuario_id', $usuario_id);
+        $stmt->bindValue(':computador_id', $computador_id);
+        $stmt->execute();
+        return $this->db->lastInsertId();
+    }
+
     public function registrarEntrada($fecha, $hora, $asignacionId) {
         try {
-            $sql = "INSERT INTO registro_acceso ( fecha, hora_entrada, asignacion_id) 
-                    VALUES ( :fecha, :hora, :asignacionId)";
+            // Obtener el usuario_id y el rol asociado a la asignacion_id
+            $sqlUsuario = "SELECT u.id AS usuario_id, u.rol 
+                            FROM asignaciones_computadores ac
+                            JOIN usuarios u ON ac.usuario_id = u.id
+                            WHERE ac.id = :asignacionId";
+            $stmtUsuario = $this->db->prepare($sqlUsuario);
+            $stmtUsuario->bindParam(':asignacionId', $asignacionId, PDO::PARAM_INT);
+            $stmtUsuario->execute();
+            $usuario = $stmtUsuario->fetch(PDO::FETCH_ASSOC);
+    
+            if (!$usuario) {
+                throw new Exception("No se encontró el usuario asociado a la asignación.");
+            }
+    
+            // Determinar el tipo de usuario
+            $tipoUsuario = ($usuario['rol'] === 'Visitante') ? 'Visitante' : 'Personal Sena';
+    
+            // Insertar el registro de entrada con el tipo de usuario
+            $sql = "INSERT INTO registro_acceso (fecha, hora_entrada, asignacion_id, tipo_usuario) 
+                    VALUES (:fecha, :hora, :asignacionId, :tipoUsuario)";
             $stmt = $this->db->prepare($sql);
             $stmt->bindParam(':fecha', $fecha, PDO::PARAM_STR);
             $stmt->bindParam(':hora', $hora, PDO::PARAM_STR);
-            $stmt->bindParam(':asignacionId', $asignacionId, PDO::PARAM_INT); // Acepta NULL
+            $stmt->bindParam(':asignacionId', $asignacionId, PDO::PARAM_INT);
+            $stmt->bindParam(':tipoUsuario', $tipoUsuario, PDO::PARAM_STR);
             $stmt->execute();
         } catch (PDOException $e) {
             throw new Exception("Error al registrar entrada: " . $e->getMessage());
@@ -65,7 +94,6 @@ class RegistroIngresoModelo {
         }
     }
     
-    
     public function obtenerUltimosRegistros() {
         // Obtener la fecha actual en formato YYYY-MM-DD
         $fechaHoy = date('Y-m-d');
@@ -84,7 +112,7 @@ class RegistroIngresoModelo {
                 FROM registro_acceso ra
                 JOIN asignaciones_computadores ac ON ra.asignacion_id = ac.id
                 JOIN usuarios u ON ac.usuario_id = u.id
-                JOIN computadores c ON ac.computador_id = c.id
+                LEFT JOIN computadores c ON ac.computador_id = c.id -- Usar LEFT JOIN para incluir NULL
                 WHERE ra.fecha = :fechaHoy -- Filtra por la fecha de hoy
                 ORDER BY ra.id DESC
                 LIMIT 5";
@@ -93,6 +121,6 @@ class RegistroIngresoModelo {
         $stmt->bindParam(':fechaHoy', $fechaHoy); // Asignar el valor de la fecha actual
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC); // Retorna todos los registros de hoy
-    }   
+    }
 }
 ?>

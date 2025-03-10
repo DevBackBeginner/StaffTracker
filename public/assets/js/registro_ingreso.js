@@ -69,27 +69,24 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Función para cargar los computadores disponibles
     function cargarComputadores(tipoComputador, codigo) {
-        // Mostrar los datos que se están enviando
         console.log("Dato enviado (tipoComputador):", tipoComputador);
         console.log("Dato enviado (codigo):", codigo);
 
-        // Realizar la solicitud fetch
         fetch("obtener_computadores", {
             method: "POST",
             headers: { "Content-Type": "application/x-www-form-urlencoded" },
             body: "tipoComputador=" + encodeURIComponent(tipoComputador) + 
-                  "&codigo=" + encodeURIComponent(codigo) // Agregar el código al cuerpo de la solicitud
+                  "&codigo=" + encodeURIComponent(codigo)
         })
         .then(response => {
-            console.log("Respuesta del servidor (computadores):", response); // Depura la respuesta
+            console.log("Respuesta del servidor (computadores):", response);
             if (!response.ok) {
                 throw new Error('Error en la solicitud: ' + response.statusText);
             }
             return response.json();
         })
         .then(data => {
-            console.log("Datos recibidos (computadores):", data); // Depura los datos recibidos
-            const selectComputadores = document.getElementById("selectComputadores");
+            console.log("Datos recibidos (computadores):", data);
             selectComputadores.innerHTML = ""; // Limpiar el select
 
             if (Array.isArray(data) && data.length > 0) {
@@ -107,7 +104,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         })
         .catch(error => {
-            console.error("Error al cargar computadores:", error); // Depura el error
+            console.error("Error al cargar computadores:", error);
             alert('Error al cargar los computadores. Inténtalo más tarde.');
         });
     }
@@ -116,9 +113,7 @@ document.addEventListener('DOMContentLoaded', function () {
     function registrarAsistencia(computadorId) {
         const formData = new FormData();
         formData.append('codigo', codigoEscaneado); // Enviar el código escaneado
-        if (computadorId) {
-            formData.append('computador_id', computadorId); // Enviar el computador_id (puede ser null)
-        }
+        formData.append('computador_id', computadorId || ''); // Enviar el computador_id (puede ser null o vacío)
 
         // Depuración: Mostrar los datos que se están enviando
         console.log("Datos enviados al servidor:");
@@ -131,14 +126,14 @@ document.addEventListener('DOMContentLoaded', function () {
             body: formData
         })
         .then(response => {
-            console.log("Respuesta del servidor:", response); // Depura la respuesta
+            console.log("Respuesta del servidor:", response);
             if (!response.ok) {
                 throw new Error('Error en la solicitud: ' + response.statusText);
             }
-            return response.json(); // Parsea la respuesta como JSON
+            return response.json();
         })
         .then(data => {
-            console.log("Datos recibidos:", data); // Depura los datos recibidos
+            console.log("Datos recibidos:", data);
             if (data.success) {
                 alert(data.message); // Mostrar mensaje de éxito
                 document.getElementById('codigo').value = ''; // Limpiar el campo de código
@@ -147,7 +142,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         })
         .catch(error => {
-            console.error('Error en la solicitud:', error); // Depura el error
+            console.error('Error en la solicitud:', error);
             alert('Error en el sistema. Inténtalo más tarde.');
         });
     }
