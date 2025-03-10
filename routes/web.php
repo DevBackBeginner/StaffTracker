@@ -66,7 +66,7 @@
   // ==================================================
 
   // Ruta para obtener la lista de computadores disponibles
-  Router::post('obtener_computadores', [RegistroIngresoController::class, 'obtenerComputadores']);
+  Router::post('obtener_computadores', [ComputadorController::class, 'obtenerComputadores']);
 
   // Ruta para registrar un computador seleccionado
 

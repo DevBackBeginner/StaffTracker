@@ -21,14 +21,18 @@ class RegistroIngresoModelo {
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function registrarEntrada($asignacion_id, $fecha, $hora_entrada) {
-        $sql = "INSERT INTO registro_acceso (asignacion_id, fecha, hora_entrada, estado) 
-                VALUES (:asignacion_id, :fecha, :hora_entrada, 'Activo')";
-        $stmt = $this->db->prepare($sql);
-        $stmt->bindParam(':asignacion_id', $asignacion_id, PDO::PARAM_INT);
-        $stmt->bindParam(':fecha', $fecha);
-        $stmt->bindParam(':hora_entrada', $hora_entrada);
-        return $stmt->execute();
+    public function registrarEntrada($fecha, $hora, $asignacionId) {
+        try {
+            $sql = "INSERT INTO registro_acceso ( fecha, hora_entrada, asignacion_id) 
+                    VALUES ( :fecha, :hora, :asignacionId)";
+            $stmt = $this->db->prepare($sql);
+            $stmt->bindParam(':fecha', $fecha, PDO::PARAM_STR);
+            $stmt->bindParam(':hora', $hora, PDO::PARAM_STR);
+            $stmt->bindParam(':asignacionId', $asignacionId, PDO::PARAM_INT); // Acepta NULL
+            $stmt->execute();
+        } catch (PDOException $e) {
+            throw new Exception("Error al registrar entrada: " . $e->getMessage());
+        }
     }
     
 
@@ -43,17 +47,25 @@ class RegistroIngresoModelo {
         $stmt->bindParam(':hora_salida', $hora_salida);
         return $stmt->execute();
     }
-    
 
-    public function obtenerAsignacionId($usuario_id, $computador_id) {
-        $sql = "SELECT id FROM asignaciones_computadores 
-                WHERE usuario_id = :usuario_id AND computador_id = :computador_id";
-        $stmt = $this->db->prepare($sql);
-        $stmt->bindParam(':usuario_id', $usuario_id, PDO::PARAM_INT);
-        $stmt->bindParam(':computador_id', $computador_id, PDO::PARAM_INT);
-        $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_ASSOC); // Devuelve un array de computadores
+    public function obtenerAsignacionId($usuarioId, $computadorId) {
+        try {
+            $sql = "SELECT id FROM asignaciones_computadores 
+                    WHERE usuario_id = :usuarioId AND computador_id = :computadorId";
+            $stmt = $this->db->prepare($sql);
+            $stmt->bindParam(':usuarioId', $usuarioId, PDO::PARAM_INT);
+            $stmt->bindParam(':computadorId', $computadorId, PDO::PARAM_INT);
+            $stmt->execute();
+    
+            $asignacion = $stmt->fetch(PDO::FETCH_ASSOC);
+            return $asignacion ? $asignacion['id'] : null;
+        } catch (PDOException $e) {
+            error_log("Error en obtenerAsignacionId: " . $e->getMessage());
+            return null;
+        }
     }
+    
+    
     public function obtenerUltimosRegistros() {
         $sql = "SELECT 
                     ra.id,
