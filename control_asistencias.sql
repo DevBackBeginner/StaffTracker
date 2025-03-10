@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 09-03-2025 a las 03:54:18
+-- Tiempo de generación: 10-03-2025 a las 16:04:56
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -86,7 +86,7 @@ CREATE TABLE `computadores` (
 
 INSERT INTO `computadores` (`id`, `marca`, `codigo`, `tipo_computador`) VALUES
 (1, 'HP', 'HP001', 'Sena'),
-(2, 'Lenovo', 'LN002', 'Personal'),
+(2, 'Lenovo', 'LN002', 'Sena'),
 (3, 'Dell', 'DE003', 'Personal'),
 (4, 'Asus', 'AS004', 'Sena');
 
@@ -184,7 +184,7 @@ CREATE TABLE `registro_acceso` (
 --
 
 INSERT INTO `registro_acceso` (`id`, `asignacion_id`, `fecha`, `hora_entrada`, `hora_salida`, `estado`, `tipo_usuario`) VALUES
-(32, 4, '2025-03-08', '13:00:43', '18:00:43', 'Activo', 'personal_sena');
+(134, 4, '2025-03-09', '20:08:50', '20:50:44', 'Finalizado', 'personal_sena');
 
 -- --------------------------------------------------------
 
@@ -367,7 +367,7 @@ ALTER TABLE `guardas`
 -- AUTO_INCREMENT de la tabla `registro_acceso`
 --
 ALTER TABLE `registro_acceso`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=137;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`

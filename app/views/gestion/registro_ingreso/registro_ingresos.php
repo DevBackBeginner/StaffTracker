@@ -1,35 +1,35 @@
 <?php
-// Incluimos el encabezado (header) que contiene la estructura HTML inicial, head, etc.
-include_once __DIR__ . '/../dashboard/layouts/header_main.php';
-?>
-<!-- Enlace al archivo CSS específico para el panel -->
-<link rel="stylesheet" href="assets/css/registro_ingreso.css">
-<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600&display=swap" rel="stylesheet">
-<?php
-// Inicializar las variables con valores por defecto
-$tipo = $_SESSION['mensaje']['tipo'] ?? 'info'; // Valor por defecto: 'info'
-$texto = $_SESSION['mensaje']['texto'] ?? '';  // Valor por defecto: cadena vacía
-$alertClass = 'info'; // Clase de alerta por defecto
+    // Incluimos el encabezado (header) que contiene la estructura HTML inicial, head, etc.
+    include_once __DIR__ . '/../dashboard/layouts/header_main.php';
+    ?>
+    <!-- Enlace al archivo CSS específico para el panel -->
+    <link rel="stylesheet" href="assets/css/registro_ingreso.css">
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <?php
+    // Inicializar las variables con valores por defecto
+    $tipo = $_SESSION['mensaje']['tipo'] ?? 'info'; // Valor por defecto: 'info'
+    $texto = $_SESSION['mensaje']['texto'] ?? '';  // Valor por defecto: cadena vacía
+    $alertClass = 'info'; // Clase de alerta por defecto
 
-// Asignar la clase de alerta según el tipo de mensaje
-switch ($tipo) {
-    case 'danger':
-        $alertClass = 'danger';
-        break;
-    case 'warning':
-        $alertClass = 'warning';
-        break;
-    case 'salida':
-        $alertClass = 'success';
-        break;
-    case 'entrada':
-        $alertClass = 'success';
-        break;
-    default:
-        $alertClass = 'info';
-        break;
-}
-?>
+    // Asignar la clase de alerta según el tipo de mensaje
+    switch ($tipo) {
+        case 'danger':
+            $alertClass = 'danger';
+            break;
+        case 'warning':
+            $alertClass = 'warning';
+            break;
+        case 'salida':
+            $alertClass = 'success';
+            break;
+        case 'entrada':
+            $alertClass = 'success';
+            break;
+        default:
+            $alertClass = 'info';
+            break;
+    }
+    ?>
 <main id="main" class="main">
     <div class="pagetitle">
         <h1>Registro Ingresos</h1>
