@@ -46,7 +46,7 @@
             $totalPaginas = ($totalUsuarios > 0) ? ceil($totalUsuarios / $limit) : 1;
                     
             // 7) Cargar la vista con los datos
-            include_once __DIR__ . '/../views/gestion/panel_ingreso/panel_registros.php';
+            require_once __DIR__ . '/../views/gestion/panel_ingreso/panel_registros.php';
         }
 
         public function filtroUsuarios()
@@ -54,6 +54,8 @@
             // Obtener parámetros GET de forma segura
             $rol = $_GET['rol'] ?? '';
             $documento = $_GET['documento'] ?? '';
+            $page = $_GET['page'] ?? 1; // Página actual (por defecto 1)
+            $limit = 10; // Número de usuarios por página
 
             // Validar que el rol sea permitido
             $rolesPermitidos = ['Instructor', 'Funcionario', 'Directivo', 'Apoyo', 'Visitante'];
@@ -68,18 +70,23 @@
             }
 
             // Obtener los usuarios filtrados por rol y documento
-            $usuarios = $this->panelIngresoModelo->filtrarUsuarios($rol, $documento);
+            $usuarios = $this->panelIngresoModelo->filtrarUsuarios($rol, $documento, $page, $limit);
+
+            // Calcular el número total de páginas
+            $totalUsuarios = count($usuarios); // Total de usuarios
+            $totalPaginas = ceil($totalUsuarios / $limit); // Redondear hacia arriba
 
             // Pasar los datos a la vista de la tabla
             $data = [
                 'usuarios' => $usuarios,
                 'rol' => $rol,
-                'documento' => $documento // Asegúrate de incluir 'documento' en el arreglo
+                'documento' => $documento,
+                'page' => $page,
+                'totalPaginas' => $totalPaginas // Añadir el total de páginas
             ];
 
-            // var_dump($data); // Verificar los datos antes de enviarlos a la vista
-
-            include_once __DIR__ . '/../views/gestion/partials/tabla_usuarios.php';
+            // Incluir solo la tabla (sin layout)
+            require_once __DIR__ . '/../views/gestion/partials/informacion_tabla.php';
         }
         
     }

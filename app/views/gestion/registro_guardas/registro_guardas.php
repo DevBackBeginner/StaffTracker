@@ -3,7 +3,6 @@
     include_once  __DIR__ . '/../dashboard/layouts/header_main.php' ; 
 ?>
 
-<main id="main" class="main">
     <div class="container">
         <section class="section register min-vh-70 d-flex flex-column align-items-center justify-content-center">
             <div class="container">

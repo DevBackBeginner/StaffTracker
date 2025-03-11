@@ -18,8 +18,7 @@
             <div class="row">
             <!-- Left side columns -->
                 <div class="col-lg-12">
-                <div class="row">
-
+                    <div class="row">
                     <!-- Sales Card -->
                     <div class="col-xxl-4 col-md-6">
                     <div class="card info-card sales-card">
@@ -119,16 +118,12 @@
                                 </div>
                             </div>
                         </div>
-                    </div><!-- End Customers Card -->
-                    <div class="col-12">
-                        <div class="card">
-                            <?php
-                            // Incluir la tabla de usuarios
-                            include_once __DIR__ . "/../partials/tabla_usuarios.php"; 
-                            ?>
-                        </div>
                     </div>
                 </div>
+                    <?php
+                    // Incluir la tabla de usuarios
+                    include_once __DIR__ . "/../partials/tabla_usuarios.php"; 
+                    ?>
                 </div>
             </div>
         </section>

@@ -14,6 +14,8 @@
 
   Router::get('/', [DashboardController::class, "mostrarDashBoard"]);
 
+  Router::get('Contactenos', [ContactoController::class, "mostrarContactenos"]);
+
   // Ruta para mostrar el formulario de login
   Router::get("login", [LoginController::class, "mostrarLogin"]);
 
@@ -79,4 +81,7 @@
 
   Router::get('filtro_usuarios', [PanelIngresoController::class, "filtroUsuarios"]);
 
+
+  Router::get('formulario_registro_personal', [PersonalController::class, 'formularioRegistroPersonal']);
+  Router::post('registrar_personal', [PersonalController::class, 'registrarPersonal']);
 ?>

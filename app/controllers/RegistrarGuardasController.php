@@ -36,7 +36,7 @@ class RegistrarGuardasController {
             $turno = htmlspecialchars(trim($_POST['turno']), ENT_QUOTES, 'UTF-8');
     
             // Validar que los campos no estén vacíos
-            if (empty($nombre) || empty($numeroIdentidad) || empty($correo) || empty($password) || empty($confirmPassword) || empty($turno) || empty($telefono)) {
+            if (empty($nombre) || empty($apellido) || empty($numeroIdentidad) || empty($correo) || empty($password) || empty($confirmPassword) || empty($turno) || empty($telefono)) {
                 $_SESSION['mensaje'] = "Todos los campos son obligatorios.";
                 $_SESSION['tipo_mensaje'] = 'error';
                 header('Location: registrar_guardas'); // Redirigir al formulario

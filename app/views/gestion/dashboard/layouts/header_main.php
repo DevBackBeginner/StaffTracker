@@ -143,111 +143,17 @@
                   <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
                 </li>
                 <li>
-                    <a class="dropdown-item d-flex align-items-center" href="perfil">
-                        <i class="bi bi-person"></i>
-                        <span style="color: #00304D;">Mi Perfil</span>
-                    </a>
+                  <hr class="dropdown-divider">
                 </li>
 
-                <li>
-                    <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
-                        <i class="bi bi-gear"></i>
-                        <span style="color: #00304D;">Configuracion</span>
-                    </a>
-                </li>
-                <li><hr class="dropdown-divider"></li>
-
-                <li>
-                    <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
-                        <i class="bi bi-question-circle"></i>
-                        <span style="color: #00304D;">Soporte</span>
-                    </a>
-                </li>
-                <li><hr class="dropdown-divider"></li>
-
-                <li>
-                    <a class="dropdown-item d-flex align-items-center" href="logout">
-                        <i class="bi bi-box-arrow-right"></i>
-                        <span style="color: #00304D;">Cerrar Sesion</span>
-                    </a>
-                </li>
-            </ul>
-        </li>
-
-        </ul>
-      </nav><!-- End Icons Navigation -->
-
-    </header><!-- End Header -->
-    <aside id="sidebar" class="sidebar">
-      <ul class="sidebar-nav" id="sidebar-nav">
-
-        <!-- Dashboard -->
-        <li class="nav-item">
-          <a class="nav-link" href="Inicio">
-            <i class="bi bi-grid"></i>
-            <span>Inicio</span>
-          </a>
-        </li><!-- End Dashboard Nav -->
-
-        <!-- Registrar Visitantes -->
-        <li class="nav-item">
-          <a class="nav-link collapsed" href="registrar_vistitante">
-            <i class="bi bi-person-plus"></i>
-            <span>Registrar Visitantes</span>
-          </a>
-        </li><!-- End Registrar Visitantes Nav -->
-
-        <!-- Entrada/Salida -->
-        <li class="nav-item">
-          <a class="nav-link collapsed" data-bs-toggle="collapse" href="#entradaSalida" role="button" aria-expanded="false" aria-controls="entradaSalida">
-            <i class="bi bi-door-open"></i>
-            <span>Entrada/Salida</span>
-            <i class="bi bi-chevron-down ms-auto"></i>
-          </a>
-          <ul id="entradaSalida" class="nav-content collapse" data-bs-parent="#sidebar-nav">
-            <li>
-              <a href="registro_ingreso">
-                <i class="bi bi-people"></i>
-                <span>Personal</span>
-              </a>
-            </li>
-            <li>
-              <a href="Acceso_visitante">
-                <i class="bi bi-person"></i>
-                <span>Visitantes</span>
-              </a>
-            </li>
-          </ul>
-        </li><!-- End Entrada/Salida Nav -->
-
-        <!-- Consultar Registros -->
-        <li class="nav-item">
-          <a class="nav-link collapsed" href="panel_ingreso">
-            <i class="bi bi-list-check"></i>
-            <span>Consultar Registros</span>
-          </a>
-        </li><!-- End Consultar Registros Nav -->
-
-        <!-- Opciones exclusivas para Administradores -->
-        <?php if (isset($_SESSION['usuario']['rol']) && $_SESSION['usuario']['rol'] === 'Admin'): ?>
-          <li class="nav-heading">Administración</li>
-          <li class="nav-item">
-            <a class="nav-link collapsed" href="registrar_guardas">
-              <i class="bi bi-person"></i>
-              <span>Registrar Guardas</span>
-            </a>
-          </li><!-- End Registrar Guardas Nav -->
-          <li class="nav-item">
-              <a class="nav-link collapsed" data-bs-toggle="collapse" href="#gestionUsuarios" role="button" aria-expanded="false" aria-controls="gestionUsuarios">
-                <i class="bi bi-people"></i>
-                <span>Gestión de Usuarios</span>
-                <i class="bi bi-chevron-down ms-auto"></i>
-              </a>
-              <ul id="gestionUsuarios" class="nav-content collapse" data-bs-parent="#sidebar-nav">
-                <li>
-                  <a href="crear_usuario">
-                    <i class="bi bi-plus-circle"></i>
-                    <span>Crear Usuario</span>
+                <li class="message-item">
+                  <a href="#">
+                    <img src="assets/img/messages-1.jpg" alt="" class="rounded-circle">
+                    <div>
+                      <h4>Maria Hudson</h4>
+                      <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
+                      <p>4 hrs. ago</p>
+                    </div>
                   </a>
                 </li>
                 <li>
@@ -413,7 +319,7 @@
                 </a>
                 <ul id="gestionUsuarios" class="nav-content collapse" data-bs-parent="#sidebar-nav">
                   <li>
-                    <a href="crear_usuario">
+                    <a href="formulario_registro_personal">
                       <i class="bi bi-plus-circle"></i>
                       <span>Crear Usuario</span>
                     </a>
@@ -435,7 +341,7 @@
           <?php endif; ?>
 
           <!-- Opciones Generales -->
-          <li class="nav-heading">Ajustes Generales</li>
+          <li class="nav-heading">Ajustes</li>
           <li class="nav-item">
             <a class="nav-link collapsed" href="perfil">
               <i class="bi bi-person"></i>
@@ -460,5 +366,5 @@
           </li><!-- End Cerrar Sección Nav -->
         </ul>
       </aside>End Sidebar
-
+      
       <main id="main" class="main">

@@ -50,6 +50,7 @@
             $sql = "SELECT 
                         u.nombre, 
                         u.numero_identidad, 
+                        u.telefono,
                         ra.fecha, 
                         ra.hora_entrada, 
                         ra.hora_salida, 

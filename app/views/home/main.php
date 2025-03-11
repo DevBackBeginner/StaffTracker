@@ -100,9 +100,3 @@
 <!-- footer -->
 <?php include_once __DIR__ . '/../../views/layouts/footer.php'; ?>
 <!-- end footer -->
-
-<!-- sidebar -->
-<script src="/ControlAsistencia/public/assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
-<script src="/ControlAsistencia/public/assets/js/custom.js"></script>
-</body>
-</html>
