@@ -57,7 +57,7 @@
                         <ul class="navbar-nav ms-auto">
                            <li class="nav-item active">
                               <div class="nav-link-container">
-                                 <a class="nav-link" href="main.php">Inicio</a>
+                                 <a class="nav-link" href="Inicio">Inicio</a>
                               </div>
                            </li>
                            <li class="nav-item">
