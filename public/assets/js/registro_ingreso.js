@@ -137,6 +137,7 @@ document.addEventListener('DOMContentLoaded', function () {
             if (data.success) {
                 alert(data.message); // Mostrar mensaje de éxito
                 document.getElementById('codigo').value = ''; // Limpiar el campo de código
+                window.location.reload(); // Recargar la página
             } else {
                 alert(data.message); // Mostrar mensaje de error
             }

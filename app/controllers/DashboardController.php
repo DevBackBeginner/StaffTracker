@@ -19,7 +19,6 @@
             // Inicializa la propiedad $dashboardModelo con una nueva instancia de DashboardModelo.
             $this->dashboardModelo = new DashboardModelo();
             $this->panelIngresoModelo = new PanelIngresoModelo();
-
         }
 
         /**
@@ -48,27 +47,21 @@
                 $rol = $_GET['rol'] ?? 'Instructor';  // Valor por defecto
                 $page = isset($_GET['page']) ? (int)$_GET['page'] : 1; // Convertimos a int
             
-                // 2) Validamos que la página sea al menos 1
                 $page = max(1, $page);
             
-                // 3) Definir roles permitidos
                 $rolesPermitidos = ['Instructor', 'Funcionario', 'Directivo', 'Apoyo', 'Visitante'];
                 if (!in_array($rol, $rolesPermitidos)) {
                     $rol = 'Instructor'; // Si el rol no es válido, asignamos uno por defecto
                 }
             
-                // 4) Definir el límite de usuarios por página y el offset
                 $limit = 1;
                 $offset = ($page - 1) * $limit;
             
-                // 5) Obtener los usuarios del rol seleccionado
                 $usuarios = $this->panelIngresoModelo->obtenerUsuariosPorRol($rol, $limit, $offset);
             
-                // 6) Obtener el total de usuarios con ese rol
                 $totalUsuarios = $this->panelIngresoModelo->contarUsuariosPorRol($rol);
                 $totalPaginas = ($totalUsuarios > 0) ? ceil($totalUsuarios / $limit) : 1;
 
-                // Si tiene un rol, obtiene los datos necesarios para el dashboard.
                 $datosDashboard = $this->obtenerDatosDashboard();
 
                 // Incluye la vista del dashboard.
