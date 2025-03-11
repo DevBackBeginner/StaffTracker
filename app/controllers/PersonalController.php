@@ -65,7 +65,7 @@
             if (!preg_match('/^3[0-9]{9}$/', $telefono)) {
                 $_SESSION['mensaje'] = "El teléfono debe tener 10 dígitos y comenzar con 3 (formato colombiano).";
                 $_SESSION['tipo_mensaje'] = 'error';
-                header('Location: registrar_guardas'); // Redirigir al formulario
+                header('Location: formulario_registro_personal'); // Redirigir al formulario
                 exit();
             }
     
@@ -73,7 +73,7 @@
             if (!preg_match('/^[0-9]{10}$/', $numero_identidad)) {
                 $_SESSION['mensaje'] = "El número de documento debe tener exactamente 10 dígitos y solo contener números.";
                 $_SESSION['tipo_mensaje'] = 'error';
-                header('Location: registrar_guardas'); // Redirigir al formulario
+                header('Location: formulario_registro_personal'); // Redirigir al formulario
                 exit();
             }
     

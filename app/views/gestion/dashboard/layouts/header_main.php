@@ -264,7 +264,7 @@
 
           <!-- Registrar Visitantes -->
           <li class="nav-item">
-            <a class="nav-link collapsed" href="registrar_vistitante">
+            <a class="nav-link collapsed" href="formulario_registro_visitante">
               <i class="bi bi-person-plus"></i>
               <span>Registrar Visitantes</span>
             </a>

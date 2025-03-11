@@ -1,74 +1,34 @@
-<footer>
-        <div class="footer">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-8 offset-md-2">
-                        <ul class="list-unstyled d-flex justify-content-center">
-                            <li class="mx-4">
-                                <a href="https://maps.app.goo.gl/UbicaciónSENAVilleta" target="_blank">
-                                    <i class="fa fa-map-marker" aria-hidden="true"></i>
-                                </a>
-                                <br> SENA Villeta, Cundinamarca, Colombia
-                            </li>
-                            <li class="mx-4">
-                                <a href="tel:+5711234567">
-                                    <i class="fa fa-phone" aria-hidden="true"></i>
-                                </a>
-                                <br> +57 1 123 4567
-                            </li>
-                            <li class="mx-4">
-                                <a href="mailto:senavilleta@misena.edu.co">
-                                    <i class="fa fa-envelope" aria-hidden="true"></i>
-                                </a>
-                                <br> senavilleta@misena.edu.co
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+
+<footer class=" text-center text-lg-start">
+    <div class="containers p-3"> <!-- Reducir el padding -->
+        <div class="row">
+            <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+                <h5 class="text-uppercase" style="font-size: 1rem;">Logo</h5> <!-- Reducir el tamaño del título -->
+                <p style="font-size: 0.85rem;"> <!-- Reducir el tamaño del texto -->
+                    Somos una empresa joven que siempre busca ideas nuevas y creativas para ayudarle con nuestros productos en su trabajo diario.
+                </p>
             </div>
-            <div class="copyright bg-dark text-white py-2">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12 text-center">
-                            <p class="mb-0">&copy; 2024 SENA Villeta - Todos los derechos reservados.</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <style>
-                                        footer {
-                                            position: relative; /* Cambiado de fixed a relative */
-                                            bottom: 0;
-                                            width: 100%;
-                                            z-index: 1000;
-                                            background-color: black;
-                                            color: white;
-                                            padding: 90px 0; /* Aumentado el padding para mayor separación */
-                                            text-align: center;
-                                        }
-
-                                        @media (max-width: 768px) {
-                                            footer {
-                                                padding: 40px 0; /* Aumentado el padding para mayor separación en dispositivos móviles */
-                                                text-align: center;
-                                            }
-
-                                            .footer .container .row .col-md-8.offset-md-2 {
-                                                padding: 0 15px;
-                                            }
-
-                                            .footer ul {
-                                                flex-direction: column;
-                                                align-items: center;
-                                            }
-
-                                            .footer ul li {
-                                                margin: 10px 0;
-                                            }
-                                        }
-                                    </style>
-    <!-- Scripts -->
+            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                <h5 class="text-uppercase" style="font-size: 1rem;">Nuestro equipo</h5> <!-- Reducir el tamaño del título -->
+                <ul class="list-unstyled" style="font-size: 0.85rem;"> <!-- Reducir el tamaño del texto -->
+                    <li><a href="#!" class="text-dark">Contacto</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                <h5 class="text-uppercase" style="font-size: 1rem;">Contacto</h5> <!-- Reducir el tamaño del título -->
+                <ul class="list-unstyled" style="font-size: 0.85rem;"> <!-- Reducir el tamaño del texto -->
+                    <li>Via Rossini 10, 10136 Turin Italia</li>
+                    <li>Teléfono: (0039) 333 12 68 347</li>
+                    <li>Correo electrónico: hello@domain.com</li>
+                    <li>Skype: tu_online</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="text-center p-2" style="background-color: rgba(0, 0, 0, 0.2); font-size: 0.8rem;"> <!-- Reducir el padding y el tamaño del texto -->
+        © Planilla de pie de página Bootstrap de AZMIND
+    </div>
+</footer>
     <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
     <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="assets/vendor/chart.js/chart.umd.js"></script>
