@@ -32,7 +32,6 @@
       <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
       
       <link href="assets/css/header_main.css" rel="stylesheet">
-      <link href="assets/css/footer_main.css" rel="stylesheet">
     </head>
     <body>
 
