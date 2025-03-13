@@ -1,4 +1,5 @@
-<?php include_once __DIR__ . '/layouts/header_main.php'; 
+<?php 
+    include_once __DIR__ . '/layouts/header_main.php'; 
   $datosDashboard = $this->obtenerDatosDashboard();
   extract($datosDashboard); // Convierte las claves del array en variables
 ?>

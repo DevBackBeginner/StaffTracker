@@ -26,6 +26,7 @@ class RegistroIngresoController {
     }
 
     public function registrarAsistencia() {
+        // Verificar que la solicitud sea de tipo POST
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
             echo json_encode([
                 'success' => false,
@@ -34,9 +35,11 @@ class RegistroIngresoController {
             exit;
         }
     
+        // Obtener el código y el computador_id de la solicitud POST
         $codigo = trim($_POST['codigo'] ?? '');
         $computador_id = trim($_POST['computador_id'] ?? null);
     
+        // Validar que el código no esté vacío
         if (empty($codigo)) {
             echo json_encode([
                 'success' => false,
@@ -49,6 +52,7 @@ class RegistroIngresoController {
             // Obtener el usuario por su número de identidad
             $personal = $this->panelIngresoModelo->obtenerPorIdentidad($codigo);
     
+            // Verificar si el usuario existe
             if (!$personal) {
                 echo json_encode([
                     'success' => false,
@@ -57,9 +61,13 @@ class RegistroIngresoController {
                 exit;
             }
     
+            // Obtener el ID del usuario, la fecha actual y la hora actual
             $usuario_id = $personal['id'];
             $fecha = date('Y-m-d');
             $horaActual = date('H:i:s');
+    
+            // Determinar el tipo de usuario basado en el rol
+            $tipo_usuario = ($personal['rol'] === 'Visitante') ? 'Visitante' : 'Personal';
     
             // Si no se proporciona un computador_id, usar NULL
             if (empty($computador_id)) {
@@ -94,8 +102,8 @@ class RegistroIngresoController {
                     exit;
                 }
             } else {
-                // Registrar la entrada
-                $this->registroIngresoModelo->registrarEntrada($fecha, $horaActual, $asignacion_id);
+                // Registrar la entrada con el tipo de usuario
+                $this->registroIngresoModelo->registrarEntrada($fecha, $horaActual, $asignacion_id, $tipo_usuario);
                 echo json_encode([
                     'success' => true,
                     'message' => 'Entrada registrada correctamente para ' . $personal['nombre']
@@ -103,6 +111,7 @@ class RegistroIngresoController {
                 exit;
             }
         } catch (Exception $e) {
+            // Manejar errores y registrar en el log
             error_log("Error en registrarAsistencia: " . $e->getMessage());
             echo json_encode([
                 'success' => false,

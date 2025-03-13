@@ -144,7 +144,7 @@
         </div>
     </main><!-- End #main -->
 
-<script src="assets/js/registro_guardas.js"></script>
+    <script src="assets/js/registro_guardas.js"></script>
 
 <?php 
     // Incluimos el pie de pagina (footer) que contiene la estructura HTML final, footer, js, etc.

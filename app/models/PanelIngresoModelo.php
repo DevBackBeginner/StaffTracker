@@ -17,10 +17,13 @@
             $conn = new DataBase();
             // Asignar la conexión establecida a la propiedad $db
             $this->db = $conn->getConnection();
+
+            date_default_timezone_set('America/Bogota');
+
         }
 
         public function obtenerPorIdentidad($numero_identidad) {
-            $sql = "SELECT id, nombre FROM usuarios WHERE numero_identidad = :codigo LIMIT 1"; // Verifica que 'codigo' sea la columna correcta
+            $sql = "SELECT id, nombre, rol FROM usuarios WHERE numero_identidad = :codigo LIMIT 1"; // Verifica que 'codigo' sea la columna correcta
             $stmt = $this->db->prepare($sql);
             $stmt->bindParam(':codigo', $numero_identidad, PDO::PARAM_STR);
             $stmt->execute();
@@ -63,7 +66,6 @@
                     WHERE u.rol = :rol -- Filtra por el rol especificado
                     ORDER BY ra.fecha DESC, ra.hora_entrada DESC
                     LIMIT :limit OFFSET :offset";
-        
             $stmt = $this->db->prepare($sql);
             $stmt->bindValue(':rol', $rol, PDO::PARAM_STR); // Filtra por el rol
             $stmt->bindValue(':limit', (int)$limit, PDO::PARAM_INT);
@@ -90,82 +92,114 @@
 
         public function filtrarUsuarios($rol = '', $documento = '')
         {
+            // Verificar datos de entrada
+            // var_dump($rol, $documento);
+
             // Definir variables para la tabla, alias y campos específicos del rol
-            $tabla = '';       // Nombre de la tabla asociada al rol
-            $alias = '';       // Alias de la tabla para usar en la consulta SQL
-            $campos = '';      // Campos específicos del rol que se seleccionarán
+            $tabla = '';      
+            $alias = '';      
+            $campos = '';     
 
             // Determinar la tabla, alias y campos según el rol proporcionado
             switch ($rol) {
                 case 'Instructor':
-                    $tabla = 'instructores';  // Tabla de instructores
-                    $alias = 'i';             // Alias para la tabla de instructores
-                    $campos = 'i.curso, i.ubicacion';  // Campos específicos de instructores
+                    $tabla = 'instructores';
+                    $alias = 'i';
+                    $campos = 'i.curso, i.ubicacion';
                     break;
                 case 'Funcionario':
-                    $tabla = 'funcionarios';  // Tabla de funcionarios
-                    $alias = 'f';             // Alias para la tabla de funcionarios
-                    $campos = 'f.area, f.puesto';  // Campos específicos de funcionarios
+                    $tabla = 'funcionarios';
+                    $alias = 'f';
+                    $campos = 'f.area, f.puesto';
                     break;
                 case 'Directivo':
-                    $tabla = 'directivos';    // Tabla de directivos
-                    $alias = 'd';             // Alias para la tabla de directivos
-                    $campos = 'd.cargo, d.departamento';  // Campos específicos de directivos
+                    $tabla = 'directivos';
+                    $alias = 'd';
+                    $campos = 'd.cargo, d.departamento';
                     break;
                 case 'Apoyo':
-                    $tabla = 'apoyo';         // Tabla de apoyo
-                    $alias = 'a';             // Alias para la tabla de apoyo
-                    $campos = 'a.area_trabajo';  // Campos específicos de apoyo
+                    $tabla = 'apoyo';
+                    $alias = 'a';
+                    $campos = 'a.area_trabajo';
                     break;
                 case 'Visitante':
-                    $tabla = 'visitantes';    // Tabla de visitantes
-                    $alias = 'v';             // Alias para la tabla de visitantes
-                    $campos = 'v.asunto';     // Campos específicos de visitantes
+                    $tabla = 'visitantes';
+                    $alias = 'v';
+                    $campos = 'v.asunto';
                     break;
                 default:
-                    // Si no se especifica un rol, se buscan todos los usuarios
-                    $tabla = 'usuarios';      // Tabla de usuarios
-                    $alias = 'u';             // Alias para la tabla de usuarios
-                    $campos = '';             // No se seleccionan campos adicionales
+                    $tabla = '';
+                    $alias = '';
+                    $campos = ''; 
                     break;
             }
 
             // Construir la consulta SQL según el rol
             if ($rol === '') {
-                // Consulta para todos los roles (sin filtro de rol específico)
-                $sql = "SELECT 
-                            u.nombre,
-                            u.numero_identidad
+                // Consulta para todos los roles sin filtro
+                $sql = "SELECT u.nombre, u.numero_identidad, u.telefono
                         FROM usuarios u
-                        INNER JOIN registro_acceso ra ON u.id = ra.asignacion_id
-                        WHERE (u.numero_identidad LIKE :documento OR :documento = '')
-                        AND DATE(ra.fecha) = CURDATE()";
+                        INNER JOIN asignaciones_computadores ac ON u.id = ac.usuario_id
+                        INNER JOIN registro_acceso ra ON ac.id = ra.asignacion_id
+                        WHERE DATE(ra.fecha) = CURDATE()";
+                
+                if (!empty($documento)) {
+                    $sql .= " AND u.numero_identidad LIKE :documento";
+                }
             } else {
                 // Consulta para un rol específico
-                $sql = "SELECT 
-                            u.nombre,
-                            u.numero_identidad,
-                            $campos
-                        FROM usuarios u
+                $sql = "SELECT u.nombre, u.numero_identidad, u.telefono";  // Agregar u.telefono aquí
+
+                // Agregar los campos del rol si existen
+                if (!empty($campos)) {
+                    $sql .= ", $campos";
+                }
+
+                $sql .= " FROM usuarios u
                         INNER JOIN $tabla $alias ON u.id = $alias.usuario_id
-                        INNER JOIN registro_acceso ra ON u.id = ra.asignacion_id
-                        WHERE (u.numero_identidad LIKE :documento OR :documento = '')
-                        AND DATE(ra.fecha) = CURDATE()";
+                        INNER JOIN asignaciones_computadores ac ON u.id = ac.usuario_id
+                        INNER JOIN registro_acceso ra ON ac.id = ra.asignacion_id
+                        WHERE DATE(ra.fecha) = CURDATE()";
+
+                if (!empty($documento)) {
+                    $sql .= " AND u.numero_identidad LIKE :documento";
+                }
             }
+
+            // Imprimir la consulta SQL para depuración
+            // echo "Consulta SQL: " . $sql . "\n";
 
             // Preparar la consulta SQL
             $stmt = $this->db->prepare($sql);
 
-            // Asignar valores a los parámetros de la consulta
-            $params = [
-                ':documento' => "%$documento%"  // Búsqueda por número de identidad
-            ];
+            // Asignar valores a los parámetros de la consulta solo si se busca por documento
+            if (!empty($documento)) {
+                $stmt->bindValue(':documento', "%$documento%", PDO::PARAM_STR);
+            }
 
-            // Ejecutar la consulta con los parámetros proporcionados
-            $stmt->execute($params);
+            // Ejecutar la consulta y manejar errores
+            try {
+                $stmt->execute();
+                $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                // var_dump($result); // Verificar el resultado
+                return $result;
+            } catch (PDOException $e) {
+                echo "Error: " . $e->getMessage();
+                return [];
+            }
+        }
 
-            // Retornar los resultados de la consulta
-            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        public function contarUsuariosFiltrados($rol, $documento) {
+            $sql = "SELECT COUNT(*) AS total FROM usuarios 
+                    WHERE (:rol = '' OR rol = :rol) 
+                    AND (:documento = '' OR numero_identidad LIKE :documento)";
+            $stmt = $this->db->prepare($sql);
+            $stmt->bindValue(':rol', $rol, PDO::PARAM_STR);
+            $stmt->bindValue(':documento', "%$documento%", PDO::PARAM_STR);
+            $stmt->execute();
+            $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
+            return $resultado['total'];
         }
     }
 

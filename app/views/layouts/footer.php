@@ -11,7 +11,7 @@
             <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
                 <h5 class="text-uppercase" style="font-size: 1rem;">Nuestro equipo</h5> <!-- Reducir el tamaño del título -->
                 <ul class="list-unstyled" style="font-size: 0.85rem;"> <!-- Reducir el tamaño del texto -->
-                    <li><a href="#!" class="text-dark">Contacto</a></li>
+                    <li><a href="Contactenos" class="text-dark">Contacto</a></li>
                 </ul>
             </div>
             <div class="col-lg-3 col-md-6 mb-4 mb-md-0">

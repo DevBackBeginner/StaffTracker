@@ -6,7 +6,6 @@
   }
 ?>
 <!DOCTYPE html>
-  <html lang="es"> <!-- Cambia "en" por "es" -->
 
     <head>
       <meta charset="utf-8"

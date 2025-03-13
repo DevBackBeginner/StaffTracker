@@ -74,5 +74,6 @@ Router::post('registrar_personal', [PersonalController::class, 'registrarPersona
 // ==================================================
 
 Router::get('formulario_registro_visitante', [VisitantesController::class, 'formulario_visitante']);
+Router::post('registrar_visitante', [VisitantesController::class, 'registrarVisitante']);
 
 ?>

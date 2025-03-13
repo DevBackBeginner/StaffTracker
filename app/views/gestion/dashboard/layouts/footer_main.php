@@ -1,4 +1,3 @@
-
 <footer class=" text-center text-lg-start">
     <div class="containers p-3"> <!-- Reducir el padding -->
         <div class="row">

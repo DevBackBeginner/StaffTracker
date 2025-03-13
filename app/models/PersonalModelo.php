@@ -44,44 +44,62 @@
 
                 // Iniciar una transacción (para asegurar la integridad de los datos)
                 $this->db->beginTransaction();
-    
+
                 // Insertar en la tabla de usuarios (tabla común)
-                $sqlUsuario = "INSERT INTO usuarios (nombre, apellidos, telefono, numero_identidad, rol) VALUES (?, ?, ?, ?, ?)";
+                $sqlUsuario = "INSERT INTO usuarios (nombre, apellidos, telefono, numero_identidad, rol) VALUES (:nombre, :apellido, :telefono, :numero_identidad, :rol)";
                 $stmtUsuario = $this->db->prepare($sqlUsuario);
-                $stmtUsuario->execute([$nombre, $apellido, $telefono, $numero_identidad, $rol]);
-    
+                $stmtUsuario->bindParam(':nombre', $nombre, PDO::PARAM_STR);
+                $stmtUsuario->bindParam(':apellido', $apellido, PDO::PARAM_STR);
+                $stmtUsuario->bindParam(':telefono', $telefono, PDO::PARAM_STR);
+                $stmtUsuario->bindParam(':numero_identidad', $numero_identidad, PDO::PARAM_STR);
+                $stmtUsuario->bindParam(':rol', $rol, PDO::PARAM_STR);
+                $stmtUsuario->execute();
+
                 // Obtener el ID del usuario recién insertado
-                $personal_id = $this->db->lastInsertId();
+                $usuario_id = $this->db->lastInsertId();
 
                 // Insertar en la tabla correspondiente según el rol
                 switch ($rol) {
                     case 'Funcionario':
-                        $sqlRol = "INSERT INTO funcionarios (usuario_id, area, puesto) VALUES (?, ?, ?)";
+                        $sqlRol = "INSERT INTO funcionarios (usuario_id, area, puesto) VALUES (:usuario_id, :area, :puesto)";
                         $stmtRol = $this->db->prepare($sqlRol);
-                        $stmtRol->execute([$personal_id, $datosAdicionales['area'], $datosAdicionales['puesto']]);
+                        $stmtRol->bindParam(':usuario_id', $usuario_id, PDO::PARAM_INT);
+                        $stmtRol->bindParam(':area', $datosAdicionales['area'], PDO::PARAM_STR);
+                        $stmtRol->bindParam(':puesto', $datosAdicionales['puesto'], PDO::PARAM_STR);
+                        $stmtRol->execute();
                         break;
                     case 'Instructor':
-                        $sqlRol = "INSERT INTO instructores (usuario_id, curso, ubicacion) VALUES (?, ?, ?)";
+                        $sqlRol = "INSERT INTO instructores (usuario_id, curso, ubicacion) VALUES (:usuario_id, :curso, :ubicacion)";
                         $stmtRol = $this->db->prepare($sqlRol);
-                        $stmtRol->execute([$personal_id, $datosAdicionales['curso'], $datosAdicionales['ubicacion']]);
+                        $stmtRol->bindParam(':usuario_id', $usuario_id, PDO::PARAM_INT);
+                        $stmtRol->bindParam(':curso', $datosAdicionales['curso'], PDO::PARAM_STR);
+                        $stmtRol->bindParam(':ubicacion', $datosAdicionales['ubicacion'], PDO::PARAM_STR);
+                        $stmtRol->execute();
                         break;
                     case 'Directiva':
-                        $sqlRol = "INSERT INTO directivos (usuario_id, cargo, departamento) VALUES (?, ?, ?)";
+                        $sqlRol = "INSERT INTO directivos (usuario_id, cargo, departamento) VALUES (:usuario_id, :cargo, :departamento)";
                         $stmtRol = $this->db->prepare($sqlRol);
-                        $stmtRol->execute([$personal_id, $datosAdicionales['cargo'], $datosAdicionales['departamento']]);
+                        $stmtRol->bindParam(':usuario_id', $usuario_id, PDO::PARAM_INT);
+                        $stmtRol->bindParam(':cargo', $datosAdicionales['cargo'], PDO::PARAM_STR);
+                        $stmtRol->bindParam(':departamento', $datosAdicionales['departamento'], PDO::PARAM_STR);
+                        $stmtRol->execute();
                         break;
                     case 'Apoyo':
-                        $sqlRol = "INSERT INTO apoyo (usuario_id, area_trabajo) VALUES (?, ?)";
+                        $sqlRol = "INSERT INTO apoyo (usuario_id, area_trabajo) VALUES (:usuario_id, :area_trabajo)";
                         $stmtRol = $this->db->prepare($sqlRol);
-                        $stmtRol->execute([$personal_id, $datosAdicionales['area_trabajo']]);
+                        $stmtRol->bindParam(':usuario_id', $usuario_id, PDO::PARAM_INT);
+                        $stmtRol->bindParam(':area_trabajo', $datosAdicionales['area_trabajo'], PDO::PARAM_STR);
+                        $stmtRol->execute();
                         break;
                     default:
                         throw new Exception("Rol no válido.");
                 }
-    
+
                 // Confirmar la transacción
                 $this->db->commit();
-                return true;
+
+                // Devolver el ID del usuario registrado
+                return $usuario_id;
             } catch (Exception $e) {
                 // Revertir la transacción en caso de error
                 $this->db->rollBack();
@@ -89,5 +107,7 @@
                 return false;
             }
         }
+
+        
     }
 ?>
