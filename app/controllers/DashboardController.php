@@ -5,20 +5,20 @@
 
     // Incluye el archivo del modelo DashboardModelo, que contiene la lógica para interactuar con la base de datos.
     require_once __DIR__ . '/../models/DashboardModelo.php';
-    require_once __DIR__ . '/../models/PanelRegistrosModelo.php';
+    require_once __DIR__ . '/../models/HistorialRegistroModelo.php';
 
     // Define la clase DashboardController, que maneja la lógica del controlador del dashboard.
     class DashboardController
     {
         // Propiedad privada para almacenar una instancia del modelo DashboardModelo.
         private $dashboardModelo;
-        private $panelRegistroModelo;
+        private $histroialModelo;
         // Constructor de la clase. Se ejecuta automáticamente al crear una instancia de DashboardController.
         public function __construct()
         {
             // Inicializa la propiedad $dashboardModelo con una nueva instancia de DashboardModelo.
             $this->dashboardModelo = new DashboardModelo();
-            $this->panelRegistroModelo = new PanelRegistrosModelo();
+            $this->histroialModelo = new HistorialRegistroModelo();
         }
 
         /**
@@ -57,9 +57,9 @@
                 $limit = 1;
                 $offset = ($page - 1) * $limit;
             
-                $usuarios = $this->panelRegistroModelo->obtenerUsuariosPorRol($rol, $limit, $offset);
+                $usuarios = $this->histroialModelo->obtenerUsuariosPorRol($rol, $limit, $offset);
             
-                $totalUsuarios = $this->panelRegistroModelo->contarUsuariosPorRol($rol);
+                $totalUsuarios = $this->histroialModelo->contarUsuariosPorRol($rol);
                 $totalPaginas = ($totalUsuarios > 0) ? ceil($totalUsuarios / $limit) : 1;
 
                 $datosDashboard = $this->obtenerDatosDashboard();

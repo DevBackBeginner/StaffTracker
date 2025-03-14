@@ -17,7 +17,7 @@
         <section class="section profile">
             <div class="row">
                 <div class="col-xl-4">
-                    <div class="card" style="width: 100%;">
+                    <div class="card">
                             
                             <?php if (!empty($_SESSION['mensaje'])): ?>
                                 <div class="alert <?= $_SESSION['tipo_mensaje'] === 'error' ? 'alert-danger' : 'alert-success' ?> alert-dismissible fade show" role="alert">
@@ -40,7 +40,7 @@
                 </div>
 
                 <div class="col-xl-8">
-                    <div class="card" style="width: 95%;">
+                    <div class="card">
                         <div class="card-body pt-3">
                             <!-- Bordered Tabs -->
                             <ul class="nav nav-tabs nav-tabs-bordered">
@@ -158,50 +158,12 @@
                                     </form>
                                 </div>
 
-                                <!-- <div class="tab-pane fade pt-3" id="profile-settings"> -->
-                                    <!-- Settings Form
-                                    <form>
-                                        <div class="row mb-3">
-                                            <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Notificaciones por Correo</label>
-                                            <div class="col-md-8 col-lg-9">
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" id="changesMade" checked>
-                                                    <label class="form-check-label" for="changesMade">
-                                                        Cambios realizados en tu cuenta
-                                                    </label>
-                                                </div>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" id="newProducts" checked>
-                                                    <label class="form-check-label" for="newProducts">
-                                                        Información sobre nuevos productos y servicios
-                                                    </label>
-                                                </div>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" id="proOffers">
-                                                    <label class="form-check-label" for="proOffers">
-                                                        Ofertas de marketing y promociones
-                                                    </label>
-                                                </div>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" id="securityNotify" checked disabled>
-                                                    <label class="form-check-label" for="securityNotify">
-                                                        Alertas de seguridad
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div> -->
-
-                                        <!-- <div class="text-center">
-                                            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
-                                        </div>
-                                    </form>End settings Form -->
-                                <!-- </div> -->
 
                                 <div class="tab-pane fade pt-3" id="profile-change-password">
                                     <!-- Change Password Form -->
                                     <form action="actualizar-contrasena" method="POST">
                                     <div class="row mb-3">
-                                        <label for="contrasena_actual" class="col-md-4 col-lg-3 col-form-label" style="color: #007832;">Contraseña Actual</label>
+                                        <label for="contrasena_actual" class="col-md-4 col-lg-3 col-form-label" style="color: #00304D;">Contraseña Actual</label>
                                         <div class="col-md-8 col-lg-9 input-group">
                                             <input name="contrasena_actual" type="password" class="form-control" id="contrasena_actual">
                                             <button type="button" class="btn btn-outline-secondary" onclick="togglePassword('contrasena_actual')">
@@ -211,7 +173,7 @@
                                     </div>
 
                                     <div class="row mb-3">
-                                        <label for="nueva_contrasena" class="col-md-4 col-lg-3 col-form-label" style="color: #007832;">Nueva Contraseña</label>
+                                        <label for="nueva_contrasena" class="col-md-4 col-lg-3 col-form-label" style="color: #00304D;">Nueva Contraseña</label>
                                         <div class="col-md-8 col-lg-9 input-group">
                                             <input name="nueva_contrasena" type="password" class="form-control" id="nueva_contrasena">
                                             <button type="button" class="btn btn-outline-secondary" onclick="togglePassword('nueva_contrasena')">
@@ -221,7 +183,7 @@
                                     </div>
 
                                     <div class="row mb-3">
-                                        <label for="confirmar_contrasena" class="col-md-4 col-lg-3 col-form-label" style="color: #007832;">Reingresa la Nueva Contraseña</label>
+                                        <label for="confirmar_contrasena" class="col-md-4 col-lg-4 col-form-label" style="color: #00304D;">Confirmar Contraseña</label>
                                         <div class="col-md-8 col-lg-9 input-group">
                                             <input name="confirmar_contrasena" type="password" class="form-control" id="confirmar_contrasena">
                                             <button type="button" class="btn btn-outline-secondary" onclick="togglePassword('confirmar_contrasena')">

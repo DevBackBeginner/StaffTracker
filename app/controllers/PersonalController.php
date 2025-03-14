@@ -139,6 +139,45 @@
         
         public function listarUsuarios()
         {
+            // Obtener parámetros de la URL
+            $pagina = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
+            $rol = $_GET['rol'] ?? '';
+            $nombre = $_GET['nombre'] ?? '';
+            $documento = $_GET['documento'] ?? '';
+            $orden = $_GET['orden'] ?? 'nombre';
+            $direccion = $_GET['direccion'] ?? 'ASC';
+
+            // Validar la página
+            $pagina = max(1, $pagina);
+
+            // Definir el límite de usuarios por página
+            $limite = 10;
+
+            // Obtener los usuarios del modelo
+            $filtros = [
+                'rol' => $rol,
+                'nombre' => $nombre,
+                'documento' => $documento
+            ];
+            $usuarios = $this->personalModelo->obtenerUsuarios($pagina, $limite, $filtros, $orden, $direccion);
+
+            // Obtener el total de usuarios para la paginación
+            $totalUsuarios = $this->personalModelo->contarUsuarios($filtros);
+            $totalPaginas = ceil($totalUsuarios / $limite);
+
+            // Pasar los datos a la vista
+            $data = [
+                'usuarios' => $usuarios,
+                'pagina' => $pagina,
+                'totalPaginas' => $totalPaginas,
+                'rol' => $rol,
+                'nombre' => $nombre,
+                'documento' => $documento,
+                'orden' => $orden,
+                'direccion' => $direccion
+            ];
+
+            // Incluir la vista
             include_once __DIR__ . '/../views/gestion/personal/listado_usuarios.php';
         }
     }

@@ -2,18 +2,18 @@
 
     session_start();
 
-    // Se importa el modelo 'panelIngresoModelo' para poder interactuar con la base de datos
-    require_once __DIR__ . '/../models/PanelRegistrosModelo.php';
+    // Se importa el modelo 'histroialModelo' para poder interactuar con la base de datos
+    require_once __DIR__ . '/../models/HistorialRegistroModelo.php';
 
-    class PanelRegistroController {
+    class HistorialRegistroController {
 
         // Se declara la propiedad para almacenar la instancia del modelo de aprendiz
-        private $panelIngresoModelo;
+        private $histroialModelo;
 
         // Constructor de la clase
         public function __construct() {
-            // Se inicializa la propiedad $modeloAprendiz con una nueva instancia del modelo 'panelIngresoModelo'
-            $this->panelIngresoModelo = new PanelRegistrosModelo();
+            // Se inicializa la propiedad $modeloAprendiz con una nueva instancia del modelo 'histroialModelo'
+            $this->histroialModelo = new HistorialRegistroModelo();
         }
 
         /**
@@ -39,14 +39,14 @@
             $offset = ($page - 1) * $limit;
             
             // 5 Obtener los usuarios del rol seleccionado
-            $usuarios = $this->panelIngresoModelo->obtenerUsuariosPorRol($rol, $limit, $offset);
+            $usuarios = $this->histroialModelo->obtenerUsuariosPorRol($rol, $limit, $offset);
         
             // 6 Obtener el total de usuarios con ese rol
-            $totalUsuarios = $this->panelIngresoModelo->contarUsuariosPorRol($rol);
+            $totalUsuarios = $this->histroialModelo->contarUsuariosPorRol($rol);
             $totalPaginas = ($totalUsuarios > 0) ? ceil($totalUsuarios / $limit) : 1;
                     
             // 7 Cargar la vista con los datos
-            require_once __DIR__ . '/../views/gestion/panel_registros/panel_registros.php';
+            require_once __DIR__ . '/../views/gestion/historial_registros/historial_registros.php';
         }
 
         public function filtroUsuarios() {
@@ -79,9 +79,9 @@
             $offset = ($page - 1) * $limit;
         
             // Obtener los usuarios filtrados por rol, documento y nombre con paginación
-            $usuarios = $this->panelIngresoModelo->filtrarUsuarios($rol, $documento, $nombre, $limit, $offset);
+            $usuarios = $this->histroialModelo->filtrarUsuarios($rol, $documento, $nombre, $limit, $offset);
             // Obtener el número total de usuarios (sin paginación)
-            $totalUsuarios = $this->panelIngresoModelo->contarUsuariosFiltrados($rol, $documento, $nombre);
+            $totalUsuarios = $this->histroialModelo->contarUsuariosFiltrados($rol, $documento, $nombre);
         
             // Calcular el número total de páginas
             $totalPaginas = ceil($totalUsuarios / $limit); // Redondear hacia arriba

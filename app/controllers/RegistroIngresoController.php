@@ -2,12 +2,12 @@
 session_start();
 
 require_once __DIR__ . '/../models/RegistroIngresoModelo.php';
-require_once __DIR__ . '/../models/PanelRegistrosModelo.php';
+require_once __DIR__ . '/../models/HistorialRegistroModelo.php';
 require_once __DIR__ . '/../models/ComputadorModelo.php';
 
 class RegistroIngresoController {
     private $registroIngresoModelo;
-    private $panelRegistroModelo;
+    private $histroialModelo;
     private $computadorModelo;
 
     public function __construct() {
@@ -16,7 +16,7 @@ class RegistroIngresoController {
         }
         
         $this->registroIngresoModelo = new RegistroIngresoModelo();
-        $this->panelRegistroModelo = new PanelRegistrosModelo();
+        $this->histroialModelo = new HistorialRegistroModelo();
         $this->computadorModelo = new ComputadorModelo();
     }
 
@@ -50,7 +50,7 @@ class RegistroIngresoController {
     
         try {
             // Obtener el usuario por su número de identidad
-            $personal = $this->panelRegistroModelo->obtenerPorIdentidad($codigo);
+            $personal = $this->histroialModelo->obtenerPorIdentidad($codigo);
     
             // Verificar si el usuario existe
             if (!$personal) {
