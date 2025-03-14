@@ -108,6 +108,96 @@
             }
         }
 
+        public function obtenerUsuarios($pagina = 1, $limite = 10, $filtros = [], $orden = 'nombre', $direccion = 'ASC')
+        {
+            // Calcular el offset
+            $offset = ($pagina - 1) * $limite;
+
+            // Construir la consulta SQL con JOIN
+            $sql = "SELECT u.id, u.nombre, u.apellidos, u.telefono, u.numero_identidad, u.rol, 
+                        i.curso, i.ubicacion, 
+                        f.area, f.puesto, 
+                        d.cargo, d.departamento, 
+                        a.area_trabajo, 
+                        v.asunto
+                    FROM usuarios u
+                    LEFT JOIN instructores i ON u.id = i.usuario_id AND u.rol = 'Instructor'
+                    LEFT JOIN funcionarios f ON u.id = f.usuario_id AND u.rol = 'Funcionario'
+                    LEFT JOIN directivos d ON u.id = d.usuario_id AND u.rol = 'Directivo'
+                    LEFT JOIN apoyo a ON u.id = a.usuario_id AND u.rol = 'Apoyo'
+                    LEFT JOIN visitantes v ON u.id = v.usuario_id AND u.rol = 'Visitante'
+                    WHERE 1=1";
+
+            // Aplicar filtros
+            if (!empty($filtros['rol'])) {
+                $sql .= " AND u.rol = :rol";
+            }
+            if (!empty($filtros['nombre'])) {
+                $sql .= " AND u.nombre LIKE :nombre";
+            }
+            if (!empty($filtros['documento'])) {
+                $sql .= " AND u.numero_identidad LIKE :documento";
+            }
+
+            // Aplicar ordenamiento
+            $sql .= " ORDER BY $orden $direccion";
+
+            // Aplicar paginación
+            $sql .= " LIMIT :limite OFFSET :offset";
+
+            // Preparar y ejecutar la consulta
+            $stmt = $this->db->prepare($sql);
+
+            // Bind de parámetros
+            if (!empty($filtros['rol'])) {
+                $stmt->bindValue(':rol', $filtros['rol'], PDO::PARAM_STR);
+            }
+            if (!empty($filtros['nombre'])) {
+                $stmt->bindValue(':nombre', "%{$filtros['nombre']}%", PDO::PARAM_STR);
+            }
+            if (!empty($filtros['documento'])) {
+                $stmt->bindValue(':documento', "%{$filtros['documento']}%", PDO::PARAM_STR);
+            }
+            $stmt->bindValue(':limite', $limite, PDO::PARAM_INT);
+            $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
+
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
+
+        public function contarUsuarios($filtros = [])
+        {
+            // Construir la consulta SQL para contar
+            $sql = "SELECT COUNT(*) as total FROM usuarios WHERE 1=1";
+
+            // Aplicar filtros
+            if (!empty($filtros['rol'])) {
+                $sql .= " AND rol = :rol";
+            }
+            if (!empty($filtros['nombre'])) {
+                $sql .= " AND nombre LIKE :nombre";
+            }
+            if (!empty($filtros['documento'])) {
+                $sql .= " AND numero_identidad LIKE :documento";
+            }
+
+            // Preparar y ejecutar la consulta
+            $stmt = $this->db->prepare($sql);
+
+            // Bind de parámetros
+            if (!empty($filtros['rol'])) {
+                $stmt->bindValue(':rol', $filtros['rol'], PDO::PARAM_STR);
+            }
+            if (!empty($filtros['nombre'])) {
+                $stmt->bindValue(':nombre', "%{$filtros['nombre']}%", PDO::PARAM_STR);
+            }
+            if (!empty($filtros['documento'])) {
+                $stmt->bindValue(':documento', "%{$filtros['documento']}%", PDO::PARAM_STR);
+            }
+
+            $stmt->execute();
+            return $stmt->fetch(PDO::FETCH_ASSOC)['total'];
+        }
         
     }
 ?>

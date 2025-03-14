@@ -301,7 +301,7 @@
           <li class="nav-item">
             <a class="nav-link collapsed" href="panel_ingreso">
               <i class="bi bi-list-check"></i>
-              <span>Consultar Registros</span>
+              <span>Historial de registros</span>
             </a>
           </li><!-- End Consultar Registros Nav -->
 

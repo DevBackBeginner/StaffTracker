@@ -4,15 +4,15 @@
     session_start();
 
     require_once __DIR__ . '/../models/ComputadorModelo.php';
-    require_once __DIR__ . '/../models/PanelRegistrosModelo.php';
+    require_once __DIR__ . '/../models/HistorialRegistroModelo.php';
 
     class ComputadorController {
         private $computadorModelo;
-        private $panelRegistroModelo;
+        private $histroialModelo;
 
         public function __construct() {
             $this->computadorModelo = new ComputadorModelo();
-            $this->panelRegistroModelo = new PanelRegistrosModelo();
+            $this->histroialModelo = new HistorialRegistroModelo();
         }
 
         /**
@@ -42,7 +42,7 @@
                 }
         
                 // Obtener el usuario por su código (número de identidad)
-                $personal = $this->panelRegistroModelo->obtenerPorIdentidad($codigo);
+                $personal = $this->histroialModelo->obtenerPorIdentidad($codigo);
         
                 if (!$personal) {
                     throw new Exception('Personal no encontrado.');
