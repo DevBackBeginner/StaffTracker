@@ -97,6 +97,8 @@
 </div>
 <!-- about section -->
 
+
+
 <!-- footer -->
 <?php include_once __DIR__ . '/../../views/layouts/footer.php'; ?>
 <!-- end footer -->

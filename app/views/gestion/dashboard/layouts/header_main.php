@@ -353,7 +353,7 @@
                 <span>Reportar Bugs</span>
               </a>
             </li><!-- End Contáctenos Nav -->
-          <?php endif ?>
+          <?php endif; ?>
           <!-- Cerrar Sesión -->
           <li class="nav-item">
             <a class="nav-link collapsed" href="logout">
