@@ -8,8 +8,17 @@
         // Limpiar el mensaje después de mostrarlo
         unset($_SESSION['mensaje']);
         unset($_SESSION['tipo_mensaje']);
-        ?>
+    ?>
     <?php endif; ?>
+    <div class="pagetitle">
+        <h1>Registro de Personal</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="Inicio">Home</a></li>
+                <li class="breadcrumb-item active">Registro de Personal</li>
+            </ol>
+        </nav>
+    </div><!-- End Page Title -->
     <form action="registrar_personal" method="POST" class="container mt-4" onsubmit="return validarFormulario()">
         <!-- Campos comunes -->
         <div class="mb-3">
@@ -81,7 +90,6 @@
 
         <button type="submit" class="btn btn-primary">Registrar</button>
     </form>
-</main>
-<script src="assets/js/registro_personal.js"></script>
+    <script src="assets/js/registro_personal.js"></script>
 
 <?php include_once __DIR__ . '/../dashboard/layouts/footer_main.php'; ?>

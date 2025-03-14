@@ -345,6 +345,8 @@ h6 {
   border-bottom: 2px solid #007832;
 }
 
+
+
 /*--------------------------------------------------------------
 # Header
 --------------------------------------------------------------*/
@@ -1209,13 +1211,11 @@ h6 {
 --------------------------------------------------------------*/
 footer {
   font-size: 0.9rem; /* Reducir el tamaño de la fuente */
-  padding-left: 200px; /* Ajuste para el menú horizontal */
   background: #ffffff;
-  margin: 0 auto;
-
+  margin-top: 40px;
 }
 .containers{
-  width: 970px;
+  width: 100%;
   margin: 0 auto;
 }
 
@@ -1231,3 +1231,10 @@ footer {
   color: #012970;
 }
 
+.containers {
+  margin-left: 0;
+}
+
+.div_footer {
+  margin-left: 0;
+}

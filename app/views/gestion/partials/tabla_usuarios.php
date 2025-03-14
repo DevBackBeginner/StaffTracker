@@ -1,3 +1,6 @@
+<style>
+    
+</style>
 <?php
 // Verificar si las variables están definidas
 if (!isset($usuarios)) {

@@ -136,5 +136,10 @@
             header('Location: formulario_registro_personal');
             exit();
         }
+        
+        public function listarUsuarios()
+        {
+            include_once __DIR__ . '/../views/gestion/personal/listado_usuarios.php';
+        }
     }
 ?>

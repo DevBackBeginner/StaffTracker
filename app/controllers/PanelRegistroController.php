@@ -3,9 +3,9 @@
     session_start();
 
     // Se importa el modelo 'panelIngresoModelo' para poder interactuar con la base de datos
-    require_once __DIR__ . '/../models/PanelIngresoModelo.php';
+    require_once __DIR__ . '/../models/PanelRegistrosModelo.php';
 
-    class PanelIngresoController {
+    class PanelRegistroController {
 
         // Se declara la propiedad para almacenar la instancia del modelo de aprendiz
         private $panelIngresoModelo;
@@ -13,7 +13,7 @@
         // Constructor de la clase
         public function __construct() {
             // Se inicializa la propiedad $modeloAprendiz con una nueva instancia del modelo 'panelIngresoModelo'
-            $this->panelIngresoModelo = new PanelIngresoModelo();
+            $this->panelIngresoModelo = new PanelRegistrosModelo();
         }
 
         /**
@@ -37,7 +37,7 @@
             // 4 Definir el límite de usuarios por página y el offset
             $limit = 1;
             $offset = ($page - 1) * $limit;
-        
+            
             // 5 Obtener los usuarios del rol seleccionado
             $usuarios = $this->panelIngresoModelo->obtenerUsuariosPorRol($rol, $limit, $offset);
         
@@ -46,15 +46,16 @@
             $totalPaginas = ($totalUsuarios > 0) ? ceil($totalUsuarios / $limit) : 1;
                     
             // 7 Cargar la vista con los datos
-            require_once __DIR__ . '/../views/gestion/panel_ingreso/panel_registros.php';
+            require_once __DIR__ . '/../views/gestion/panel_registros/panel_registros.php';
         }
 
         public function filtroUsuarios() {
             // Obtener parámetros GET de forma segura
             $rol = $_GET['rol'] ?? '';
             $documento = $_GET['documento'] ?? '';
+            $nombre = $_GET['nombre'] ?? ''; // Nuevo parámetro para nombre
             $page = $_GET['page'] ?? 1; // Página actual (por defecto 1)
-            $limit = 10; // Número de usuarios por página
+            $limit = 1; // Número de usuarios por página
         
             // Validar que el rol sea permitido
             $rolesPermitidos = ['Instructor', 'Funcionario', 'Directivo', 'Apoyo', 'Visitante'];
@@ -68,13 +69,19 @@
                 $documento = substr($documento, 0, 20); // Limitar la longitud del documento
             }
         
+            // Validar el nombre (eliminar caracteres no permitidos)
+            if (!empty($nombre)) {
+                $nombre = preg_replace('/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/', '', $nombre); // Solo letras y espacios
+                $nombre = substr($nombre, 0, 100); // Limitar la longitud del nombre
+            }
+        
             // Calcular el offset para la paginación
             $offset = ($page - 1) * $limit;
         
-            // Obtener los usuarios filtrados por rol y documento con paginación
-            $usuarios = $this->panelIngresoModelo->filtrarUsuarios($rol, $documento, $limit, $offset);
+            // Obtener los usuarios filtrados por rol, documento y nombre con paginación
+            $usuarios = $this->panelIngresoModelo->filtrarUsuarios($rol, $documento, $nombre, $limit, $offset);
             // Obtener el número total de usuarios (sin paginación)
-            $totalUsuarios = $this->panelIngresoModelo->contarUsuariosFiltrados($rol, $documento);
+            $totalUsuarios = $this->panelIngresoModelo->contarUsuariosFiltrados($rol, $documento, $nombre);
         
             // Calcular el número total de páginas
             $totalPaginas = ceil($totalUsuarios / $limit); // Redondear hacia arriba
@@ -84,6 +91,7 @@
                 'usuarios' => $usuarios,
                 'rol' => $rol,
                 'documento' => $documento,
+                'nombre' => $nombre, // Añadir el nombre a los datos
                 'page' => $page,
                 'totalPaginas' => $totalPaginas // Añadir el total de páginas
             ];

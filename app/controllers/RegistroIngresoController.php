@@ -2,21 +2,21 @@
 session_start();
 
 require_once __DIR__ . '/../models/RegistroIngresoModelo.php';
-require_once __DIR__ . '/../models/PanelIngresoModelo.php';
+require_once __DIR__ . '/../models/PanelRegistrosModelo.php';
 require_once __DIR__ . '/../models/ComputadorModelo.php';
 
 class RegistroIngresoController {
     private $registroIngresoModelo;
-    private $panelIngresoModelo;
+    private $panelRegistroModelo;
     private $computadorModelo;
 
     public function __construct() {
         if (session_status() !== PHP_SESSION_ACTIVE) {
             session_start();
         }
-
+        
         $this->registroIngresoModelo = new RegistroIngresoModelo();
-        $this->panelIngresoModelo = new PanelIngresoModelo();
+        $this->panelRegistroModelo = new PanelRegistrosModelo();
         $this->computadorModelo = new ComputadorModelo();
     }
 
@@ -50,7 +50,7 @@ class RegistroIngresoController {
     
         try {
             // Obtener el usuario por su número de identidad
-            $personal = $this->panelIngresoModelo->obtenerPorIdentidad($codigo);
+            $personal = $this->panelRegistroModelo->obtenerPorIdentidad($codigo);
     
             // Verificar si el usuario existe
             if (!$personal) {

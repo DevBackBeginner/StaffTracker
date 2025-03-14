@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', function () {
             method: "POST",
             headers: { "Content-Type": "application/x-www-form-urlencoded" },
             body: "tipoComputador=" + encodeURIComponent(tipoComputador) + 
-                  "&codigo=" + encodeURIComponent(codigo)
+                    "&codigo=" + encodeURIComponent(codigo)
         })
         .then(response => {
             console.log("Respuesta del servidor (computadores):", response);

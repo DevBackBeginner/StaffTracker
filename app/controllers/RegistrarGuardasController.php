@@ -129,7 +129,7 @@ class RegistrarGuardasController {
                 );
     
                 if ($resultado) {
-                    $_SESSION['mensaje'] = "Registro exitoso. ¡Bienvenido!";
+                    $_SESSION['mensaje'] = "Registro exitoso. ";
                     $_SESSION['tipo_mensaje'] = 'success';
                 } else {
                     $_SESSION['mensaje'] = "Error al registrar el guarda.";

@@ -59,8 +59,8 @@ Router::post('obtener_computadores', [ComputadorController::class, 'obtenerCompu
 // Rutas para el panel de asistencias
 // ==================================================
 
-Router::get('panel_ingreso', [PanelIngresoController::class, "mostrarUsuarios"]);
-Router::get('filtro_usuarios', [PanelIngresoController::class, "filtroUsuarios"]);
+Router::get('panel_ingreso', [PanelRegistroController::class, "mostrarUsuarios"]);
+Router::get('filtro_usuarios', [PanelRegistroController::class, "filtroUsuarios"]);
 
 // ==================================================
 // Rutas para el registro de personal
@@ -68,6 +68,9 @@ Router::get('filtro_usuarios', [PanelIngresoController::class, "filtroUsuarios"]
 
 Router::get('formulario_registro_personal', [PersonalController::class, 'formularioRegistroPersonal']);
 Router::post('registrar_personal', [PersonalController::class, 'registrarPersonal']);
+
+
+Router::get('Listado_Usuarios', [PersonalController::class, 'ListarUsuarios']);
 
 // ==================================================
 // Rutas para el registro de visitantes

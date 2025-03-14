@@ -12,9 +12,16 @@
         unset($_SESSION['tipo_mensaje']);
         ?>
     <?php endif; ?>
-
+    <div class="pagetitle">
+        <h1>Formulario de Registro Visitantes</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="Inicio">Home</a></li>
+                <li class="breadcrumb-item"><a href="panel">Registro Visitantes</a></li>
+            </ol>
+        </nav>
+    </div>
     <div class="login-container">
-        <h2 class="text-center mb-4">Registro de Visitantes</h2>
         <form action="registrar_visitante" method="POST" onsubmit="return validarFormulario()">
             <!-- Campos comunes -->
             <div class="mb-3">
@@ -59,7 +66,6 @@
             <button type="submit" class="btn btn-custom">Registrar</button>
         </form>
     </div>
-</main>
-<script src="assets/js/registro_visitantes.js"></script>
+    <script src="assets/js/registro_visitantes.js"></script>
 
 <?php include_once __DIR__ . '/../dashboard/layouts/footer_main.php'; ?>

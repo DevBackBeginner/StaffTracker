@@ -1,5 +1,5 @@
 <div id="resultados">
-    <table class="table table-bordered table-hover">
+    <table class="table table-hover table-striped">
         <thead class="thead-dark">
             <tr>
                 <!-- Columnas comunes -->
@@ -29,7 +29,7 @@
                 <!-- Mostrar datos de usuarios si existen -->
                 <?php foreach ($usuarios as $u): ?>
                     <tr>
-                        <td><?= htmlspecialchars($u['nombre']) ?></td>
+                        <td><?= htmlspecialchars($u['nombre']). ' '. $u['apellidos'] ?></td>
                         <td><?= htmlspecialchars($u['numero_identidad']) ?></td>
                         <td><?= htmlspecialchars($u['telefono']) ?></td>
 
