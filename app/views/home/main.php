@@ -198,7 +198,7 @@
       <div class="col-md-6 col-lg-5 col-xl-3 wow fadeInRight" data-wow-delay=".1s">
         <article class="team-classic team-classic-lg"><a class="team-classic-figure" href="#"><img src="/ControlAsistencia/public/assets/img/directivos.jpg" alt="" width="420" height="424"/></a>
           <div class="team-classic-caption">
-          <h4 class="team-classic-name"><a href="#" style="color: white; text-shadow: 2px 2px 4px #007832; font-size: 1.5em;">Administrativos</a></h4>
+          <h4 class="team-classic-name"><a href="#" style="color: white; text-shadow: 2px 2px 4px #007832; font-size: 1.5em;">Funcionarios</a></h4>
             <p class="team-classic-status" style="font-size: 1.2em;">Control de ingreso de personal administrativo para mantener la seguridad en las instalaciones.</p>
           </div>
         </article>

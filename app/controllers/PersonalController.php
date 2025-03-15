@@ -89,11 +89,6 @@
             $documento =$this->sanitizarInput( $_GET['documento'] ?? '');
             $orden = $this->sanitizarInput($_GET['orden'] ?? 'nombre');
             $direccion =$this->sanitizarInput( $_GET['direccion'] ?? 'ASC');
-
-            if (!preg_match('/^[0-9]{10}$/', $documento)) {
-                throw new Exception("El número de documento debe tener exactamente 10 dígitos y solo contener números.");
-            }
-            
             // Validar la página
             $pagina = max(1, $pagina);
 

@@ -1,4 +1,3 @@
-<?php include_once __DIR__ . '/../../views/layouts/header.php'; ?>
 
 <link rel="stylesheet" href="assets/css/login.css">
 

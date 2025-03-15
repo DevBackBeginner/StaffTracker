@@ -2191,6 +2191,7 @@ p + .list-marked {
 		break-inside: avoid;
 		-moz-column-gap: 28px;
 		-webkit-column-gap: 28px;
+		column-gap: 28px;
 	}
 	.list-custom li {
 		display: inline-block;
@@ -2236,6 +2237,7 @@ p + .list-custom {
 		break-inside: avoid;
 		-moz-column-gap: 30px;
 		-webkit-column-gap: 30px;
+		column-gap: 30px;
 	}
 }
 
@@ -2352,7 +2354,6 @@ img {
 	display: inline-block;
 	font-weight: 400;
 	font-style: normal;
-	speak: none;
 	text-transform: none;
 }
 
@@ -4067,6 +4068,8 @@ input:-webkit-autofill ~ .form-validation {
 	background-image: none;
 	border-radius: 0;
 	-webkit-appearance: none;
+	appearance: none;
+	appearance: none;
 	transition: .3s ease-in-out;
 	border: 1px solid #efefef;
 }
@@ -4362,6 +4365,7 @@ textarea.textarea-lg {
 .toggle-custom {
 	padding-left: 60px;
 	-webkit-appearance: none;
+     appearance: none;
 }
 
 .toggle-custom:checked ~ .checkbox-custom-dummy::after {
@@ -7398,7 +7402,6 @@ textarea.textarea-lg {
 
 .snackbars-right {
 	display: inline-block;
-	float: right;
 	text-transform: uppercase;
 }
 
@@ -8136,6 +8139,7 @@ textarea.textarea-lg {
 .footer-corporate-2 .list-custom-2 {
 	-moz-column-gap: 20px;
 	-webkit-column-gap: 20px;
+	column-gap: 20px;
 }
 
 @media (min-width: 992px) {
@@ -10585,6 +10589,7 @@ html.boxed body {
 		background: -o-linear-gradient(transparent, transparent);
 		background: linear-gradient(-62deg, #45476f, #007832);
 		-webkit-background-clip: text;
+		background-clip: text;
 	}
 	.text-img > span {
 		pointer-events: none;
@@ -12729,6 +12734,7 @@ html.tablet .ui-to-top {
 	outline-offset: 0;
 	cursor: pointer;
 	-webkit-appearance: none;
+	appearance: none;
 }
 
 .rd-navbar-search-toggle::-moz-focus-inner {
@@ -12944,6 +12950,7 @@ html.tablet .ui-to-top {
 	break-inside: avoid;
 	-moz-column-gap: 30px;
 	-webkit-column-gap: 30px;
+	column-gap: 30px;
 	margin-bottom: -8px;
 }
 
@@ -14936,9 +14943,7 @@ html.rd-navbar-fixed-linked .page-header {
 }
 
 /* Coverflow */
-.swiper-container-coverflow .swiper-wrapper {
-	/* Windows 8 IE 10 fix */
-}
+/* Removed empty rule set for .swiper-container-coverflow .swiper-wrapper */
 
 .swiper-container-fade.swiper-container-free-mode .swiper-slide {
 	transition-timing-function: ease-out;
@@ -17729,6 +17734,7 @@ h1 + .tabs-line {
 .owl-carousel .owl-stage {
 	position: relative;
 	-ms-touch-action: pan-Y;
+	touch-action: pan-Y;
 }
 
 .owl-carousel .owl-stage:after {
@@ -17745,6 +17751,7 @@ h1 + .tabs-line {
 	overflow: hidden;
 	/* fix for flashing background */
 	-webkit-transform: translate3d(0px, 0px, 0px);
+	transform: translate3d(0px, 0px, 0px);
 }
 
 .owl-carousel .owl-controls .owl-nav .owl-prev,
@@ -18499,7 +18506,7 @@ h1 + .tabs-line {
 
 .lg-icon {
 	font-family: lg;
-	speak: none;
+	/* speak: none; */
 	font-style: normal;
 	font-weight: 400;
 	font-variant: normal;
@@ -20053,6 +20060,7 @@ disabled look for disabled choices in the results dropdown
 	font-family: "Work Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 	text-align: center;
 	-moz-appearance: textfield;
+	appearance: textfield;
 }
 
 .stepper input[type=number]::-webkit-inner-spin-button {
