@@ -19,32 +19,6 @@
         <!-- Card: Buscar Funcionario -->
         <div class="container-fluid">
             <div class="row">
-                <!-- Tarjeta para filtrar por Documento -->
-                <div class="col-md-6 mb-4">
-                    <div class="card shadow-sm rounded-lg" style="border: 1px solid #005f2f;">
-                        <!-- Encabezado de la tarjeta -->
-                        <div class="card-header text-white" style="background-color: #005f2f;">
-                            <h2 class="h5 mb-0" style="color: white;">
-                                Filtrar por Documento
-                            </h2>
-                        </div>
-                        <!-- Cuerpo de la tarjeta -->
-                        <div class="card-body">
-                            <div class="form-group">
-                                <label for="documentoInput" class="form-label">Documento</label>
-                                <input
-                                    type="text"
-                                    name="documento"
-                                    placeholder="Buscar por documento"
-                                    class="form-control"
-                                    id="documentoInput"
-                                    value="<?= htmlspecialchars($documento ?? '') ?>"
-                                >
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
                 <!-- Tarjeta para filtrar por Nombre -->
                 <div class="col-md-6 mb-4">
                     <div class="card shadow-sm rounded-lg" style="border: 1px solid #005f2f;">
@@ -70,9 +44,33 @@
                         </div>
                     </div>
                 </div>
+                <!-- Tarjeta para filtrar por Documento -->
+                <div class="col-md-6 mb-4">
+                    <div class="card shadow-sm rounded-lg" style="border: 1px solid #005f2f;">
+                        <!-- Encabezado de la tarjeta -->
+                        <div class="card-header text-white" style="background-color: #005f2f;">
+                            <h2 class="h5 mb-0" style="color: white;">
+                                Filtrar por Documento
+                            </h2>
+                        </div>
+                        <!-- Cuerpo de la tarjeta -->
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="documentoInput" class="form-label">Documento</label>
+                                <input
+                                    type="text"
+                                    name="documento"
+                                    placeholder="Buscar por documento"
+                                    class="form-control"
+                                    id="documentoInput"
+                                    value="<?= htmlspecialchars($documento ?? '') ?>"
+                                >
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-
         <div class="d-flex align-items-stretch">
             <?php
             // Incluir la tabla de usuarios

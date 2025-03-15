@@ -33,7 +33,7 @@
                         <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
                             <img src="<?= $_SESSION['usuario']['foto_perfil'] ?>" alt="Perfil" class="rounded-circle">
                             <h2><?= $_SESSION['usuario']['nombre']?></h2>
-                            <h3><?= ($_SESSION['usuario']['rol'] === 'admin') ? 'Administrador' : (htmlspecialchars($_SESSION['usuario']['rol']) === 'guarda' ? 'Guardia de portería' : htmlspecialchars($_SESSION['usuario']['rol'])) ?></h3>
+                            <h3><?= ($_SESSION['usuario']['rol'] === 'Admin') ? 'Administrador' : (htmlspecialchars($_SESSION['usuario']['rol']) === 'Guarda' ? 'Guardia de portería' : htmlspecialchars($_SESSION['usuario']['rol'])) ?></h3>
 
                         </div>
                     </div>
@@ -207,47 +207,42 @@
         </section>
 
     </main><!-- End #main -->
+    <script src="assets/js/perfil.js"></script>
 
 <?php include_once __DIR__ . '/../../views/gestion/dashboard/layouts/footer_main.php'; ?>
 
 <script>
-    // Función para subir la imagen
     // Función para manejar la selección de la imagen
+  // Función para manejar la selección de la imagen
     document.getElementById('imagen').addEventListener('change', function(event) {
-    const archivo = event.target.files[0]; // Obtener el archivo seleccionado
-    if (archivo) {
-        console.log("Archivo seleccionado:", archivo.name); // Verificar en la consola
-        subirImagen(archivo);
-    }
-    });
-        
-    // Función para subir la imagen
-    function subirImagen(archivo) {
-        console.log("Subiendo imagen:", archivo.name); // Verificar en la consola
-        const formData = new FormData();
-        formData.append('imagen', archivo);
-
-        fetch('subir-imagen', {
-            method: 'POST',
-            body: formData
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log("Respuesta del servidor:", data); // Verificar en la consola
-            if (data.success) {
-                // Recargar la página para mostrar el mensaje de éxito
-                window.location.reload();
-            } else {
-                // Recargar la página para mostrar el mensaje de error
-                window.location.reload();
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            // Recargar la página incluso si hay un error
-            window.location.reload();
+        const archivo = event.target.files[0]; // Obtener el archivo seleccionado
+        if (archivo) {
+            console.log("Archivo seleccionado:", archivo.name); // Verificar en la consola
+            subirImagen(archivo);
+        }
         });
-    }
+            
+        // Función para subir la imagen
+        function subirImagen(archivo) {
+            console.log("Subiendo imagen:", archivo.name); // Verificar en la consola
+            const formData = new FormData();
+            formData.append('imagen', archivo);
+
+             // Enviar la imagen al servidor
+            fetch('subir-imagen', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                // No esperamos una respuesta JSON, solo redirección
+                // El backend redirigirá a la página de perfil
+                window.location.href = 'perfil'; // Redirigir manualmente si es necesario
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                // Recargar la página incluso si hay un error
+            });
+        }
     // Función para eliminar la imagen
     function eliminarImagen() {
         if (confirm('¿Estás seguro de que deseas eliminar la imagen de perfil?')) {
@@ -266,8 +261,6 @@
             })
             .catch(error => {
                 console.error('Error:', error);
-                // Recargar la página incluso si hay un error
-                window.location.reload();
             });
         }
     }

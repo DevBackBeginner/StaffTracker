@@ -54,8 +54,6 @@
             $rol = $_GET['rol'] ?? '';
             $documento = $_GET['documento'] ?? '';
             $nombre = $_GET['nombre'] ?? ''; // Nuevo parámetro para nombre
-            $page = $_GET['page'] ?? 1; // Página actual (por defecto 1)
-            $limit = 1; // Número de usuarios por página
         
             // Validar que el rol sea permitido
             $rolesPermitidos = ['Instructor', 'Funcionario', 'Directivo', 'Apoyo', 'Visitante'];
@@ -74,17 +72,13 @@
                 $nombre = preg_replace('/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/', '', $nombre); // Solo letras y espacios
                 $nombre = substr($nombre, 0, 100); // Limitar la longitud del nombre
             }
-        
-            // Calcular el offset para la paginación
-            $offset = ($page - 1) * $limit;
+
         
             // Obtener los usuarios filtrados por rol, documento y nombre con paginación
-            $usuarios = $this->histroialModelo->filtrarUsuarios($rol, $documento, $nombre, $limit, $offset);
+            $usuarios = $this->histroialModelo->filtrarUsuarios($rol, $documento, $nombre);
             // Obtener el número total de usuarios (sin paginación)
             $totalUsuarios = $this->histroialModelo->contarUsuariosFiltrados($rol, $documento, $nombre);
-        
-            // Calcular el número total de páginas
-            $totalPaginas = ceil($totalUsuarios / $limit); // Redondear hacia arriba
+
         
             // Pasar los datos a la vista de la tabla
             $data = [
@@ -92,8 +86,6 @@
                 'rol' => $rol,
                 'documento' => $documento,
                 'nombre' => $nombre, // Añadir el nombre a los datos
-                'page' => $page,
-                'totalPaginas' => $totalPaginas // Añadir el total de páginas
             ];
         
             // Incluir solo la tabla (sin layout)

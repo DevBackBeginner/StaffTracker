@@ -1,6 +1,4 @@
-<style>
-    
-</style>
+
 <?php
 // Verificar si las variables están definidas
 if (!isset($usuarios)) {
@@ -17,7 +15,7 @@ if (!isset($totalPaginas)) {
 }
 ?>
 
-<div id="tabla-body" class="card-body bg-white rounded shadow-sm p-3">
+<div id="tabla-body" class="card-body bg-white rounded shadow-sm p-3 mt-2">
     <!-- Sección de tabs o bullet points -->
     <ul class="nav nav-tabs mb-4">
         <?php
@@ -45,7 +43,10 @@ if (!isset($totalPaginas)) {
     <?php include_once "informacion_tabla.php"?>
 
     <!-- Controles de paginación -->
-    <?php if ($totalPaginas > 1): ?>
+    <?php
+    // Verificar si hay un filtro activo
+    $filtroActivo = isset($_GET['documento']) || isset($_GET['nombre']);
+    if ($totalPaginas > 1 && !$filtroActivo): ?>
         <nav aria-label="Paginación">
             <ul class="pagination justify-content-center">
                 <!-- Botón "Anterior" -->
@@ -83,4 +84,5 @@ if (!isset($totalPaginas)) {
             </ul>
         </nav>
     <?php endif; ?>
+    
 </div>

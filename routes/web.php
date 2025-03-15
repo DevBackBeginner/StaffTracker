@@ -71,6 +71,9 @@ Router::post('registrar_personal', [PersonalController::class, 'registrarPersona
 
 
 Router::get('Listado_Usuarios', [PersonalController::class, 'ListarUsuarios']);
+Router::post('EditarUsuarios', [PersonalController::class, 'editarUsuarios']);
+Router::post('EliminarUsuario', [PersonalController::class, 'eliminarUsuario']);
+
 // ==================================================
 // Rutas para el registro de visitantes
 // ==================================================
