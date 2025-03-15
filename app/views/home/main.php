@@ -234,7 +234,7 @@
 </section>
 
 
-
+<h2>Sede Sena Villeta</h2>
       <!-- Bottom Banner-->
       <section class="section section-fluid"><a class="section-banner" href="https://www.templatemonster.com/intense-multipurpose-html-template.html" style="background-image: url(images/banner/banner-bg-01-1920x310.jpg); background-image: -webkit-image-set( url(images/banner/banner-bg-01-1920x310.jpg) 1x, url(images/banner/banner-bg-01-3840x620.jpg) 2x )" target="_blank"><img src="/ControlAsistencia/public/assets/img/senaaire.jpg" srcset="/ControlAsistencia/public/assets/img/senaaire.jpg 1x, /ControlAsistencia/public/assets/img/senaaire@2x.jpg 2x" alt="" width="1600" height="310"></a></section>
 
