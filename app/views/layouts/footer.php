@@ -1,4 +1,4 @@
-<footer class="text-center text-lg-start">
+<footer class="text-center text-lg-start" style="border: 1px solid green; box-shadow: 0 4px 8px rgba(0, 128, 0, 0.5); padding: 20px; border-radius: 10px; margin-top: 50px;"> <!-- Agregar padding, borde redondeado y margen superior -->
     <div class="containers p-3"> <!-- Reducir el padding -->
         <div class="row">
             <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
