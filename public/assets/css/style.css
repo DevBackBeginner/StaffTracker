@@ -2246,7 +2246,8 @@ p + .list-custom {
 img {
 	display: inline-block;
 	max-width: 100%;
-	height: auto;
+	height: 400px;
+	
 }
 
 .img-responsive {
