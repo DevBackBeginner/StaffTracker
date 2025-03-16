@@ -47,11 +47,12 @@ Router::post("registro_guarda", [RegistrarGuardasController::class, "registrarGu
 // ==================================================
 
 Router::get('registro_ingreso', [RegistroIngresoController::class, "mostrarVistaRegistro"]);
-Router::post('registrar_ingreso', [RegistroIngresoController::class, 'registrarAsistencia']);
+Router::post('gestion_registro_acceso', [RegistroIngresoController::class, 'gestionarRegistroAcceso']);
 
 // ==================================================
 // Rutas para el manejo de computadores
 // ==================================================
+Router::post("registrar_computador", [ComputadorController::class, "registrarComputador"]);
 
 Router::post('obtener_computadores', [ComputadorController::class, 'obtenerComputadores']);
 

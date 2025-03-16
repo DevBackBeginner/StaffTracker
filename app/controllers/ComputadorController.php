@@ -1,18 +1,58 @@
 
 <?php
 
-    session_start();
-
     require_once __DIR__ . '/../models/ComputadorModelo.php';
     require_once __DIR__ . '/../models/HistorialRegistroModelo.php';
 
     class ComputadorController {
         private $computadorModelo;
-        private $histroialModelo;
+        private $historialModelo;
 
         public function __construct() {
             $this->computadorModelo = new ComputadorModelo();
-            $this->histroialModelo = new HistorialRegistroModelo();
+            $this->historialModelo = new HistorialRegistroModelo();
+        }
+
+        public function registrarComputador() {
+            // Verificar que la solicitud sea de tipo POST
+            if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+                echo json_encode([
+                    'success' => false,
+                    'message' => 'Método no permitido.'
+                ]);
+                exit;
+            }
+    
+            // Obtener datos del formulario
+            $marca = trim($_POST['marca'] ?? '');
+            $codigo = trim($_POST['codigo'] ?? '');
+            $tipo = trim($_POST['tipo'] ?? ''); // 'Personal' o 'Sena'
+    
+            // Validar datos
+            if (empty($marca) || empty($codigo) || empty($tipo)) {
+                echo json_encode([
+                    'success' => false,
+                    'message' => 'Todos los campos son obligatorios.'
+                ]);
+                exit;
+            }
+    
+            try {
+                // Registrar el computador en la base de datos
+                $computador_id = $this->computadorModelo->ingresarComputador($marca, $codigo, $tipo);
+    
+                echo json_encode([
+                    'success' => true,
+                    'message' => 'Computador registrado correctamente.',
+                    'computador_id' => $computador_id
+                ]);
+            } catch (Exception $e) {
+                error_log("Error en registrarComputador: " . $e->getMessage());
+                echo json_encode([
+                    'success' => false,
+                    'message' => 'Error en el sistema: ' . $e->getMessage()
+                ]);
+            }
         }
 
         /**
@@ -42,7 +82,7 @@
                 }
         
                 // Obtener el usuario por su código (número de identidad)
-                $personal = $this->histroialModelo->obtenerPorIdentidad($codigo);
+                $personal = $this->historialModelo->obtenerPorIdentidad($codigo);
         
                 if (!$personal) {
                     throw new Exception('Personal no encontrado.');

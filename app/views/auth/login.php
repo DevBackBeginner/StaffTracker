@@ -69,6 +69,5 @@
     </div>
 </div>
 <script src="assets/js/login.js"></script>
-
 <?php include_once __DIR__ . '/../../views/layouts/footer.php'; ?>
 

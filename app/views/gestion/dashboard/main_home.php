@@ -26,7 +26,7 @@
         <div class="col-lg-12" name="div_footer">
             <div class="row">
                 <!-- Sales Card -->
-                <div class="col-xxl-4 col-md-6">
+                <div class="col-xxl-4 col-md-4">
                     <div class="card info-card sales-card">
                         <div class="filter">
                             <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
@@ -60,7 +60,7 @@
                 </div><!-- End Sales Card -->
 
                 <!-- Tarjeta de Funcionarios -->
-                <div class="col-xxl-4 col-md-6">
+                <div class="col-xxl-4 col-md-4">
                     <div class="card info-card revenue-card">
                         <div class="filter">
                             <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
@@ -94,7 +94,7 @@
                 </div><!-- End Revenue Card -->
 
                 <!-- Tarjeta de Visitantes -->
-                <div class="col-xxl-4 col-xl-12">
+                <div class="col-xxl-4 col-md-4">
                     <div class="card info-card customers-card">
                         <div class="filter">
                             <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>

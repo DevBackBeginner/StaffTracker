@@ -291,7 +291,7 @@
             }
         
             // Registrar el computador
-            return $this->computadorModelo->registrarComputador($marca, $codigo, $tipo_computador);
+            return $this->computadorModelo->ingresarComputador($marca, $codigo, $tipo_computador);
         }
     }
 ?>

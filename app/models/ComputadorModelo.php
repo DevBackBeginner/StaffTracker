@@ -34,7 +34,7 @@
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
 
-        public function registrarComputador($marca, $codigo, $tipo_computador)
+        public function ingresarComputador($marca, $codigo, $tipo_computador)
         {
             try {
                 // Consulta SQL para insertar un nuevo computador

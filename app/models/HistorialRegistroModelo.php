@@ -48,8 +48,8 @@
             // Obtener la tabla y campos adicionales para el rol
             $tablaRol = $tablas[$rol]['tabla'];
             $camposExtras = $tablas[$rol]['campos'];
-
-            // Consulta SQL para obtener usuarios registrados en registro_acceso HOY
+        
+            // Consulta SQL para obtener usuarios registrados en registro_acceso sin filtrar por fecha
             $sql = "SELECT 
                         u.nombre,
                         u.apellidos,
@@ -65,10 +65,9 @@
                     INNER JOIN usuarios u ON ac.usuario_id = u.id
                     INNER JOIN $tablaRol tr ON u.id = tr.usuario_id -- Unión con la tabla específica del rol
                     WHERE u.rol = :rol -- Filtra por el rol especificado
-                    AND DATE(ra.fecha) = CURDATE() -- Filtra por la fecha de hoy
                     ORDER BY ra.fecha DESC, ra.hora_entrada DESC
                     LIMIT :limit OFFSET :offset";
-
+        
             $stmt = $this->db->prepare($sql);
             $stmt->bindValue(':rol', $rol, PDO::PARAM_STR); // Filtra por el rol
             $stmt->bindValue(':limit', (int)$limit, PDO::PARAM_INT);
@@ -77,15 +76,14 @@
         
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
-        
+
         public function contarUsuariosPorRol($rol) {
-            // Consulta SQL para contar usuarios de un rol específico que han accedido hoy
+            // Consulta SQL para contar usuarios de un rol específico sin filtrar por fecha
             $sql = "SELECT COUNT(*) as total 
                     FROM registro_acceso ra
                     INNER JOIN asignaciones_computadores ac ON ra.asignacion_id = ac.id
                     INNER JOIN usuarios u ON ac.usuario_id = u.id
-                    WHERE u.rol = :rol
-                    AND DATE(ra.fecha) = CURDATE()"; // Filtra por la fecha de hoy
+                    WHERE u.rol = :rol"; // Sin filtrar por fecha
         
             $stmt = $this->db->prepare($sql);
             $stmt->bindValue(':rol', $rol, PDO::PARAM_STR);

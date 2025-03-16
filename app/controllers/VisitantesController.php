@@ -79,7 +79,7 @@
                 }
 
                 // Registrar el computador en la tabla `computadores`
-                $computador_id = $this->computadorModelo->registrarComputador($marca, $codigo, $tipo_computador);
+                $computador_id = $this->computadorModelo->ingresarComputador($marca, $codigo, $tipo_computador);
 
                 if (!$computador_id) {
                     $_SESSION['mensaje'] = "Error al registrar el computador.";

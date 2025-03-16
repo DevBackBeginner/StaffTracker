@@ -51,4 +51,3 @@
         No hay registros de asistencia aún.
     </div>
 <?php endif; ?>
-<?php include_once "tabla_ultimos_registros.php"; ?>

@@ -28,7 +28,7 @@
                                 <div class="rd-navbar-brand">
                                     <a class="brand" href="Inicio">
                                         <img src="/controlasistencia/public/assets/img/logo.png" alt="" width="223" height="50"/>
-                                        <span style="font-size: 24px; font-weight: 600; color: #333; margin-left: 10px; vertical-align: middle;">StaffTracker</span>
+                                        <span style="font-size: 24px; font-weight: 600; color: #007832; margin-left: 10px; vertical-align: middle;">StaffTracker</span>
                                     </a>
                                 </div>
                             </div>

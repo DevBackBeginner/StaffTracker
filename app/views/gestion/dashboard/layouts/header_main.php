@@ -362,6 +362,5 @@
             </a>
           </li><!-- End Cerrar Sección Nav -->
         </ul>
-      </aside>End Sidebar
-      
+      </aside>
       <main id="main" class="main">

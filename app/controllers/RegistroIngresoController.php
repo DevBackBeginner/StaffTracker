@@ -3,12 +3,14 @@ session_start();
 
 require_once __DIR__ . '/../models/RegistroIngresoModelo.php';
 require_once __DIR__ . '/../models/HistorialRegistroModelo.php';
-require_once __DIR__ . '/../models/ComputadorModelo.php';
+require_once __DIR__ . '/../controllers/ComputadorController.php';
+require_once '../config/DataBase.php';
 
 class RegistroIngresoController {
     private $registroIngresoModelo;
-    private $histroialModelo;
-    private $computadorModelo;
+    private $historialModelo;
+    private $computadorController;
+    private $db;
 
     public function __construct() {
         if (session_status() !== PHP_SESSION_ACTIVE) {
@@ -16,8 +18,11 @@ class RegistroIngresoController {
         }
         
         $this->registroIngresoModelo = new RegistroIngresoModelo();
-        $this->histroialModelo = new HistorialRegistroModelo();
-        $this->computadorModelo = new ComputadorModelo();
+        $this->historialModelo = new HistorialRegistroModelo();
+        $this->computadorController = new ComputadorController;
+        $conn = new DataBase();
+        // Asignar la conexión establecida a la propiedad $db
+        $this->db = $conn->getConnection();
     }
 
     public function mostrarVistaRegistro() {
@@ -25,99 +30,157 @@ class RegistroIngresoController {
         include_once __DIR__ . '/../views/gestion/registro_ingreso/registro_ingresos.php';
     }
 
-    public function registrarAsistencia() {
-        // Verificar que la solicitud sea de tipo POST
-        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-            echo json_encode([
-                'success' => false,
-                'message' => 'Método no permitido.'
-            ]);
-            exit;
-        }
-    
-        // Obtener el código y el computador_id de la solicitud POST
-        $codigo = trim($_POST['codigo'] ?? '');
-        $computador_id = trim($_POST['computador_id'] ?? null);
-    
-        // Validar que el código no esté vacío
-        if (empty($codigo)) {
-            echo json_encode([
-                'success' => false,
-                'message' => 'Código no proporcionado.'
-            ]);
-            exit;
-        }
-    
+    public function gestionarRegistroAcceso() {
+        // Configurar cabecera para respuesta JSON
+        header('Content-Type: application/json');
+        
         try {
-            // Obtener el usuario por su número de identidad
-            $personal = $this->histroialModelo->obtenerPorIdentidad($codigo);
-    
-            // Verificar si el usuario existe
-            if (!$personal) {
-                echo json_encode([
-                    'success' => false,
-                    'message' => 'Personal no encontrado.'
-                ]);
-                exit;
+            // ========= VALIDACIÓN INICIAL =========
+            // Verificar método HTTP
+            if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+                $this->jsonResponse(false, 'Método no permitido', 405);
             }
-    
-            // Obtener el ID del usuario, la fecha actual y la hora actual
-            $usuario_id = $personal['id'];
-            $fecha = date('Y-m-d');
-            $horaActual = date('H:i:s');
-    
-            // Determinar el tipo de usuario basado en el rol
-            $tipo_usuario = ($personal['rol'] === 'Visitante') ? 'Visitante' : 'Personal';
-    
-            // Si no se proporciona un computador_id, usar NULL
-            if (empty($computador_id)) {
-                $computador_id = null; // Asignar NULL si no hay computador
-            }
-    
-            // Verificar si ya existe una asignación para el usuario y el computador (o sin computador)
-            $asignacion_id = $this->registroIngresoModelo->obtenerAsignacionId($usuario_id, $computador_id);
-    
-            // Si no existe una asignación, crear una nueva
-            if (!$asignacion_id) {
-                $asignacion_id = $this->registroIngresoModelo->crearAsignacion($usuario_id, $computador_id);
-            }
-    
-            // Verificar si ya existe un registro de asistencia para el día actual
-            $registroDelDia = $this->registroIngresoModelo->obtenerAsistenciaDelDia($asignacion_id, $fecha);
-    
-            if ($registroDelDia) {
-                if ($registroDelDia['estado'] === 'Activo') {
-                    // Registrar la salida
-                    $this->registroIngresoModelo->registrarSalida($asignacion_id, $fecha, $horaActual);
-                    echo json_encode([
-                        'success' => true,
-                        'message' => 'Salida registrada correctamente para ' . $personal['nombre']
-                    ]);
-                    exit;
-                } else {
-                    echo json_encode([
-                        'success' => false,
-                        'message' => 'Asistencia ya completada para el día de hoy.'
-                    ]);
-                    exit;
+
+            // ========= SANITIZACIÓN DE DATOS =========
+            $codigo = filter_input(INPUT_POST, 'codigo', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $computador_id = filter_input(INPUT_POST, 'computador_id', FILTER_VALIDATE_INT) ?: null;
+
+            // ========= REGISTRO DE COMPUTADOR =========
+            if (isset($_POST['registrar_nuevo_computador'])) {
+                $resultado = $this->computadorController->registrarComputador();
+                if (!$resultado['success']) {
+                    $this->jsonResponse(false, $resultado['message'], 400);
                 }
-            } else {
-                // Registrar la entrada con el tipo de usuario
-                $this->registroIngresoModelo->registrarEntrada($fecha, $horaActual, $asignacion_id, $tipo_usuario);
-                echo json_encode([
-                    'success' => true,
-                    'message' => 'Entrada registrada correctamente para ' . $personal['nombre']
-                ]);
-                exit;
+                $computador_id = $resultado['computador_id'];
             }
+
+            // ========= VALIDACIÓN DE DATOS =========
+            if (empty(trim($codigo))) {
+                $this->jsonResponse(false, 'Código no proporcionado', 400);
+            }
+
+            // ========= OBTENER USUARIO =========
+            $usuario = $this->obtenerUsuario($codigo);
+            if (!$usuario) {
+                $this->jsonResponse(false, 'Usuario no encontrado', 404);
+            }
+
+            // ========= LÓGICA PRINCIPAL =========
+            $this->db->beginTransaction(); // Iniciar transacción
+            
+            // Gestionar asignación computador-usuario
+            $asignacion_id = $this->gestionarAsignacion(
+                $usuario['id'], 
+                $computador_id
+            );
+            
+            // Verificar registro del día
+            $registro = $this->registroIngresoModelo->obtenerAsistenciaDelDia(
+                $asignacion_id, 
+                date('Y-m-d')
+            );
+
+            // Lógica de entrada/salida
+            if ($registro) {
+                $this->procesarRegistroExistente($registro, $asignacion_id, $usuario);
+            } else {
+                $this->registrarNuevaEntrada($asignacion_id, $usuario);
+            }
+
         } catch (Exception $e) {
-            // Manejar errores y registrar en el log
-            error_log("Error en registrarAsistencia: " . $e->getMessage());
-            echo json_encode([
-                'success' => false,
-                'message' => 'Error en el sistema: ' . $e->getMessage()
-            ]);
-            exit;
+            // Manejo de errores
+            $this->db->rollBack();
+            error_log("Error registrarAsistencia: " . $e->getMessage());
+            $this->jsonResponse(false, 'Error interno del sistema', 500);
         }
+    }
+
+    // ==============================
+    // MÉTODOS AUXILIARES
+    // ==============================
+
+    /**
+     * Devuelve una respuesta JSON estandarizada
+     * @param bool $success Estado de la operación
+     * @param string $message Mensaje descriptivo
+     * @param int $code Código HTTP
+     */
+    private function jsonResponse(bool $success, string $message, int $code = 200): void {
+        http_response_code($code);
+        echo json_encode([
+            'success' => $success,
+            'message' => $message
+        ]);
+        exit; // Terminar ejecución
+    }
+
+    /**
+     * Obtiene un usuario por su código de identificación
+     * @param string $codigo Código del usuario
+     * @return array|null Datos del usuario o null
+     */
+    private function obtenerUsuario(string $codigo): ?array {
+        $usuario = $this->historialModelo->obtenerPorIdentidad($codigo);
+        return ($usuario && !empty($usuario['id'])) ? $usuario : null;
+    }
+
+    /**
+     * Gestiona la asignación usuario-computador
+     * @param int $usuario_id ID del usuario
+     * @param int|null $computador_id ID del computador (opcional)
+     * @return int ID de la asignación
+     */
+    private function gestionarAsignacion(int $usuario_id, ?int $computador_id): int {
+        // Buscar asignación existente
+        $asignacion_id = $this->registroIngresoModelo->obtenerAsignacionId(
+            $usuario_id, 
+            $computador_id
+        );
+        
+        // Crear nueva si no existe
+        return $asignacion_id ?: $this->registroIngresoModelo->crearAsignacion(
+            $usuario_id, 
+            $computador_id
+        );
+    }
+
+    /**
+     * Procesa un registro existente (cierre de sesión)
+     * @param array $registro Datos del registro
+     * @param int $asignacion_id ID de asignación
+     * @param array $usuario Datos del usuario
+     */
+    private function procesarRegistroExistente(array $registro, int $asignacion_id, array $usuario) {
+        if ($registro['estado'] === 'Activo') {
+            // Registrar hora de salida
+            $this->registroIngresoModelo->registrarSalida(
+                $asignacion_id, 
+                date('Y-m-d'), 
+                date('H:i:s')
+            );
+            $this->db->commit();
+            $this->jsonResponse(true, "Salida registrada para {$usuario['nombre']}");
+        }
+        
+        // Registro ya completado
+        $this->db->commit();
+        $this->jsonResponse(false, 'Asistencia ya completada hoy', 400);
+    }
+
+    /**
+     * Crea un nuevo registro de entrada
+     * @param int $asignacion_id ID de asignación
+     * @param array $usuario Datos del usuario
+     */
+    private function registrarNuevaEntrada(int $asignacion_id, array $usuario) {
+        // Registrar nueva entrada
+        $this->registroIngresoModelo->registrarEntrada(
+            date('Y-m-d'),
+            date('H:i:s'),
+            $asignacion_id,
+            $usuario['rol'] === 'Visitante' ? 'Visitante' : 'Personal'
+        );
+        $this->db->commit();
+        $this->jsonResponse(true, "Entrada registrada para {$usuario['nombre']}");
     }
 }
