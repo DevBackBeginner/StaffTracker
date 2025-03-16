@@ -1,3 +1,4 @@
+<?php include_once __DIR__ . '/../../views/layouts/header.php'; ?>
 
 <link rel="stylesheet" href="assets/css/login.css">
 
@@ -67,27 +68,7 @@
         </form>
     </div>
 </div>
+<script src="assets/js/login.js"></script>
 
 <?php include_once __DIR__ . '/../../views/layouts/footer.php'; ?>
 
-<script src="assets/js/login.js"></script>
-
-<script>
-    // Función para eliminar los mensajes flash y limpiar las cookies después de 2 segundos
-    setTimeout(function() {
-        // Remover los mensajes del DOM
-        const errorMsg = document.querySelector('.error-message');
-        if (errorMsg) {
-            errorMsg.remove();
-        }
-        const successMsg = document.querySelector('.success-message');
-        if (successMsg) {
-            successMsg.remove();
-        }
-        // Borrar las cookies flash (para que no se muestren en recargas posteriores)
-        document.cookie = "flash_error=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-        document.cookie = "flash_success=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-        // Opcional: limpiar la URL eliminando los parámetros
-        history.replaceState(null, "", window.location.pathname);
-    }, 2000);
-</script>

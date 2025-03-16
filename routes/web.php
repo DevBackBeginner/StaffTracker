@@ -14,7 +14,7 @@ Router::get('/', [DashboardController::class, "mostrarDashBoard"]);
 Router::get('Contactenos', [ContactoController::class, "mostrarContactenos"]);
 
 // Ruta para mostrar el formulario de login
-Router::get("login", [LoginController::class, "mostrarLogin"]);
+Router::get("Login", [LoginController::class, "mostrarLogin"]);
 
 // Ruta para procesar el login (envío de formulario)
 Router::post("enviarLogin", [LoginController::class, "procesarLogin"]);
