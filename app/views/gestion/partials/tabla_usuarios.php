@@ -15,7 +15,7 @@ if (!isset($totalPaginas)) {
 }
 ?>
 
-<div id="tabla-body" class="card-body bg-white rounded shadow-sm p-3 mt-2">
+<div id="tabla-body" class="card-body bg-white rounded shadow-sm ">
     <!-- Sección de tabs o bullet points -->
     <ul class="nav nav-tabs mb-4">
         <?php

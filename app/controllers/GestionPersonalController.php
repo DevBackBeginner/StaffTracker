@@ -2,17 +2,17 @@
 
     session_start();
 
-    require_once __DIR__ . '/../models/PersonalModelo.php';
+    require_once __DIR__ . '/../models/GestionPersonalModelo.php';
     require_once __DIR__ . '/../models/ComputadorModelo.php';
 
-    class PersonalController
+    class GestionPersonalController
     {
         private $personalModelo;
         private $computadorModelo;
 
         public function __construct()
         {
-            $this->personalModelo = new PersonalModelo;
+            $this->personalModelo = new GestionPersonalModelo;
             $this->computadorModelo = new ComputadorModelo;
         }
 

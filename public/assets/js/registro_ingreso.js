@@ -215,8 +215,13 @@ document.addEventListener('DOMContentLoaded', function () {
             method: 'POST',
             body: formData
         })
-        .then(response => {
-            if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        .then(async response => {
+            // Verificar si la respuesta no es exitosa (códigos 400, 404, etc.)
+            if (!response.ok) {
+                // Parsear la respuesta como JSON para obtener el mensaje de error
+                const errorData = await response.json();
+                throw new Error(errorData.message || 'Error en la solicitud');
+            }
             return response.json();
         })
         .then(data => {
@@ -230,7 +235,7 @@ document.addEventListener('DOMContentLoaded', function () {
         })
         .catch(error => {
             console.error('Error:', error);
-            alert(`❌ Error crítico: ${error.message}`);
+            alert(`❌ Error: ${error.message}`);
         });
     }
 });

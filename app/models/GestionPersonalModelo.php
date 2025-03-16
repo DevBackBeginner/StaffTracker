@@ -2,7 +2,7 @@
 
     require_once '../config/DataBase.php';
 
-    class PersonalModelo
+    class GestionPersonalModelo
     {
         private $db;
         

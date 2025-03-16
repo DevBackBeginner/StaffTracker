@@ -1,21 +1,26 @@
 <?php 
     session_start();
-    require_once __DIR__ . '/../models/VisitantesModelo.php';
+    require_once __DIR__ . '/../models/GestionVisitantesModelo.php';
     require_once __DIR__ . '/../models/ComputadorModelo.php';
 
-    class VisitantesController
+    class GestionVisitantesController
     {
         private $visitanteModelo;   
         private $computadorModelo;
         public function __construct()
         {
-            $this->visitanteModelo = new VisitantesModelo;
+            $this->visitanteModelo = new GestionVisitantesModelo;
             $this->computadorModelo = new ComputadorModelo;
         }
 
         public function formulario_visitante()
         {
             require_once __DIR__ . '/../views/gestion/visitantes/registrar_visitantes.php';
+        }
+
+        public function gestionarAccesoVisitantes()
+        {
+            require_once __DIR__ . '/../views/gestion/visitantes/registrar-acceso-visitantes.php';
         }
 
         public function registrarVisitante()

@@ -1,7 +1,7 @@
 <?php
     require_once '../config/DataBase.php';
 
-    class VisitantesModelo
+    class GestionVisitantesModelo
     {
         private $db;
 

@@ -1,13 +1,13 @@
 <?php
 session_start();
 
-require_once __DIR__ . '/../models/RegistroIngresoModelo.php';
+require_once __DIR__ . '/../models/RegistroAccesoModelo.php';
 require_once __DIR__ . '/../models/HistorialRegistroModelo.php';
 require_once __DIR__ . '/../controllers/ComputadorController.php';
 require_once '../config/DataBase.php';
 
-class RegistroIngresoController {
-    private $registroIngresoModelo;
+class RegistroAccesoController {
+    private $registroAcceso;
     private $historialModelo;
     private $computadorController;
     private $db;
@@ -17,7 +17,7 @@ class RegistroIngresoController {
             session_start();
         }
         
-        $this->registroIngresoModelo = new RegistroIngresoModelo();
+        $this->registroAcceso = new RegistroAccesoModelo();
         $this->historialModelo = new HistorialRegistroModelo();
         $this->computadorController = new ComputadorController;
         $conn = new DataBase();
@@ -26,7 +26,7 @@ class RegistroIngresoController {
     }
 
     public function mostrarVistaRegistro() {
-        $ultimosRegistros = $this->registroIngresoModelo->obtenerUltimosRegistros();
+        $ultimosRegistros = $this->registroAcceso->obtenerUltimosRegistros();
         include_once __DIR__ . '/../views/gestion/registro_ingreso/registro_ingresos.php';
     }
 
@@ -75,7 +75,7 @@ class RegistroIngresoController {
             );
             
             // Verificar registro del día
-            $registro = $this->registroIngresoModelo->obtenerAsistenciaDelDia(
+            $registro = $this->registroAcceso->obtenerAsistenciaDelDia(
                 $asignacion_id, 
                 date('Y-m-d')
             );
@@ -132,13 +132,13 @@ class RegistroIngresoController {
      */
     private function gestionarAsignacion(int $usuario_id, ?int $computador_id): int {
         // Buscar asignación existente
-        $asignacion_id = $this->registroIngresoModelo->obtenerAsignacionId(
+        $asignacion_id = $this->registroAcceso->obtenerAsignacionId(
             $usuario_id, 
             $computador_id
         );
         
         // Crear nueva si no existe
-        return $asignacion_id ?: $this->registroIngresoModelo->crearAsignacion(
+        return $asignacion_id ?: $this->registroAcceso->crearAsignacion(
             $usuario_id, 
             $computador_id
         );
@@ -150,10 +150,23 @@ class RegistroIngresoController {
      * @param int $asignacion_id ID de asignación
      * @param array $usuario Datos del usuario
      */
+    /**
+     * Procesa un registro existente (cierre de sesión)
+     * @param array $registro Datos del registro
+     * @param int $asignacion_id ID de asignación
+     * @param array $usuario Datos del usuario
+     */
     private function procesarRegistroExistente(array $registro, int $asignacion_id, array $usuario) {
+        // Verificar si el usuario ya ha completado su registro (tiene hora de entrada y salida)
+        if ($registro['hora_entrada'] && $registro['hora_salida']) {
+            $this->db->commit();
+            $this->jsonResponse(false, 'Este usuario ya ha completado su registro', 400);
+        }
+
+        // Si el registro está activo (solo tiene hora de entrada), registrar la salida
         if ($registro['estado'] === 'Activo') {
             // Registrar hora de salida
-            $this->registroIngresoModelo->registrarSalida(
+            $this->registroAcceso->registrarSalida(
                 $asignacion_id, 
                 date('Y-m-d'), 
                 date('H:i:s')
@@ -162,9 +175,12 @@ class RegistroIngresoController {
             $this->jsonResponse(true, "Salida registrada para {$usuario['nombre']}");
         }
         
-        // Registro ya completado
-        $this->db->commit();
-        $this->jsonResponse(false, 'Asistencia ya completada hoy', 400);
+        // Si el registro no está activo y no tiene hora de salida, pero ya tiene hora de entrada
+        // (esto podría ser redundante, pero es un manejo adicional)
+        if ($registro['hora_entrada'] && !$registro['hora_salida']) {
+            $this->db->commit();
+            $this->jsonResponse(false, 'Este usuario ya ha registrado su entrada', 400);
+        }
     }
 
     /**
@@ -174,7 +190,7 @@ class RegistroIngresoController {
      */
     private function registrarNuevaEntrada(int $asignacion_id, array $usuario) {
         // Registrar nueva entrada
-        $this->registroIngresoModelo->registrarEntrada(
+        $this->registroAcceso->registrarEntrada(
             date('Y-m-d'),
             date('H:i:s'),
             $asignacion_id,

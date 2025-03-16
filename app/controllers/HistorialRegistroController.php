@@ -35,7 +35,7 @@
             }
         
             // 4 Definir el límite de usuarios por página y el offset
-            $limit = 1;
+            $limit = 15;
             $offset = ($page - 1) * $limit;
             
             // 5 Obtener los usuarios del rol seleccionado

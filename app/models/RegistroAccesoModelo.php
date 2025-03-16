@@ -4,7 +4,7 @@
 require_once '../config/DataBase.php';
 
 // Definir la clase RegistroIngresoModelo
-class RegistroIngresoModelo {
+class RegistroAccesoModelo {
     private $db; // Variable para almacenar la conexión a la base de datos
 
     // Constructor de la clase

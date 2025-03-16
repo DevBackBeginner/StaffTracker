@@ -289,7 +289,7 @@
                 </a>
               </li>
               <li>
-                <a href="Acceso_visitante">
+                <a href="registrar-acceso-visitantes">
                   <i class="bi bi-person"></i>
                   <span>Visitantes</span>
                 </a>
