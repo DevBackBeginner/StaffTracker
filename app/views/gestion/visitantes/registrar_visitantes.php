@@ -22,27 +22,32 @@
         </nav>
     </div>
     <div class="login-container">
-        <form action="registrar_visitante" method="POST" onsubmit="return validarFormulario()">
+        <form action="registrar_visitante" method="POST" class="container mt-4 p-4 border rounded shadow-sm bg-light" onsubmit="return validarFormulario()">
             <!-- Campos comunes -->
             <div class="mb-3">
-                <input type="text" name="nombre" class="form-control" placeholder="Nombre" required>
+                <label for="nombre" class="form-label" style="color: #007832;">Nombre</label>
+                <input type="text" name="nombre" id="nombre" class="form-control" placeholder="Nombre" required>
             </div>
             <div class="mb-3">
-                <input type="text" name="apellido" class="form-control" placeholder="Apellido" required>
+                <label for="apellido" class="form-label" style="color: #007832;">Apellido</label>
+                <input type="text" name="apellido" id="apellido" class="form-control" placeholder="Apellido" required>
             </div>
             <div class="mb-3">
-                <input type="text" name="telefono" class="form-control" placeholder="Teléfono" required>
+                <label for="telefono" class="form-label" style="color: #007832;">Teléfono</label>
+                <input type="text" name="telefono" id="telefono" class="form-control" placeholder="Teléfono" required>
             </div>
             <div class="mb-3">
-                <input type="text" name="numero_identidad" class="form-control" placeholder="Número de Identidad" required>
+                <label for="numero_identidad" class="form-label" style="color: #007832;">Número de Identidad</label>
+                <input type="text" name="numero_identidad" id="numero_identidad" class="form-control" placeholder="Número de Identidad" required>
             </div>
             <div class="mb-3">
-                <input type="text" name="asunto" class="form-control" placeholder="Asunto" required>
+                <label for="asunto" class="form-label" style="color: #007832;">Asunto</label>
+                <input type="text" name="asunto" id="asunto" class="form-control" placeholder="Asunto" required>
             </div>
 
             <!-- Preguntar si tiene computador -->
             <div class="mb-3">
-                <label for="tiene_computador">¿Tiene computador?</label>
+                <label for="tiene_computador" class="form-label" style="color: #007832;">¿Tiene computador?</label>
                 <select name="tiene_computador" id="tiene_computador" class="form-select" onchange="mostrarCamposComputador()" required>
                     <option value="">Seleccione una opción</option>
                     <option value="1">Sí</option>
@@ -63,7 +68,9 @@
                 </div>
             </div>
 
-            <button type="submit" class="btn btn-custom">Registrar</button>
+            <div class="text-center">
+                <button type="submit" class="btn btn-custom" style="background-color: #007832; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">Registrar</button>
+            </div>
         </form>
     </div>
     <script src="assets/js/registro_visitantes.js"></script>

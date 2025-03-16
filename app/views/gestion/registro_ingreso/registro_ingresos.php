@@ -75,4 +75,5 @@
 
 <?php
 // Incluimos el footer que contiene la estructura HTML final
+
 include_once __DIR__ . '/../dashboard/layouts/footer_main.php';

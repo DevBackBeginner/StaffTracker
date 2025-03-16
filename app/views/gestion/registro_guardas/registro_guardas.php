@@ -133,7 +133,9 @@
 
                                 <!-- Botón de registro -->
                                 <div class="col-12 mt-4">
-                                    <button class="btn btn-primary w-100 py-2 fw-bold" type="submit">Registrarse</button>
+                                    <button class="btn btn-success w-100 py-2 fw-bold" type="submit" style="background-color: #007832; border-color: #007832;">
+                                        <i class="bi bi-check-circle me-2"></i>Registrarse
+                                    </button>
                                 </div>
                             </form>
                         </div>

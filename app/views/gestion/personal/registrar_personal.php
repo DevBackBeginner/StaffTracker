@@ -19,21 +19,26 @@
             </ol>
         </nav>
     </div><!-- End Page Title -->
-    <form action="registrar_personal" method="POST" class="container mt-4" onsubmit="return validarFormulario()">
+    <form action="registrar_personal" method="POST" class="container mt-4 p-4 border rounded shadow-sm bg-light" onsubmit="return validarFormulario()">
         <!-- Campos comunes -->
         <div class="mb-3">
-            <input type="text" name="nombre" class="form-control" placeholder="Nombre" required>
+            <label for="nombre" class="form-label">Nombre</label>
+            <input type="text" name="nombre" id="nombre" class="form-control" placeholder="Nombre" required>
         </div>
         <div class="mb-3">
-            <input type="text" name="apellido" class="form-control" placeholder="Apellido" required>
+            <label for="apellido" class="form-label">Apellido</label>
+            <input type="text" name="apellido" id="apellido" class="form-control" placeholder="Apellido" required>
         </div>
         <div class="mb-3">
-            <input type="text" name="numero_identidad" class="form-control" placeholder="Número de Identidad" required>
+            <label for="numero_identidad" class="form-label">Número de Identidad</label>
+            <input type="text" name="numero_identidad" id="numero_identidad" class="form-control" placeholder="Número de Identidad" required>
         </div>
         <div class="mb-3">
-            <input type="text" name="telefono" class="form-control" placeholder="Teléfono" required>
+            <label for="telefono" class="form-label">Teléfono</label>
+            <input type="text" name="telefono" id="telefono" class="form-control" placeholder="Teléfono" required>
         </div>
         <div class="mb-3">
+            <label for="rol" class="form-label">Rol</label>
             <select name="rol" id="rol" class="form-select" required onchange="mostrarCamposAdicionales()">
                 <option value="">Seleccione un rol</option>
                 <option value="Funcionario">Funcionario</option>
@@ -88,7 +93,9 @@
             </div>
         </div>
 
-        <button type="submit" class="btn btn-primary">Registrar</button>
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary" style="background-color: #007832; border-color: #007832;">Registrar</button>
+        </div>
     </form>
     <script src="assets/js/registro_personal.js"></script>
 
