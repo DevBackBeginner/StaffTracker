@@ -29,7 +29,7 @@
                 if (empty($correo) || empty($contrasena)) {
                     // Se crea una cookie que durará 5 segundos
                     setcookie("flash_error", "Por favor, ingresa tu correo y contraseña.", time() + 5, "/");
-                    header("Location: login");
+                    header("Location: Login");
                     exit;
                 }
         
@@ -57,17 +57,15 @@
                 } else {
                     // Establece un mensaje de error en una cookie
                     setcookie("flash_error", "Correo electrónico o contraseña incorrectos.", time() + 5, "/");
-                    header("Location: login");
+                    header("Location: Login");
                     exit;
                 }
             } else {
                 setcookie("flash_error", "Acceso no autorizado.", time() + 5, "/");
-                header("Location: login");
+                header("Location: Login");
                 exit;
             }
         }
-        
-        
 
         public function Logout() {
             // Iniciar la sesión si no está iniciada

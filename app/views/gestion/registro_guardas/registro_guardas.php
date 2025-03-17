@@ -69,7 +69,7 @@
                                 </div>
 
                                 <!-- Tercera fila: Correo Electrónico, Turno -->
-                                <div class="col-md-6"> <!-- Cambiado a col-md-6 -->
+                                <div class="col-md-12"> <!-- Cambiado a col-md-6 -->
                                     <label for="correo" class="form-label fw-bold" style="color: #007832;">Correo Electrónico</label>
                                     <div class="input-group">
                                         <span class="input-group-text"><i class="bi bi-envelope"></i></span>
@@ -77,60 +77,7 @@
                                     </div>
                                     <div class="invalid-feedback">Por favor, ingrese un correo electrónico válido.</div>
                                 </div>
-                                <div class="col-md-6"> <!-- Cambiado a col-md-6 -->
-                                    <label for="turno" class="form-label fw-bold" style="color: #007832;">Turno</label>
-                                    <div class="input-group">
-                                        <span class="input-group-text"><i class="bi bi-clock"></i></span>
-                                        <select name="turno" id="turno" class="form-control" required>
-                                            <option value="" selected disabled>Selecciona un turno</option>
-                                            <option value="Mañana">Mañana</option>
-                                            <option value="Tarde">Tarde</option>
-                                            <option value="Noche">Noche</option>
-                                        </select>
-                                    </div>
-                                    <div class="invalid-feedback">Por favor, seleccione un turno.</div>
-                                </div>
-
-                                <!-- Cuarta fila: Contraseña, Confirmar Contraseña -->
-                                <div class="col-md-6"> <!-- Cambiado a col-md-6 -->
-                                    <label for="password" class="form-label fw-bold" style="color: #007832;">Contraseña</label>
-                                    <div class="input-group">
-                                        <span class="input-group-text"><i class="bi bi-lock"></i></span>
-                                        <input type="password" name="password" class="form-control" id="password" required>
-                                        <button class="btn btn-outline-secondary" type="button" onclick="togglePassword('password', 'togglePasswordIcon1')">
-                                            <i id="togglePasswordIcon1" class="bi bi-eye"></i>
-                                        </button>
-                                    </div>
-                                    <div class="invalid-feedback">Por favor, ingrese una contraseña.</div>
-                                </div>
-                                <div class="col-md-6"> <!-- Cambiado a col-md-6 -->
-                                    <label for="confirm_password" class="form-label fw-bold" style="color: #007832;">Confirmar Contraseña</label>
-                                    <div class="input-group">
-                                        <span class="input-group-text"><i class="bi bi-lock"></i></span>
-                                        <input type="password" name="confirm_password" class="form-control" id="confirm_password" required>
-                                        <button class="btn btn-outline-secondary" type="button" onclick="togglePassword('confirm_password', 'togglePasswordIcon2')">
-                                            <i id="togglePasswordIcon2" class="bi bi-eye"></i>
-                                        </button>
-                                    </div>
-                                    <div class="invalid-feedback">Por favor, confirme su contraseña.</div>
-                                </div>
-
-                                <!-- Quinta fila: Foto de Perfil -->
-                                <div class="col-12"> <!-- Ocupa el 100% del ancho -->
-                                    <label for="foto_perfil" class="form-label fw-bold" style="color: #007832;">Foto de Perfil</label>
-                                    <input type="file" name="foto_perfil" class="form-control" id="foto_perfil" accept="image/*">
-                                    <div class="invalid-feedback">Por favor, suba una foto de perfil.</div>
-                                </div>
-
-                                <!-- Sexta fila: Términos y Condiciones -->
-                                <div class="col-12 mt-3">
-                                    <div class="form-check">
-                                        <input class="form-check-input" name="terms" type="checkbox" value="" id="acceptTerms" required>
-                                        <label class="form-check-label" for="acceptTerms">Estoy de acuerdo con los <a href="#" class="text-decoration-none">términos y condiciones</a></label>
-                                        <div class="invalid-feedback">Debes aceptar los términos antes de enviar.</div>
-                                    </div>
-                                </div>
-
+                             
                                 <!-- Botón de registro -->
                                 <div class="col-12 mt-4">
                                     <button class="btn btn-success w-100 py-2 fw-bold" type="submit" style="background-color: #007832; border-color: #007832;">

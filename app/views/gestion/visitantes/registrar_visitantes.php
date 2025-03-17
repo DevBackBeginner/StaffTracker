@@ -24,50 +24,60 @@
     <div class="login-container">
         <form action="registrar_visitante" method="POST" class="container mt-4 p-4 border rounded shadow-sm bg-light" onsubmit="return validarFormulario()">
             <!-- Campos comunes -->
-            <div class="mb-3">
-                <label for="nombre" class="form-label" style="color: #007832;">Nombre</label>
-                <input type="text" name="nombre" id="nombre" class="form-control" placeholder="Nombre" required>
-            </div>
-            <div class="mb-3">
-                <label for="apellido" class="form-label" style="color: #007832;">Apellido</label>
-                <input type="text" name="apellido" id="apellido" class="form-control" placeholder="Apellido" required>
-            </div>
-            <div class="mb-3">
-                <label for="telefono" class="form-label" style="color: #007832;">Teléfono</label>
-                <input type="text" name="telefono" id="telefono" class="form-control" placeholder="Teléfono" required>
-            </div>
-            <div class="mb-3">
-                <label for="numero_identidad" class="form-label" style="color: #007832;">Número de Identidad</label>
-                <input type="text" name="numero_identidad" id="numero_identidad" class="form-control" placeholder="Número de Identidad" required>
-            </div>
-            <div class="mb-3">
-                <label for="asunto" class="form-label" style="color: #007832;">Asunto</label>
-                <input type="text" name="asunto" id="asunto" class="form-control" placeholder="Asunto" required>
-            </div>
+            
+            <div class="row">
+                <div class="mb-3 col-md-6">
+                    <label for="nombre" class="form-label" style="color: #007832;">Nombre</label>
+                    <input type="text" name="nombre" id="nombre" class="form-control" placeholder="Nombre" required>
+                </div>
+                <div class="mb-3 col-md-6">
+                    <label for="apellido" class="form-label" style="color: #007832;">Apellido</label>
+                    <input type="text" name="apellido" id="apellido" class="form-control" placeholder="Apellido" required>
+                </div>
+                <div class="mb-3 col-md-6">
+                    <label for="telefono" class="form-label" style="color: #007832;">Teléfono</label>
+                    <input type="text" name="telefono" id="telefono" class="form-control" placeholder="Teléfono" required>
+                </div>
+                <div class="mb-3 col-md-6">
+                    <label for="numero_identidad" class="form-label" style="color: #007832;">Número de Identidad</label>
+                    <input type="text" name="numero_identidad" id="numero_identidad" class="form-control" placeholder="Número de Identidad" required>
+                </div>
+                <div class="mb-3 col-md-6">
+                    <label for="asunto" class="form-label" style="color: #007832;">Asunto</label>
+                    <input type="text" name="asunto" id="asunto" class="form-control" placeholder="Asunto" required>
+                </div>
 
-            <!-- Preguntar si tiene computador -->
-            <div class="mb-3">
-                <label for="tiene_computador" class="form-label" style="color: #007832;">¿Tiene computador?</label>
-                <select name="tiene_computador" id="tiene_computador" class="form-select" onchange="mostrarCamposComputador()" required>
-                    <option value="">Seleccione una opción</option>
-                    <option value="1">Sí</option>
-                    <option value="0">No</option>
-                </select>
+                <!-- Preguntar si tiene computador -->
+                <div class="mb-3 col-md-6">
+                    <label for="tiene_computador" class="form-label" style="color: #007832;">¿Tiene computador?</label>
+                    <select name="tiene_computador" id="tiene_computador" class="form-select" onchange="mostrarCamposComputador()" required>
+                        <option value="">Seleccione una opción</option>
+                        <option value="1">Sí</option>
+                        <option value="0">No</option>
+                    </select>
+                </div>
+
+                <div id="camposComputador" class="campos-adicionales mb-3 d-none">
+                    <div class="row">
+                        
+                        <div class="mb-3 col-md-6">
+                            <input type="text" name="marca" class="form-control" placeholder="Marca del computador">
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <input type="text" name="codigo" class="form-control" placeholder="Código del computador">
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <input type="hidden" name="tipo_computador" value="Personal"> <!-- Tipo fijo como "Sena" -->
+                        </div>
+                    </div>
+                    
+                </div>
+
             </div>
+            
 
             <!-- Campos adicionales para computador (se muestran solo si tiene computador) -->
-            <div id="camposComputador" class="campos-adicionales mb-3 d-none">
-                <div class="mb-3">
-                    <input type="hidden" name="tipo_computador" value="Personal"> <!-- Tipo fijo como "Sena" -->
-                </div>
-                <div class="mb-3">
-                    <input type="text" name="marca" class="form-control" placeholder="Marca del computador">
-                </div>
-                <div class="mb-3">
-                    <input type="text" name="codigo" class="form-control" placeholder="Código del computador">
-                </div>
-            </div>
-
+            
             <div class="text-center">
                 <button type="submit" class="btn btn-custom" style="background-color: #007832; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">Registrar</button>
             </div>

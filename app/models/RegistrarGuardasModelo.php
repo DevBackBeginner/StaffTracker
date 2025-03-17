@@ -11,7 +11,7 @@
             $this->db = $conn->getConnection();        
         }
 
-        public function registrarGuarda($nombre, $apellidos, $telefono, $numero_identidad, $correo, $passwordHash, $turno, $foto_perfil) {
+        public function registrarGuarda($nombre, $apellidos, $telefono, $numero_identidad, $correo, $passwordHash, $foto_perfil) {
             try {
                 // Inicia la transacción
                 $this->db->beginTransaction();
@@ -52,7 +52,6 @@
                 ");
                 $stmt->execute([
                     'usuario_id' => $usuario_id,
-                    'turno'      => $turno
                 ]);
         
                 // Confirma la transacción

@@ -29,9 +29,9 @@ if (!isset($totalPaginas)) {
         ];
         ?>
         <?php foreach ($roles as $clave => $valor): ?>
-            <li class="nav-item">
+            <li class="nav-item" >
                 <!-- Enlace para cada rol, activo si coincide con el rol actual -->
-                <a class="nav-link <?= ($rol === $clave) ? 'active' : '' ?>" 
+                <a style="color: #007832;" class="nav-link  <?= ($rol === $clave) ? 'active' : '' ?>" 
                     href="?rol=<?= urlencode($clave) ?>">
                     <?= $valor ?>
                 </a>

@@ -63,8 +63,8 @@
                                 <div class="col-lg-9 col-md-8 text-muted">Centro de Desarrollo Agroindustrial y Empresarial - CDAE (Villeta, Cundinamarca)</div>
                             </div>
                             <div class="row">
-                                <div class="col-lg-3 col-md-4 label">Trabajo</div>
-                                <div class="col-lg-9 col-md-8 text-muted"><?= ($_SESSION['usuario']['rol'] === 'admin') ? 'Administrador' : htmlspecialchars($_SESSION['usuario']['rol']) ?> del sistema</div>
+                                <div class="col-lg-3 col-md-4 label">Cargo</div>
+                                <div class="col-lg-9 col-md-8 text-muted"><?= ($_SESSION['usuario']['rol'] === 'Admin') ? 'Coordinador' : htmlspecialchars($_SESSION['usuario']['rol']) ?></div>
                             </div>
                             <div class="row">
                                 <div class="col-lg-3 col-md-4 label">Dirección</div>
@@ -99,7 +99,7 @@
                                 </div>
 
                                 <div class="mb-3">
-                                    <label for="nombre" class="form-label">Nombre</label>
+                                    <label for="nombre" class="form-label">Nombres</label>
                                     <input name="nombre" type="text" class="form-control" id="nombre" value="<?= htmlspecialchars($_SESSION['usuario']['nombre'] ?? '') ?>" required>
                                 </div>
 

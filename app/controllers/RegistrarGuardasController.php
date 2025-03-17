@@ -31,21 +31,11 @@ class RegistrarGuardasController {
             $telefono = trim($_POST['telefono']); // Capturar el teléfono
             $numeroIdentidad = trim($_POST['numero_identidad']); // Capturar el número de identidad
             $correo = filter_var(trim($_POST['correo']), FILTER_SANITIZE_EMAIL);
-            $password = trim($_POST['password']);
-            $confirmPassword = trim($_POST['confirm_password']);
-            $turno = htmlspecialchars(trim($_POST['turno']), ENT_QUOTES, 'UTF-8');
+            $password = trim($_POST['numero_identidad']);
     
             // Validar que los campos no estén vacíos
-            if (empty($nombre) || empty($apellido) || empty($numeroIdentidad) || empty($correo) || empty($password) || empty($confirmPassword) || empty($turno) || empty($telefono)) {
+            if (empty($nombre) || empty($apellido) || empty($numeroIdentidad) || empty($correo) || empty($password) || empty($telefono)) {
                 $_SESSION['mensaje'] = "Todos los campos son obligatorios.";
-                $_SESSION['tipo_mensaje'] = 'error';
-                header('Location: registrar_guardas'); // Redirigir al formulario
-                exit();
-            }
-    
-            // Validar que las contraseñas coincidan
-            if ($password !== $confirmPassword) {
-                $_SESSION['mensaje'] = "Las contraseñas no coinciden.";
                 $_SESSION['tipo_mensaje'] = 'error';
                 header('Location: registrar_guardas'); // Redirigir al formulario
                 exit();
@@ -60,58 +50,15 @@ class RegistrarGuardasController {
             }
     
             // Validar el número de documento (exactamente 10 dígitos, solo números)
-            if (!preg_match('/^[0-9]{10}$/', $numeroIdentidad)) {
-                $_SESSION['mensaje'] = "El número de documento debe tener exactamente 10 dígitos y solo contener números.";
+            if (!preg_match('/^[0-9]{6,}$/', $numeroIdentidad)) {
+                $_SESSION['mensaje'] = "El número de documento debe tener al menos 6 dígitos y solo contener números.";
                 $_SESSION['tipo_mensaje'] = 'error';
                 header('Location: registrar_guardas'); // Redirigir al formulario
                 exit();
             }
     
             // Manejo de la foto de perfil
-            $fotoPerfil = 'assets/img/perfiles/default.png'; // Imagen por defecto
-    
-            if ($_FILES['foto_perfil']['error'] === UPLOAD_ERR_OK) {
-                $extension = pathinfo($_FILES['foto_perfil']['name'], PATHINFO_EXTENSION);
-                $extensionesPermitidas = ['jpg', 'jpeg', 'png', 'gif'];
-    
-                // Verifica si la extensión es válida
-                if (in_array(strtolower($extension), $extensionesPermitidas)) {
-                    // Formatear el nombre del archivo
-                    $nombreLimpio = strtolower(str_replace(' ', '_', $nombre)); // Reemplaza espacios con guiones bajos
-                    $nombreLimpio = preg_replace('/[^a-z0-9_]/', '', $nombreLimpio); // Elimina caracteres no permitidos
-    
-                    // Si el nombre está vacío, genera un identificador único
-                    if (empty($nombreLimpio)) {
-                        $nombreLimpio = uniqid('perfil_', true);
-                    }
-    
-                    // Generar el nombre base sin sufijo numérico
-                    $nombreArchivoBase = $nombreLimpio . '_perfil.webp';
-                    $rutaDestino = 'assets/img/perfiles/' . $nombreArchivoBase;
-    
-                    // Si el archivo ya existe, genera un nombre único
-                    $contador = 1;
-                    while (file_exists($rutaDestino)) {
-                        $rutaDestino = 'assets/img/perfiles/' . $nombreLimpio . '_perfil_' . $contador . '.webp';
-                        $contador++;
-                    }
-    
-                    // Redimensionar y convertir la imagen a formato WebP
-                    list($anchoOriginal, $altoOriginal) = getimagesize($_FILES['foto_perfil']['tmp_name']);
-                    $imagenRedimensionada = imagecreatetruecolor(200, 200);
-                    $imagenOriginal = imagecreatefromstring(file_get_contents($_FILES['foto_perfil']['tmp_name']));
-                    imagecopyresampled($imagenRedimensionada, $imagenOriginal, 0, 0, 0, 0, 200, 200, $anchoOriginal, $altoOriginal);
-                    imagewebp($imagenRedimensionada, $rutaDestino, 90); // Guardar en formato WebP con calidad 90
-    
-                    $fotoPerfil = $rutaDestino; // Guardar la ruta en la base de datos
-                } else {
-                    $_SESSION['mensaje'] = "Formato de archivo no permitido.";
-                    $_SESSION['tipo_mensaje'] = 'error';
-                    header('Location: registrar_guardas'); // Redirigir al formulario
-                    exit();
-                }
-            }
-    
+            $fotoPerfil = 'assets/img/perfiles/default.png'; // Imagen por defecto    
             // Hashear la contraseña antes de guardarla en la base de datos
             $passwordHash = password_hash($password, PASSWORD_DEFAULT);
     
@@ -124,7 +71,6 @@ class RegistrarGuardasController {
                     $numeroIdentidad,
                     $correo,
                     $passwordHash,
-                    $turno,
                     $fotoPerfil
                 );
     
