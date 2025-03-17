@@ -125,7 +125,7 @@
     <section class="section section-sm section-fluid bg-default text-center" id="projects">
       <div class="container-fluid">
         <h2 class="wow fadeInLeft" style="font-size: 2.5em;">Nuestro Propósito</h2>
-        <p class="quote-jean wow fadeInRight" data-wow-delay=".1s" style="color: #00304D; font-size: 1.5em;">El objetivo principal de SENA Villeta es simplificar y agilizar el proceso de registro de entrada y salida de las personas que ingresan a nuestras instalaciones. Este sistema permite escanear los carnés de los instructores, capturando automáticamente la fecha y hora de su ingreso. Además, los visitantes podrán registrar el motivo de su visita, junto con sus datos personales, para un control preciso y detallado.</p>
+        <p class="quote-jean wow fadeInRight" data-wow-delay=".1s" style="color: #00304D; font-size: 1.5em;">El objetivo principal de StaffTracker es simplificar y agilizar el proceso de registro de entrada y salida de las personas que ingresan al centro de desarrollo agroindustrial y empresarial sena villeta. Este sistema permite escanear los carnet de los instructores,directivos,funcionarios, capturando automáticamente la fecha y hora de su ingreso. Además, se podra registrar visitantes con su motivo de su visita, junto con sus datos personales, para un control preciso y detallado.</p>
       </div>
     </section>
 
@@ -215,7 +215,7 @@
   </div>
 </section>
 
-<h2>Sede SENA Villeta</h2>
+<h2>Centro de desarrollo agroindustrial y empresarial sena villeta</h2>
 <!-- Bottom Banner-->
 <section class="section section-fluid"><a class="section-banner" href="https://www.templatemonster.com/intense-multipurpose-html-template.html" style="background-image: url(images/banner/banner-bg-01-1920x310.jpg); background-image: -webkit-image-set( url(images/banner/banner-bg-01-1920x310.jpg) 1x, url(images/banner/banner-bg-01-3840x620.jpg) 2x )" target="_blank"><img src="/ControlAsistencia/public/assets/img/senaaire.jpg" srcset="/ControlAsistencia/public/assets/img/senaaire.jpg 1x, /ControlAsistencia/public/assets/img/senaaire@2x.jpg 2x" alt="" width="1600" height="310"></a></section>
 

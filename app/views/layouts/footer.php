@@ -2,7 +2,7 @@
         <div class="containers p-3"> <!-- Reducir el padding -->
             <div class="row">
                 <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
-                    <h5 class="text-uppercase" style="font-size: 1rem;">SENA Villeta</h5> <!-- Reducir el tamaño del título -->
+                    <h5 class="text-uppercase" style="font-size: 1rem;">Centro de desarrollo agroindustrial y empresarial sena villeta</h5> <!-- Reducir el tamaño del título -->
                     <p style="font-size: 0.85rem;"> <!-- Reducir el tamaño del texto -->
                         El SENA Villeta es una institución educativa que ofrece formación técnica y tecnológica de alta calidad, contribuyendo al desarrollo de la comunidad de la región.
                     </p>
@@ -12,15 +12,6 @@
                     <ul class="list-unstyled" style="font-size: 0.85rem;"> <!-- Reducir el tamaño del texto -->
                         <li><a href="https://www.sena.edu.co/es-co" class="text-dark">Visita nuestra página</a></li>
                         <li><a href="https://www.sena.edu.co/es-co/portal/villeta" class="text-dark">Sede Villeta</a></li>
-                    </ul>
-                </div>
-                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-                    <h5 class="text-uppercase" style="font-size: 1rem;">Contacto</h5> <!-- Reducir el tamaño del título -->
-                    <ul class="list-unstyled" style="font-size: 0.85rem;"> <!-- Reducir el tamaño del texto -->
-                        <li>Dirección: Calle 5 No. 5-08, Villeta, Cundinamarca</li>
-                        <li>Teléfono: (1) 123 4567</li>
-                        <li>Correo electrónico: villeta@sena.edu.co</li>
-                        <li>Skype: sena.villeta</li>
                     </ul>
                 </div>
             </div>
