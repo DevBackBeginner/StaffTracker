@@ -54,7 +54,7 @@
                     $rol = 'Instructor'; // Si el rol no es válido, asignamos uno por defecto
                 }
             
-                $limit = 1;
+                $limit = 15;
                 $offset = ($page - 1) * $limit;
             
                 $usuarios = $this->histroialModelo->obtenerUsuariosPorRol($rol, $limit, $offset);

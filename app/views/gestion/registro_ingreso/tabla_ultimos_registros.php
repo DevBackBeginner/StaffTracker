@@ -4,6 +4,7 @@
             <tr>
                 <th class="fs-6">Nombre</th>
                 <th class="fs-6">Cédula</th>
+                <th class="fs-6">Rol</th>
                 <th class="fs-6">Marca del Equipo</th>
                 <th class="fs-6">Código del Equipo</th>
                 <th class="fs-6">Tipo de Equipo</th>
@@ -18,6 +19,7 @@
                 <tr>
                     <td><?php echo htmlspecialchars($registro['nombre']); ?></td>
                     <td><?php echo htmlspecialchars($registro['numero_identidad']); ?></td>
+                    <td><?php echo htmlspecialchars($registro['rol']); ?></td>
                     <td>
                         <?php echo !empty($registro['marca']) 
                             ? htmlspecialchars($registro['marca']) 

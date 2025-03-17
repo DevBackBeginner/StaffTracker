@@ -111,6 +111,7 @@ class RegistroAccesoModelo {
                     ra.estado,
                     u.nombre,
                     u.numero_identidad,
+                    u.rol,
                     c.marca,
                     c.codigo,
                     c.tipo_computador AS tipo
