@@ -45,7 +45,7 @@
 
                             <div class="d-flex align-items-center">
                                 <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                    <i class="bi bi-cart"></i>
+                                    <i class="bi bi-calendar-check"></i> 
                                 </div>
                                 <div class="ps-3">
                                     <h6 id="total-registros"><?php echo $registrosDiarios; ?></h6>
@@ -79,7 +79,7 @@
 
                             <div class="d-flex align-items-center">
                                 <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                    <i class="bi bi-people"></i>
+                                    <i class="bi bi-person-badge"></i> 
                                 </div>
                                 <div class="ps-3">
                                     <h6 id="total-funcionarios"><?php echo $registroFuncionarioDiario; ?></h6>

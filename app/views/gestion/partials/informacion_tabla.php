@@ -2,14 +2,14 @@
     <table class="table table-hover table-striped">
         <thead class="thead-dark">
             <tr>
-                <!-- Columnas comunes -->
-                <th>Nombre</th>
-                <th>Telefono</th>
-                <th>N° Identidad</th>
                 <!-- Nuevas columnas -->
                 <th>Fecha</th>
                 <th>Hora de Entrada</th>
                 <th>Hora de Salida</th>
+                <!-- Columnas comunes -->
+                <th>N° Identidad</th>
+                <th>Nombre</th>
+                <th>Telefono</th>
                 <!-- Columnas específicas según el rol -->
                 <?php if ($rol === 'Instructor'): ?>
                     <th>Curso</th>
@@ -33,16 +33,16 @@
                 <!-- Mostrar datos de usuarios si existen -->
                 <?php foreach ($usuarios as $u): ?>
                     <tr>
-                        <td><?= htmlspecialchars($u['nombre'] . ' ' . $u['apellidos']) ?></td>
-                        <td><?= htmlspecialchars($u['telefono']) ?></td>
-                        <td><?= htmlspecialchars($u['numero_identidad']) ?></td>
-
                         <!-- Nuevas columnas -->
                         <td><?= htmlspecialchars($u['fecha'] ?? '') ?></td>
                         <td><?= htmlspecialchars($u['hora_entrada'] ?? '') ?></td>
                         <td>
                             <?= !empty($u['hora_salida']) ? htmlspecialchars($u['hora_salida']) : 'No registrada' ?>
                         </td>
+                        <td><?= htmlspecialchars($u['numero_identidad']) ?></td>
+
+                        <td><?= htmlspecialchars($u['nombre'] . ' ' . $u['apellidos']) ?></td>
+                        <td><?= htmlspecialchars($u['telefono']) ?></td>
                         <!-- Columnas específicas según el rol -->
                         <?php if ($rol === 'Instructor'): ?>
                             <td><?= htmlspecialchars($u['curso'] ?? '') ?></td>

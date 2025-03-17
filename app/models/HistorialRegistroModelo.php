@@ -141,9 +141,7 @@
                                ra.fecha, ra.hora_entrada, ra.hora_salida
                         FROM usuarios u
                         INNER JOIN asignaciones_computadores ac ON u.id = ac.usuario_id
-                        INNER JOIN registro_acceso ra ON ac.id = ra.asignacion_id
-                        WHERE DATE(ra.fecha) = CURDATE()";
-        
+                        INNER JOIN registro_acceso ra ON ac.id = ra.asignacion_id";        
                 // Filtrar por documento
                 if (!empty($documento)) {
                     $sql .= " AND u.numero_identidad LIKE :documento";
@@ -166,9 +164,8 @@
                 $sql .= " FROM usuarios u
                         INNER JOIN $tabla $alias ON u.id = $alias.usuario_id
                         INNER JOIN asignaciones_computadores ac ON u.id = ac.usuario_id
-                        INNER JOIN registro_acceso ra ON ac.id = ra.asignacion_id
-                        WHERE DATE(ra.fecha) = CURDATE()";
-        
+                        INNER JOIN registro_acceso ra ON ac.id = ra.asignacion_id";
+                                    
                 // Filtrar por documento
                 if (!empty($documento)) {
                     $sql .= " AND u.numero_identidad LIKE :documento";
