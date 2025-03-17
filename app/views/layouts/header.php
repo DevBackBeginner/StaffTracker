@@ -50,9 +50,6 @@
                </div>
                <div class="col-12 col-md-9">
                   <nav class="navbar navbar-expand-md navbar-light">
-                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMenu" aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navigation" style="border-color: #ffffff;">
-                        <span class="navbar-toggler-icon"></span>
-                     </button>
                      <div class="collapse navbar-collapse" id="navbarMenu">
                         <ul class="navbar-nav ms-auto">
                            <li class="nav-item active">
@@ -72,6 +69,9 @@
                            </li>
                         </ul>
                      </div>
+                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMenu" aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navigation" style="border-color: #ffffff;">
+                        <span class="navbar-toggler-icon"></span>
+                     </button>
                   </nav>
                </div>
             </div>
