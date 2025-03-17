@@ -6,7 +6,6 @@
   }
 ?>
 <!DOCTYPE html>
-  <html lang="es"> <!-- Cambia "en" por "es" -->
 
     <head>
       <meta charset="utf-8"
@@ -22,17 +21,21 @@
       <link href="assets/img/logo.png" rel="icon">
       <link href="assets/img/logo.png" rel="apple-touch-icon">
 
-      <!-- /vendor CSS Files -->
+      <!-- Framework base -->
       <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+      <!-- Iconos -->
       <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
       <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+      <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+
+      <!-- Librerías de terceros -->
       <link href="assets/vendor/quill/quill.snow.css" rel="stylesheet">
       <link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet">
-      <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
       <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
-      
+
+      <!-- Estilos personalizados -->
       <link href="assets/css/header_main.css" rel="stylesheet">
-      <link href="assets/css/footer_main.css" rel="stylesheet">
     </head>
     <body>
 
@@ -218,7 +221,7 @@
                   <li>
                       <a class="dropdown-item d-flex align-items-center" href="perfil">
                           <i class="bi bi-person"></i>
-                          <span>My Profile</span>
+                          <span>Perfil</span>
                       </a>
                   </li>
                   <li><hr class="dropdown-divider"></li>
@@ -226,7 +229,7 @@
                   <li>
                       <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
                           <i class="bi bi-gear"></i>
-                          <span>Account Settings</span>
+                          <span>Configuraciones</span>
                       </a>
                   </li>
                   <li><hr class="dropdown-divider"></li>
@@ -234,7 +237,7 @@
                   <li>
                       <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
                           <i class="bi bi-question-circle"></i>
-                          <span>Need Help?</span>
+                          <span>Soporte</span>
                       </a>
                   </li>
                   <li><hr class="dropdown-divider"></li>
@@ -242,7 +245,7 @@
                   <li>
                       <a class="dropdown-item d-flex align-items-center" href="logout">
                           <i class="bi bi-box-arrow-right"></i>
-                          <span>Sign Out</span>
+                          <span>Cerrar Session</span>
                       </a>
                   </li>
               </ul>
@@ -265,7 +268,7 @@
 
           <!-- Registrar Visitantes -->
           <li class="nav-item">
-            <a class="nav-link collapsed" href="registrar_vistitante">
+            <a class="nav-link collapsed" href="formulario_registro_visitante">
               <i class="bi bi-person-plus"></i>
               <span>Registrar Visitantes</span>
             </a>
@@ -286,7 +289,7 @@
                 </a>
               </li>
               <li>
-                <a href="Acceso_visitante">
+                <a href="registrar-acceso-visitantes">
                   <i class="bi bi-person"></i>
                   <span>Visitantes</span>
                 </a>
@@ -298,7 +301,7 @@
           <li class="nav-item">
             <a class="nav-link collapsed" href="panel_ingreso">
               <i class="bi bi-list-check"></i>
-              <span>Consultar Registros</span>
+              <span>Historial de registros</span>
             </a>
           </li><!-- End Consultar Registros Nav -->
 
@@ -325,15 +328,9 @@
                     </a>
                   </li>
                   <li>
-                    <a href="editar_usuario">
-                      <i class="bi bi-pencil"></i>
-                      <span>Editar Usuario</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="eliminar_usuario">
-                      <i class="bi bi-trash"></i>
-                      <span>Eliminar Usuario</span>
+                    <a href="Listado_Usuarios">
+                      <i class="bi bi-list-ul"></i>
+                      <span>Listado de Usuarios</span>
                     </a>
                   </li>
                 </ul>
@@ -356,7 +353,7 @@
                 <span>Reportar Bugs</span>
               </a>
             </li><!-- End Contáctenos Nav -->
-          <?php endif ?>
+          <?php endif; ?>
           <!-- Cerrar Sesión -->
           <li class="nav-item">
             <a class="nav-link collapsed" href="logout">
@@ -365,6 +362,5 @@
             </a>
           </li><!-- End Cerrar Sección Nav -->
         </ul>
-      </aside>End Sidebar
-      
+      </aside>
       <main id="main" class="main">

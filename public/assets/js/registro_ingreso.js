@@ -1,149 +1,242 @@
 document.addEventListener('DOMContentLoaded', function () {
+    // ==============================================
+    // INICIALIZACIÓN DE COMPONENTES Y VARIABLES
+    // ==============================================
+    
+    // Modales de Bootstrap
     const modalTieneComputador = new bootstrap.Modal(document.getElementById('modalTieneComputador'));
     const modalTipoComputador = new bootstrap.Modal(document.getElementById('modalTipoComputador'));
     const modalSeleccionarComputador = new bootstrap.Modal(document.getElementById('modalSeleccionarComputador'));
+    const modalRegistrarComputador = new bootstrap.Modal(document.getElementById('modalRegistrarComputador'));
+    
+    // Elementos del DOM
     const selectComputadores = document.getElementById('selectComputadores');
     const btnSiComputador = document.getElementById('btnSiComputador');
     const btnNoComputador = document.getElementById('btnNoComputador');
     const btnPersonal = document.getElementById('btnPersonal');
     const btnSena = document.getElementById('btnSena');
     const btnConfirmarPC = document.getElementById('btnConfirmarPC');
+    const formRegistrarComputador = document.getElementById('formRegistrarComputador');
 
-    let codigoEscaneado = ''; // Almacena el código escaneado
-    let tipoComputador = null; // Almacena si el computador es Personal o del Sena
+    // Variables de estado
+    let codigoEscaneado = '';  // Almacena el código escaneado del usuario
+    let tipoComputador = null; // Almacena el tipo de computador seleccionado (Personal/Sena)
 
-    // Escuchar el evento 'input' en el campo de "Código"
+    // ==============================================
+    // MANEJO DEL ESCÁNER DE CÓDIGO
+    // ==============================================
     document.getElementById('codigo').addEventListener('input', function (event) {
-        codigoEscaneado = this.value.trim(); // Asignar el valor escaneado
-        console.log("Código escaneado:", codigoEscaneado); // Depuración
+        // Limpiar y validar código escaneado
+        codigoEscaneado = this.value.trim();
+        
+        // Expresión regular: solo letras y números
         if (codigoEscaneado.length > 0 && /^[a-zA-Z0-9]+$/.test(codigoEscaneado)) {
-            modalTieneComputador.show(); // Muestra el modal para preguntar si tiene computador
+            modalTieneComputador.show(); // Mostrar modal inicial
         }
     });
 
-    // Manejar la selección de "Sí" o "No" en el primer modal
+    // ==============================================
+    // MANEJO DE MODALES
+    // ==============================================
+    
+    // ----- Modal 1: ¿Tiene computador? -----
     btnSiComputador.addEventListener('click', () => {
-        modalTieneComputador.hide(); // Ocultar el primer modal
-        modalTipoComputador.show(); // Mostrar el modal para preguntar el tipo de computador
+        modalTieneComputador.hide();
+        modalTipoComputador.show(); // Mostrar modal de tipo de computador
     });
 
     btnNoComputador.addEventListener('click', () => {
-        // Registrar asistencia sin computador (computador_id = null)
-        registrarAsistencia(null);
+        gestionarAcceso(null);  // Registrar acceso sin computador
         modalTieneComputador.hide();
     });
 
-    // Manejar la selección de "Personal" o "Sena" en el segundo modal
+    // ----- Modal 2: Tipo de computador -----
     btnPersonal.addEventListener('click', () => {
         if (!codigoEscaneado) {
-            alert('Por favor, escanea un código válido.');
+            alert('⚠️ Escanea un código primero');
             return;
         }
         tipoComputador = 'Personal';
-        modalTipoComputador.hide(); // Ocultar el modal de tipo de computador
+        modalTipoComputador.hide();
         cargarComputadores(tipoComputador, codigoEscaneado); // Cargar computadores personales
-        modalSeleccionarComputador.show(); // Mostrar el modal para seleccionar computador
+        modalSeleccionarComputador.show();
     });
+
+    
 
     btnSena.addEventListener('click', () => {
         if (!codigoEscaneado) {
-            alert('Por favor, escanea un código válido.');
+            alert('⚠️ Escanea un código primero');
             return;
         }
         tipoComputador = 'Sena';
-        modalTipoComputador.hide(); // Ocultar el modal de tipo de computador
+        modalTipoComputador.hide();
         cargarComputadores(tipoComputador, codigoEscaneado); // Cargar computadores del Sena
-        modalSeleccionarComputador.show(); // Mostrar el modal para seleccionar computador
+        modalSeleccionarComputador.show();
     });
 
-    // Manejar la confirmación del computador en el tercer modal
+    // ----- Modal 3: Selección de computador -----
     btnConfirmarPC.addEventListener('click', () => {
         const computadorId = selectComputadores.value;
         if (computadorId) {
-            registrarAsistencia(computadorId);
+            gestionarAcceso(computadorId); // Registrar acceso con computador seleccionado
             modalSeleccionarComputador.hide();
         } else {
-            alert('Por favor, selecciona un computador.');
+            alert('❌ Selecciona un computador de la lista');
         }
     });
 
-    // Función para cargar los computadores disponibles
-    function cargarComputadores(tipoComputador, codigo) {
-        console.log("Dato enviado (tipoComputador):", tipoComputador);
-        console.log("Dato enviado (codigo):", codigo);
+    // ----- Volver desde Selección de Computador a Tipo de Computador -----
+    document.getElementById('btnVolverTipoDesdeSeleccion').addEventListener('click', () => {
+        modalSeleccionarComputador.hide();
+        modalTipoComputador.show(); // Muestra el modal anterior
+    });
 
+    // ==============================================
+    // REGISTRO DE NUEVO COMPUTADOR
+    // ==============================================
+    
+    // Botón dinámico para mostrar modal de registro
+    const btnRegistrarNuevoPC = document.createElement('button');
+    btnRegistrarNuevoPC.textContent = 'Registrar Nuevo Computador';
+    btnRegistrarNuevoPC.className = 'btn btn-warning flex-grow-1'; // Clase modificada
+    btnRegistrarNuevoPC.addEventListener('click', () => {
+        modalSeleccionarComputador.hide();
+        modalRegistrarComputador.show();
+    });
+    
+     // Agregar al contenedor flex
+    document.querySelector('#modalSeleccionarComputador .d-flex').appendChild(btnRegistrarNuevoPC);
+    // Manejo del formulario de registro
+    formRegistrarComputador.addEventListener('submit', function (event) {
+        event.preventDefault(); // Prevenir envío tradicional
+        
+        // Obtener valores del formulario
+        const marca = document.getElementById('marcaComputador').value;
+        const codigoPC = document.getElementById('codigoComputador').value;
+
+        // Validación básica
+        if (!marca || !codigoPC) {
+            alert('⚠️ Completa todos los campos');
+            return;
+        }
+
+        registrarNuevoComputador(marca, codigoPC, tipoComputador);
+    });
+
+    // ==============================================
+    // FUNCIONES PRINCIPALES
+    // ==============================================
+    
+    /**
+     * Carga computadores disponibles desde el servidor
+     * @param {string} tipoComputador - Tipo de computador (Personal/Sena)
+     * @param {string} codigo - Código del usuario
+     */
+    function cargarComputadores(tipoComputador, codigo) {
         fetch("obtener_computadores", {
             method: "POST",
             headers: { "Content-Type": "application/x-www-form-urlencoded" },
-            body: "tipoComputador=" + encodeURIComponent(tipoComputador) + 
-                  "&codigo=" + encodeURIComponent(codigo)
+            body: `tipoComputador=${encodeURIComponent(tipoComputador)}&codigo=${encodeURIComponent(codigo)}`
         })
         .then(response => {
-            console.log("Respuesta del servidor (computadores):", response);
-            if (!response.ok) {
-                throw new Error('Error en la solicitud: ' + response.statusText);
-            }
+            if (!response.ok) throw new Error('Error en la respuesta');
             return response.json();
         })
         .then(data => {
-            console.log("Datos recibidos (computadores):", data);
-            selectComputadores.innerHTML = ""; // Limpiar el select
-
+            selectComputadores.innerHTML = ""; // Limpiar select
+            
             if (Array.isArray(data) && data.length > 0) {
+                // Llenar con computadores disponibles
                 data.forEach(pc => {
-                    let option = document.createElement("option");
+                    const option = document.createElement("option");
                     option.value = pc.id;
-                    option.textContent = pc.marca + " - " + pc.codigo;
+                    option.textContent = `${pc.marca} - ${pc.codigo}`;
                     selectComputadores.appendChild(option);
                 });
             } else {
-                let option = document.createElement("option");
-                option.value = "";
+                // Opción por defecto si no hay resultados
+                const option = document.createElement("option");
                 option.textContent = "No hay computadores disponibles";
                 selectComputadores.appendChild(option);
             }
         })
         .catch(error => {
             console.error("Error al cargar computadores:", error);
-            alert('Error al cargar los computadores. Inténtalo más tarde.');
+            alert('❌ Error al cargar computadores');
         });
     }
 
-    // Función para registrar la asistencia
-    function registrarAsistencia(computadorId) {
+    /**
+     * Registra un nuevo computador en el sistema
+     * @param {string} marca - Marca del computador
+     * @param {string} codigoPC - Código único del computador
+     * @param {string} tipo - Tipo de computador (Personal/Sena)
+     */
+    function registrarNuevoComputador(marca, codigoPC, tipo) {
         const formData = new FormData();
-        formData.append('codigo', codigoEscaneado); // Enviar el código escaneado
-        formData.append('computador_id', computadorId || ''); // Enviar el computador_id (puede ser null o vacío)
+        formData.append('marca', marca);
+        formData.append('codigo', codigoPC);
+        formData.append('tipo', tipo);
 
-        // Depuración: Mostrar los datos que se están enviando
-        console.log("Datos enviados al servidor:");
-        for (let [key, value] of formData.entries()) {
-            console.log(key + ": " + value);
-        }
-
-        fetch('registrar_ingreso', {
+        fetch('registrar_computador', {
             method: 'POST',
             body: formData
         })
         .then(response => {
-            console.log("Respuesta del servidor:", response);
+            if (!response.ok) throw new Error('Error en el servidor');
+            return response.json();
+        })
+        .then(data => {
+            if (data.success) {
+                alert('✅ Computador registrado');
+                modalRegistrarComputador.hide();
+                gestionarAcceso(data.computador_id); // Registrar acceso con nuevo ID
+            } else {
+                alert(`❌ Error: ${data.message}`);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('❌ Error al registrar computador');
+        });
+    }
+
+    /**
+     * Gestiona el proceso completo de registro de acceso
+     * @param {number|null} computadorId - ID del computador o null
+     */
+    function gestionarAcceso(computadorId) {
+        const formData = new FormData();
+        formData.append('codigo', codigoEscaneado);
+        formData.append('computador_id', computadorId || '');
+
+        fetch('gestion_registro_acceso', {
+            method: 'POST',
+            body: formData
+        })
+        .then(async response => {
+            // Verificar si la respuesta no es exitosa (códigos 400, 404, etc.)
             if (!response.ok) {
-                throw new Error('Error en la solicitud: ' + response.statusText);
+                // Parsear la respuesta como JSON para obtener el mensaje de error
+                const errorData = await response.json();
+                throw new Error(errorData.message || 'Error en la solicitud');
             }
             return response.json();
         })
         .then(data => {
-            console.log("Datos recibidos:", data);
             if (data.success) {
-                alert(data.message); // Mostrar mensaje de éxito
-                document.getElementById('codigo').value = ''; // Limpiar el campo de código
+                alert(`✅ ${data.message}`);
+                document.getElementById('codigo').value = ''; // Resetear campo
+                window.location.reload(); // Actualizar lista de registros
             } else {
-                alert(data.message); // Mostrar mensaje de error
+                alert(`❌ ${data.message}`);
             }
         })
         .catch(error => {
-            console.error('Error en la solicitud:', error);
-            alert('Error en el sistema. Inténtalo más tarde.');
+            console.error('Error:', error);
+            alert(`❌ Error: ${error.message}`);
         });
     }
 });
+

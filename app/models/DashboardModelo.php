@@ -100,7 +100,7 @@
             $query = "SELECT COUNT(*) as total 
                     FROM registro_acceso 
                     WHERE DATE(fecha) = CURDATE()
-                        and tipo_usuario = 'personal_sena'";
+                        and tipo_usuario = 'Personal'";
             $stmt = $this->db->query($query);
             return $stmt->fetch(PDO::FETCH_ASSOC)['total'] ?? 0;
         }
@@ -111,7 +111,7 @@
             $query = "SELECT COUNT(*) as total 
                     FROM registro_acceso 
                     WHERE DATE(fecha) = DATE_SUB(CURDATE(), INTERVAL 1 DAY)
-                        AND tipo_usuario = 'personal_sena'";
+                        AND tipo_usuario = 'Personal'";
             $stmt = $this->db->query($query);
             return $stmt->fetch(PDO::FETCH_ASSOC)['total'] ?? 0;
         }
@@ -122,7 +122,7 @@
             $query = "SELECT COUNT(*) as total 
                     FROM registro_acceso 
                     WHERE YEARWEEK(fecha, 1) = YEARWEEK(CURDATE(), 1)
-                        AND tipo_usuario = 'personal_sena'";
+                        AND tipo_usuario = 'Personal'";
             $stmt = $this->db->query($query);
             return $stmt->fetch(PDO::FETCH_ASSOC)['total'] ?? 0;
         }
@@ -133,7 +133,7 @@
             $query = "SELECT COUNT(*) as total 
                     FROM registro_acceso 
                     WHERE YEARWEEK(fecha, 1) = YEARWEEK(DATE_SUB(CURDATE(), INTERVAL 1 WEEK), 1)
-                        AND tipo_usuario = 'personal_sena'";
+                        AND tipo_usuario = 'Personal'";
             $stmt = $this->db->query($query);
             return $stmt->fetch(PDO::FETCH_ASSOC)['total'] ?? 0;
         }
@@ -145,7 +145,7 @@
                     FROM registro_acceso 
                     WHERE MONTH(fecha) = MONTH(CURDATE())
                         AND YEAR(fecha) = YEAR(CURDATE())
-                        AND tipo_usuario = 'personal_sena'";
+                        AND tipo_usuario = 'Personal'";
             $stmt = $this->db->query($query);
             return $stmt->fetch(PDO::FETCH_ASSOC)['total'] ?? 0;
         }
@@ -157,7 +157,7 @@
                     FROM registro_acceso 
                     WHERE MONTH(fecha) = MONTH(DATE_SUB(CURDATE(), INTERVAL 1 MONTH))
                         AND YEAR(fecha) = YEAR(DATE_SUB(CURDATE(), INTERVAL 1 MONTH))
-                        AND tipo_usuario = 'personal_sena'";
+                        AND tipo_usuario = 'Personal'";
             $stmt = $this->db->query($query);
             return $stmt->fetch(PDO::FETCH_ASSOC)['total'] ?? 0;
         }

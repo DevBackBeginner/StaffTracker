@@ -18,30 +18,30 @@
         
                 // Inserta datos en la tabla "usuarios" (incluyendo apellidos y teléfono)
                 $stmt = $this->db->prepare("
-                    INSERT INTO usuarios (nombre, apellidos, telefono, numero_identidad)
-                    VALUES (:nombre, :apellidos, :telefono, :numero_identidad)
+                    INSERT INTO usuarios (nombre, apellidos, telefono, numero_identidad, rol)
+                    VALUES (:nombre, :apellidos, :telefono, :numero_identidad, :rol)
                     
                 ");
                 $stmt->execute([
                     'nombre' => $nombre,
                     'apellidos' => $apellidos, 
                     'telefono' => $telefono,    // Agregar teléfono
-                    'numero_identidad' => $numero_identidad
+                    'numero_identidad' => $numero_identidad,
+                    'rol' => 'guarda',
                 ]);
         
                 // Obtiene el ID generado
                 $usuario_id = $this->db->lastInsertId();
         
                 $stmt = $this->db->prepare("
-                    INSERT INTO usuarios_autenticados (usuario_id, correo, contrasena, rol, foto_perfil)
-                    VALUES (:usuario_id, :correo, :contrasena, :rol, :foto_perfil)
+                    INSERT INTO usuarios_autenticados (usuario_id, correo, contrasena,  foto_perfil)
+                    VALUES (:usuario_id, :correo, :contrasena, :foto_perfil)
                 ");
                 
                 $stmt->execute([
                     'usuario_id' => $usuario_id,
                     'correo'     => $correo,
                     'contrasena'   => $passwordHash,
-                    'rol'        => 'guarda',
                     'foto_perfil' => $foto_perfil
                 ]);
         

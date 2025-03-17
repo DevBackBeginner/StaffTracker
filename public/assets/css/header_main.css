@@ -36,7 +36,7 @@ h6 {
 # Main
 --------------------------------------------------------------*/
 #main {
-  margin-top: 40px;
+  margin-top: 60px;
   padding: 20px 30px;
   transition: all 0.3s;
 }
@@ -345,6 +345,8 @@ h6 {
   border-bottom: 2px solid #007832;
 }
 
+
+
 /*--------------------------------------------------------------
 # Header
 --------------------------------------------------------------*/
@@ -597,7 +599,7 @@ h6 {
   left: 0;
   bottom: 0;
   width: 300px;
-  z-index: 996;
+  z-index: 1; /* Sidebar con z-index bajo */
   transition: all 0.3s;
   padding: 20px;
   overflow-y: auto;
@@ -1207,13 +1209,14 @@ h6 {
 /*--------------------------------------------------------------
 # Footer
 --------------------------------------------------------------*/
-.footer {
-  padding: 20px 0;
-  margin-top: auto;
-
-  font-size: 14px;
-  transition: all 0.3s;
-  border-top: 1px solid #cddfff;
+footer {
+  font-size: 0.9rem; /* Reducir el tamaño de la fuente */
+  background: #ffffff;
+  margin-top: 40px;
+}
+.containers{
+  width: 100%;
+  margin: 0 auto;
 }
 
 .footer .copyright {
@@ -1228,3 +1231,10 @@ h6 {
   color: #012970;
 }
 
+.containers {
+  margin-left: 0;
+}
+
+.div_footer {
+  margin-left: 0;
+}

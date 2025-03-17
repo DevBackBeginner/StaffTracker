@@ -1,17 +1,29 @@
-/* Estilos para las tarjetas */
+/* Estilos para la tarjeta del formulario de escaneo */
 .custom-card {
-    border: none;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    background-color: #ffffff;
-    padding: 20px;
-    margin-bottom: 20px;
+    background-color: white; /* Fondo blanco para la tarjeta */
+    border: 1px solid #ddd; /* Borde sutil */
+    border-radius: 8px; /* Bordes redondeados */
 }
 
-.custom-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+.custom-card .card-body {
+    padding: 20px; /* Espaciado interno */
+}
+
+.custom-card .form-label {
+    font-weight: bold; /* Texto en negrita */
+    color: #007832; /* Color verde para el label, igual que los menús */
+}
+
+.custom-card .form-control {
+    border: 1px solid #ddd; /* Borde sutil para el input */
+    border-radius: 4px; /* Bordes redondeados */
+    padding: 10px; /* Espaciado interno */
+    font-size: 16px; /* Tamaño de fuente */
+}
+
+.custom-card .form-control:focus {
+    border-color: #007832; /* Cambia el color del borde al enfocar */
+    box-shadow: 0 0 5px rgba(0, 120, 50, 0.5); /* Sombra al enfocar */
 }
 
 /* Estilos para el encabezado de las tarjetas */

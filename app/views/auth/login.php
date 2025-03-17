@@ -5,7 +5,7 @@
 <div class="login-container">
     <div class="login-card">
         <!-- Imagen arriba del título -->
-        <div class="login-image" style="max-width: 150px; margin: 0 auto;">
+        <div class="login-image" style="max-width: 450px; margin: 0 auto; padding: 20px;">
             <img src="/ControlAsistencia/public/assets/img/logo.png" alt="Login Image" style="width: 100%;">
         </div>
         
@@ -24,7 +24,7 @@
         <form action="enviarLogin" method="POST">
             <!-- Correo -->
             <div class="input-group">
-                <label for="correo" class="input-label">Correo Electrónico</label>
+                <label for="correo" class="input-label" style="font-size: larger; color: #007832;">Correo Electrónico</label>
                 <input
                     type="email"
                     id="correo"
@@ -37,7 +37,7 @@
 
             <!-- Contraseña -->
             <div class="input-group">
-                <label for="password" class="input-label">Contraseña</label>
+                <label for="password" class="input-label" style="font-size: larger; color: #007832;">Contraseña</label>
                 <div class="input-password-wrapper">
                     <input
                         type="password"
@@ -68,27 +68,6 @@
         </form>
     </div>
 </div>
-
+<script src="assets/js/login.js"></script>
 <?php include_once __DIR__ . '/../../views/layouts/footer.php'; ?>
 
-<script src="assets/js/login.js"></script>
-
-<script>
-    // Función para eliminar los mensajes flash y limpiar las cookies después de 2 segundos
-    setTimeout(function() {
-        // Remover los mensajes del DOM
-        const errorMsg = document.querySelector('.error-message');
-        if (errorMsg) {
-            errorMsg.remove();
-        }
-        const successMsg = document.querySelector('.success-message');
-        if (successMsg) {
-            successMsg.remove();
-        }
-        // Borrar las cookies flash (para que no se muestren en recargas posteriores)
-        document.cookie = "flash_error=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-        document.cookie = "flash_success=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-        // Opcional: limpiar la URL eliminando los parámetros
-        history.replaceState(null, "", window.location.pathname);
-    }, 2000);
-</script>
