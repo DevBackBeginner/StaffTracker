@@ -1,5 +1,5 @@
- // Función para mostrar/ocultar campos adicionales según el rol seleccionado
- function mostrarCamposAdicionales() {
+   // Función para mostrar/ocultar campos adicionales según el rol seleccionado
+   function mostrarCamposAdicionales() {
     const rol = document.getElementById('rol').value;
     document.querySelectorAll('.campos-adicionales').forEach(div => div.classList.add('d-none')); // Ocultar todos los campos adicionales
 
@@ -29,17 +29,17 @@ function mostrarCamposComputador() {
 // Función para validar el formulario antes de enviarlo
 function validarFormulario() {
     const tieneComputador = document.getElementById('tiene_computador').value;
-    const camposComputador = document.getElementById('camposComputador');
-
+    
     if (tieneComputador === '1') {
         const tipoComputador = document.getElementById('tipo_computador').value;
         const marca = document.querySelector('input[name="marca"]').value;
         const codigo = document.querySelector('input[name="codigo"]').value;
 
+        // Solo validar campos obligatorios (no checkboxes)
         if (!tipoComputador || !marca || !codigo) {
-            alert('Por favor, complete todos los campos del computador.');
-            return false; // Evitar el envío del formulario
+            alert('Complete los campos del computador: tipo, marca y código');
+            return false;
         }
     }
-    return true; // Permitir el envío del formulario
+    return true;
 }

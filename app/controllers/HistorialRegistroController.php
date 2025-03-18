@@ -3,7 +3,7 @@
     session_start();
 
     // Se importa el modelo 'histroialModelo' para poder interactuar con la base de datos
-    require_once __DIR__ . '/../models/HistorialRegistroModelo.php';
+    require_once __DIR__ . '/../Models/HistorialRegistroModelo.php';
 
     class HistorialRegistroController {
 
@@ -46,7 +46,7 @@
             $totalPaginas = ($totalUsuarios > 0) ? ceil($totalUsuarios / $limit) : 1;
                     
             // 7 Cargar la vista con los datos
-            require_once __DIR__ . '/../views/gestion/historial_registros/historial_registros.php';
+            require_once __DIR__ . '/../Views/gestion/historial_registros/historial_registros.php';
         }
 
         public function filtroUsuarios() {
@@ -89,7 +89,7 @@
             ];
         
             // Incluir solo la tabla (sin layout)
-            include_once __DIR__ . '/../views/gestion/partials/informacion_tabla.php';
+            include_once __DIR__ . '/../Views/gestion/partials/informacion_tabla.php';
         }
                 
     }

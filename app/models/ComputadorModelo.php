@@ -34,11 +34,12 @@
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
 
-        public function ingresarComputador($marca, $codigo, $tipo_computador)
+        public function ingresarComputador($marca, $codigo, $mouse, $teclado, $tipo_computador)
         {
             try {
                 // Consulta SQL para insertar un nuevo computador
-                $sql = "INSERT INTO computadores (marca, codigo, tipo_computador) VALUES (:marca, :codigo, :tipo_computador)";
+                $sql = "INSERT INTO computadores (marca, codigo, mouse, teclado, tipo_computador) 
+                        VALUES (:marca, :codigo, :mouse, :teclado, :tipo_computador)";
                 
                 // Preparar la consulta
                 $stmt = $this->db->prepare($sql);
@@ -46,6 +47,8 @@
                 // Vincular los parámetros
                 $stmt->bindParam(':marca', $marca, PDO::PARAM_STR);
                 $stmt->bindParam(':codigo', $codigo, PDO::PARAM_STR);
+                $stmt->bindParam(':mouse', $mouse, PDO::PARAM_STR); // Nuevo parámetro
+                $stmt->bindParam(':teclado', $teclado, PDO::PARAM_STR); // Nuevo parámetro
                 $stmt->bindParam(':tipo_computador', $tipo_computador, PDO::PARAM_STR);
                 
                 // Ejecutar la consulta
@@ -63,17 +66,34 @@
         public function registrarAsignacionComputador($usuario_id, $computador_id)
         {
             try {
-                $sql = "INSERT INTO asignaciones_computadores (usuario_id, computador_id) VALUES (:usuario_id, :computador_id)";
+                // Consulta SQL para insertar la asignación
+                $sql = "INSERT INTO asignaciones_computadores (usuario_id, computador_id) 
+                        VALUES (:usuario_id, :computador_id)";
+                
+                // Preparar la consulta
                 $stmt = $this->db->prepare($sql);
+                
+                // Vincular los parámetros
                 $stmt->bindParam(':usuario_id', $usuario_id, PDO::PARAM_INT);
-                $stmt->bindParam(':computador_id', $computador_id, PDO::PARAM_INT);
+                
+                // Manejar el valor NULL para computador_id
+                if ($computador_id === null) {
+                    $stmt->bindValue(':computador_id', null, PDO::PARAM_NULL);
+                } else {
+                    $stmt->bindParam(':computador_id', $computador_id, PDO::PARAM_INT);
+                }
+                
+                // Ejecutar la consulta
                 $stmt->execute();
-                return true; // Devuelve true si la inserción fue exitosa
+                
+                // Devolver el ID de la asignación registrada
+                return $this->db->lastInsertId();
             } catch (PDOException $e) {
+                // Manejar errores de la base de datos
                 error_log("Error al registrar asignación de computador: " . $e->getMessage());
-                return false;
+                return false; // Retornar false en caso de error
             }
-        }   
+        }
 
 
         // Registrar la asignación del computador a un usuario (si es que guardas en 'asignaciones_computadores')

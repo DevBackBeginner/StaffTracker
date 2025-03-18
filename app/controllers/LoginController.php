@@ -1,5 +1,5 @@
 <?php
-    require_once __DIR__ . '/../models/LoginModelo.php';
+    require_once __DIR__ . '/../Models/LoginModelo.php';
 
     session_start(); // Iniciar la sesión
 
@@ -13,7 +13,7 @@
 
         public function mostrarLogin() 
         {
-            include_once __DIR__ . '/../views/auth/login.php';
+            include_once __DIR__ . '/../Views/auth/login.php';
         }
 
         /**

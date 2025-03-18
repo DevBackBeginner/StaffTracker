@@ -4,7 +4,7 @@
 session_start();
 
 // Incluir el modelo de Perfil para interactuar con la base de datos
-require_once __DIR__ . '/../models/PerfilModelo.php';
+require_once __DIR__ . '/../Models/PerfilModelo.php';
 
 // Definir la clase PerfilController
 class PerfilController
@@ -33,7 +33,7 @@ class PerfilController
         $usuario = $this->perfilModelo->obtenerPerfilPorId($id);
 
         // Incluir la vista del perfil para mostrar la información
-        include_once __DIR__ . '/../views/profile/perfil_usuario.php';
+        include_once __DIR__ . '/../Views/profile/perfil_usuario.php';
     }
 
     // Método para procesar el formulario de edición de perfil

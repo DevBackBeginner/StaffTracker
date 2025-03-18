@@ -19,7 +19,7 @@
             </ol>
         </nav>
     </div><!-- End Page Title -->
-    <form action="registrar_personal" method="POST" class="container mt-4 p-4 border rounded shadow-sm bg-light" onsubmit="return validarFormulario()">
+    <form action="registrar_personal" method="POST" class="container mt-4 p-4 border rounded shadow-sm bg-light" onsubmit="return validarFormulario()" novalidate>
         <!-- Campos comunes -->
         <div class="mb-3">
             <label for="nombre" class="form-label">Nombre</label>
@@ -85,11 +85,32 @@
                     <option value="Personal">Personal</option>
                 </select>
             </div>
+
             <div class="mb-3">
+                <label class="form-label">Marca del computador</label>
                 <input type="text" name="marca" class="form-control" placeholder="Marca del computador">
             </div>
+
             <div class="mb-3">
+                <label class="form-label">Codigo del computador</label>
                 <input type="text" name="codigo" class="form-control" placeholder="Código del computador">
+            </div>
+
+            <div class="row">
+                <div class="mb-3 col-md-6">
+                    <label class="form-label">¿Trae mouse?</label>
+                    <div class="form-check">
+                        <input type="checkbox" name="mouse" id="mouse" class="form-check-input" value="Sí">
+                        <label for="mouse" class="form-check-label">Sí</label>
+                    </div>
+                </div>
+                <div class="mb-3 col-md-6">
+                    <label class="form-label">¿Trae teclado?</label>
+                    <div class="form-check">
+                        <input type="checkbox" name="teclado" id="teclado" class="form-check-input" value="Sí">
+                        <label for="teclado" class="form-check-label">Sí</label>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -97,6 +118,7 @@
             <button type="submit" class="btn btn-primary" style="background-color: #007832; border-color: #007832;">Registrar</button>
         </div>
     </form>
+    
     <script src="assets/js/registro_personal.js"></script>
 
 <?php include_once __DIR__ . '/../dashboard/layouts/footer_main.php'; ?>

@@ -2,13 +2,13 @@ document.addEventListener('DOMContentLoaded', function () {
     // ==============================================
     // INICIALIZACIÓN DE COMPONENTES Y VARIABLES
     // ==============================================
-    
+
     // Modales de Bootstrap
     const modalTieneComputador = new bootstrap.Modal(document.getElementById('modalTieneComputador'));
     const modalTipoComputador = new bootstrap.Modal(document.getElementById('modalTipoComputador'));
     const modalSeleccionarComputador = new bootstrap.Modal(document.getElementById('modalSeleccionarComputador'));
     const modalRegistrarComputador = new bootstrap.Modal(document.getElementById('modalRegistrarComputador'));
-    
+
     // Elementos del DOM
     const selectComputadores = document.getElementById('selectComputadores');
     const btnSiComputador = document.getElementById('btnSiComputador');
@@ -28,17 +28,20 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('codigo').addEventListener('input', function (event) {
         // Limpiar y validar código escaneado
         codigoEscaneado = this.value.trim();
-        
-        // Expresión regular: solo letras y números
-        if (codigoEscaneado.length > 0 && /^[a-zA-Z0-9]+$/.test(codigoEscaneado)) {
+
+        // Expresión regular: solo números
+        if (codigoEscaneado.length > 0 && /^\d+$/.test(codigoEscaneado)) {
             modalTieneComputador.show(); // Mostrar modal inicial
+        } else {
+            alert('⚠️ El código debe contener solo números');
+            this.value = ''; // Limpiar el campo
         }
     });
 
     // ==============================================
     // MANEJO DE MODALES
     // ==============================================
-    
+
     // ----- Modal 1: ¿Tiene computador? -----
     btnSiComputador.addEventListener('click', () => {
         modalTieneComputador.hide();
@@ -61,8 +64,6 @@ document.addEventListener('DOMContentLoaded', function () {
         cargarComputadores(tipoComputador, codigoEscaneado); // Cargar computadores personales
         modalSeleccionarComputador.show();
     });
-
-    
 
     btnSena.addEventListener('click', () => {
         if (!codigoEscaneado) {
@@ -95,7 +96,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // ==============================================
     // REGISTRO DE NUEVO COMPUTADOR
     // ==============================================
-    
+
     // Botón dinámico para mostrar modal de registro
     const btnRegistrarNuevoPC = document.createElement('button');
     btnRegistrarNuevoPC.textContent = 'Registrar Nuevo Computador';
@@ -104,16 +105,19 @@ document.addEventListener('DOMContentLoaded', function () {
         modalSeleccionarComputador.hide();
         modalRegistrarComputador.show();
     });
-    
-     // Agregar al contenedor flex
+
+    // Agregar al contenedor flex
     document.querySelector('#modalSeleccionarComputador .d-flex').appendChild(btnRegistrarNuevoPC);
+
     // Manejo del formulario de registro
     formRegistrarComputador.addEventListener('submit', function (event) {
         event.preventDefault(); // Prevenir envío tradicional
-        
+
         // Obtener valores del formulario
         const marca = document.getElementById('marcaComputador').value;
         const codigoPC = document.getElementById('codigoComputador').value;
+        const tieneMouse = document.getElementById('tieneMouse').checked; // true o false
+        const tieneTeclado = document.getElementById('tieneTeclado').checked; // true o false
 
         // Validación básica
         if (!marca || !codigoPC) {
@@ -121,13 +125,14 @@ document.addEventListener('DOMContentLoaded', function () {
             return;
         }
 
-        registrarNuevoComputador(marca, codigoPC, tipoComputador);
+        // Registrar nuevo computador
+        registrarNuevoComputador(marca, codigoPC, tipoComputador, tieneMouse, tieneTeclado);
     });
 
     // ==============================================
     // FUNCIONES PRINCIPALES
     // ==============================================
-    
+
     /**
      * Carga computadores disponibles desde el servidor
      * @param {string} tipoComputador - Tipo de computador (Personal/Sena)
@@ -145,7 +150,7 @@ document.addEventListener('DOMContentLoaded', function () {
         })
         .then(data => {
             selectComputadores.innerHTML = ""; // Limpiar select
-            
+
             if (Array.isArray(data) && data.length > 0) {
                 // Llenar con computadores disponibles
                 data.forEach(pc => {
@@ -172,12 +177,16 @@ document.addEventListener('DOMContentLoaded', function () {
      * @param {string} marca - Marca del computador
      * @param {string} codigoPC - Código único del computador
      * @param {string} tipo - Tipo de computador (Personal/Sena)
+     * @param {string} tieneMouse - Indica si tiene mouse (Si/No)
+     * @param {string} tieneTeclado - Indica si tiene teclado (Si/No)
      */
-    function registrarNuevoComputador(marca, codigoPC, tipo) {
+    function registrarNuevoComputador(marca, codigoPC, tipo, tieneMouse, tieneTeclado) {
         const formData = new FormData();
         formData.append('marca', marca);
         formData.append('codigo', codigoPC);
         formData.append('tipo', tipo);
+        formData.append('tieneMouse', tieneMouse ? 'Si' : 'No'); // 'Si' si está marcado, 'No' si no
+        formData.append('tieneTeclado', tieneTeclado ? 'Si' : 'No'); // 'Si' si está marcado, 'No' si no
 
         fetch('registrar_computador', {
             method: 'POST',
@@ -239,4 +248,3 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 });
-

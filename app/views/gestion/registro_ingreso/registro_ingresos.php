@@ -69,8 +69,8 @@
     </div>
     <!-- Modal -->
     <?php include_once 'wizard.php' ?>
-    
-    <script src="assets/js/registro_ingreso.js"></script>
+
+    <script src="assets/js/registro_ingreso.js"></script> 
 <?php
 // Incluimos el footer que contiene la estructura HTML final
 include_once __DIR__ . '/../dashboard/layouts/footer_main.php';

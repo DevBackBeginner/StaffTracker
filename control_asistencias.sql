@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 14-03-2025 a las 18:20:44
+-- Tiempo de generación: 17-03-2025 a las 21:54:09
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -38,7 +38,7 @@ CREATE TABLE `apoyo` (
 
 INSERT INTO `apoyo` (`usuario_id`, `area_trabajo`) VALUES
 (13, 'Limpieza'),
-(14, 'Mantenimiento'),
+(14, 'Mantenimientos'),
 (15, 'Seguridad'),
 (16, 'Logística');
 
@@ -59,10 +59,12 @@ CREATE TABLE `asignaciones_computadores` (
 --
 
 INSERT INTO `asignaciones_computadores` (`id`, `usuario_id`, `computador_id`) VALUES
+(63, 2, NULL),
 (1, 2, 1),
+(62, 2, 46),
+(60, 3, NULL),
 (2, 3, 2),
 (3, 4, 3),
-(43, 5, NULL),
 (4, 5, 4),
 (5, 6, 5),
 (6, 7, 6),
@@ -75,12 +77,15 @@ INSERT INTO `asignaciones_computadores` (`id`, `usuario_id`, `computador_id`) VA
 (13, 14, 13),
 (14, 15, 14),
 (15, 16, 15),
-(42, 17, NULL),
 (16, 17, 16),
 (17, 18, 17),
+(57, 18, 43),
+(58, 18, 44),
 (18, 19, 18),
-(41, 20, NULL),
-(19, 20, 19);
+(19, 20, 19),
+(46, 25, NULL),
+(56, 25, 42),
+(59, 25, 45);
 
 -- --------------------------------------------------------
 
@@ -92,46 +97,53 @@ CREATE TABLE `computadores` (
   `id` int(11) NOT NULL,
   `marca` varchar(50) NOT NULL,
   `codigo` varchar(50) NOT NULL,
-  `tipo_computador` enum('Sena','Personal') DEFAULT NULL
+  `tipo_computador` enum('Sena','Personal') DEFAULT NULL,
+  `mouse` enum('Si','No') NOT NULL,
+  `teclado` enum('Si','No') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `computadores`
 --
 
-INSERT INTO `computadores` (`id`, `marca`, `codigo`, `tipo_computador`) VALUES
-(1, 'Dell', 'DELL001', 'Sena'),
-(2, 'HP', 'HP001', 'Personal'),
-(3, 'Lenovo', 'LEN001', 'Sena'),
-(4, 'Apple', 'MAC001', 'Personal'),
-(5, 'Asus', 'ASUS001', 'Sena'),
-(6, 'Acer', 'ACER001', 'Personal'),
-(7, 'Dell', 'DELL002', 'Sena'),
-(8, 'HP', 'HP002', 'Personal'),
-(9, 'Lenovo', 'LEN002', 'Sena'),
-(10, 'Apple', 'MAC002', 'Personal'),
-(11, 'Asus', 'ASUS002', 'Sena'),
-(12, 'Acer', 'ACER002', 'Personal'),
-(13, 'Dell', 'DELL003', 'Sena'),
-(14, 'HP', 'HP003', 'Personal'),
-(15, 'Lenovo', 'LEN003', 'Sena'),
-(16, 'Apple', 'MAC003', 'Personal'),
-(17, 'Asus', 'ASUS003', 'Sena'),
-(18, 'Acer', 'ACER003', 'Personal'),
-(19, 'Dell', 'DELL004', 'Sena'),
-(20, 'HP', 'HP004', 'Personal'),
-(21, 'Lenovo', 'LEN004', 'Sena'),
-(22, 'Apple', 'MAC004', 'Personal'),
-(23, 'Asus', 'ASUS004', 'Sena'),
-(24, 'Acer', 'ACER004', 'Personal'),
-(25, 'Dell', 'DELL005', 'Sena'),
-(26, 'HP', 'HP005', 'Personal'),
-(27, 'Lenovo', 'LEN005', 'Sena'),
-(28, 'Apple', 'MAC005', 'Personal'),
-(29, 'Asus', 'ASUS005', 'Sena'),
-(30, 'Acer', 'ACER005', 'Personal'),
-(31, 'Dell', 'DELL006', 'Sena'),
-(32, 'HP', 'HP006', 'Personal');
+INSERT INTO `computadores` (`id`, `marca`, `codigo`, `tipo_computador`, `mouse`, `teclado`) VALUES
+(1, 'Dell', 'DELL001', 'Sena', 'si', 'si'),
+(2, 'HP', 'HP001', 'Personal', 'si', 'si'),
+(3, 'Lenovo', 'LEN001', 'Sena', 'si', 'si'),
+(4, 'Apple', 'MAC001', 'Personal', 'si', 'si'),
+(5, 'Asus', 'ASUS001', 'Sena', 'si', 'si'),
+(6, 'Acer', 'ACER001', 'Personal', 'si', 'si'),
+(7, 'Dell', 'DELL002', 'Sena', 'si', 'si'),
+(8, 'HP', 'HP002', 'Personal', 'si', 'si'),
+(9, 'Lenovo', 'LEN002', 'Sena', 'si', 'si'),
+(10, 'Apple', 'MAC002', 'Personal', 'si', 'si'),
+(11, 'Asus', 'ASUS002', 'Sena', 'si', 'si'),
+(12, 'Acer', 'ACER002', 'Personal', 'si', 'si'),
+(13, 'Dell', 'DELL003', 'Sena', 'si', 'si'),
+(14, 'HP', 'HP003', 'Personal', 'si', 'si'),
+(15, 'Lenovo', 'LEN003', 'Sena', 'si', 'si'),
+(16, 'Apple', 'MAC003', 'Personal', 'si', 'si'),
+(17, 'Asus', 'ASUS003', 'Sena', 'si', 'si'),
+(18, 'Acer', 'ACER003', 'Personal', 'si', 'si'),
+(19, 'Dell', 'DELL004', 'Sena', 'si', 'si'),
+(20, 'HP', 'HP004', 'Personal', 'si', 'si'),
+(21, 'Lenovo', 'LEN004', 'Sena', 'si', 'si'),
+(22, 'Apple', 'MAC004', 'Personal', 'si', 'si'),
+(23, 'Asus', 'ASUS004', 'Sena', 'si', 'si'),
+(24, 'Acer', 'ACER004', 'Personal', 'si', 'si'),
+(25, 'Dell', 'DELL005', 'Sena', 'si', 'si'),
+(26, 'HP', 'HP005', 'Personal', 'si', 'si'),
+(27, 'Lenovo', 'LEN005', 'Sena', 'si', 'si'),
+(28, 'Apple', 'MAC005', 'Personal', 'si', 'si'),
+(29, 'Asus', 'ASUS005', 'Sena', 'si', 'si'),
+(30, 'Acer', 'ACER005', 'Personal', 'si', 'si'),
+(31, 'Dell', 'DELL006', 'Sena', 'si', 'si'),
+(32, 'HP', 'HP006', 'Personal', 'si', 'si'),
+(42, 'Asus', 'Prueba 1', 'Sena', 'si', 'si'),
+(43, 'Asus', 'Prueba 2', 'Personal', 'si', 'si'),
+(44, 'Asus', 'Prueba3', 'Personal', 'si', 'si'),
+(45, 'Asus', 'Prueba 4', 'Personal', 'si', 'si'),
+(46, 'ASUS', '9988', 'Personal', 'si', 'si');
 
 -- --------------------------------------------------------
 
@@ -152,7 +164,7 @@ CREATE TABLE `directivos` (
 INSERT INTO `directivos` (`usuario_id`, `cargo`, `departamento`) VALUES
 (9, 'Gerente', 'Administración'),
 (10, 'Director', 'Recursos Humanos'),
-(11, 'Subdirector', 'Finanzas'),
+(11, 'Asistente', 'Finanza'),
 (12, 'Coordinador', 'Tecnología');
 
 -- --------------------------------------------------------
@@ -175,7 +187,7 @@ INSERT INTO `funcionarios` (`usuario_id`, `area`, `puesto`) VALUES
 (5, 'Recursos Humanos', 'Analista'),
 (6, 'Finanzas', 'Contador'),
 (7, 'Tecnología', 'Desarrollador'),
-(8, 'Mantenimiento', 'Técnico');
+(8, 'Administrativa', 'Direccion');
 
 -- --------------------------------------------------------
 
@@ -185,16 +197,15 @@ INSERT INTO `funcionarios` (`usuario_id`, `area`, `puesto`) VALUES
 
 CREATE TABLE `guardas` (
   `id` int(11) NOT NULL,
-  `usuario_id` int(11) NOT NULL,
-  `turno` enum('mañana','tarde','noche') NOT NULL
+  `usuario_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `guardas`
 --
 
-INSERT INTO `guardas` (`id`, `usuario_id`, `turno`) VALUES
-(5, 25, 'noche');
+INSERT INTO `guardas` (`id`, `usuario_id`) VALUES
+(5, 25);
 
 -- --------------------------------------------------------
 
@@ -214,8 +225,10 @@ CREATE TABLE `instructores` (
 
 INSERT INTO `instructores` (`usuario_id`, `curso`, `ubicacion`) VALUES
 (2, 'Diseño Gráfico', 'Aula 102'),
-(3, 'Redes', 'Aula 103'),
-(4, 'Base de Datos', 'Aula 104');
+(3, 'Redes', 'Aula 104'),
+(4, 'Base de Dato', 'Aula 12'),
+(19, 'ADSI', '4000'),
+(20, 'ADSO', '212');
 
 -- --------------------------------------------------------
 
@@ -238,9 +251,16 @@ CREATE TABLE `registro_acceso` (
 --
 
 INSERT INTO `registro_acceso` (`id`, `asignacion_id`, `fecha`, `hora_entrada`, `hora_salida`, `estado`, `tipo_usuario`) VALUES
-(1, 41, '2025-03-14', '11:12:23', NULL, 'Activo', 'Visitante'),
-(2, 42, '2025-03-14', '11:13:15', '11:35:27', 'Finalizado', 'Visitante'),
-(3, 43, '2025-03-14', '11:36:03', '11:36:17', 'Finalizado', 'Personal');
+(23, 56, '2025-03-16', '12:52:36', '14:30:36', 'Finalizado', 'Personal'),
+(24, 57, '2025-03-16', '12:52:54', NULL, 'Activo', 'Visitante'),
+(25, 17, '2025-03-16', '12:54:40', NULL, 'Activo', 'Visitante'),
+(26, 58, '2025-03-16', '14:29:32', NULL, 'Activo', 'Visitante'),
+(27, 59, '2025-03-16', '14:30:49', '17:13:58', 'Finalizado', 'Personal'),
+(28, 46, '2025-03-16', '17:14:04', '17:16:20', 'Finalizado', 'Personal'),
+(29, 60, '2025-03-16', '17:28:59', '17:29:15', 'Finalizado', 'Personal'),
+(30, 2, '2025-03-16', '17:29:07', '17:29:20', 'Finalizado', 'Personal'),
+(31, 62, '2025-03-17', '14:08:44', NULL, 'Activo', 'Personal'),
+(32, 63, '2025-03-17', '14:50:49', '14:50:57', 'Finalizado', 'Personal');
 
 -- --------------------------------------------------------
 
@@ -262,13 +282,13 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id`, `nombre`, `apellidos`, `telefono`, `numero_identidad`, `rol`) VALUES
-(2, 'María', 'Gómez', '3102345678', '1000000002', 'Instructor'),
-(3, 'Carlos', 'López', '3103456789', '1000000003', 'Instructor'),
+(2, 'María Fernanda', 'Gómez', '3102345678', '1000000002', 'Instructor'),
+(3, 'Carlos Andres', 'López', '3103456789', '1000000032', 'Instructor'),
 (4, 'Ana', 'Rodríguez', '3104567890', '1000000004', 'Instructor'),
 (5, 'Luis', 'Martínez', '3105678901', '1000000005', 'Funcionario'),
 (6, 'Sofía', 'Hernández', '3106789012', '1000000006', 'Funcionario'),
 (7, 'Pedro', 'Sánchez', '3107890123', '1000000007', 'Funcionario'),
-(8, 'Laura', 'Díaz', '3108901234', '1000000008', 'Funcionario'),
+(8, 'Laura', 'Díaz', '3108901234', '1000000001', 'Funcionario'),
 (9, 'Roberto', 'García', '3109012345', '1000000009', 'Directivo'),
 (10, 'Carmen', 'Fernández', '3100123456', '1000000010', 'Directivo'),
 (11, 'Jorge', 'Ramírez', '3101234567', '1000000011', 'Directivo'),
@@ -279,9 +299,10 @@ INSERT INTO `usuarios` (`id`, `nombre`, `apellidos`, `telefono`, `numero_identid
 (16, 'Isabel', 'Rojas', '3106789012', '1000000016', 'Apoyo'),
 (17, 'Fernando', 'Silva', '3107890123', '1000000017', 'Visitante'),
 (18, 'Diana', 'Mendoza', '3108901234', '1000000018', 'Visitante'),
-(19, 'Oscar', 'Guerrero', '3109012345', '1000000019', 'Visitante'),
-(20, 'Lucía', 'Paredes', '3100123456', '1000000020', 'Visitante'),
-(25, 'Helbert Dubler', 'Morera Hernández', '3105738706', '1072745267', 'Admin');
+(19, 'Oscar', 'Guerrero', '3109012321', '1000000019', 'Instructor'),
+(20, 'Lucía', 'Paredes', '3100123456', '1000000020', 'Instructor'),
+(25, 'Helbert Dubler', 'Morera Hernández', '3105738706', '1072745267', 'Admin'),
+(26, 'Felipe', 'Restrepo', '3212439492', '1234567899', 'Visitante');
 
 -- --------------------------------------------------------
 
@@ -302,7 +323,7 @@ CREATE TABLE `usuarios_autenticados` (
 --
 
 INSERT INTO `usuarios_autenticados` (`id`, `usuario_id`, `correo`, `foto_perfil`, `contrasena`) VALUES
-(1, 25, 'morerahelbert9@gmail.com', 'assets/img/perfiles/default.png', '$2y$10$.UZpaUk0XhOeTekH3dbga.ijMnn2tUFVcN1mZFP0PUsOxK1CfGKlG');
+(1, 25, 'morerahelbert9@gmail.com', 'assets/img/perfiles/default.webp', '$2y$10$NZ0acemSJ.lAfRMmaQpAAOnmiBO1GRtZQkUZJe48Xt0KcmtQJK1aS');
 
 -- --------------------------------------------------------
 
@@ -323,8 +344,7 @@ CREATE TABLE `visitantes` (
 INSERT INTO `visitantes` (`id`, `usuario_id`, `asunto`) VALUES
 (1, 17, 'Reunión de negocios'),
 (2, 18, 'Entrevista de trabajo'),
-(3, 19, 'Visita técnica'),
-(4, 20, 'Capacitación');
+(9, 26, 'Consulta de matriculas');
 
 --
 -- Índices para tablas volcadas
@@ -418,13 +438,13 @@ ALTER TABLE `visitantes`
 -- AUTO_INCREMENT de la tabla `asignaciones_computadores`
 --
 ALTER TABLE `asignaciones_computadores`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
 
 --
 -- AUTO_INCREMENT de la tabla `computadores`
 --
 ALTER TABLE `computadores`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT de la tabla `guardas`
@@ -436,13 +456,13 @@ ALTER TABLE `guardas`
 -- AUTO_INCREMENT de la tabla `registro_acceso`
 --
 ALTER TABLE `registro_acceso`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios_autenticados`
@@ -454,7 +474,7 @@ ALTER TABLE `usuarios_autenticados`
 -- AUTO_INCREMENT de la tabla `visitantes`
 --
 ALTER TABLE `visitantes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Restricciones para tablas volcadas

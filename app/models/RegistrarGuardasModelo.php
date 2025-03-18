@@ -16,16 +16,15 @@
                 // Inicia la transacción
                 $this->db->beginTransaction();
         
-                // Inserta datos en la tabla "usuarios" (incluyendo apellidos y teléfono)
+                // Inserta datos en la tabla "usuarios"
                 $stmt = $this->db->prepare("
                     INSERT INTO usuarios (nombre, apellidos, telefono, numero_identidad, rol)
                     VALUES (:nombre, :apellidos, :telefono, :numero_identidad, :rol)
-                    
                 ");
                 $stmt->execute([
                     'nombre' => $nombre,
-                    'apellidos' => $apellidos, 
-                    'telefono' => $telefono,    // Agregar teléfono
+                    'apellidos' => $apellidos,
+                    'telefono' => $telefono,
                     'numero_identidad' => $numero_identidad,
                     'rol' => 'guarda',
                 ]);
@@ -33,25 +32,16 @@
                 // Obtiene el ID generado
                 $usuario_id = $this->db->lastInsertId();
         
+                // Inserta datos en la tabla "usuarios_autenticados"
                 $stmt = $this->db->prepare("
-                    INSERT INTO usuarios_autenticados (usuario_id, correo, contrasena,  foto_perfil)
+                    INSERT INTO usuarios_autenticados (usuario_id, correo, contrasena, foto_perfil)
                     VALUES (:usuario_id, :correo, :contrasena, :foto_perfil)
                 ");
-                
                 $stmt->execute([
                     'usuario_id' => $usuario_id,
-                    'correo'     => $correo,
-                    'contrasena'   => $passwordHash,
-                    'foto_perfil' => $foto_perfil
-                ]);
-        
-                // Inserta el turno en la tabla "guardas"
-                $stmt = $this->db->prepare("
-                    INSERT INTO guardas (usuario_id, turno)
-                    VALUES (:usuario_id, :turno)
-                ");
-                $stmt->execute([
-                    'usuario_id' => $usuario_id,
+                    'correo' => $correo,
+                    'contrasena' => $passwordHash,
+                    'foto_perfil' => $foto_perfil,
                 ]);
         
                 // Confirma la transacción
@@ -60,9 +50,8 @@
             } catch (Exception $e) {
                 // Revierte la transacción en caso de error
                 $this->db->rollBack();
-                throw $e;
+                throw $e; // Lanza la excepción para manejarla en el controlador
             }
         }
-        
     }
 ?>
