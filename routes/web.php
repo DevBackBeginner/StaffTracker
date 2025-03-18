@@ -11,7 +11,6 @@ require_once '../config/DataBase.php';
 
 Router::get("Inicio", [DashboardController::class, "mostrarDashBoard"]);
 Router::get('/', [DashboardController::class, "mostrarDashBoard"]);
-Router::get('Contactenos', [ContactoController::class, "mostrarContactenos"]);
 
 // Ruta para mostrar el formulario de login
 Router::get("Login", [LoginController::class, "mostrarLogin"]);
@@ -47,7 +46,7 @@ Router::post("registro_guarda", [RegistrarGuardasController::class, "registrarGu
 // ==================================================
 
 Router::get('registro_ingreso', [RegistroAccesoController::class, "mostrarVistaRegistro"]);
-Router::post('gestion_registro_acceso', [RegistroAccesoController::class, 'gestionarRegistroAcceso']);
+Router::post('gestion_registro_acceso', [RegistroAccesoController::class, 'registrarEntrada']);
 
 // ==================================================
 // Rutas para el manejo de computadores

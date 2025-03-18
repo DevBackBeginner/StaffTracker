@@ -18,6 +18,7 @@
             $this->db->beginTransaction();
 
             try {
+                // Insertar en la tabla `usuarios`
                 $queryUsuario = "INSERT INTO usuarios (nombre, apellidos, numero_identidad, telefono, rol) 
                                 VALUES (:nombre, :apellido, :numero_identidad, :telefono, :rol)";
                 $stmtUsuario = $this->db->prepare($queryUsuario);
@@ -32,6 +33,7 @@
                 // Obtener el ID del usuario recién insertado
                 $usuarioId = $this->db->lastInsertId();
 
+                // Insertar en la tabla `visitantes`
                 $queryVisitante = "INSERT INTO visitantes (usuario_id, asunto) 
                                 VALUES (:usuario_id, :asunto)";
                 $stmtVisitante = $this->db->prepare($queryVisitante);
@@ -43,7 +45,8 @@
                 // Confirmar la transacción si todo está bien
                 $this->db->commit();
 
-                return true; // Éxito
+                // Retornar el ID del usuario
+                return $usuarioId;
             } catch (PDOException $e) {
                 // Si hay un error, revertir la transacción
                 $this->db->rollBack();

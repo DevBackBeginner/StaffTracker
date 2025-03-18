@@ -57,7 +57,26 @@ include_once __DIR__ . '/../dashboard/layouts/header_main.php';
 <!-- Modal -->
 <?php include_once 'wizard.php' ?>
 
+<<<<<<< HEAD
 <script src="assets/js/registro_ingreso.js"></script>
+=======
+        <!-- Fila para la tabla de últimos registros -->
+        <div class="col-12"> <!-- Ocupa el 100% del ancho -->
+            <div class="card shadow-sm custom-card">
+                <div class="card-header bg-custom text-white">
+                    <h2 class="h5 mb-0">Últimos Registros</h2>
+                </div>
+                <div class="card-body">
+                    <?php include_once "tabla_ultimos_registros.php"; ?>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal -->
+    <?php include_once 'wizard.php' ?>
+
+    <script src="assets/js/registro_ingreso.js"></script> 
+>>>>>>> c184e3e91ff70a50bfbbf9d39aab8804851b13e2
 <?php
 // Incluimos el footer que contiene la estructura HTML final
 include_once __DIR__ . '/../dashboard/layouts/footer_main.php';

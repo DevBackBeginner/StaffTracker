@@ -2,8 +2,8 @@
 
     session_start();
 
-    require_once __DIR__ . '/../models/GestionPersonalModelo.php';
-    require_once __DIR__ . '/../models/ComputadorModelo.php';
+    require_once __DIR__ . '/../Models/GestionPersonalModelo.php';
+    require_once __DIR__ . '/../Models/ComputadorModelo.php';
 
     class GestionPersonalController
     {
@@ -18,7 +18,7 @@
 
         public function formularioRegistroPersonal ()
         {
-            include_once __DIR__ . '/../views/gestion/personal/registrar_personal.php';
+            include_once __DIR__ . '/../Views/gestion/personal/registrar_personal.php';
         }
 
         public function registrarPersonal()
@@ -120,7 +120,7 @@
             ];
 
             // Incluir la vista
-            include_once __DIR__ . '/../views/gestion/personal/listado_usuarios.php';
+            include_once __DIR__ . '/../Views/gestion/personal/listado_usuarios.php';
         }
 
         public function editarUsuarios()
@@ -226,8 +226,8 @@
          */
         private function validarTelefono($telefono)
         {
-            if (!preg_match('/^3[0-9]{9}$/', $telefono)) {
-                throw new Exception("El teléfono debe tener 10 dígitos y comenzar con 3 (formato colombiano).");
+            if (!preg_match('/^[0-9]+$/', $telefono)) {
+                throw new Exception("El teléfono debe ser numerico.");
             }
         }
         
@@ -236,8 +236,8 @@
          */
         private function validarNumeroDocumento($numero_identidad)
         {
-            if (!preg_match('/^[0-9]{10}$/', $numero_identidad)) {
-                throw new Exception("El número de documento debe tener exactamente 10 dígitos y solo contener números.");
+            if (!preg_match('/^[0-9]+$/', $numero_identidad)) {
+                throw new Exception("El número de documento debe tener solo numeros.");
             }
         }
         
@@ -283,6 +283,8 @@
         {
             $marca = $this->sanitizarInput($_POST["marca"]);
             $codigo = $this->sanitizarInput($_POST["codigo"]);
+            $mouse = isset($_POST['mouse']) ? 'Sí' : 'No';
+            $teclado = isset($_POST['teclado']) ? 'Sí' : 'No';
             $tipo_computador = $this->sanitizarInput($_POST["tipo_computador"]);
         
             // Validar campos del computador
@@ -291,7 +293,7 @@
             }
         
             // Registrar el computador
-            return $this->computadorModelo->ingresarComputador($marca, $codigo, $tipo_computador);
+            return $this->computadorModelo->ingresarComputador($marca, $codigo, $mouse, $teclado, $tipo_computador);
         }
     }
 ?>

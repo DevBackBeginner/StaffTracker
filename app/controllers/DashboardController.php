@@ -4,8 +4,8 @@
     session_start();
 
     // Incluye el archivo del modelo DashboardModelo, que contiene la lógica para interactuar con la base de datos.
-    require_once __DIR__ . '/../models/DashboardModelo.php';
-    require_once __DIR__ . '/../models/HistorialRegistroModelo.php';
+    require_once __DIR__ . '/../Models/DashboardModelo.php';
+    require_once __DIR__ . '/../Models/HistorialRegistroModelo.php';
 
     // Define la clase DashboardController, que maneja la lógica del controlador del dashboard.
     class DashboardController
@@ -40,7 +40,7 @@
             // Verifica si el usuario tiene un rol asignado.
             if (!$this->tieneRol()) {
                 // Si no tiene un rol, incluye la vista de inicio de sesión.
-                include_once __DIR__ . '/../views/home/main.php';
+                include_once __DIR__ . '/../Views/home/main.php';
                 
             } else {
 
@@ -65,7 +65,7 @@
                 $datosDashboard = $this->obtenerDatosDashboard();
 
                 // Incluye la vista del dashboard.
-                include_once __DIR__ . '/../views/gestion/dashboard/main_home.php';
+                include_once __DIR__ . '/../Views/gestion/dashboard/main_home.php';
             }
         }
 

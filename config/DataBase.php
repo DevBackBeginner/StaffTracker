@@ -1,7 +1,7 @@
 <?php
 class DataBase {
     private $host = "localhost";
-    private $db = "control_asistencias";
+    private $db = "control_acceso";
     private $user = "root";
     private $pass = "";
     private $conn;

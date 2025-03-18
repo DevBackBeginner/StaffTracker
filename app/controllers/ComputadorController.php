@@ -1,8 +1,8 @@
 
 <?php
 
-    require_once __DIR__ . '/../models/ComputadorModelo.php';
-    require_once __DIR__ . '/../models/HistorialRegistroModelo.php';
+    require_once __DIR__ . '/../Models/ComputadorModelo.php';
+    require_once __DIR__ . '/../Models/HistorialRegistroModelo.php';
 
     class ComputadorController {
         private $computadorModelo;
@@ -22,12 +22,14 @@
                 ]);
                 exit;
             }
-    
+        
             // Obtener datos del formulario
             $marca = trim($_POST['marca'] ?? '');
             $codigo = trim($_POST['codigo'] ?? '');
             $tipo = trim($_POST['tipo'] ?? ''); // 'Personal' o 'Sena'
-    
+            $tieneMouse = isset($_POST['tieneMouse']) && $_POST['tieneMouse'] === 'Si' ? 'Si' : 'No'; // Asegurar que sea 'Si' o 'No'
+            $tieneTeclado = isset($_POST['tieneTeclado']) && $_POST['tieneTeclado'] === 'Si' ? 'Si' : 'No'; // Asegurar que sea 'Si' o 'No'
+        
             // Validar datos
             if (empty($marca) || empty($codigo) || empty($tipo)) {
                 echo json_encode([
@@ -36,11 +38,11 @@
                 ]);
                 exit;
             }
-    
+        
             try {
                 // Registrar el computador en la base de datos
-                $computador_id = $this->computadorModelo->ingresarComputador($marca, $codigo, $tipo);
-    
+                $computador_id = $this->computadorModelo->ingresarComputador($marca, $codigo, $tieneMouse, $tieneTeclado, $tipo);
+        
                 echo json_encode([
                     'success' => true,
                     'message' => 'Computador registrado correctamente.',

@@ -1,6 +1,9 @@
 <?php include_once __DIR__ . '/../dashboard/layouts/header_main.php'; ?>
     <link rel="stylesheet" href="assest/css/registro_visitante.css">
+<<<<<<< HEAD
 
+=======
+>>>>>>> c184e3e91ff70a50bfbbf9d39aab8804851b13e2
     <div class="pagetitle">
         <h1>Formulario de Registro Visitantes</h1>
         <nav>
@@ -10,6 +13,7 @@
             </ol>
         </nav>
     </div>
+<<<<<<< HEAD
     <div class="container-fluid"> <!-- Cambiado a container-fluid para ocupar el 100% del ancho -->
         <section class="section register py-4">
             <div class="row">
@@ -117,11 +121,101 @@
                                     </button>
                                 </div>
                             </form>
+=======
+    <div class="login-container">
+        <form action="registrar_visitante" method="POST" class="container mt-4 p-4 border rounded shadow-sm bg-light" onsubmit="return validarFormulario()" novalidate>
+            <!-- Mostrar mensajes de éxito o error -->
+            <?php if (isset($_SESSION['mensaje'])): ?>
+                <div class="alert <?php echo ($_SESSION['tipo_mensaje'] === 'success') ? 'alert-success' : 'alert-danger'; ?> text-center">
+                    <?php echo $_SESSION['mensaje']; ?>
+                </div>
+                <?php
+                // Limpiar el mensaje después de mostrarlo
+                unset($_SESSION['mensaje']);
+                unset($_SESSION['tipo_mensaje']);
+                ?>
+            <?php endif; ?>
+            
+            <!-- Campos comunes -->
+            <div class="row">
+                <div class="mb-3 col-md-6">
+                    <label for="nombre" class="form-label" style="color: #007832;">Nombres</label>
+                    <input type="text" name="nombre" id="nombre" class="form-control" placeholder="Nombre" required>
+                </div>
+                <div class="mb-3 col-md-6">
+                    <label for="apellido" class="form-label" style="color: #007832;">Apellidos</label>
+                    <input type="text" name="apellido" id="apellido" class="form-control" placeholder="Apellido" required>
+                </div>
+                <div class="mb-3 col-md-6">
+                    <label for="telefono" class="form-label" style="color: #007832;">Teléfono</label>
+                    <input type="text" name="telefono" id="telefono" class="form-control" placeholder="Teléfono" required>
+                </div>
+                <div class="mb-3 col-md-6">
+                    <label for="numero_identidad" class="form-label" style="color: #007832;">Número de Identidad</label>
+                    <input type="text" name="numero_identidad" id="numero_identidad" class="form-control" placeholder="Número de Identidad" required>
+                </div>
+                <div class="mb-3 col-md-6">
+                    <label for="asunto" class="form-label" style="color: #007832;">Asunto</label>
+                    <input type="text" name="asunto" id="asunto" class="form-control" placeholder="Asunto" required>
+                </div>
+
+                <!-- Preguntar si tiene computador -->
+                <div class="mb-3 col-md-6">
+                    <label for="tiene_computador" class="form-label" style="color: #007832;">Ingresar Computador?</label>
+                    <select name="tiene_computador" id="tiene_computador" class="form-select" onchange="mostrarCamposComputador()" required>
+                        <option value="">Seleccione una opción</option>
+                        <option value="1">Sí</option>
+                        <option value="0">No</option>
+                    </select>
+                </div>
+
+                <div id="camposComputador" class="campos-adicionales mb-3 d-none">
+                    <div class="row">
+                        <div class="mb-3 col-md-6">
+                            <label for="marca" class="form-label" style="color: #007832;">Marca</label>
+                            <input type="text" name="marca" class="form-control" placeholder="Marca del computador">
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label for="codigo" class="form-label" style="color: #007832;">Código</label>
+                            <input type="text" name="codigo" class="form-control" placeholder="Código del computador">
+                        </div>
+
+                        <!-- Casillas de verificación para mouse y teclado -->
+                         <!-- Checkbox para mouse -->
+                        <div class="mb-3 col-md-6">
+                            <label class="form-label" style="color: #007832;">¿Trae mouse?</label>
+                            <div class="form-check">
+                                <input type="checkbox" name="mouse" id="mouse" class="form-check-input" value="Sí"> <!-- Sin required -->
+                                <label for="mouse" class="form-check-label">Sí</label>
+                            </div>
+                        </div>
+
+                        <!-- Checkbox para teclado -->
+                        <div class="mb-3 col-md-6">
+                            <label class="form-label" style="color: #007832;">¿Trae teclado?</label>
+                            <div class="form-check">
+                                <input type="checkbox" name="teclado" id="teclado" class="form-check-input" value="Sí"> <!-- Sin required -->
+                                <label for="teclado" class="form-check-label">Sí</label>
+                            </div>
+                        </div>
+
+                        <!-- Tipo fijo como "Personal" -->
+                        <div class="mb-3 col-md-6">
+                            <input type="hidden" name="tipo_computador" value="Personal">
+>>>>>>> c184e3e91ff70a50bfbbf9d39aab8804851b13e2
                         </div>
                     </div>
                 </div>
             </div>
+<<<<<<< HEAD
         </section>
+=======
+                        
+            <div class="text-center">
+                <button type="submit" class="btn btn-custom" style="background-color: #007832; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">Registrar</button>
+            </div>
+        </form>
+>>>>>>> c184e3e91ff70a50bfbbf9d39aab8804851b13e2
     </div>
     <script src="assets/js/registro_visitantes.js"></script>
 
