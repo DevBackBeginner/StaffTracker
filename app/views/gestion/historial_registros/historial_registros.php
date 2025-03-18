@@ -1,84 +1,71 @@
 <?php
     // Incluimos el encabezado (header) que contiene la estructura HTML inicial, head, etc.
     include_once __DIR__ . '/../dashboard/layouts/header_main.php';
-
-    ?>
-    <!-- Enlace al archivo CSS específico para el panel -->
-    <link rel="stylesheet" href="assets/css/panel.css">
-
-        <div class="pagetitle">
-            <h1>Panel de Registros</h1>
-            <nav>
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="Inicio">Home</a></li>
-                    <li class="breadcrumb-item"><a href="panel">Panel de Registro</a></li>
-                </ol>
-            </nav>
-        </div>
-
-        <!-- Card: Buscar Funcionario -->
-        <div class="container-fluid">
+?>
+    <div class="pagetitle">
+        <h1>Panel de Registros</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="Inicio">Inicio</a></li>
+                <li class="breadcrumb-item"><a href="panel">Panel de Registro</a></li>
+            </ol>
+        </nav>
+    </div>
+    <div class="container-fluid"> <!-- Cambiado a container-fluid para ocupar el 100% del ancho -->
+        <section class="section register py-4">
             <div class="row">
-                <!-- Tarjeta para filtrar por Nombre -->
-                <div class="col-md-6 mb-4">
-                    <div class="card shadow-sm rounded-lg" style="border: 1px solid #005f2f;">
-                        <!-- Encabezado de la tarjeta -->
-                        <div class="card-header text-white" style="background-color: #005f2f;">
-                            <h2 class="h5 mb-0" style="color: white;">
-                                Filtrar por Nombre
-                            </h2>
-                        </div>
-                        <!-- Cuerpo de la tarjeta -->
-                        <div class="card-body">
-                            <div class="form-group">
-                                <label for="nombreInput" class="form-label">Nombre</label>
-                                <input
-                                    type="text"
-                                    name="nombre"
-                                    placeholder="Buscar por nombre"
-                                    class="form-control"
-                                    id="nombreInput"
-                                    value="<?= htmlspecialchars($nombre ?? '') ?>"
-                                >
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Tarjeta para filtrar por Documento -->
-                <div class="col-md-6 mb-4">
-                    <div class="card shadow-sm rounded-lg" style="border: 1px solid #005f2f;">
-                        <!-- Encabezado de la tarjeta -->
-                        <div class="card-header text-white" style="background-color: #005f2f;">
-                            <h2 class="h5 mb-0" style="color: white;">
-                                Filtrar por Documento
-                            </h2>
-                        </div>
-                        <!-- Cuerpo de la tarjeta -->
-                        <div class="card-body">
-                            <div class="form-group">
-                                <label for="documentoInput" class="form-label">Documento</label>
-                                <input
-                                    type="text"
-                                    name="documento"
-                                    placeholder="Buscar por documento"
-                                    class="form-control"
-                                    id="documentoInput"
-                                    value="<?= htmlspecialchars($documento ?? '') ?>"
-                                >
-                            </div>
+                <div class="col-12"> <!-- Ocupa el 100% del ancho -->
+                    <div class="card mb-3 shadow-sm">
+                        <div class="card-body p-4">
+                            <!-- Captura de mensajes generales -->
+                            <?php if (!empty($_SESSION['mensaje'])): ?>
+                                <div class="alert <?= $_SESSION['tipo_mensaje'] === 'error' ? 'alert-danger' : 'alert-success' ?> alert-dismissible fade show" role="alert">
+                                    <?= htmlspecialchars($_SESSION['mensaje']) ?>
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                                <?php
+                                unset($_SESSION['mensaje']);
+                                unset($_SESSION['tipo_mensaje']);
+                                ?>
+                            <?php endif; ?>
+
+                            <form class="row g-3 needs-validation" action="panel_registro" method="POST" novalidate>
+                                <!-- Primera fila: Filtrar por Nombre -->
+                                <div class="col-md-6"> <!-- Cambiado a col-md-6 -->
+                                    <label for="nombreInput" class="form-label fw-bold" style="color: #007832;">Nombres</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="bi bi-person"></i></span>
+                                        <input type="text" name="nombre" class="form-control" id="nombreInput" placeholder="Filtrar por nombres" value="<?= htmlspecialchars($nombre ?? '') ?>">
+                                    </div>
+                                </div>
+                                <!-- Segunda fila: Filtrar por Documento -->
+                                <div class="col-md-6"> <!-- Cambiado a col-md-6 -->
+                                    <label for="documentoInput" class="form-label fw-bold" style="color: #007832;">Documentos</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="bi bi-card-text"></i></span>
+                                        <input type="text" name="documento" class="form-control" id="documentoInput" placeholder="Filtrar por documentos" value="<?= htmlspecialchars($documento ?? '') ?>">
+                                    </div>
+                                </div>
+                                <!-- Botón de búsqueda -->
+                                <div class="col-12 mt-4">
+                                    <button class="btn btn-success w-100 py-2 fw-bold" type="submit" style="background-color: #007832; border-color: #007832;">
+                                        <i class="bi bi-search me-2"></i>Buscar
+                                    </button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="d-flex align-items-stretch">
-            <?php
-            // Incluir la tabla de usuarios
-            require_once __DIR__ . "/../partials/tabla_usuarios.php";
-            ?>
-        </div>
+        </section>
+    </div>
+    <div class="d-flex align-items-stretch">
+        <?php
+        // Incluir la tabla de usuarios
+        require_once __DIR__ . "/../partials/tabla_usuarios.php";
+        ?>
+    </div>
     <script src="assets/js/panel_registros.js"></script>
 <?php
-    // Incluimos el encabezado (header) que contiene la estructura HTML inicial, head, etc.
     include_once __DIR__ . '/../dashboard/layouts/footer_main.php';
 ?>

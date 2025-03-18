@@ -4,26 +4,32 @@
     justify-content: center;
     align-items: center;
     height: 100vh; /* Utiliza toda la altura de la ventana */
-    background-color: #ffffff; /* Color de fondo */
+    background-color: #f0f2f5; /* Color de fondo más suave */
     background-image: url('/ControlAsistencia/public/assets/img/sena1.jpg'); /* Ruta de la imagen de fondo */
     background-size: cover; /* Ajusta la imagen para cubrir todo el fondo */
     background-position: center; /* Centra la imagen de fondo */
     background-repeat: no-repeat; /* Evita que la imagen se repita */
+    padding: 20px; /* Añade un poco de padding */
 }
 
 /* Estilo para la tarjeta de login */
 .login-card {
     background-color: #ffffff;
     padding: 40px;
-    box-shadow: 0 4px 20px #007832;
-    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Sombra más suave */
+    border-radius: 10px; /* Bordes más redondeados */
     width: 100%;
     max-width: 400px;
+    transition: transform 0.3s ease; /* Transición suave */
+}
+
+.login-card:hover {
+    transform: translateY(-5px); /* Efecto hover */
 }
 
 /* Título */
 .login-title {
-    font-size: 24px;
+    font-size: 26px; /* Tamaño de fuente más grande */
     font-weight: bold;
     margin-bottom: 24px;
     text-align: center;
@@ -32,12 +38,13 @@
 
 /* Mensaje de error */
 .error-message {
-    background-color: #00304D;
-    color: #007832;
+    background-color: #ff4d4f; /* Color de fondo rojo */
+    color: #ffffff; /* Texto blanco */
     padding: 12px;
-    border: 1px solid #00304D;
+    border: 1px solid #ff4d4f;
     border-radius: 4px;
     margin-bottom: 20px;
+    text-align: center; /* Centrar el texto */
 }
 
 /* Estilo de los grupos de entrada */
@@ -62,6 +69,12 @@
     font-size: 16px;
     box-sizing: border-box;
     margin-top: 8px;
+    transition: border-color 0.3s ease; /* Transición suave */
+}
+
+.custom-input:focus {
+    border-color: #005f2e; /* Color de borde al enfocar */
+    outline: none; /* Quitar el outline */
 }
 
 /* Estilo del contenedor de la contraseña y el botón de mostrar/ocultar */
@@ -102,9 +115,10 @@
     border-radius: 4px;
     font-size: 16px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Transición suave */
 }
 
 .submit-button:hover {
-    background-color: #007832;
+    background-color: #005f2e; /* Color de fondo al pasar el ratón */
+    transform: translateY(-2px); /* Efecto hover */
 }
