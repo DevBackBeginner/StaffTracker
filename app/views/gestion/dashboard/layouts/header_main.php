@@ -34,6 +34,7 @@
       <link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet">
       <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
 
+
       <!-- Estilos personalizados -->
       <link href="assets/css/header_main.css" rel="stylesheet">
     </head>

@@ -247,4 +247,21 @@ document.addEventListener('DOMContentLoaded', function () {
             alert(`❌ Error: ${error.message}`);
         });
     }
+
+    // Cerrar modales con botones personalizados
+    // Cerrar modales con botones personalizados
+    document.querySelectorAll('.btn-cerrar-modal').forEach(btnCerrar => {
+        btnCerrar.addEventListener('click', () => {
+            // Obtener el modal asociado al botón de cierre
+            const modal = btnCerrar.closest('.modal');
+            // Ocultar el modal usando Bootstrap
+            const modalInstance = bootstrap.Modal.getInstance(modal); // Try to get the instance
+            if (modalInstance) {
+                modalInstance.hide(); // Hide the modal if the instance exists
+            } else {
+                // If the instance doesn't exist, create a new one and hide it
+                new bootstrap.Modal(modal).hide();
+            }
+        });
+    });
 });

@@ -1,11 +1,10 @@
-<!-- Modal para preguntar si tiene computador -->
+<!-- En el <head> -->
 <div class="modal fade" id="modalTieneComputador" tabindex="-1" aria-labelledby="modalTieneComputadorLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header bg-primary text-white">
                 <h5 class="modal-title" id="modalTieneComputadorLabel">Registro de Asistencia</h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>            </div>
             <div class="modal-body">
                 <p class="mb-3">¿Tienes computador?</p>
                 <div class="d-grid gap-2">

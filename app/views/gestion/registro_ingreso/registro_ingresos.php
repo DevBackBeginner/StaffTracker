@@ -47,7 +47,7 @@
                 <div class="card-body">
                     <form id="form-escaneo" method="POST" onsubmit="event.preventDefault();">
                         <div class="mt-2">
-                            <label for="codigo" class="form-label">Código</label>
+                            <label for="codigo" class="form-label">Identificación</label>
                             <input type="text" id="codigo" name="codigo" placeholder="Escanea el código aquí" class="form-control" autofocus>
                         </div>
                     </form>
