@@ -37,7 +37,23 @@ document.addEventListener('DOMContentLoaded', function () {
             this.value = ''; // Limpiar el campo
         }
     });
+    
+    document.getElementById('codigo2').addEventListener('keydown', function (event) {
+        if (event.key === 'Enter') { // Verificar si se presionó "Enter"
+            event.preventDefault(); // Evitar el comportamiento por defecto
 
+            // Limpiar y validar código escaneado
+            codigoEscaneado = this.value.trim();
+
+            // Expresión regular: solo números
+            if (codigoEscaneado.length > 0 && /^\d+$/.test(codigoEscaneado)) {
+                modalTieneComputador.show(); // Mostrar modal inicial
+            } else {
+                alert('⚠️ El código debe contener solo números');
+                this.value = ''; // Limpiar el campo
+            }
+        }
+    });
     // ==============================================
     // MANEJO DE MODALES
     // ==============================================

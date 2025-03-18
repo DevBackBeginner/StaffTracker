@@ -101,7 +101,7 @@
                 'nombre' => $nombre,
                 'documento' => $documento
             ];
-            $usuarios = $this->personalModelo->obtenerUsuarios($pagina, $limite, $filtros, $orden, $direccion);
+            $usuario = $this->personalModelo->obtenerUsuarios($pagina, $limite, $filtros, $orden, $direccion);
 
             // Obtener el total de usuarios para la paginación
             $totalUsuarios = $this->personalModelo->contarUsuarios($filtros);
@@ -109,7 +109,7 @@
 
             // Pasar los datos a la vista
             $data = [
-                'usuarios' => $usuarios,
+                'usuarios' => $usuario,
                 'pagina' => $pagina,
                 'totalPaginas' => $totalPaginas,
                 'rol' => $rol,
@@ -170,36 +170,44 @@
                     throw new Exception("Datos incompletos para eliminar el usuario.");
                 }
 
-                // Obtener el ID y el rol del usuario
-                $id = $_POST['id'];
-                $rol = $_POST['rol'];
+                // Obtener y validar el ID y el rol del usuario
+                $id = filter_var($_POST['id'], FILTER_VALIDATE_INT);
+                $rol = filter_var($_POST['rol'], FILTER_SANITIZE_SPECIAL_CHARS);
+
+                if ($id === false || $id <= 0) {
+                    throw new Exception("ID de usuario no válido.");
+                }
+
+                if (empty($rol)) {
+                    throw new Exception("Rol de usuario no válido.");
+                }
 
                 // Llamar al método del modelo para eliminar el usuario
                 $eliminado = $this->personalModelo->EliminarUsuario($id, $rol);
-
+              
                 // Verificar si la eliminación fue exitosa
                 if ($eliminado) {
-                    // Retornar un mensaje de éxito
-                    return [
+                    // Retornar un mensaje de éxito en formato JSON
+                    echo json_encode([
                         'success' => true,
                         'message' => 'Usuario eliminado correctamente.'
-                    ];
+                    ]);
                 } else {
-                    // Retornar un mensaje de error
-                    return [
+                    // Retornar un mensaje de error en formato JSON
+                    echo json_encode([
                         'success' => false,
                         'message' => 'Error al eliminar el usuario.'
-                    ];
+                    ]);
                 }
             } catch (Exception $e) {
                 // Registrar el error (opcional)
                 error_log("Error en eliminarUsuario: " . $e->getMessage());
 
-                // Retornar un mensaje de error
-                return [
+                // Retornar un mensaje de error en formato JSON
+                echo json_encode([
                     'success' => false,
-                    'message' => 'Ocurrió un error al intentar eliminar el usuario.'
-                ];
+                    'message' => 'Ocurrió un error al intentar eliminar el usuario: ' . $e->getMessage()
+                ]);
             }
         }
 

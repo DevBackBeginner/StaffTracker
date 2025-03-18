@@ -58,7 +58,7 @@
             // Validar que el rol sea permitido
             $rolesPermitidos = ['Instructor', 'Funcionario', 'Directivo', 'Apoyo', 'Visitante'];
             if (!in_array($rol, $rolesPermitidos)) {
-                $rol = ''; // Si el rol no es válido, buscar en todos los tipos
+                $rol = 'Instructor'; // Si el rol no es válido, buscar en todos los tipos
             }
         
             // Validar el documento (solo números y longitud máxima)

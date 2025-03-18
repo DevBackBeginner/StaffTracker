@@ -7,8 +7,9 @@
                 <th>Hora de Entrada</th>
                 <th>Hora de Salida</th>
                 <!-- Columnas comunes -->
-                <th>N° Identidad</th>
                 <th>Nombre</th>
+                <th>N° Identidad</th>
+
                 <th>Telefono</th>
                 <!-- Columnas específicas según el rol -->
                 <?php if ($rol === 'Instructor'): ?>
@@ -39,9 +40,9 @@
                         <td>
                             <?= !empty($u['hora_salida']) ? htmlspecialchars($u['hora_salida']) : 'No registrada' ?>
                         </td>
+                        <td><?= htmlspecialchars($u['nombre'] . ' ' . $u['apellidos']) ?></td>
                         <td><?= htmlspecialchars($u['numero_identidad']) ?></td>
 
-                        <td><?= htmlspecialchars($u['nombre'] . ' ' . $u['apellidos']) ?></td>
                         <td><?= htmlspecialchars($u['telefono']) ?></td>
                         <!-- Columnas específicas según el rol -->
                         <?php if ($rol === 'Instructor'): ?>

@@ -270,22 +270,11 @@
             }
         }
 
-        public function EliminarUsuario($id)
+        public function EliminarUsuario($id, $rol)
         {
             try {
-                // Iniciar una transacción (para asegurar la integridad de los datos)
+                // Iniciar una transacción
                 $this->db->beginTransaction();
-
-                // Obtener el rol del usuario antes de eliminarlo
-                $queryRol = "SELECT rol FROM usuarios WHERE id = ?";
-                $stmtRol = $this->db->prepare($queryRol);
-                $stmtRol->execute([$id]);
-                $rol = $stmtRol->fetchColumn();
-
-                // Verificar si el usuario existe
-                if ($rol === false) {
-                    throw new Exception("El usuario con ID $id no existe.");
-                }
 
                 // Eliminar la información adicional del rol
                 $this->eliminarInformacionRol($id, $rol);
@@ -298,8 +287,8 @@
                 // Confirmar la transacción
                 $this->db->commit();
 
-                // Retornar true para indicar que la operación fue exitosa
-                return true;
+                // Retornar un mensaje de éxito
+                return "Usuario eliminado correctamente.";
             } catch (Exception $e) {
                 // Revertir la transacción en caso de error
                 $this->db->rollBack();
@@ -307,11 +296,10 @@
                 // Registrar el error (opcional)
                 error_log("Error al eliminar usuario: " . $e->getMessage());
 
-                // Retornar false para indicar que la operación falló
-                return false;
+                // Retornar un mensaje de error
+                return "Error al eliminar el usuario: " . $e->getMessage();
             }
         }
-
         // Eliminar la información del rol anterior
         private function eliminarInformacionRol($id, $rol)
         {
@@ -332,7 +320,7 @@
                     $query = "DELETE FROM visitantes WHERE usuario_id = ?";
                     break;
                 default:
-                    return; // No hacer nada si el rol no tiene información adicional
+                    throw new Exception("Rol no válido: $rol");
             }
 
             $stmt = $this->db->prepare($query);

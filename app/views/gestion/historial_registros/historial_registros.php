@@ -46,12 +46,6 @@
                                         <input type="text" name="documento" class="form-control" id="documentoInput" placeholder="Filtrar por documentos" value="<?= htmlspecialchars($documento ?? '') ?>">
                                     </div>
                                 </div>
-                                <!-- Botón de búsqueda -->
-                                <div class="col-12 mt-4">
-                                    <button class="btn btn-success w-100 py-2 fw-bold" type="submit" style="background-color: #007832; border-color: #007832;">
-                                        <i class="bi bi-search me-2"></i>Buscar
-                                    </button>
-                                </div>
                             </form>
                         </div>
                     </div>
