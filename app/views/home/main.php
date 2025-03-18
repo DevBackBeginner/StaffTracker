@@ -103,29 +103,96 @@
           </div>
         </div>
       </section>
-
-    <!-- Cta-->
-    <section class="section section-fluid bg-default">
-      <div class="parallax-container" data-parallax-img="/ControlAsistencia/public/assets/img/sena4.jpg" style="box-shadow: 0 8px 16px 0 #007832;">
-        <div class="parallax-content section-xl context-dark bg-overlay-68 bg-mobile-overlay">
-      <div class="container">
-        <div class="row row-30 justify-content-center text-center">
-          <div class="col-sm-7">
-        <h3 class="wow fadeInLeft" style="color: white; text-shadow: 2px 2px 4px #007832; font-size: 2.5em;">Gestión de Accesos Eficiente</h3>
-        <p style="color: white; text-shadow: 2px 2px 4px #007832; font-size: 1.5em;">Con nuestro sistema de control de acceso, garantizamos una entrada y salida rápida y segura para instructores, directivos, administrativos y visitantes. Optimiza la gestión y mejora la seguridad en las instalaciones del SENA.</p>
-        <div class="group-sm group-middle group justify-content-center"></div>
+      <!-- Cta-->
+      <section class="section section-fluid bg-default">
+        <div class="parallax-container" data-parallax-img="/ControlAsistencia/public/assets/img/sena4.jpg" style="box-shadow: 0 8px 16px 0 #007832; background-size: cover; height: 600px; display: flex; align-items: center; justify-content: center;">
+          <div class="parallax-content section-xl context-dark bg-overlay-68 bg-mobile-overlay">
+        <div class="container">
+          <div class="row row-30 justify-content-center text-center">
+            <div class="col-sm-7">
+          <h3 class="wow fadeInLeft" style="color: white; text-shadow: 2px 2px 4px #007832; font-size: 2.5em;">Gestión de Accesos Eficiente</h3>
+          <p style="color: white; text-shadow: 2px 2px 4px #007832; font-size: 1.2em;">Con nuestro sistema de control de acceso, garantizamos una entrada y salida rápida y segura para instructores, directivos, administrativos y visitantes. Optimiza la gestión y mejora la seguridad en las instalaciones del SENA.</p>
+          <div class="group-sm group-middle group justify-content-center"></div>
+            </div>
           </div>
         </div>
-      </div>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+
+      <section class="section section-sm bg-default text-center" id="team">
+        <div class="container">
+          <h2 class="wow fadeInLeft" style="font-size: 2.5em;">Nuestro Equipo</h2>
+          <div class="row row-30 justify-content-center">
+        <div class="col-md-3 mb-4 wow fadeInUp" data-wow-delay=".1s">
+          <div class="team-classic team-classic-lg">
+            <a class="team-classic-figure" href="#"><img src="/ControlAsistencia/public/assets/img/logo.png" alt="Badend Echo" class="img-fluid rounded-circle" style="width: 150px; height: 150px;"></a>
+            <div class="team-classic-caption">
+          <h4 class="team-classic-name"><a href="#" style="color: #00304D; font-size: 1.5em;">Badend Echo - Backend</a></h4>
+          <p class="team-classic-status" style="font-size: 1.2em;">Desarrollador Backend</p>
+          <div class="social-links">
+            <a href="https://github.com/helbert" target="_blank">GitHub</a> |
+            <a href="https://linkedin.com/in/helbert" target="_blank">LinkedIn</a> |
+            <a href="mailto:helbert@example.com">Correo</a>
+            <p>Cel: +123 456 7890</p>
+          </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 mb-4 wow fadeInUp" data-wow-delay=".2s">
+          <div class="team-classic team-classic-lg">
+            <a class="team-classic-figure" href="#"><img src="/ControlAsistencia/public/assets/img/logo.png" alt="Juan Manuel" class="img-fluid rounded-circle" style="width: 150px; height: 150px;"></a>
+            <div class="team-classic-caption">
+          <h4 class="team-classic-name"><a href="#" style="color: #00304D; font-size: 1.5em;">Juan Manuel - Frontend</a></h4>
+          <p class="team-classic-status" style="font-size: 1.2em;">Desarrollador Frontend</p>
+          <div class="social-links">
+            <a href="https://github.com/juanmanuel" target="_blank">GitHub</a> |
+            <a href="https://linkedin.com/in/juanmanuel" target="_blank">LinkedIn</a> |
+            <a href="mailto:juanmanuel@example.com">Correo</a>
+            <p>Cel: +123 456 7891</p>
+          </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 mb-4 wow fadeInUp" data-wow-delay=".3s">
+          <div class="team-classic team-classic-lg">
+            <a class="team-classic-figure" href="#"><img src="/ControlAsistencia/public/assets/img/logo.png" alt="Brayan" class="img-fluid rounded-circle" style="width: 150px; height: 150px;"></a>
+            <div class="team-classic-caption">
+          <h4 class="team-classic-name"><a href="#" style="color: #00304D; font-size: 1.5em;">Brayan - Beta Tester</a></h4>
+          <p class="team-classic-status" style="font-size: 1.2em;">Beta Tester</p>
+          <div class="social-links">
+            <a href="https://github.com/brayan" target="_blank">GitHub</a> |
+            <a href="https://linkedin.com/in/brayan" target="_blank">LinkedIn</a> |
+            <a href="mailto:brayan@example.com">Correo</a>
+            <p>Cel: +123 456 7892</p>
+          </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 mb-4 wow fadeInUp" data-wow-delay=".4s">
+          <div class="team-classic team-classic-lg">
+            <a class="team-classic-figure" href="#"><img src="/ControlAsistencia/public/assets/img/logo.png" alt="Cristian" class="img-fluid rounded-circle" style="width: 150px; height: 150px;"></a>
+            <div class="team-classic-caption">
+          <h4 class="team-classic-name"><a href="#" style="color: #00304D; font-size: 1.5em;">Cristian - Developer</a></h4>
+          <p class="team-classic-status" style="font-size: 1.2em;">Desarrollador</p>
+          <div class="social-links">
+            <a href="https://github.com/cristian" target="_blank">GitHub</a> |
+            <a href="https://linkedin.com/in/cristian" target="_blank">LinkedIn</a> |
+            <a href="mailto:cristian@example.com">Correo</a>
+            <p>Cel: +123 456 7893</p>
+          </div>
+            </div>
+          </div>
+        </div>
+          </div>
+        </div>
+      </section>
 
     <!-- Últimos Proyectos-->
     <section class="section section-sm section-fluid bg-default text-center" id="projects">
       <div class="container-fluid">
         <h2 class="wow fadeInLeft" style="font-size: 2.5em;">Nuestro Propósito</h2>
-        <p class="quote-jean wow fadeInRight" data-wow-delay=".1s" style="color: #00304D; font-size: 1.5em;">El objetivo principal de StaffTracker es simplificar y agilizar el proceso de registro de entrada y salida de las personas que ingresan al centro de desarrollo agroindustrial y empresarial sena villeta. Este sistema permite escanear los carnet de los instructores,directivos,funcionarios, capturando automáticamente la fecha y hora de su ingreso. Además, se podra registrar visitantes con su motivo de su visita, junto con sus datos personales, para un control preciso y detallado.</p>
+        <p class="quote-jean wow fadeInRight" data-wow-delay=".1s" style="color: #00304D; font-size: 1.2em;">El objetivo principal de StaffTracker es simplificar y agilizar el proceso de registro de entrada y salida de las personas que ingresan al centro de desarrollo agroindustrial y empresarial sena villeta. Este sistema permite escanear los carnet de los instructores,directivos,funcionarios, capturando automáticamente la fecha y hora de su ingreso. Además, se podra registrar visitantes con su motivo de su visita, junto con sus datos personales, para un control preciso y detallado.</p>
       </div>
     </section>
 
@@ -185,7 +252,7 @@
 <section class="section section-sm section-fluid bg-default" id="team">
   <div class="container-fluid">
     <h2 style="font-size: 2.5em;">Registro de Ingreso y Salida</h2>
-    <p style="color: #00304D; font-size: 1.5em;">El equipo encargado de garantizar el correcto registro de los ingresos y salidas en el SENA está compuesto por profesionales dedicados al control y la seguridad. Nuestro sistema permite a los guardias de seguridad gestionar el acceso de instructores, administrativos y visitantes de manera eficiente y precisa.</p>
+    <p style="color: #00304D; font-size: 1.2em;">El equipo encargado de garantizar el correcto registro de los ingresos y salidas en el SENA está compuesto por profesionales dedicados al control y la seguridad. Nuestro sistema permite a los guardias de seguridad gestionar el acceso de instructores, administrativos y visitantes de manera eficiente y precisa.</p>
     <div class="row row-sm row-30 justify-content-center">
       <div class="col-md-6 col-lg-5 col-xl-3 wow fadeInRight">
         <article class="team-classic team-classic-lg"><a class="team-classic-figure" href="#"><img src="/ControlAsistencia/public/assets/img/instructor.jpg" alt="" width="420" height="424"/></a>
@@ -215,62 +282,7 @@
   </div>
 </section>
 
-<div class="container">
-  <div class="row">
-    <div class="col-md-3">
-      <div class="card text-center">
-        <img src="ruta/a/la/foto/helbert.jpg" alt="Badend Echo" class="avatar img-fluid rounded-circle mx-auto d-block" style="width: 150px; height: 150px;">
-        <h3>Badend Echo - Backend</h3>
-        <p>Desarrollador Backend</p>
-        <div class="social-links">
-          <a href="https://github.com/helbert" target="_blank">GitHub</a> |
-          <a href="https://linkedin.com/in/helbert" target="_blank">LinkedIn</a> |
-          <a href="mailto:helbert@example.com">Correo</a>
-          <p>Cel: +123 456 7890</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-3">
-      <div class="card text-center">
-        <img src="ruta/a/la/foto/juanmanuel.jpg" alt="Juan Manuel" class="avatar img-fluid rounded-circle mx-auto d-block" style="width: 150px; height: 150px;">
-        <h3>Juan Manuel - Frontend</h3>
-        <p>Desarrollador Frontend</p>
-        <div class="social-links">
-          <a href="https://github.com/juanmanuel" target="_blank">GitHub</a> |
-          <a href="https://linkedin.com/in/juanmanuel" target="_blank">LinkedIn</a> |
-          <a href="mailto:juanmanuel@example.com">Correo</a>
-          <p>Cel: +123 456 7891</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-3">
-      <div class="card text-center">
-        <img src="ruta/a/la/foto/brayan.jpg" alt="Brayan" class="avatar img-fluid rounded-circle mx-auto d-block" style="width: 150px; height: 150px;">
-        <h3>Brayan - Beta Tester</h3>
-        <p>Beta Tester</p>
-        <div class="social-links">
-          <a href="https://github.com/brayan" target="_blank">GitHub</a> |
-          <a href="https://linkedin.com/in/brayan" target="_blank">LinkedIn</a> |
-          <a href="mailto:brayan@example.com">Correo</a>
-          <p>Cel: +123 456 7892</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-3">
-      <div class="card text-center">
-        <img src="ruta/a/la/foto/cristian.jpg" alt="Cristian" class="avatar img-fluid rounded-circle mx-auto d-block" style="width: 150px; height: 150px;">
-        <h3>Cristian - Developer</h3>
-        <p>Desarrollador</p>
-        <div class="social-links">
-          <a href="https://github.com/cristian" target="_blank">GitHub</a> |
-          <a href="https://linkedin.com/in/cristian" target="_blank">LinkedIn</a> |
-          <a href="mailto:cristian@example.com">Correo</a>
-          <p>Cel: +123 456 7893</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+
 
 <h2>Centro de desarrollo agroindustrial y empresarial sena villeta</h2>
 <!-- Bottom Banner-->
