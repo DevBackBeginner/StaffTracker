@@ -7,7 +7,6 @@
                 <li class="breadcrumb-item active">Registro de Personal</li>
             </ol>
         </nav>
-<<<<<<< HEAD
     </div>
     <div class="container-fluid">
         <section class="section register py-4">
@@ -27,37 +26,6 @@
                                 unset($_SESSION['tipo_mensaje']);
                             ?>
                             <?php endif; ?>
-=======
-    </div><!-- End Page Title -->
-    <form action="registrar_personal" method="POST" class="container mt-4 p-4 border rounded shadow-sm bg-light" onsubmit="return validarFormulario()" novalidate>
-        <!-- Campos comunes -->
-        <div class="mb-3">
-            <label for="nombre" class="form-label">Nombre</label>
-            <input type="text" name="nombre" id="nombre" class="form-control" placeholder="Nombre" required>
-        </div>
-        <div class="mb-3">
-            <label for="apellido" class="form-label">Apellido</label>
-            <input type="text" name="apellido" id="apellido" class="form-control" placeholder="Apellido" required>
-        </div>
-        <div class="mb-3">
-            <label for="numero_identidad" class="form-label">Número de Identidad</label>
-            <input type="text" name="numero_identidad" id="numero_identidad" class="form-control" placeholder="Número de Identidad" required>
-        </div>
-        <div class="mb-3">
-            <label for="telefono" class="form-label">Teléfono</label>
-            <input type="text" name="telefono" id="telefono" class="form-control" placeholder="Teléfono" required>
-        </div>
-        <div class="mb-3">
-            <label for="rol" class="form-label">Rol</label>
-            <select name="rol" id="rol" class="form-select" required onchange="mostrarCamposAdicionales()">
-                <option value="">Seleccione un rol</option>
-                <option value="Funcionario">Funcionario</option>
-                <option value="Instructor">Instructor</option>
-                <option value="Directiva">Directiva</option>
-                <option value="Apoyo">Apoyo</option>
-            </select>
-        </div>
->>>>>>> c184e3e91ff70a50bfbbf9d39aab8804851b13e2
 
                             <form class="row g-3 needs-validation" action="registrar_personal" method="POST" novalidate onsubmit="return validarFormulario()">
                                 <!-- Campos comunes -->
@@ -143,11 +111,31 @@
                                             <option value="Personal">Personal</option>
                                         </select>
                                     </div>
-                                    <div class="mb-3">
-                                        <input type="text" name="marca" class="form-control" placeholder="Marca del computador">
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label for="marca_computador" class="form-label fw-bold" style="color: #007832;">Marca del computador</label>
+                                            <input type="text" name="marca" class="form-control" placeholder="Marca del computador">
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="marca_computador" class="form-label fw-bold" style="color: #007832;">Codigo del computador</label>
+                                            <input type="text" name="codigo" class="form-control" placeholder="Código del computador">
+                                        </div>
                                     </div>
-                                    <div class="mb-3">
-                                        <input type="text" name="codigo" class="form-control" placeholder="Código del computador">
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label class="form-label">¿Trae mouse?</label>
+                                            <div class="form-check">
+                                                <input type="checkbox" name="mouse" id="mouse" class="form-check-input" value="Sí">
+                                                <label for="mouse" class="form-check-label">Sí</label>
+                                            </div>
+                                        </div>
+                                        <div class="mb-3 col-md-6">
+                                            <label class="form-label">¿Trae teclado?</label>
+                                            <div class="form-check">
+                                                <input type="checkbox" name="teclado" id="teclado" class="form-check-input" value="Sí">
+                                                <label for="teclado" class="form-check-label">Sí</label>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -161,45 +149,8 @@
                     </div>
                 </div>
             </div>
-<<<<<<< HEAD
         </section>
     </div>
-=======
-
-            <div class="mb-3">
-                <label class="form-label">Marca del computador</label>
-                <input type="text" name="marca" class="form-control" placeholder="Marca del computador">
-            </div>
-
-            <div class="mb-3">
-                <label class="form-label">Codigo del computador</label>
-                <input type="text" name="codigo" class="form-control" placeholder="Código del computador">
-            </div>
-
-            <div class="row">
-                <div class="mb-3 col-md-6">
-                    <label class="form-label">¿Trae mouse?</label>
-                    <div class="form-check">
-                        <input type="checkbox" name="mouse" id="mouse" class="form-check-input" value="Sí">
-                        <label for="mouse" class="form-check-label">Sí</label>
-                    </div>
-                </div>
-                <div class="mb-3 col-md-6">
-                    <label class="form-label">¿Trae teclado?</label>
-                    <div class="form-check">
-                        <input type="checkbox" name="teclado" id="teclado" class="form-check-input" value="Sí">
-                        <label for="teclado" class="form-check-label">Sí</label>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="text-center">
-            <button type="submit" class="btn btn-primary" style="background-color: #007832; border-color: #007832;">Registrar</button>
-        </div>
-    </form>
-    
->>>>>>> c184e3e91ff70a50bfbbf9d39aab8804851b13e2
     <script src="assets/js/registro_personal.js"></script>
 
 <?php include_once __DIR__ . '/../dashboard/layouts/footer_main.php'; ?>

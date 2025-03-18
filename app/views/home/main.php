@@ -10,7 +10,6 @@
     <meta charset="utf-8">
     <link rel="icon" href="/ControlAsistencia/public/assets/img/logo.png" type="image/x-icon">
     <!-- Stylesheets-->
-     
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Poppins:400,500,600%7CTeko:300,400,500%7CMaven+Pro:500">
     <link rel="stylesheet" href="/ControlAsistencia/public/assets/css/bootstrap.css">
     <link rel="stylesheet" href="/ControlAsistencia/public/assets/css/fonts.css">
