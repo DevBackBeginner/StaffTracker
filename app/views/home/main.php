@@ -125,7 +125,7 @@
     <section class="section section-sm section-fluid bg-default text-center" id="projects">
       <div class="container-fluid">
         <h2 class="wow fadeInLeft" style="font-size: 2.5em;">Nuestro Propósito</h2>
-        <p class="quote-jean wow fadeInRight" data-wow-delay=".1s" style="color: #00304D; font-size: 1.5em;">El objetivo principal de SENA Villeta es simplificar y agilizar el proceso de registro de entrada y salida de las personas que ingresan a nuestras instalaciones. Este sistema permite escanear los carnés de los instructores, capturando automáticamente la fecha y hora de su ingreso. Además, los visitantes podrán registrar el motivo de su visita, junto con sus datos personales, para un control preciso y detallado.</p>
+        <p class="quote-jean wow fadeInRight" data-wow-delay=".1s" style="color: #00304D; font-size: 1.5em;">El objetivo principal de StaffTracker es simplificar y agilizar el proceso de registro de entrada y salida de las personas que ingresan al centro de desarrollo agroindustrial y empresarial sena villeta. Este sistema permite escanear los carnet de los instructores,directivos,funcionarios, capturando automáticamente la fecha y hora de su ingreso. Además, se podra registrar visitantes con su motivo de su visita, junto con sus datos personales, para un control preciso y detallado.</p>
       </div>
     </section>
 
@@ -215,7 +215,64 @@
   </div>
 </section>
 
-<h2>Sede SENA Villeta</h2>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <div class="card text-center">
+        <img src="ruta/a/la/foto/helbert.jpg" alt="Badend Echo" class="avatar img-fluid rounded-circle mx-auto d-block" style="width: 150px; height: 150px;">
+        <h3>Badend Echo - Backend</h3>
+        <p>Desarrollador Backend</p>
+        <div class="social-links">
+          <a href="https://github.com/helbert" target="_blank">GitHub</a> |
+          <a href="https://linkedin.com/in/helbert" target="_blank">LinkedIn</a> |
+          <a href="mailto:helbert@example.com">Correo</a>
+          <p>Cel: +123 456 7890</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card text-center">
+        <img src="ruta/a/la/foto/juanmanuel.jpg" alt="Juan Manuel" class="avatar img-fluid rounded-circle mx-auto d-block" style="width: 150px; height: 150px;">
+        <h3>Juan Manuel - Frontend</h3>
+        <p>Desarrollador Frontend</p>
+        <div class="social-links">
+          <a href="https://github.com/juanmanuel" target="_blank">GitHub</a> |
+          <a href="https://linkedin.com/in/juanmanuel" target="_blank">LinkedIn</a> |
+          <a href="mailto:juanmanuel@example.com">Correo</a>
+          <p>Cel: +123 456 7891</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card text-center">
+        <img src="ruta/a/la/foto/brayan.jpg" alt="Brayan" class="avatar img-fluid rounded-circle mx-auto d-block" style="width: 150px; height: 150px;">
+        <h3>Brayan - Beta Tester</h3>
+        <p>Beta Tester</p>
+        <div class="social-links">
+          <a href="https://github.com/brayan" target="_blank">GitHub</a> |
+          <a href="https://linkedin.com/in/brayan" target="_blank">LinkedIn</a> |
+          <a href="mailto:brayan@example.com">Correo</a>
+          <p>Cel: +123 456 7892</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card text-center">
+        <img src="ruta/a/la/foto/cristian.jpg" alt="Cristian" class="avatar img-fluid rounded-circle mx-auto d-block" style="width: 150px; height: 150px;">
+        <h3>Cristian - Developer</h3>
+        <p>Desarrollador</p>
+        <div class="social-links">
+          <a href="https://github.com/cristian" target="_blank">GitHub</a> |
+          <a href="https://linkedin.com/in/cristian" target="_blank">LinkedIn</a> |
+          <a href="mailto:cristian@example.com">Correo</a>
+          <p>Cel: +123 456 7893</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<h2>Centro de desarrollo agroindustrial y empresarial sena villeta</h2>
 <!-- Bottom Banner-->
 <section class="section section-fluid"><a class="section-banner" href="https://www.templatemonster.com/intense-multipurpose-html-template.html" style="background-image: url(images/banner/banner-bg-01-1920x310.jpg); background-image: -webkit-image-set( url(images/banner/banner-bg-01-1920x310.jpg) 1x, url(images/banner/banner-bg-01-3840x620.jpg) 2x )" target="_blank"><img src="/ControlAsistencia/public/assets/img/senaaire.jpg" srcset="/ControlAsistencia/public/assets/img/senaaire.jpg 1x, senaaire.jpg" alt="" width="1600" height="310"></a></section>
 <!-- Global Mailform Output-->
