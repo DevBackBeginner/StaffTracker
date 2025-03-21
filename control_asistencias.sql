@@ -233,10 +233,10 @@ INSERT INTO `instructores` (`usuario_id`, `curso`, `ubicacion`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `registro_acceso`
+-- Estructura de tabla para la tabla `registros`
 --
 
-CREATE TABLE `registro_acceso` (
+CREATE TABLE `registros` (
   `id` int(11) NOT NULL,
   `asignacion_id` int(11) DEFAULT NULL,
   `fecha` date NOT NULL DEFAULT curdate(),
@@ -247,10 +247,10 @@ CREATE TABLE `registro_acceso` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Volcado de datos para la tabla `registro_acceso`
+-- Volcado de datos para la tabla `registros`
 --
 
-INSERT INTO `registro_acceso` (`id`, `asignacion_id`, `fecha`, `hora_entrada`, `hora_salida`, `estado`, `tipo_usuario`) VALUES
+INSERT INTO `registros` (`id`, `asignacion_id`, `fecha`, `hora_entrada`, `hora_salida`, `estado`, `tipo_usuario`) VALUES
 (23, 56, '2025-03-16', '12:52:36', '14:30:36', 'Finalizado', 'Personal'),
 (24, 57, '2025-03-16', '12:52:54', NULL, 'Activo', 'Visitante'),
 (25, 17, '2025-03-16', '12:54:40', NULL, 'Activo', 'Visitante'),
@@ -400,9 +400,9 @@ ALTER TABLE `instructores`
   ADD KEY `idx_usuario_id` (`usuario_id`);
 
 --
--- Indices de la tabla `registro_acceso`
+-- Indices de la tabla `registros`
 --
-ALTER TABLE `registro_acceso`
+ALTER TABLE `registros`
   ADD PRIMARY KEY (`id`),
   ADD KEY `asignacion_id` (`asignacion_id`),
   ADD KEY `idx_fecha_tipo_usuario` (`fecha`,`tipo_usuario`);
@@ -453,9 +453,9 @@ ALTER TABLE `guardas`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT de la tabla `registro_acceso`
+-- AUTO_INCREMENT de la tabla `registros`
 --
-ALTER TABLE `registro_acceso`
+ALTER TABLE `registros`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
@@ -518,10 +518,10 @@ ALTER TABLE `instructores`
   ADD CONSTRAINT `instructores_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE;
 
 --
--- Filtros para la tabla `registro_acceso`
+-- Filtros para la tabla `registros`
 --
-ALTER TABLE `registro_acceso`
-  ADD CONSTRAINT `registro_acceso_ibfk_1` FOREIGN KEY (`asignacion_id`) REFERENCES `asignaciones_computadores` (`id`) ON DELETE SET NULL;
+ALTER TABLE `registros`
+  ADD CONSTRAINT `registros_ibfk_1` FOREIGN KEY (`asignacion_id`) REFERENCES `asignaciones_computadores` (`id`) ON DELETE SET NULL;
 
 --
 -- Filtros para la tabla `usuarios_autenticados`

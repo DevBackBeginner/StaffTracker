@@ -27,6 +27,21 @@
     transform: translateY(-5px); /* Efecto hover */
 }
 
+/* Contenedor circular para logo */
+.login-image-container {
+    width: 100px; /* Ajusta el tamaño del contenedor */
+    height: 100px; /* Ajusta el tamaño del contenedor */
+    border-radius: 50%; /* Hacerlo circular */
+    overflow: hidden; /* Oculta cualquier desbordamiento */
+    margin: 0 auto 20px; /* Centrar y margen inferior */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra del logo */
+}
+
+.login-image {
+    width: 100%; /* Hacer que la imagen ocupe todo el contenedor */
+    height: auto; /* Mantener la relación de aspecto */
+}
+
 /* Título */
 .login-title {
     font-size: 26px; /* Tamaño de fuente más grande */
@@ -121,4 +136,11 @@
 .submit-button:hover {
     background-color: #005f2e; /* Color de fondo al pasar el ratón */
     transform: translateY(-2px); /* Efecto hover */
+}
+
+.eye-icon-container {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
 }

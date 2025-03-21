@@ -107,45 +107,47 @@
               <span>Inicio</span>
             </a>
           </li><!-- End Dashboard Nav -->
+          <?php if (isset($_SESSION['usuario']['rol']) && $_SESSION['usuario']['rol'] === 'Guarda'): ?>
 
-          <!-- Registrar Visitantes -->
-          <li class="nav-item">
-            <a class="nav-link collapsed" href="formulario_registro_visitante">
-              <i class="bi bi-person-plus"></i>
-              <span>Registrar Visitantes</span>
-            </a>
-          </li><!-- End Registrar Visitantes Nav -->
+            <!-- Registrar Visitantes -->
+            <li class="nav-item">
+              <a class="nav-link collapsed" href="formulario_registro_visitante">
+                <i class="bi bi-person-plus"></i>
+                <span>Registrar Visitantes</span>
+              </a>
+            </li><!-- End Registrar Visitantes Nav -->
 
-          <!-- Entrada/Salida -->
-          <li class="nav-item">
-            <a class="nav-link collapsed" data-bs-toggle="collapse" href="#entradaSalida" role="button" aria-expanded="false" aria-controls="entradaSalida">
-              <i class="bi bi-door-open"></i>
-              <span>Registrar Acceso</span>
-              <i class="bi bi-chevron-down ms-auto"></i>
-            </a>
-            <ul id="entradaSalida" class="nav-content collapse" data-bs-parent="#sidebar-nav">
-              <li>
-                <a href="registro_ingreso">
-                  <i class="bi bi-people"></i>
-                  <span>Entrada</span>
-                </a>
-              </li>
-              <li>
-                <a href="registro_salida">
-                  <i class="bi bi-person"></i>
-                  <span>Salida</span>
-                </a>
-              </li>
-            </ul>
-          </li><!-- End Entrada/Salida Nav -->
+            <!-- Entrada/Salida -->
+            <li class="nav-item">
+              <a class="nav-link collapsed" data-bs-toggle="collapse" href="#entradaSalida" role="button" aria-expanded="false" aria-controls="entradaSalida">
+                <i class="bi bi-door-open"></i>
+                <span>Registrar Acceso</span>
+                <i class="bi bi-chevron-down ms-auto"></i>
+              </a>
+              <ul id="entradaSalida" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+                <li>
+                  <a href="registro_ingreso">
+                    <i class="bi bi-people"></i>
+                    <span>Entrada</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="registro_salida">
+                    <i class="bi bi-person"></i>
+                    <span>Salida</span>
+                  </a>
+                </li>
+              </ul>
+            </li><!-- End Entrada/Salida Nav -->
 
-          <!-- Consultar Registros -->
-          <li class="nav-item">
-            <a class="nav-link collapsed" href="panel_ingreso">
-              <i class="bi bi-list-check"></i>
-              <span>Historial de registros</span>
-            </a>
-          </li><!-- End Consultar Registros Nav -->
+            <!-- Consultar Registros -->
+            <li class="nav-item">
+              <a class="nav-link collapsed" href="panel_ingreso">
+                <i class="bi bi-list-check"></i>
+                <span>Historial de registros</span>
+              </a>
+            </li><!-- End Consultar Registros Nav -->
+          <?php endif; ?>
 
           <!-- Opciones exclusivas para Administradores -->
           <?php if (isset($_SESSION['usuario']['rol']) && $_SESSION['usuario']['rol'] === 'Admin'): ?>
@@ -177,7 +179,28 @@
                   </li>
                 </ul>
               </li>
-          <?php endif; ?>
+              <li class="nav-item">
+                <a class="nav-link collapsed" data-bs-toggle="collapse" href="#gestionReportes" role="button" aria-expanded="false" aria-controls="gestionUsuarios">
+                  <i class="bi bi-people"></i>
+                  <span>Reportes</span>
+                  <i class="bi bi-chevron-down ms-auto"></i>
+                </a>
+                <ul id="gestionReportes" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+                  <li>
+                    <a href="reportes">
+                      <i class="bi bi-plus-circle"></i>
+                      <span>Reportes</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="reporte_graficos">
+                      <i class="bi bi-list-ul"></i>
+                      <span>Reportes Graficos</span>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            <?php endif; ?>
 
           <!-- Opciones Generales -->
           <li class="nav-heading">Ajustes</li>

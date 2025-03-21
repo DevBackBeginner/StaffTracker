@@ -1,8 +1,7 @@
 <?php include_once __DIR__ . '/../../views/layouts/header.php'; ?>
-<title>StaffTracker</title>
 
 <link rel="stylesheet" href="assets/css/login.css">
-
+<title>StaffTracker</title>
 <div class="login-container">
     <div class="login-card">
         <!-- Contenedor circular para la imagen -->
@@ -70,3 +69,4 @@
 
 <script src="assets/js/login.js"></script>
 <?php include_once __DIR__ . '/../../views/layouts/footer.php'; ?>
+<script src="assets/js/core.min.js"></script>

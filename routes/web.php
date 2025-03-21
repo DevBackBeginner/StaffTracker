@@ -84,4 +84,8 @@ Router::post('registrar_visitante', [GestionVisitantesController::class, 'regist
 
 Router::get('registrar-acceso-visitantes', [GestionVisitantesController::class, 'gestionarAccesoVisitantes']);
 
+Router::get('reportes', [ReportController::class, 'Reportes']);
+
+Router::get('reporte_graficos', [ReportController::class, 'generarReporteGraficos']);
+
 ?>
