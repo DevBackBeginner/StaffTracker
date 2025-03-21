@@ -14,26 +14,24 @@
             <div class="col-12">
                 <div class="card mb-3 shadow-sm">
                     <div class="card-body p-4">
-                        <form method="GET" action="" class="row g-3 needs-validation" novalidate>
-                            <div class="col-md-6">
+                        <form method="GET" action="" class="row g-3">
+                            <div class="col-md-4">
                                 <label for="nombre" class="form-label fw-bold" style="color: #007832;">Nombre</label>
                                 <div class="input-group">
                                     <span class="input-group-text"><i class="bi bi-person"></i></span>
-                                    <input type="text" name="nombre" id="nombre" class="form-control" placeholder="Nombre" value="<?= htmlspecialchars($nombre) ?>" required>
+                                    <input type="text" name="nombre" id="nombre" class="form-control" placeholder="Nombre" value="<?= htmlspecialchars($nombre) ?>">
                                 </div>
-                                <div class="invalid-feedback">Por favor, ingrese su nombre.</div>
                             </div>
-                            <div class="col-md-6">
-                                <label for="documento" class="form-label fw-bold" style="color: #007832;">Documento</label>
+                            <div class="col-md-4">
+                                <label for="documento" class="form-label fw-bold" style="color: #007832;">Idetificación</label>
                                 <div class="input-group">
                                     <span class="input-group-text"><i class="bi bi-card-text"></i></span>
-                                    <input type="text" name="documento" id="documento" class="form-control" placeholder="Documento" value="<?= htmlspecialchars($documento) ?>" required>
+                                    <input type="text" name="documento" id="documento" class="form-control" placeholder="Documento" value="<?= htmlspecialchars($documento) ?>">
                                 </div>
-                                <div class="invalid-feedback">Por favor, ingrese su documento.</div>
                             </div>
-                            <div class="col-md-12">
+                            <div class="col-md-4">
                                 <label for="rol" class="form-label fw-bold" style="color: #007832;">Rol</label>
-                                <select name="rol" id="rol" class="form-select" required>
+                                <select name="rol" id="rol" class="form-select">
                                     <option value="">Todos los roles</option>
                                     <option value="Instructor" <?= $rol === 'Instructor' ? 'selected' : '' ?>>Instructor</option>
                                     <option value="Funcionario" <?= $rol === 'Funcionario' ? 'selected' : '' ?>>Funcionario</option>
@@ -41,7 +39,6 @@
                                     <option value="Apoyo" <?= $rol === 'Apoyo' ? 'selected' : '' ?>>Apoyo</option>
                                     <option value="Visitante" <?= $rol === 'Visitante' ? 'selected' : '' ?>>Visitante</option>
                                 </select>
-                                <div class="invalid-feedback">Por favor, seleccione un rol.</div>
                             </div>
                             <div class="col-12 mt-4">
                                 <button type="submit" class="btn btn-success w-100 py-2 fw-bold" style="background-color: #007832; border-color: #007832;">
@@ -54,6 +51,17 @@
             </div>
         </div>
         <div class="row">
+            <!-- Mostrar mensajes de éxito o error -->
+            <?php if (isset($_SESSION['mensaje'])): ?>
+                <div class="alert <?php echo ($_SESSION['tipo_mensaje'] === 'success') ? 'alert-success' : 'alert-danger'; ?> text-center">
+                    <?php echo $_SESSION['mensaje']; ?>
+                </div>
+                <?php
+                // Limpiar el mensaje después de mostrarlo
+                unset($_SESSION['mensaje']);
+                unset($_SESSION['tipo_mensaje']);
+                ?>
+            <?php endif; ?>
             <div class="col-12">
                 <div class="card mb-3 shadow-sm">
                     <div class="card-body p-4">
@@ -62,7 +70,7 @@
                                 <tr>
                                     <th>Nombre</th>
                                     <th>Apellidos</th>
-                                    <th>Documento</th>
+                                    <th>Identificación</th>
                                     <th>Rol</th>
                                     <th>Teléfono</th>
                                     <th>Información Adicional</th>
@@ -104,10 +112,17 @@
                                             ?>
                                         </td>
                                         <td>
-                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editarUsuarioModal">
-                                            Editar Usuario
-                                        </button>
-
+                                            <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editarUsuarioModal" data-id="<?= $us['id'] ?>">
+                                                Editar
+                                            </button>
+                                        </td>
+                                        <td>
+                                            <form method="POST" action="EliminarUsuario" style="display: inline;">
+                                                <input type="hidden" name="id" value="<?= $us['id'] ?>">
+                                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de eliminar este usuario?');">
+                                                    <i class="bi bi-trash"></i> Eliminar
+                                                </button>
+                                            </form>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>
@@ -117,6 +132,9 @@
                 </div>
             </div>
         </div>
+        <!-- Modal para Editar Usuario -->
+        <?php include_once 'modal-editar.php' ?>
+
         <div class="row">
             <div class="col-12">
                 <div class="card mb-3 shadow-sm">
@@ -168,102 +186,7 @@
     </section>
 </div>
 
-<!-- Modal para Editar Usuario -->
-<?php include_once 'modal-editar.php' ?>
-<!-- Modal para Editar Usuario -->
-<div class="modal fade" id="editarUsuarioModal" tabindex="-1" aria-labelledby="editarUsuarioModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="editarUsuarioModalLabel">Editar Usuario</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form id="formEditarUsuario" method="POST" action="">
-                    <input type="hidden" name="id" id="editarUsuarioId">
-                    <div class="row g-3">
-                        <!-- Campos comunes -->
-                        <div class="col-md-6">
-                            <label for="editarNombre" class="form-label">Nombre</label>
-                            <input type="text" class="form-control" id="editarNombre" name="nombre" required>
-                        </div>
-                        <div class="col-md-6">
-                            <label for="editarApellidos" class="form-label">Apellidos</label>
-                            <input type="text" class="form-control" id="editarApellidos" name="apellidos" required>
-                        </div>
-                        <div class="col-md-6">
-                            <label for="editarDocumento" class="form-label">Documento</label>
-                            <input type="text" class="form-control" id="editarDocumento" name="documento" required>
-                        </div>
-                        <div class="col-md-6">
-                            <label for="editarTelefono" class="form-label">Teléfono</label>
-                            <input type="text" class="form-control" id="editarTelefono" name="telefono" required>
-                        </div>
-                        <div class="col-md-6">
-                            <label for="editarRol" class="form-label">Rol</label>
-                            <select class="form-select" id="editarRol" name="rol" required>
-                                <option value="Instructor">Instructor</option>
-                                <option value="Funcionario">Funcionario</option>
-                                <option value="Directivo">Directivo</option>
-                                <option value="Apoyo">Apoyo</option>
-                                <option value="Visitante">Visitante</option>
-                            </select>
-                        </div>
-
-                        <!-- Campos específicos por rol -->
-                        <div id="camposInstructor" class="camposRol" style="display: none;">
-                            <div class="col-md-6">
-                                <label for="editarCurso" class="form-label">Curso</label>
-                                <input type="text" class="form-control" id="editarCurso" name="curso">
-                            </div>
-                            <div class="col-md-6">
-                                <label for="editarUbicacion" class="form-label">Ubicación</label>
-                                <input type="text" class="form-control" id="editarUbicacion" name="ubicacion">
-                            </div>
-                        </div>
-                        <div id="camposFuncionario" class="camposRol" style="display: none;">
-                            <div class="col-md-6">
-                                <label for="editarArea" class="form-label">Área</label>
-                                <input type="text" class="form-control" id="editarArea" name="area">
-                            </div>
-                            <div class="col-md-6">
-                                <label for="editarPuesto" class="form-label">Puesto</label>
-                                <input type="text" class="form-control" id="editarPuesto" name="puesto">
-                            </div>
-                        </div>
-                        <div id="camposDirectivo" class="camposRol" style="display: none;">
-                            <div class="col-md-6">
-                                <label for="editarCargo" class="form-label">Cargo</label>
-                                <input type="text" class="form-control" id="editarCargo" name="cargo">
-                            </div>
-                            <div class="col-md-6">
-                                <label for="editarDepartamento" class="form-label">Departamento</label>
-                                <input type="text" class="form-control" id="editarDepartamento" name="departamento">
-                            </div>
-                        </div>
-                        <div id="camposApoyo" class="camposRol" style="display: none;">
-                            <div class="col-md-6">
-                                <label for="editarAreaTrabajo" class="form-label">Área de Trabajo</label>
-                                <input type="text" class="form-control" id="editarAreaTrabajo" name="area_trabajo">
-                            </div>
-                        </div>
-                        <div id="camposVisitante" class="camposRol" style="display: none;">
-                            <div class="col-md-6">
-                                <label for="editarAsunto" class="form-label">Asunto</label>
-                                <input type="text" class="form-control" id="editarAsunto" name="asunto">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
 <!-- Script para manejar el modal -->
+<script src="assets/js/listado_usuarios.js"></script>
 
 <?php include_once __DIR__ . '/../dashboard/layouts/footer_main.php'; ?>

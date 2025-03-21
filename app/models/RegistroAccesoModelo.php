@@ -17,7 +17,7 @@
         // Método para obtener la asistencia del día por usuario
         public function obtenerAsistenciaDelDia($asignacion_id, $fecha) {
             // Consulta SQL para obtener el registro de acceso del día actual
-            $sql = "SELECT * FROM registro_acceso WHERE asignacion_id  = :asignacion_id AND fecha = :fecha LIMIT 1";
+            $sql = "SELECT * FROM registros WHERE asignacion_id  = :asignacion_id AND fecha = :fecha LIMIT 1";
             $stmt = $this->db->prepare($sql); // Preparar la consulta
             $stmt->bindParam(':asignacion_id', $asignacion_id, PDO::PARAM_INT); // Vincular el parámetro asignacion_id
             $stmt->bindParam(':fecha', $fecha); // Vincular el parámetro fecha
@@ -41,7 +41,7 @@
         public function registrarEntrada($fecha, $hora, $asignacionId, $tipo_usuario) {
             try {
                 // Consulta SQL para insertar el registro de entrada con el tipo de usuario
-                $sql = "INSERT INTO registro_acceso (fecha, hora_entrada, asignacion_id, tipo_usuario) 
+                $sql = "INSERT INTO registros (fecha, hora_entrada, asignacion_id, tipo_usuario) 
                         VALUES (:fecha, :hora, :asignacionId, :tipoUsuario)";
                 $stmt = $this->db->prepare($sql); // Preparar la consulta
                 $stmt->bindParam(':fecha', $fecha, PDO::PARAM_STR); // Vincular el parámetro fecha
@@ -57,7 +57,7 @@
         // Método para registrar la salida de un usuario
         public function registrarSalida($asignacion_id, $fecha, $hora_salida) {
             // Consulta SQL para actualizar el registro de salida
-            $sql = "UPDATE registro_acceso 
+            $sql = "UPDATE registros 
                     SET hora_salida = :hora_salida, estado = 'Finalizado' 
                     WHERE asignacion_id = :asignacion_id AND fecha = :fecha";
             $stmt = $this->db->prepare($sql); // Preparar la consulta
@@ -115,11 +115,43 @@
                         c.marca,
                         c.codigo,
                         c.tipo_computador AS tipo
-                    FROM registro_acceso ra
+                    FROM registros ra
                     JOIN asignaciones_computadores ac ON ra.asignacion_id = ac.id
                     JOIN usuarios u ON ac.usuario_id = u.id
                     LEFT JOIN computadores c ON ac.computador_id = c.id -- Usar LEFT JOIN para incluir NULL
                     WHERE ra.fecha = :fechaHoy -- Filtra por la fecha de hoy
+                    ORDER BY ra.id DESC
+                    LIMIT 5";
+        
+            $stmt = $this->db->prepare($sql); // Preparar la consulta
+            $stmt->bindParam(':fechaHoy', $fechaHoy); // Vincular el parámetro fechaHoy
+            $stmt->execute(); // Ejecutar la consulta
+            return $stmt->fetchAll(PDO::FETCH_ASSOC); // Retornar todos los registros como un array asociativo
+        }
+
+        public function obtenerUltimosRegistrosSalida() {
+            // Obtener la fecha actual en formato YYYY-MM-DD
+            $fechaHoy = date('Y-m-d');
+        
+            // Consulta SQL para obtener los últimos 5 registros de acceso del día actual con salida registrada
+            $sql = "SELECT 
+                        ra.id,
+                        ra.fecha,
+                        ra.hora_entrada,
+                        ra.hora_salida,
+                        ra.estado,
+                        u.nombre,
+                        u.numero_identidad,
+                        u.rol,
+                        c.marca,
+                        c.codigo,
+                        c.tipo_computador AS tipo
+                    FROM registros ra
+                    JOIN asignaciones_computadores ac ON ra.asignacion_id = ac.id
+                    JOIN usuarios u ON ac.usuario_id = u.id
+                    LEFT JOIN computadores c ON ac.computador_id = c.id -- Usar LEFT JOIN para incluir NULL
+                    WHERE ra.fecha = :fechaHoy -- Filtra por la fecha de hoy
+                    AND ra.hora_salida IS NOT NULL -- Solo registros con salida registrada
                     ORDER BY ra.id DESC
                     LIMIT 5";
         

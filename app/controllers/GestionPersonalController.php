@@ -7,11 +7,17 @@
 
     class GestionPersonalController
     {
+
         private $personalModelo;
         private $computadorModelo;
 
         public function __construct()
         {
+            ini_set('display_errors', 0);
+            error_reporting(E_ALL);
+            ini_set('log_errors', 1);
+            ini_set('error_log', __DIR__ . '/php-errors.log');
+            
             $this->personalModelo = new GestionPersonalModelo;
             $this->computadorModelo = new ComputadorModelo;
         }
@@ -133,30 +139,39 @@
                     $apellido = $this->sanitizarInput($_POST['apellidos']);
                     $documento = $this->sanitizarInput($_POST['documento']);
                     $telefono = $this->sanitizarInput($_POST['telefono']);
-
                     $rol = $this->sanitizarInput($_POST['rol']);
-
-                    // Validar campos básicos
+            
                     $this->validarCamposBasicos($nombre, $apellido, $documento, $telefono, $rol);
-
+                    // Validar formato del teléfono 
+                    $this->validarTelefono($telefono);
+                    // Validar formato del documento
+                    $this->validarNumeroDocumento($documento);
+                    // Validar rol
+                    $rolesPermitidos = ['Funcionario', 'Instructor', 'Directivo', 'Apoyo', 'Visitante'];
+                    if (!in_array($rol, $rolesPermitidos)) {
+                        throw new Exception("Rol no válido.");
+                    }
+                    
                     // Obtener la información adicional según el rol
                     $infoAdicional = $this->obtenerDatosAdicionales($rol);
-
+                    // var_dump($infoAdicional);
+                    // exit;
                     // Actualizar el usuario en la base de datos
-                    $actualizado = $this->personalModelo->actualizarUsuario($id, $nombre, $apellido, $documento, $rol, $telefono, $infoAdicional);
-
-                    // Redirigir con un mensaje de éxito o error
-                    if ($actualizado) {
-                        $_SESSION['mensaje'] = "Usuario actualizado correctamente.";
-                        $_SESSION['tipo_mensaje'] = "success";
-                    } else {
-                        throw new Exception("Error al actualizar el usuario.");
+                    $actualizado = $this->personalModelo-> actualizarUsuario($id, $nombre, $apellido, $documento, $rol, $telefono, $infoAdicional);
+                    if (!$actualizado) {
+                        throw new Exception("Error al actualizar el usuario en la base de datos.");
                     }
+
+                    // Mensaje de éxito
+                    $_SESSION['mensaje'] = "Usuario actualizado correctamente.";
+                    $_SESSION['tipo_mensaje'] = "success";
                 } catch (Exception $e) {
+                    // Mensaje de error
                     $_SESSION['mensaje'] = $e->getMessage();
                     $_SESSION['tipo_mensaje'] = "error";
                 } finally {
-                    header('Location: Listado_Usuarios'); // Redirigir a la página de perfil
+                    // Redirigir al listado de usuarios
+                    header('Location: Listado_Usuarios');
                     exit();
                 }
             }
@@ -164,50 +179,32 @@
 
         public function eliminarUsuario()
         {
-            try {
-                // Verificar si se han enviado los datos necesarios
-                if (!isset($_POST['id']) || !isset($_POST['rol'])) {
-                    throw new Exception("Datos incompletos para eliminar el usuario.");
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                try {
+                    // Sanitizar y validar el ID del usuario
+                    $id = $this->sanitizarInput($_POST['id']);
+                    if (empty($id)) {
+                        throw new Exception("El ID del usuario es obligatorio.");
+                    }
+
+                    // Eliminar el usuario de la base de datos
+                    $eliminado = $this->personalModelo->eliminar_Usuario($id);
+                    if (!$eliminado) {
+                        throw new Exception("Error al eliminar el usuario de la base de datos.");
+                    }
+
+                    // Mensaje de éxito
+                    $_SESSION['mensaje'] = "Usuario eliminado correctamente.";
+                    $_SESSION['tipo_mensaje'] = "success";
+                } catch (Exception $e) {
+                    // Mensaje de error
+                    $_SESSION['mensaje'] = $e->getMessage();
+                    $_SESSION['tipo_mensaje'] = "error";
+                } finally {
+                    // Redirigir al listado de usuarios
+                    header('Location: Listado_Usuarios');
+                    exit();
                 }
-
-                // Obtener y validar el ID y el rol del usuario
-                $id = filter_var($_POST['id'], FILTER_VALIDATE_INT);
-                $rol = filter_var($_POST['rol'], FILTER_SANITIZE_SPECIAL_CHARS);
-
-                if ($id === false || $id <= 0) {
-                    throw new Exception("ID de usuario no válido.");
-                }
-
-                if (empty($rol)) {
-                    throw new Exception("Rol de usuario no válido.");
-                }
-
-                // Llamar al método del modelo para eliminar el usuario
-                $eliminado = $this->personalModelo->EliminarUsuario($id, $rol);
-              
-                // Verificar si la eliminación fue exitosa
-                if ($eliminado) {
-                    // Retornar un mensaje de éxito en formato JSON
-                    echo json_encode([
-                        'success' => true,
-                        'message' => 'Usuario eliminado correctamente.'
-                    ]);
-                } else {
-                    // Retornar un mensaje de error en formato JSON
-                    echo json_encode([
-                        'success' => false,
-                        'message' => 'Error al eliminar el usuario.'
-                    ]);
-                }
-            } catch (Exception $e) {
-                // Registrar el error (opcional)
-                error_log("Error en eliminarUsuario: " . $e->getMessage());
-
-                // Retornar un mensaje de error en formato JSON
-                echo json_encode([
-                    'success' => false,
-                    'message' => 'Ocurrió un error al intentar eliminar el usuario: ' . $e->getMessage()
-                ]);
             }
         }
 
@@ -255,6 +252,7 @@
         private function obtenerDatosAdicionales($rol)
         {
             $datosAdicionales = [];
+            
             switch ($rol) {
                 case 'Funcionario':
                     $datosAdicionales['area'] = $this->sanitizarInput($_POST["area"]);
@@ -271,10 +269,12 @@
                 case 'Apoyo':
                     $datosAdicionales['area_trabajo'] = $this->sanitizarInput($_POST["area_trabajo"]);
                     break;
+                case 'Visitante':
+                    $datosAdicionales['asunto'] = $this->sanitizarInput($_POST['asunto']);
+                    break;
                 default:
-                    throw new Exception("Rol no válido.");
+                    throw new Exception("Rol no válido: " . $rol);
             }
-        
             // Validar que los datos adicionales no estén vacíos
             foreach ($datosAdicionales as $campo => $valor) {
                 if (empty($valor)) {

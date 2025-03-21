@@ -3,7 +3,7 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header bg-primary text-white">
-                <h5 class="modal-title" id="modalTieneComputadorLabel">Registro de Asistencia</h5>
+                <h5 class="modal-title" id="modalTieneComputadorLabel">Registro de Acceso</h5>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>            </div>
             <div class="modal-body">
                 <p class="mb-3">¿Tienes computador?</p>

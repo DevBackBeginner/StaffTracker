@@ -183,27 +183,34 @@
         public function actualizarUsuario($id, $nombre, $apellido, $documento, $rol, $telefono, $infoAdicional)
         {
             try {
+                // Iniciar una transacción
+                $this->db->beginTransaction();
+
                 // Validar que el ID y la información adicional no estén vacíos
                 if (empty($id) || empty($infoAdicional)) {
                     throw new Exception("El ID o la información adicional están vacíos.");
                 }
-        
+
                 // Obtener el rol actual del usuario
                 $query = "SELECT rol FROM usuarios WHERE id = ?";
                 $stmt = $this->db->prepare($query);
                 $stmt->execute([$id]);
                 $rolActual = $stmt->fetchColumn();
-        
+
+                if ($rolActual === false) {
+                    throw new Exception("No se encontró el usuario con ID $id.");
+                }
+
                 // Si el rol ha cambiado, eliminar la información del rol anterior
                 if ($rolActual !== $rol) {
                     $this->eliminarInformacionRol($id, $rolActual);
                 }
-        
+
                 // Actualizar los datos comunes en la tabla de usuarios
                 $queryUpdate = "UPDATE usuarios SET nombre = ?, apellidos = ?, numero_identidad = ?, rol = ?, telefono = ? WHERE id = ?";
                 $stmtUpdate = $this->db->prepare($queryUpdate);
                 $stmtUpdate->execute([$nombre, $apellido, $documento, $rol, $telefono, $id]);
-        
+
                 // Insertar o actualizar la información adicional del nuevo rol
                 $configuracionRoles = [
                     'Instructor'  => ['tabla' => 'instructores',  'campos' => ['curso', 'ubicacion']],
@@ -212,22 +219,22 @@
                     'Apoyo'       => ['tabla' => 'apoyo',       'campos' => ['area_trabajo']],
                     'Visitante'   => ['tabla' => 'visitantes',   'campos' => ['asunto']],
                 ];
-        
+
                 // Verificar si el rol es válido
                 if (!isset($configuracionRoles[$rol])) {
                     throw new Exception("Rol no válido: $rol");
                 }
-        
+
                 // Obtener la tabla y los campos según el rol
                 $tabla = $configuracionRoles[$rol]['tabla'];
                 $campos = $configuracionRoles[$rol]['campos'];
-        
+
                 // Verificar si ya existe un registro para este usuario_id
                 $queryCheck = "SELECT COUNT(*) FROM $tabla WHERE usuario_id = ?";
                 $stmtCheck = $this->db->prepare($queryCheck);
                 $stmtCheck->execute([$id]);
                 $existe = $stmtCheck->fetchColumn() > 0;
-        
+
                 // Construir la consulta SQL (UPDATE o INSERT)
                 if ($existe) {
                     $camposUpdate = implode(' = ?, ', $campos) . ' = ?';
@@ -237,10 +244,10 @@
                     $placeholders = implode(', ', array_fill(0, count($campos), '?'));
                     $query = "INSERT INTO $tabla (usuario_id, $camposInsert) VALUES (?, $placeholders)";
                 }
-        
+
                 // Preparar y ejecutar la consulta
                 $stmt = $this->db->prepare($query);
-        
+
                 // Construir los valores para la consulta
                 $valores = [];
                 foreach ($campos as $campo) {
@@ -249,55 +256,60 @@
                     }
                     $valores[] = $infoAdicional[$campo];
                 }
-        
+
                 // Ordenar los valores según el tipo de consulta (UPDATE o INSERT)
                 if ($existe) {
                     $valores[] = $id; // Para UPDATE: valores + usuario_id
                 } else {
                     array_unshift($valores, $id); // Para INSERT: usuario_id + valores
                 }
-        
+
                 // Ejecutar la consulta
                 $stmt->execute($valores);
-        
+
+                // Confirmar la transacción
+                $this->db->commit();
+
                 return true; // Indicar que la operación fue exitosa
             } catch (Exception $e) {
+                // Revertir la transacción en caso de error
+                if ($this->db->inTransaction()) {
+                    $this->db->rollBack();
+                }
+
                 // Registrar el error
                 error_log("Error en actualizarUsuario: " . $e->getMessage());
-        
+
                 // Retornar false para indicar que la operación falló
                 return false;
             }
         }
 
-        public function EliminarUsuario($id, $rol)
+       /**
+         * Elimina un usuario de la base de datos.
+         *
+         * @param int $id El ID del usuario a eliminar.
+         * @return bool Retorna true si el usuario fue eliminado, false en caso contrario.
+         */
+        public function eliminar_Usuario($id)
         {
             try {
-                // Iniciar una transacción
-                $this->db->beginTransaction();
+                // Preparar la consulta SQL para eliminar el usuario
+                $query = 'DELETE FROM usuarios WHERE id = :id';
+                $stmt = $this->db->prepare($query);
 
-                // Eliminar la información adicional del rol
-                $this->eliminarInformacionRol($id, $rol);
+                // Vincular el parámetro :id
+                $stmt->bindParam(':id', $id, PDO::PARAM_INT);
 
-                // Eliminar el usuario de la tabla principal
-                $queryDelete = "DELETE FROM usuarios WHERE id = ?";
-                $stmtDelete = $this->db->prepare($queryDelete);
-                $stmtDelete->execute([$id]);
+                // Ejecutar la consulta
+                $stmt->execute();
 
-                // Confirmar la transacción
-                $this->db->commit();
-
-                // Retornar un mensaje de éxito
-                return "Usuario eliminado correctamente.";
-            } catch (Exception $e) {
-                // Revertir la transacción en caso de error
-                $this->db->rollBack();
-
+                // Verificar si se eliminó alguna fila
+                return $stmt->rowCount() > 0;
+            } catch (PDOException $e) {
                 // Registrar el error (opcional)
                 error_log("Error al eliminar usuario: " . $e->getMessage());
-
-                // Retornar un mensaje de error
-                return "Error al eliminar el usuario: " . $e->getMessage();
+                return false;
             }
         }
         // Eliminar la información del rol anterior
@@ -322,9 +334,10 @@
                 default:
                     throw new Exception("Rol no válido: $rol");
             }
-
+        
             $stmt = $this->db->prepare($query);
             $stmt->execute([$id]);
+            error_log("Información del rol '$rol' eliminada para el usuario $id.");
         }
     }
 ?>

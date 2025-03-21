@@ -1,0 +1,7 @@
+[19-Mar-2025 08:33:34 America/Bogota] PHP Fatal error:  Uncaught PDOException: There is no active transaction in C:\xampp\htdocs\ControlAsistencia\app\Controllers\RegistroAccesoController.php:175
+Stack trace:
+#0 C:\xampp\htdocs\ControlAsistencia\app\Controllers\RegistroAccesoController.php(175): PDO->rollBack()
+#1 C:\xampp\htdocs\ControlAsistencia\core\Router.php(61): RegistroAccesoController->registrarSalida()
+#2 C:\xampp\htdocs\ControlAsistencia\public\index.php(15): core\Router::obtenerRuta()
+#3 {main}
+  thrown in C:\xampp\htdocs\ControlAsistencia\app\Controllers\RegistroAccesoController.php on line 175

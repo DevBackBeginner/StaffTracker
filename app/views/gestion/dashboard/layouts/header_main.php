@@ -131,7 +131,7 @@
                 </a>
               </li>
               <li>
-                <a href="registrar-acceso-visitantes">
+                <a href="registro_salida">
                   <i class="bi bi-person"></i>
                   <span>Salida</span>
                 </a>

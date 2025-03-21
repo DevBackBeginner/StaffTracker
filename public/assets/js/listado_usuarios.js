@@ -1,91 +1,78 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const botonesEditar = document.querySelectorAll('.editar-usuario');
+    const rolSelect = document.getElementById('editarRol');
+    const camposRol = document.querySelectorAll('.camposRol');
 
-    botonesEditar.forEach(boton => {
-        boton.addEventListener('click', function() {
-            // Obtener los datos del usuario desde los atributos data-*
-            const id = this.getAttribute('data-id');
-            const nombre = this.getAttribute('data-nombre');
-            const apellidos = this.getAttribute('data-apellidos');
-            const documento = this.getAttribute('data-documento');
-            const telefono = this.getAttribute('data-telefono');
-            const rol = this.getAttribute('data-rol');
-            const curso = this.getAttribute('data-curso');
-            const ubicacion = this.getAttribute('data-ubicacion');
-            const area = this.getAttribute('data-area');
-            const puesto = this.getAttribute('data-puesto');
-            const cargo = this.getAttribute('data-cargo');
-            const departamento = this.getAttribute('data-departamento');
-            const areaTrabajo = this.getAttribute('data-area-trabajo');
-            const asunto = this.getAttribute('data-asunto');
+    // Función para mostrar los campos según el rol seleccionado
+    function mostrarCamposPorRol() {
+        camposRol.forEach(campo => campo.style.display = 'none'); // Oculta todos los campos
+        const rolSeleccionado = rolSelect.value;
+        document.getElementById(`campos${rolSeleccionado}`).style.display = 'block'; // Muestra los campos del rol seleccionado
+    }
 
-            // Asignar los valores a los campos del modal
-            document.getElementById('usuarioId').value = id;
-            document.getElementById('nombre').value = nombre;
-            document.getElementById('apellidos').value = apellidos;
-            document.getElementById('documento').value = documento;
-            document.getElementById('telefono').value = telefono;
-            document.getElementById('rol').value = rol;
+    // Evento para cambiar los campos cuando se selecciona un rol
+    rolSelect.addEventListener('change', mostrarCamposPorRol);
 
-            // Asignar valores a los campos adicionales según el rol
-            if (rol === 'Instructor') {
-                document.getElementById('curso').value = curso;
-                document.getElementById('ubicacion').value = ubicacion;
-            } else if (rol === 'Funcionario') {
-                document.getElementById('area').value = area;
-                document.getElementById('puesto').value = puesto;
-            } else if (rol === 'Directivo') {
-                document.getElementById('cargo').value = cargo;
-                document.getElementById('departamento').value = departamento;
-            } else if (rol === 'Apoyo') {
-                document.getElementById('area_trabajo').value = areaTrabajo;
-            } else if (rol === 'Visitante') {
-                document.getElementById('asunto').value = asunto;
-            }
+    // Llenar el modal con los datos del usuario seleccionado
+    const editarUsuarioModal = document.getElementById('editarUsuarioModal');
+    editarUsuarioModal.addEventListener('show.bs.modal', function(event) {
+        const button = event.relatedTarget; // Botón que activó el modal
+        const row = button.closest('tr'); // Fila del usuario
 
-            // Actualizar los campos adicionales visibles según el rol
-            actualizarCamposAdicionales();
-        });
+        // Obtener el ID del usuario desde el atributo data-id
+        const id = button.getAttribute('data-id'); // Obtener el ID del usuario
+
+        // Obtener datos de la fila
+        const nombre = row.querySelector('td:nth-child(1)').innerText;
+        const apellidos = row.querySelector('td:nth-child(2)').innerText;
+        const documento = row.querySelector('td:nth-child(3)').innerText;
+        const rol = row.querySelector('td:nth-child(4)').innerText;
+        const telefono = row.querySelector('td:nth-child(5)').innerText;
+        const informacionAdicional = row.querySelector('td:nth-child(6)').innerHTML; // Usamos innerHTML para capturar <br>
+
+        // Llenar el modal con los datos comunes
+        document.getElementById('editarId').value = id; // Asignar el ID al campo oculto
+        document.getElementById('editarNombre').value = nombre;
+        document.getElementById('editarApellidos').value = apellidos;
+        document.getElementById('editarDocumento').value = documento;
+        document.getElementById('editarRol').value = rol;
+        document.getElementById('editarTelefono').value = telefono;
+
+        // Llenar los labels y inputs según el rol
+        switch (rol) {
+            case 'Instructor':
+                const [curso, ubicacion] = informacionAdicional.split('<br>');
+                document.getElementById('labelCurso').innerText = curso.replace('Curso: ', '').trim();
+                document.getElementById('labelUbicacion').innerText = ubicacion.replace('Ubicación: ', '').trim();
+                document.getElementById('editarCurso').value = curso.replace('Curso: ', '').trim();
+                document.getElementById('editarUbicacion').value = ubicacion.replace('Ubicación: ', '').trim();
+                break;
+            case 'Funcionario':
+                const [area, puesto] = informacionAdicional.split('<br>');
+                document.getElementById('labelArea').innerText = area.replace('Área: ', '').trim();
+                document.getElementById('labelPuesto').innerText = puesto.replace('Puesto: ', '').trim();
+                document.getElementById('editarArea').value = area.replace('Área: ', '').trim();
+                document.getElementById('editarPuesto').value = puesto.replace('Puesto: ', '').trim();
+                break;
+            case 'Directivo':
+                const [cargo, departamento] = informacionAdicional.split('<br>');
+                document.getElementById('labelCargo').innerText = cargo.replace('Cargo: ', '').trim();
+                document.getElementById('labelDepartamento').innerText = departamento.replace('Departamento: ', '').trim();
+                document.getElementById('editarCargo').value = cargo.replace('Cargo: ', '').trim();
+                document.getElementById('editarDepartamento').value = departamento.replace('Departamento: ', '').trim();
+                break;
+            case 'Apoyo':
+                const areaTrabajo = informacionAdicional.replace('Área de Trabajo: ', '').trim();
+                document.getElementById('labelAreaTrabajo').innerText = areaTrabajo;
+                document.getElementById('editarAreaTrabajo').value = areaTrabajo;
+                break;
+            case 'Visitante':
+                const asunto = informacionAdicional.replace('Asunto: ', '').trim();
+                document.getElementById('labelAsunto').innerText = asunto;
+                document.getElementById('editarAsunto').value = asunto;
+                break;
+        }
+
+        // Mostrar campos específicos del rol
+        mostrarCamposPorRol();
     });
 });
-
-// Función para mostrar/ocultar campos adicionales según el rol seleccionado
-function actualizarCamposAdicionales() {
-    const rol = document.getElementById('rol').value;
-    const camposAdicionales = document.querySelectorAll('.campos-adicionales');
-
-    camposAdicionales.forEach(campo => campo.style.display = 'none');
-
-    if (rol === 'Instructor') {
-        document.querySelectorAll('#camposInstructor').forEach(campo => campo.style.display = 'block');
-    } else if (rol === 'Funcionario') {
-        document.querySelectorAll('#camposFuncionario').forEach(campo => campo.style.display = 'block');
-    } else if (rol === 'Directivo') {
-        document.querySelectorAll('#camposDirectivo').forEach(campo => campo.style.display = 'block');
-    } else if (rol === 'Apoyo') {
-        document.querySelectorAll('#camposApoyo').forEach(campo => campo.style.display = 'block');
-    } else if (rol === 'Visitante') {
-        document.querySelectorAll('#camposVisitante').forEach(campo => campo.style.display = 'block');
-    }
-}
-
-function actualizarCamposAdicionales() {
-    const rol = document.getElementById('rol').value;
-    const camposAdicionales = document.querySelectorAll('.campos-adicionales');
-
-    // Ocultar todos los campos adicionales
-    camposAdicionales.forEach(campo => campo.style.display = 'none');
-
-    // Mostrar los campos correspondientes al rol seleccionado
-    if (rol === 'Instructor') {
-        document.querySelectorAll('#camposInstructor').forEach(campo => campo.style.display = 'block');
-    } else if (rol === 'Funcionario') {
-        document.querySelectorAll('#camposFuncionario').forEach(campo => campo.style.display = 'block');
-    } else if (rol === 'Directivo') {
-        document.querySelectorAll('#camposDirectivo').forEach(campo => campo.style.display = 'block');
-    } else if (rol === 'Apoyo') {
-        document.querySelectorAll('#camposApoyo').forEach(campo => campo.style.display = 'block');
-    } else if (rol === 'Visitante') {
-        document.querySelectorAll('#camposVisitante').forEach(campo => campo.style.display = 'block');
-    }
-}

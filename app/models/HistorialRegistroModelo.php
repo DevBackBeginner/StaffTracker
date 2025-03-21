@@ -49,7 +49,7 @@
             $tablaRol = $tablas[$rol]['tabla'];
             $camposExtras = $tablas[$rol]['campos'];
         
-            // Consulta SQL para obtener usuarios registrados en registro_acceso sin filtrar por fecha
+            // Consulta SQL para obtener usuarios registrados en registros sin filtrar por fecha
             $sql = "SELECT 
                         u.nombre,
                         u.apellidos,
@@ -60,7 +60,7 @@
                         ra.hora_salida, 
                         ra.estado,
                         tr.$camposExtras
-                    FROM registro_acceso ra
+                    FROM registros ra
                     INNER JOIN asignaciones_computadores ac ON ra.asignacion_id = ac.id
                     INNER JOIN usuarios u ON ac.usuario_id = u.id
                     INNER JOIN $tablaRol tr ON u.id = tr.usuario_id -- Unión con la tabla específica del rol
@@ -80,7 +80,7 @@
         public function contarUsuariosPorRol($rol) {
             // Consulta SQL para contar usuarios de un rol específico sin filtrar por fecha
             $sql = "SELECT COUNT(*) as total 
-                    FROM registro_acceso ra
+                    FROM registros ra
                     INNER JOIN asignaciones_computadores ac ON ra.asignacion_id = ac.id
                     INNER JOIN usuarios u ON ac.usuario_id = u.id
                     WHERE u.rol = :rol"; // Sin filtrar por fecha
@@ -141,7 +141,7 @@
                                ra.fecha, ra.hora_entrada, ra.hora_salida
                         FROM usuarios u
                         INNER JOIN asignaciones_computadores ac ON u.id = ac.usuario_id
-                        INNER JOIN registro_acceso ra ON ac.id = ra.asignacion_id";        
+                        INNER JOIN registros ra ON ac.id = ra.asignacion_id";        
                 // Filtrar por documento
                 if (!empty($documento)) {
                     $sql .= " AND u.numero_identidad LIKE :documento";
@@ -164,7 +164,7 @@
                 $sql .= " FROM usuarios u
                         INNER JOIN $tabla $alias ON u.id = $alias.usuario_id
                         INNER JOIN asignaciones_computadores ac ON u.id = ac.usuario_id
-                        INNER JOIN registro_acceso ra ON ac.id = ra.asignacion_id";
+                        INNER JOIN registros ra ON ac.id = ra.asignacion_id";
                                     
                 // Filtrar por documento
                 if (!empty($documento)) {

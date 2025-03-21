@@ -3,11 +3,11 @@
     include_once __DIR__ . '/../dashboard/layouts/header_main.php';
 ?>
     <div class="pagetitle">
-        <h1>Panel de Registros</h1>
+        <h1>Historial de Registros</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="Inicio">Inicio</a></li>
-                <li class="breadcrumb-item"><a href="panel">Panel de Registro</a></li>
+                <li class="breadcrumb-item"><a href="panel">Historial de Registro</a></li>
             </ol>
         </nav>
     </div>

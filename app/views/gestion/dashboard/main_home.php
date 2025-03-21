@@ -11,11 +11,11 @@
 
 <!-- ======= Sidebar ======= -->
 <div class="pagetitle">
-    <h1>Registro de Acceso</h1>
+    <h1>Panel de Control</h1>
     <nav>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="Inicio">Inicio</a></li>
-            <li class="breadcrumb-item active">Registro Acceso</li>
+            <li class="breadcrumb-item active">Panel de Control</li>
         </ol>
     </nav>
 </div><!-- End Page Title -->

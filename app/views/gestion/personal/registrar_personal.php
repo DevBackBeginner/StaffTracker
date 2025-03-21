@@ -61,7 +61,7 @@
                                     </div>
                                     <div class="invalid-feedback">Por favor, ingrese su teléfono.</div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-12">
                                     <label for="rol" class="form-label fw-bold" style="color: #007832;">Rol</label>
                                     <select name="rol" id="rol" class="form-select" required onchange="mostrarCamposAdicionales()">
                                         <option value="">Seleccione un rol</option>
@@ -75,23 +75,49 @@
 
                                 <!-- Campos adicionales para cada rol -->
                                 <div id="camposFuncionario" class="campos-adicionales col-md-12 d-none">
-                                    <input type="text" name="area" class="form-control" placeholder="Área">
-                                    <input type="text" name="puesto" class="form-control mt-2" placeholder="Puesto">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label for="rol" class="form-label fw-bold" style="color: #007832;">Area</label>
+                                            <input type="text" name="area" class="form-control" placeholder="Área">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="rol" class="form-label fw-bold" style="color: #007832;">Area</label>
+                                            <input type="text" name="puesto" class="form-control" placeholder="Puesto">
+                                        </div>
+                                    </div> 
                                 </div>
                                 <div id="camposInstructor" class="campos-adicionales col-md-12 d-none">
-                                    <input type="text" name="curso" class="form-control" placeholder="Curso">
-                                    <input type="text" name="ubicacion" class="form-control mt-2" placeholder="Ubicación">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label for="rol" class="form-label fw-bold" style="color: #007832;">Curso</label>
+                                            <input type="text" name="curso" class="form-control" placeholder="Curso">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="rol" class="form-label fw-bold" style="color: #007832;">Ubicación</label>
+                                            <input type="text" name="ubicacion" class="form-control mt-2" placeholder="Ubicación">
+                                        </div>
+                                    </div>
                                 </div>
                                 <div id="camposDirectiva" class="campos-adicionales col-md-12 d-none">
-                                    <input type="text" name="cargo" class="form-control" placeholder="Cargo">
-                                    <input type="text" name="departamento" class="form-control mt-2" placeholder="Departamento">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label for="rol" class="form-label fw-bold" style="color: #007832;">Cargo</label>
+
+                                            <input type="text" name="cargo" class="form-control" placeholder="Cargo">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="rol" class="form-label fw-bold" style="color: #007832;">Departamento</label>
+
+                                            <input type="text" name="departamento" class="form-control" placeholder="Departamento">
+                                        </div>
+                                    </div>
                                 </div>
                                 <div id="camposApoyo" class="campos-adicionales col-md-12 d-none">
                                     <input type="text" name="area_trabajo" class="form-control" placeholder="Área de Trabajo">
                                 </div>
 
                                 <!-- Preguntar si tiene computador -->
-                                <div class="col-md-6">
+                                <div class="col-md-12">
                                     <label for="tiene_computador" class="form-label fw-bold" style="color: #007832;">¿Tiene computador?</label>
                                     <select name="tiene_computador" id="tiene_computador" class="form-select" onchange="mostrarCamposComputador()" required>
                                         <option value="">Seleccione una opción</option>
@@ -103,7 +129,7 @@
 
                                 <!-- Campos adicionales para computador (se muestran solo si tiene computador) -->
                                 <div id="camposComputador" class="campos-adicionales col-md-12 d-none">
-                                    <div class="mb-3">
+                                    <div class="col-md-12 mb-3">
                                         <label for="tipo_computador" class="form-label fw-bold" style="color: #007832;">Tipo de computador</label>
                                         <select name="tipo_computador" id="tipo_computador" class="form-select">
                                             <option value="">Seleccione un tipo</option>

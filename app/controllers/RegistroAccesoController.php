@@ -28,12 +28,20 @@
             $this->db = $conn->getConnection();
         }
         
-        public function mostrarVistaRegistro() {
+        public function mostrarRegistroAcceso() {
             // Obtener los últimos registros de acceso
             $ultimosRegistros = $this->registroAcceso->obtenerUltimosRegistros();
         
             // Incluir la vista
             include_once __DIR__ . '/../Views/gestion/registro_ingreso/registro_ingresos.php';
+        }
+
+        public function mostrarRegistroSalida() {
+            // Obtener los últimos registros de acceso
+            $ultimosRegistros = $this->registroAcceso->obtenerUltimosRegistrosSalida();
+        
+            // Incluir la vista
+            include_once __DIR__ . '/../Views/gestion/registro_salida/registro_salida.php';
         }
 
         public function registrarEntrada() {
@@ -112,51 +120,108 @@
         public function registrarSalida() {
             // Limpiar el buffer de salida
             ob_clean();
-        
+            
             // Establecer cabecera JSON
             header('Content-Type: application/json');
-        
+            
+            // Iniciar transacción
+            $this->db->beginTransaction();
+            
             try {
                 // Validar método HTTP
                 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-                    $this->jsonResponse(false, 'Método no permitido', 405);
+                    echo json_encode([
+                        'success' => false,
+                        'message' => 'Método no permitido'
+                    ]);
+                    return;
                 }
-        
+                
                 // Sanitizar y validar datos
                 $codigo = filter_input(INPUT_POST, 'codigo', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                $computador_id = filter_input(INPUT_POST, 'computador_id', FILTER_VALIDATE_INT) ?: null;
         
                 if (empty(trim($codigo))) {
-                    $this->jsonResponse(false, 'Código no proporcionado', 400);
+                    echo json_encode([
+                        'success' => false,
+                        'message' => 'Código no proporcionado'
+                    ]);
+                    return;
                 }
-        
+                
                 // Obtener usuario
                 $usuario = $this->obtenerUsuario($codigo);
                 if (!$usuario) {
-                    $this->jsonResponse(false, 'Usuario no encontrado', 404);
+                    echo json_encode([
+                        'success' => false,
+                        'message' => 'Usuario no encontrado'
+                    ]);
+                    return;
                 }
-        
-                // Obtener asignación (sin computador_id, ya que no es necesario para la salida)
-                $asignacion_id = $this->gestionarAsignacion($usuario['id'], null);
-        
+                
+                // Validar si el usuario tiene una asignación activa
+                $asignacion_id = $this->registroAcceso->obtenerAsignacionId($usuario['id'], $computador_id);
+                if (!$asignacion_id) {
+                    echo json_encode([
+                        'success' => false,
+                        'message' => 'El usuario no tiene una asignación activa'
+                    ]);
+                    return;
+                }
+                
                 // Verificar si tiene un registro de entrada sin salida
                 $registro = $this->registroAcceso->obtenerAsistenciaDelDia($asignacion_id, date('Y-m-d'));
-                if (!$registro || !$registro['hora_entrada'] || $registro['hora_salida']) {
-                    $this->jsonResponse(false, 'No se puede registrar la salida', 400);
+                if (!$registro) {
+                    echo json_encode([
+                        'success' => false,
+                        'message' => 'No se encontró un registro de entrada para hoy'
+                    ]);
+                    return;
                 }
-        
+                
+                // Verificar si ya se registró la salida
+                if ($registro['hora_salida']) {
+                    echo json_encode([
+                        'success' => false,
+                        'message' => 'La salida ya ha sido registrada'
+                    ]);
+                    return;
+                }
+                
+                // Verificar si no hay hora de entrada
+                if (!$registro['hora_entrada']) {
+                    echo json_encode([
+                        'success' => false,
+                        'message' => 'No se puede registrar la salida sin una entrada previa'
+                    ]);
+                    return;
+                }
+                
                 // Registrar salida
-                $this->registroAcceso->registrarSalida(
-                    $asignacion_id,
-                    date('Y-m-d'),
-                    date('H:i:s')
-                );
-        
+                $this->registroAcceso->registrarSalida($asignacion_id, date('Y-m-d'), date('H:i:s'));
+                
+                // Confirmar la transacción
                 $this->db->commit();
-                $this->jsonResponse(true, "Salida registrada para {$usuario['nombre']}");
+                
+                // Respuesta JSON exitosa
+                echo json_encode([
+                    'success' => true,
+                    'message' => "Salida registrada para {$usuario['nombre']}"
+                ]);
             } catch (Exception $e) {
-                $this->db->rollBack();
+                // Revertir la transacción si hay un error
+                if ($this->db->inTransaction()) {
+                    $this->db->rollBack();
+                }
+                
+                // Log del error
                 error_log("Error en registrarSalida: " . $e->getMessage());
-                $this->jsonResponse(false, 'Error interno del sistema', 500);
+                
+                // Respuesta JSON de error
+                echo json_encode([
+                    'success' => false,
+                    'message' => 'Error interno del sistema'
+                ]);
             }
         }
 

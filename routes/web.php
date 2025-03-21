@@ -45,9 +45,11 @@ Router::post("registro_guarda", [RegistrarGuardasController::class, "registrarGu
 // Rutas para el registro de asistencia
 // ==================================================
 
-Router::get('registro_ingreso', [RegistroAccesoController::class, "mostrarVistaRegistro"]);
+Router::get('registro_ingreso', [RegistroAccesoController::class, "mostrarRegistroAcceso"]);
 Router::post('gestion_registro_acceso', [RegistroAccesoController::class, 'registrarEntrada']);
 
+Router::get("registro_salida", [RegistroAccesoController::class, "mostrarRegistroSalida"]);
+Router::post('gestion_registro_salida', [RegistroAccesoController::class, "registrarSalida"]);
 // ==================================================
 // Rutas para el manejo de computadores
 // ==================================================
@@ -68,7 +70,6 @@ Router::get('filtro_usuarios', [HistorialRegistroController::class, "filtroUsuar
 
 Router::get('formulario_registro_personal', [GestionPersonalController::class, 'formularioRegistroPersonal']);
 Router::post('registrar_personal', [GestionPersonalController::class, 'registrarPersonal']);
-
 
 Router::get('Listado_Usuarios', [GestionPersonalController::class, 'ListarUsuarios']);
 Router::post('EditarUsuarios', [GestionPersonalController::class, 'editarUsuarios']);

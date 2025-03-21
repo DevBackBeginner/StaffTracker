@@ -236,7 +236,7 @@ document.addEventListener('DOMContentLoaded', function () {
         formData.append('codigo', codigoEscaneado);
         formData.append('computador_id', computadorId || '');
 
-        fetch('gestion_registro_acceso', {
+        fetch('gestion_registro_salida', {
             method: 'POST',
             body: formData
         })
@@ -264,6 +264,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    // Cerrar modales con botones personalizados
     // Cerrar modales con botones personalizados
     document.querySelectorAll('.btn-cerrar-modal').forEach(btnCerrar => {
         btnCerrar.addEventListener('click', () => {
