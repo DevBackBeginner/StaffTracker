@@ -93,8 +93,7 @@
             return (int)$resultado['total']; // Devuelve el total de registros
         }
         
-        public function filtrarUsuarios($rol = '', $documento = '', $nombre = '')
-        {
+        public function filtrarUsuarios($rol = '', $documento = '', $nombre = '') {
             // Definir variables para la tabla, alias y campos específicos del rol
             $tabla = '';
             $alias = '';
@@ -134,27 +133,19 @@
                     break;
             }
         
-            // Construir la consulta SQL según el rol
+            // Construir la consulta SQL base
             if ($rol === '') {
                 // Consulta para todos los roles sin filtro
                 $sql = "SELECT u.nombre, u.apellidos, u.numero_identidad, u.telefono,
                                ra.fecha, ra.hora_entrada, ra.hora_salida
                         FROM usuarios u
                         INNER JOIN asignaciones_computadores ac ON u.id = ac.usuario_id
-                        INNER JOIN registros ra ON ac.id = ra.asignacion_id";        
-                // Filtrar por documento
-                if (!empty($documento)) {
-                    $sql .= " AND u.numero_identidad LIKE :documento";
-                }
-        
-                // Filtrar por nombre
-                if (!empty($nombre)) {
-                    $sql .= " AND u.nombre LIKE :nombre";
-                }
+                        INNER JOIN registros ra ON ac.id = ra.asignacion_id
+                        WHERE 1=1"; // WHERE 1=1 para facilitar la concatenación de condiciones
             } else {
                 // Consulta para un rol específico
                 $sql = "SELECT u.nombre, u.apellidos, u.numero_identidad, u.telefono,
-                                ra.fecha, ra.hora_entrada, ra.hora_salida";
+                               ra.fecha, ra.hora_entrada, ra.hora_salida";
         
                 // Agregar los campos del rol si existen
                 if (!empty($campos)) {
@@ -164,17 +155,68 @@
                 $sql .= " FROM usuarios u
                         INNER JOIN $tabla $alias ON u.id = $alias.usuario_id
                         INNER JOIN asignaciones_computadores ac ON u.id = ac.usuario_id
-                        INNER JOIN registros ra ON ac.id = ra.asignacion_id";
-                                    
-                // Filtrar por documento
-                if (!empty($documento)) {
-                    $sql .= " AND u.numero_identidad LIKE :documento";
-                }
+                        INNER JOIN registros ra ON ac.id = ra.asignacion_id
+                        WHERE 1=1"; // WHERE 1=1 para facilitar la concatenación de condiciones
+            }
         
-                // Filtrar por nombre
-                if (!empty($nombre)) {
-                    $sql .= " AND u.nombre LIKE :nombre";
-                }
+            // Filtrar por documento (solo si no está vacío)
+            if (!empty($documento)) {
+                $sql .= " AND u.numero_identidad LIKE :documento";
+            }
+        
+            // Filtrar por nombre (solo si no está vacío)
+            if (!empty($nombre)) {
+                $sql .= " AND u.nombre LIKE :nombre";
+            }
+        
+            // Preparar y ejecutar la consulta
+            $stmt = $this->db->prepare($sql);
+        
+            // Bind de parámetros (solo si no están vacíos)
+            if (!empty($documento)) {
+                $stmt->bindValue(':documento', "%$documento%", PDO::PARAM_STR);
+            }
+            if (!empty($nombre)) {
+                $stmt->bindValue(':nombre', "%$nombre%", PDO::PARAM_STR);
+            }
+        
+            $stmt->execute();
+        
+            // Retornar los resultados
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        
+            $stmt->execute();
+        
+            // Retornar los resultados
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
+
+        public function contarUsuariosFiltrados($rol = '', $documento = '', $nombre = '') {
+            // Construir la consulta SQL según el rol
+            if ($rol === '') {
+                // Consulta para todos los roles sin filtro
+                $sql = "SELECT COUNT(*) AS total
+                        FROM usuarios u
+                        INNER JOIN asignaciones_computadores ac ON u.id = ac.usuario_id
+                        INNER JOIN registros ra ON ac.id = ra.asignacion_id
+                        WHERE 1=1";
+            } else {
+                // Consulta para un rol específico
+                $sql = "SELECT COUNT(*) AS total
+                        FROM usuarios u
+                        INNER JOIN asignaciones_computadores ac ON u.id = ac.usuario_id
+                        INNER JOIN registros ra ON ac.id = ra.asignacion_id
+                        WHERE 1=1";
+            }
+        
+            // Filtrar por documento
+            if (!empty($documento)) {
+                $sql .= " AND u.numero_identidad LIKE :documento";
+            }
+        
+            // Filtrar por nombre
+            if (!empty($nombre)) {
+                $sql .= " AND u.nombre LIKE :nombre";
             }
         
             // Preparar y ejecutar la consulta
@@ -188,19 +230,6 @@
                 $stmt->bindValue(':nombre', "%$nombre%", PDO::PARAM_STR);
             }
         
-            $stmt->execute();
-        
-            // Retornar los resultados
-            return $stmt->fetchAll(PDO::FETCH_ASSOC);
-        }
-
-        public function contarUsuariosFiltrados($rol, $documento) {
-            $sql = "SELECT COUNT(*) AS total FROM usuarios 
-                    WHERE (:rol = '' OR rol = :rol) 
-                    AND (:documento = '' OR numero_identidad LIKE :documento)";
-            $stmt = $this->db->prepare($sql);
-            $stmt->bindValue(':rol', $rol, PDO::PARAM_STR);
-            $stmt->bindValue(':documento', "%$documento%", PDO::PARAM_STR);
             $stmt->execute();
             $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
             return $resultado['total'];

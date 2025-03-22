@@ -65,20 +65,22 @@
             if (!empty($documento)) {
                 $documento = preg_replace('/[^0-9]/', '', $documento); // Eliminar caracteres no numéricos
                 $documento = substr($documento, 0, 20); // Limitar la longitud del documento
+            } else {
+                $documento = ''; // Asegurar que esté vacío si no hay valor
             }
         
             // Validar el nombre (eliminar caracteres no permitidos)
             if (!empty($nombre)) {
                 $nombre = preg_replace('/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/', '', $nombre); // Solo letras y espacios
                 $nombre = substr($nombre, 0, 100); // Limitar la longitud del nombre
+            } else {
+                $nombre = ''; // Asegurar que esté vacío si no hay valor
             }
-
         
             // Obtener los usuarios filtrados por rol, documento y nombre con paginación
             $usuarios = $this->histroialModelo->filtrarUsuarios($rol, $documento, $nombre);
             // Obtener el número total de usuarios (sin paginación)
             $totalUsuarios = $this->histroialModelo->contarUsuariosFiltrados($rol, $documento, $nombre);
-
         
             // Pasar los datos a la vista de la tabla
             $data = [
@@ -86,6 +88,7 @@
                 'rol' => $rol,
                 'documento' => $documento,
                 'nombre' => $nombre, // Añadir el nombre a los datos
+                'totalUsuarios' => $totalUsuarios, // Pasar el total de usuarios para la paginación
             ];
         
             // Incluir solo la tabla (sin layout)

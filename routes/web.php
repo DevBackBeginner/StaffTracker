@@ -11,18 +11,9 @@ require_once '../config/DataBase.php';
 
 Router::get("Inicio", [DashboardController::class, "mostrarDashBoard"]);
 Router::get('/', [DashboardController::class, "mostrarDashBoard"]);
-
-// Ruta para mostrar el formulario de login
 Router::get("Login", [LoginController::class, "mostrarLogin"]);
-
-// Ruta para procesar el login (envío de formulario)
 Router::post("enviarLogin", [LoginController::class, "procesarLogin"]);
-
-// Ruta para cerrar sesión
 Router::get("logout", [LoginController::class, "Logout"]);
-
-// Ruta para obtener datos filtrados
-Router::post("obtenerdatosfiltrados", [DashboardController::class, "obtenerDatosFiltrados"]);
 
 // ==================================================
 // Rutas para el perfil de usuario
@@ -47,14 +38,14 @@ Router::post("registro_guarda", [RegistrarGuardasController::class, "registrarGu
 
 Router::get('registro_ingreso', [RegistroAccesoController::class, "mostrarRegistroAcceso"]);
 Router::post('gestion_registro_acceso', [RegistroAccesoController::class, 'registrarEntrada']);
-
 Router::get("registro_salida", [RegistroAccesoController::class, "mostrarRegistroSalida"]);
 Router::post('gestion_registro_salida', [RegistroAccesoController::class, "registrarSalida"]);
+
 // ==================================================
 // Rutas para el manejo de computadores
 // ==================================================
-Router::post("registrar_computador", [ComputadorController::class, "registrarComputador"]);
 
+Router::post("registrar_computador", [ComputadorController::class, "registrarComputador"]);
 Router::post('obtener_computadores', [ComputadorController::class, 'obtenerComputadores']);
 
 // ==================================================
@@ -65,12 +56,11 @@ Router::get('panel_ingreso', [HistorialRegistroController::class, "mostrarUsuari
 Router::get('filtro_usuarios', [HistorialRegistroController::class, "filtroUsuarios"]);
 
 // ==================================================
-// Rutas para el registro de personal
+// Rutas para el registro y edicion de personal
 // ==================================================
 
 Router::get('formulario_registro_personal', [GestionPersonalController::class, 'formularioRegistroPersonal']);
 Router::post('registrar_personal', [GestionPersonalController::class, 'registrarPersonal']);
-
 Router::get('Listado_Usuarios', [GestionPersonalController::class, 'ListarUsuarios']);
 Router::post('EditarUsuarios', [GestionPersonalController::class, 'editarUsuarios']);
 Router::post('EliminarUsuario', [GestionPersonalController::class, 'eliminarUsuario']);
@@ -81,11 +71,13 @@ Router::post('EliminarUsuario', [GestionPersonalController::class, 'eliminarUsua
 
 Router::get('formulario_registro_visitante', [GestionVisitantesController::class, 'formulario_visitante']);
 Router::post('registrar_visitante', [GestionVisitantesController::class, 'registrarVisitante']);
-
 Router::get('registrar-acceso-visitantes', [GestionVisitantesController::class, 'gestionarAccesoVisitantes']);
 
-Router::get('reportes', [ReportController::class, 'Reportes']);
+// ==================================================
+// Rutas para reportes
+// ==================================================
 
+Router::get('reportes', [ReportController::class, 'Reportes']);
 Router::get('reporte_graficos', [ReportController::class, 'generarReporteGraficos']);
 
 ?>

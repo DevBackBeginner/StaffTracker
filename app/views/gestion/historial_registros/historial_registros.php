@@ -15,38 +15,50 @@
         <section class="section register py-4">
             <div class="row">
                 <div class="col-12"> <!-- Ocupa el 100% del ancho -->
-                    <div class="card mb-3 shadow-sm">
-                        <div class="card-body p-4">
-                            <!-- Captura de mensajes generales -->
-                            <?php if (!empty($_SESSION['mensaje'])): ?>
-                                <div class="alert <?= $_SESSION['tipo_mensaje'] === 'error' ? 'alert-danger' : 'alert-success' ?> alert-dismissible fade show" role="alert">
-                                    <?= htmlspecialchars($_SESSION['mensaje']) ?>
-                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    <!-- Captura de mensajes generales -->
+                    <?php if (!empty($_SESSION['mensaje'])): ?>
+                        <div class="alert <?= $_SESSION['tipo_mensaje'] === 'error' ? 'alert-danger' : 'alert-success' ?> alert-dismissible fade show" role="alert">
+                            <?= htmlspecialchars($_SESSION['mensaje']) ?>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                        <?php
+                        unset($_SESSION['mensaje']);
+                        unset($_SESSION['tipo_mensaje']);
+                        ?>
+                    <?php endif; ?>
+                    <!-- Filtro de Búsqueda -->
+                    <div class="card shadow-sm mb-2">
+                        <div class="card-header bg-success text-white">
+                            <h5 class="mb-0"><i class="bi bi-funnel"></i> Filtros de Búsqueda</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="row g-3">
+                                <!-- Campo: Documento -->
+                                <div class="col-md-6">
+                                    <label for="documentoInput" class="form-label fw-bold text-success">Documento</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text bg-success text-white"><i class="bi bi-credit-card"></i></span>
+                                        <input type="text" 
+                                            class="form-control" 
+                                            id="documentoInput" 
+                                            placeholder="Ej: 12345678"
+                                            aria-label="Documento">
+                                    </div>
                                 </div>
-                                <?php
-                                unset($_SESSION['mensaje']);
-                                unset($_SESSION['tipo_mensaje']);
-                                ?>
-                            <?php endif; ?>
 
-                            <form class="row g-3 needs-validation" action="panel_registro" method="POST" novalidate>
-                                <!-- Primera fila: Filtrar por Nombre -->
-                                <div class="col-md-6"> <!-- Cambiado a col-md-6 -->
-                                    <label for="nombreInput" class="form-label fw-bold" style="color: #007832;">Nombres</label>
+                                <!-- Campo: Nombre -->
+                                <div class="col-md-6">
+                                    <label for="nombreInput" class="form-label fw-bold text-success">Nombre</label>
                                     <div class="input-group">
-                                        <span class="input-group-text"><i class="bi bi-person"></i></span>
-                                        <input type="text" name="nombre" class="form-control" id="nombreInput" placeholder="Filtrar por nombres" value="<?= htmlspecialchars($nombre ?? '') ?>">
+                                        <span class="input-group-text bg-success text-white"><i class="bi bi-person"></i></span>
+                                        <input type="text" 
+                                            class="form-control" 
+                                            id="nombreInput" 
+                                            placeholder="Ej: Ana Pérez"
+                                            aria-label="Nombre">
                                     </div>
                                 </div>
-                                <!-- Segunda fila: Filtrar por Documento -->
-                                <div class="col-md-6"> <!-- Cambiado a col-md-6 -->
-                                    <label for="documentoInput" class="form-label fw-bold" style="color: #007832;">Documentos</label>
-                                    <div class="input-group">
-                                        <span class="input-group-text"><i class="bi bi-card-text"></i></span>
-                                        <input type="text" name="documento" class="form-control" id="documentoInput" placeholder="Filtrar por documentos" value="<?= htmlspecialchars($documento ?? '') ?>">
-                                    </div>
-                                </div>
-                            </form>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -59,7 +71,7 @@
         require_once __DIR__ . "/../partials/tabla_usuarios.php";
         ?>
     </div>
-    <script src="assets/js/panel_registros.js"></script>
+    <script src="assets/js/historial_registros.js"></script>
 <?php
     include_once __DIR__ . '/../dashboard/layouts/footer_main.php';
 ?>

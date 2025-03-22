@@ -1,0 +1,9 @@
+.dataTables_length {
+    margin-right: 20px; /* Margen derecho para separar del botón */
+}
+
+/* Estilo para la cabecera de la tabla */
+#tablaUsuarios thead th {
+    background-color: #007832; /* Color verde */
+    color: white; /* Color del texto */
+}
