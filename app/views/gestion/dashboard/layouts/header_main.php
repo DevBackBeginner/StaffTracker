@@ -117,28 +117,21 @@
               </a>
             </li><!-- End Registrar Visitantes Nav -->
 
-            <!-- Entrada/Salida -->
+            <!-- Entrada -->
             <li class="nav-item">
-              <a class="nav-link collapsed" data-bs-toggle="collapse" href="#entradaSalida" role="button" aria-expanded="false" aria-controls="entradaSalida">
+              <a class="nav-link collapsed" href="registro_ingreso">
                 <i class="bi bi-door-open"></i>
-                <span>Registrar Acceso</span>
-                <i class="bi bi-chevron-down ms-auto"></i>
+                <span>Registro de Entrada</span>
               </a>
-              <ul id="entradaSalida" class="nav-content collapse" data-bs-parent="#sidebar-nav">
-                <li>
-                  <a href="registro_ingreso">
-                    <i class="bi bi-people"></i>
-                    <span>Entrada</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="registro_salida">
-                    <i class="bi bi-person"></i>
-                    <span>Salida</span>
-                  </a>
-                </li>
-              </ul>
-            </li><!-- End Entrada/Salida Nav -->
+            </li>
+
+            <!-- Salida -->
+            <li class="nav-item">
+              <a class="nav-link collapsed" href="registro_salida">
+                <i class="bi bi-door-closed"></i>
+                <span>Registro de Salida</span>
+              </a>
+            </li>
 
             <!-- Consultar Registros -->
             <li class="nav-item">

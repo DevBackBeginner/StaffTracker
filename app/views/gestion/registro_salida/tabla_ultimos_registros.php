@@ -9,8 +9,8 @@
                 <th class="fs-6">Identificación</th>
                 <th class="fs-6">Rol</th>
                 <th class="fs-6">Marca del Equipo</th>
-                <th class="fs-6">Código del Equipo</th>
-                <th class="fs-6">Tipo de Equipo</th>
+                <th class="fs-6">Código</th>
+                <th class="fs-6">Tipo</th>
                 <th class="fs-6">Estado</th>
             </tr>
         </thead>
@@ -18,8 +18,7 @@
             <?php foreach ($ultimosRegistros as $registro): ?>
                 <tr>
                     <td><?php echo htmlspecialchars($registro['fecha']); ?></td>
-                    <td><?php echo htmlspecialchars($registro['hora_entrada']);?></td>
-
+                    <td><?php echo htmlspecialchars($registro['hora_salida']); ?></td>
                     <td><?php echo htmlspecialchars($registro['hora_salida']); ?></td>
                     <td><?php echo htmlspecialchars($registro['nombre']); ?></td>
                     <td><?php echo htmlspecialchars($registro['numero_identidad']); ?></td>
