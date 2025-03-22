@@ -35,7 +35,7 @@ include_once __DIR__ . '/../dashboard/layouts/header_main.php';
                 <th>#</th> <!-- Columna para el contador -->
                 <th>Nombre</th>
                 <th>Apellidos</th>
-                <th>Identidad</th>
+                <th>Identificación</th>
                 <th>Teléfono</th>
                 <th>Rol</th>
                 <th>Fecha</th>

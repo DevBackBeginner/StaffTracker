@@ -11,7 +11,6 @@
 
 <link href="assets/css/tablas.css" rel="stylesheet">
 
-
 <!-- ======= Sidebar ======= -->
 <div class="pagetitle">
     <h1>Panel de Control</h1>

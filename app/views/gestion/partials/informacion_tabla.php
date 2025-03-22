@@ -8,7 +8,7 @@
                 <th>Hora de Salida</th>
                 <!-- Columnas comunes -->
                 <th>Nombre</th>
-                <th>N° Identidad</th>
+                <th>Identificación</th>
 
                 <th>Telefono</th>
                 <!-- Columnas específicas según el rol -->

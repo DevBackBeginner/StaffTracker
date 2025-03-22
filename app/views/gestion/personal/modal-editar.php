@@ -21,7 +21,7 @@
                             <input type="text" class="form-control" id="editarApellidos" name="apellidos" required>
                         </div>
                         <div class="col-md-6">
-                            <label for="editarDocumento" class="form-label">Documento</label>
+                            <label for="editarDocumento" class="form-label">Identificación</label>
                             <input type="text" class="form-control" id="editarDocumento" name="documento" required>
                         </div>
                         <div class="col-md-6">
