@@ -68,7 +68,7 @@
     <div class="d-flex align-items-stretch">
         <?php
         // Incluir la tabla de usuarios
-        require_once __DIR__ . "/../partials/tabla_usuarios.php";
+        require_once __DIR__ . "/tabla_historial.php";
         ?>
     </div>
     <script src="assets/js/historial_registros.js"></script>

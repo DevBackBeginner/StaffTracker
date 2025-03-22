@@ -11,8 +11,8 @@ document.addEventListener('DOMContentLoaded', function () {
             const filtro = this.getAttribute('data-filter');
 
             // Determina el tipo de tarjeta (registros, funcionarios, visitantes)
-            const tipo = this.closest('.card').classList.contains('sales-card') ? 'registros' :
-                        this.closest('.card').classList.contains('revenue-card') ? 'funcionarios' :
+            const tipo = this.closest('.card').classList.contains('diario-card') ? 'registros' :
+                        this.closest('.card').classList.contains('funcionarios-card') ? 'funcionarios' :
                         'visitantes';
 
             // Realiza una solicitud AJAX para obtener los datos filtrados
@@ -23,7 +23,14 @@ document.addEventListener('DOMContentLoaded', function () {
                 },
                 body: JSON.stringify({ filtro: filtro })
             })
-            .then(response => response.json())
+            .then(response => {
+                if (!response.ok) { // Si la respuesta no es exitosa (ej. 404, 500)
+                    return response.text().then(text => {
+                        throw new Error(`Error ${response.status}: ${text}`);
+                    });
+                }
+                return response.json();
+            })
             .then(data => {
                 // Actualiza los elementos dinámicos según el tipo de tarjeta
                 switch (tipo) {
@@ -39,7 +46,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             })
             .catch(error => {
-                console.error('Error al obtener los datos filtrados:', error);
+                console.error('Error:', error);
+                // Mostrar un mensaje al usuario
+                alert('No se pudieron cargar los datos. Por favor, inténtalo de nuevo.');
             });
         });
     });

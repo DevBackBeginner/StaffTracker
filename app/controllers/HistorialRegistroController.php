@@ -21,31 +21,31 @@
         * Ejemplo de uso: /funcionarios_asistencia?rol=Instructor&page=1
         */
         public function mostrarUsuarios() {
-            // 1 Obtener parámetros GET de forma segura
+            // Obtener parámetros GET de forma segura
             $rol = $_GET['rol'] ?? 'Instructor';  // Valor por defecto
             $page = isset($_GET['page']) ? (int)$_GET['page'] : 1; // Convertimos a int
         
-            // 2 Validamos que la página sea al menos 1
+            // Validamos que la página sea al menos 1
             $page = max(1, $page);
         
-            // 3 Definir roles permitidos
+            // Definir roles permitidos
             $rolesPermitidos = ['Instructor', 'Funcionario', 'Directivo', 'Apoyo', 'Visitante'];
             if (!in_array($rol, $rolesPermitidos)) {
                 $rol = 'Instructor'; // Si el rol no es válido, asignamos uno por defecto
             }
         
-            // 4 Definir el límite de usuarios por página y el offset
+            // Definir el límite de usuarios por página y el offset
             $limit = 15;
             $offset = ($page - 1) * $limit;
             
-            // 5 Obtener los usuarios del rol seleccionado
+            // Obtener los usuarios del rol seleccionado
             $usuarios = $this->histroialModelo->obtenerUsuariosPorRol($rol, $limit, $offset);
         
-            // 6 Obtener el total de usuarios con ese rol
+            // Obtener el total de usuarios con ese rol
             $totalUsuarios = $this->histroialModelo->contarUsuariosPorRol($rol);
             $totalPaginas = ($totalUsuarios > 0) ? ceil($totalUsuarios / $limit) : 1;
                     
-            // 7 Cargar la vista con los datos
+            // Cargar la vista con los datos
             require_once __DIR__ . '/../Views/gestion/historial_registros/historial_registros.php';
         }
 

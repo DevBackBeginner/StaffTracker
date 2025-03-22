@@ -40,7 +40,7 @@ if (!isset($totalPaginas)) {
     </ul>
 
     <!-- Tabla de resultados -->
-    <?php include_once "informacion_tabla.php"?>
+    <?php require_once __DIR__ . "/../partials/informacion_tabla.php";?>
 
     <!-- Controles de paginación -->
     <?php

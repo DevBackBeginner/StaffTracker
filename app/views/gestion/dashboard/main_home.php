@@ -25,9 +25,9 @@
         <!-- Left side columns -->
         <div class="col-lg-12" name="div_footer">
             <div class="row">
-                <!-- Sales Card -->
+                <!-- diario Card -->
                 <div class="col-xxl-4 col-md-4">
-                    <div class="card info-card sales-card">
+                    <div class="card info-card diario-card">
                         <div class="filter">
                             <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
                             <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
@@ -57,11 +57,11 @@
                             </div>
                         </div>
                     </div>
-                </div><!-- End Sales Card -->
+                </div><!-- End diario Card -->
 
                 <!-- Tarjeta de Funcionarios -->
                 <div class="col-xxl-4 col-md-4">
-                    <div class="card info-card revenue-card">
+                    <div class="card info-card funcionarios-card">
                         <div class="filter">
                             <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
                             <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
@@ -91,11 +91,11 @@
                             </div>
                         </div>
                     </div>
-                </div><!-- End Revenue Card -->
+                </div><!-- End funcionarios Card -->
 
                 <!-- Tarjeta de Visitantes -->
                 <div class="col-xxl-4 col-md-4">
-                    <div class="card info-card customers-card">
+                    <div class="card info-card visitantes-card">
                         <div class="filter">
                             <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
                             <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
@@ -125,11 +125,11 @@
                             </div>
                         </div>
                     </div>
-                </div><!-- End Customers Card -->
+                </div><!-- End visitantes Card -->
             </div>
-
-            <!-- Incluye la tabla de usuarios -->
-            <?php include_once __DIR__ . "/../partials/tabla_usuarios.php"; ?>
+                <!-- Tabla de registros Generales -->
+                <?php include_once __DIR__ . "/tabla_usuarios.php"; ?>
+            </div>
         </div>
     </div>
 </section>
