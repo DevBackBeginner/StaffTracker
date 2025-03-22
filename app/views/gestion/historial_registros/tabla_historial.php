@@ -1,88 +1,91 @@
-
 <?php
-// Verificar si las variables están definidas
-if (!isset($usuarios)) {
-    $usuarios = []; // Inicializar como un arreglo vacío si no está definido
-}
-if (!isset($rol)) {
-    $rol = ''; // Inicializar como una cadena vacía si no está definido
-}
-if (!isset($page)) {
-    $page = 1; // Inicializar como 1 si no está definido
-}
-if (!isset($totalPaginas)) {
-    $totalPaginas = 1; // Inicializar como 1 si no está definido
-}
+// Inicialización segura de variables usando null coalescing operator
+$usuarios = $usuarios ?? [];
+$rol = $rol ?? '';
+$page = $page ?? 1;
+$totalPaginas = $totalPaginas ?? 1;
 ?>
 
-<div id="tabla-body" class="card-body bg-white rounded shadow-sm ">
-    <!-- Sección de tabs o bullet points -->
-    <ul class="nav nav-tabs mb-4">
-        <?php
-        // Definir los roles disponibles y sus etiquetas
-        $roles = [
-            'Instructor' => 'Instructores',
-            'Funcionario' => 'Funcionarios',
-            'Directivo' => 'Directivos',
-            'Apoyo' => 'Apoyos',
-            'Visitante' => 'Visitantes'
-        ];
+<div id="tabla-body" class="card-body bg-white rounded shadow-sm">
+    <!-- Navegación por roles mejorada -->
+    <div class="mb-4">
+        <ul class="nav nav-tabs nav-justified">
+            <?php
+            $roles = [
+                'Instructor' => 'Instructores',
+                'Funcionario' => 'Funcionarios',
+                'Directivo' => 'Directivos',
+                'Apoyo' => 'Apoyos',
+                'Visitante' => 'Visitantes'
+            ];
+            
+            foreach ($roles as $clave => $valor): 
+                $isActive = $rol === $clave;
+            ?>
+                <li class="nav-item">
+                    <a class="nav-link <?= $isActive ? 'active fw-semibold' : 'text-success' ?>"
+                       href="?<?= http_build_query(array_merge($_GET, ['rol' => $clave, 'page' => 1])) ?>">
+                       <?= htmlspecialchars($valor) ?>
+                    </a>
+                </li>
+            <?php endforeach; ?>
+        </ul>
+    </div>
+
+    <!-- Contenido de la tabla responsive -->
+    <div class="table-responsive mb-4">
+        <?php 
+        $tablaPath = __DIR__ . "/../partials/informacion_tabla.php";
+        if (file_exists($tablaPath)) {
+            include $tablaPath;
+        } else {
+            echo '<div class="alert alert-warning">La tabla no está disponible temporalmente</div>';
+        }
         ?>
-        <?php foreach ($roles as $clave => $valor): ?>
-            <li class="nav-item" >
-                <!-- Enlace para cada rol, activo si coincide con el rol actual -->
-                <a style="color: #007832;" class="nav-link  <?= ($rol === $clave) ? 'active' : '' ?>" 
-                    href="?rol=<?= urlencode($clave) ?>">
-                    <?= $valor ?>
-                </a>
-            </li>
-        <?php endforeach; ?>
-    </ul>
+    </div>
 
-    <!-- Tabla de resultados -->
-    <?php require_once __DIR__ . "/../partials/informacion_tabla.php";?>
+    <!-- Paginación estilo profesional -->
+    <?php if ($totalPaginas > 1 && !isset($_GET['documento']) && !isset($_GET['nombre'])): ?>
+        <nav aria-label="Navegación de páginas">
+            <ul class="pagination justify-content-center mb-0">
+                <?php
+                $queryParams = array_merge($_GET, ['rol' => $rol]);
+                
+                // Botón Anterior
+                $prevClass = $page <= 1 ? 'disabled' : '';
+                ?>
+                <li class="page-item <?= $prevClass ?>">
+                    <a class="page-link text-success" 
+                       href="?<?= http_build_query(array_merge($queryParams, ['page' => $page - 1])) ?>" 
+                       aria-label="Anterior">
+                       <i class="bi bi-chevron-left"></i>
+                    </a>
+                </li>
 
-    <!-- Controles de paginación -->
-    <?php
-    // Verificar si hay un filtro activo
-    $filtroActivo = isset($_GET['documento']) || isset($_GET['nombre']);
-    if ($totalPaginas > 1 && !$filtroActivo): ?>
-        <nav aria-label="Paginación">
-            <ul class="pagination justify-content-center">
-                <!-- Botón "Anterior" -->
-                <?php if ($page > 1): ?>
-                    <li class="page-item">
-                        <a class="page-link" href="?rol=<?= urlencode($rol) ?>&page=<?= $page - 1 ?>" aria-label="Anterior">
-                            <span aria-hidden="true">&laquo;</span>
+                <?php // Números de página
+                for ($i = 1; $i <= $totalPaginas; $i++): 
+                    $activeClass = $i === $page ? 'active bg-success border-success' : '';
+                ?>
+                    <li class="page-item <?= $activeClass ?>">
+                        <a class="page-link <?= $activeClass ? 'text-white' : 'text-success' ?>" 
+                           href="?<?= http_build_query(array_merge($queryParams, ['page' => $i])) ?>">
+                           <?= $i ?>
                         </a>
-                    </li>
-                <?php else: ?>
-                    <li class="page-item disabled">
-                        <span class="page-link" aria-hidden="true">&laquo;</span>
-                    </li>
-                <?php endif; ?>
-
-                <!-- Números de página -->
-                <?php for ($i = 1; $i <= $totalPaginas; $i++): ?>
-                    <li class="page-item <?= ($i === $page) ? 'active' : '' ?>">
-                        <a class="page-link" href="?rol=<?= urlencode($rol) ?>&page=<?= $i ?>"><?= $i ?></a>
                     </li>
                 <?php endfor; ?>
 
-                <!-- Botón "Siguiente" -->
-                <?php if ($page < $totalPaginas): ?>
-                    <li class="page-item">
-                        <a class="page-link" href="?rol=<?= urlencode($rol) ?>&page=<?= $page + 1 ?>" aria-label="Siguiente">
-                            <span aria-hidden="true">&raquo;</span>
-                        </a>
-                    </li>
-                <?php else: ?>
-                    <li class="page-item disabled">
-                        <span class="page-link" aria-hidden="true">&raquo;</span>
-                    </li>
-                <?php endif; ?>
+                <?php // Botón Siguiente
+                $nextClass = $page >= $totalPaginas ? 'disabled' : '';
+                ?>
+                <li class="page-item <?= $nextClass ?>">
+                    <a class="page-link text-success" 
+                       href="?<?= http_build_query(array_merge($queryParams, ['page' => $page + 1])) ?>" 
+                       aria-label="Siguiente">
+                       <i class="bi bi-chevron-right"></i>
+                    </a>
+                </li>
             </ul>
         </nav>
     <?php endif; ?>
-    
 </div>
+

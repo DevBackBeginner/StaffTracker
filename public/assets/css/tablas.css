@@ -1,0 +1,36 @@
+/* Estilos personalizados */
+.nav-tabs {
+    border-bottom: 2px solid #dee2e6;
+}
+
+.nav-tabs .nav-link {
+    color: #007832;
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.nav-tabs .nav-link.active {
+    color: #007832 !important;
+    border-bottom: 3px solid #007832;
+    font-weight: 600;
+    background: transparent;
+}
+
+.nav-tabs .nav-link:hover:not(.active) {
+    background-color: #f8f9fa;
+    color: #005c26 !important;
+}
+
+.page-link {
+    border-color: #dee2e6;
+}
+
+.page-item.active .page-link {
+    background-color: #007832;
+    border-color: #007832;
+}
+
+.table-responsive {
+    border-radius: 0.5rem;
+    overflow: hidden;
+}
