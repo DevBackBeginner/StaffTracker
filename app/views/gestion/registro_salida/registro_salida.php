@@ -2,6 +2,9 @@
     // Incluimos el encabezado (header) que contiene la estructura HTML inicial, head, etc.
     include_once __DIR__ . '/../dashboard/layouts/header_main.php';
 ?>
+
+<link href="assets/css/tablas.css" rel="stylesheet">
+
 <div class="pagetitle">
     <h1>Registro de Salidas</h1>
     <nav>

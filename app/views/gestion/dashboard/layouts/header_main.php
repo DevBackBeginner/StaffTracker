@@ -210,15 +210,6 @@
               <span>Perfil</span>
             </a>
           </li><!-- End Perfil Nav -->
-          <?php if (isset($_SESSION['usuario']['rol']) && $_SESSION['usuario']['rol'] === 'Guarda'): ?>
-
-            <li class="nav-item">
-              <a class="nav-link collapsed" href="contacto.html">
-                <i class="bi bi-envelope"></i>
-                <span>Reportar Bugs</span>
-              </a>
-            </li><!-- End Contáctenos Nav -->
-          <?php endif; ?>
           <!-- Cerrar Sesión -->
           <li class="nav-item">
             <a class="nav-link collapsed" href="logout">
