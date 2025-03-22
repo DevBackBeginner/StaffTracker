@@ -17,8 +17,8 @@ if (!isset($totalPaginas)) {
 
 <div id="tabla-body" class="card-body bg-white rounded shadow-sm ">
     <!-- Encabezado de la sección -->
-    <div class="mb-2">
-        <h4 class="card-title text-dark mb-0">
+    <div class="mb-3">
+        <h4 class="card-title  mb-0">
             <i class="bi bi-table me-2"></i>Registro General
         </h4>
     </div>
