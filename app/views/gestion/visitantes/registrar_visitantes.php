@@ -56,12 +56,12 @@
                                     <div class="invalid-feedback">Por favor, ingrese su teléfono.</div>
                                 </div>
                                 <div class="col-md-6">
-                                    <label for="numero_identidad" class="form-label fw-bold" style="color: #007832;">Número de Identidad</label>
+                                    <label for="numero_identidad" class="form-label fw-bold" style="color: #007832;">Número de Identificación</label>
                                     <div class="input-group">
                                         <span class="input-group-text"><i class="bi bi-card-text"></i></span>
                                         <input type="text" name="numero_identidad" id="numero_identidad" class="form-control" placeholder="Número de Identidad" required>
                                     </div>
-                                    <div class="invalid-feedback">Por favor, ingrese su número de identidad.</div>
+                                    <div class="invalid-feedback">Por favor, ingrese su número de Identificación.</div>
                                 </div>
 
                                 <!-- Tercera fila: Asunto, ¿Tiene computador? -->
