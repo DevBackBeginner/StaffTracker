@@ -15,13 +15,31 @@
             $this->reporteModelo = new ReporteModelo();
         }
 
-        public function Reportes()
+        public function ReporteGeneral()
         {
-            $usuarios = $this->reporteModelo->listadoHistorial();
+            $usuarios = $this->reporteModelo->registroGeneral();
 
             // Incluir la vista para PDF
-            include_once __DIR__ . '/../Views/gestion/reports/reports.php';
+            include_once __DIR__ . '/../Views/gestion/reports/reports_general.php';
 
+        }
+
+        public function ReporteDiario()
+        {
+            // Obtener los registros del día actual desde el modelo
+            $usuarios = $this->reporteModelo->registroHoy();
+        
+            // Incluir la vista para mostrar el reporte diario
+            include_once __DIR__ . '/../Views/gestion/reports/reports_diarios.php';
+        }
+
+        public function ReporteMensual()
+        {
+            // Obtener los registros del día actual desde el modelo
+            $usuarios = $this->reporteModelo->registroMensual();
+        
+            // Incluir la vista para mostrar el reporte diario
+            include_once __DIR__ . '/../Views/gestion/reports/reports_mensual.php';
         }
 
         /**
@@ -48,7 +66,7 @@
             }
             
             // Incluir la vista y pasar los datos
-            include_once  __DIR__ . '/../views/gestion/reports/reports_graficos.php';
+            include_once __DIR__ . '/../Views\gestion\reports_graficos.php\reports_graficos.php';
         } catch (Exception $e) {
             // Manejar el error
             echo "Error: " . $e->getMessage();

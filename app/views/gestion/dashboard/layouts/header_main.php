@@ -99,7 +99,6 @@
       </header><!-- End Header -->
       <aside id="sidebar" class="sidebar">
         <ul class="sidebar-nav" id="sidebar-nav">
-
           <!-- Dashboard -->
           <li class="nav-item">
             <a class="nav-link" href="Inicio">
@@ -108,7 +107,6 @@
             </a>
           </li><!-- End Dashboard Nav -->
           <?php if (isset($_SESSION['usuario']['rol']) && $_SESSION['usuario']['rol'] === 'Guarda'): ?>
-
             <!-- Registrar Visitantes -->
             <li class="nav-item">
               <a class="nav-link collapsed" href="formulario_registro_visitante">
@@ -143,15 +141,15 @@
           <?php endif; ?>
 
           <!-- Opciones exclusivas para Administradores -->
-          <?php if (isset($_SESSION['usuario']['rol']) && $_SESSION['usuario']['rol'] === 'Admin'): ?>
+          <?php if ($_SESSION['usuario']['rol'] === 'Admin'): ?>
             <li class="nav-heading">Administración</li>
-            <li class="nav-item">
-              <a class="nav-link collapsed" href="registrar_guardas">
-                <i class="bi bi-person"></i>
-                <span>Registrar Guardas</span>
-              </a>
-            </li><!-- End Registrar Guardas Nav -->
-            <li class="nav-item">
+              <li class="nav-item">
+                <a class="nav-link collapsed" href="registrar_guardas">
+                  <i class="bi bi-person"></i>
+                  <span>Registrar Guardas</span>
+                </a>
+              </li><!-- End Registrar Guardas Nav -->
+              <li class="nav-item">
                 <a class="nav-link collapsed" data-bs-toggle="collapse" href="#gestionUsuarios" role="button" aria-expanded="false" aria-controls="gestionUsuarios">
                   <i class="bi bi-people"></i>
                   <span>Gestión de Usuarios</span>
@@ -180,21 +178,42 @@
                 </a>
                 <ul id="gestionReportes" class="nav-content collapse" data-bs-parent="#sidebar-nav">
                   <li>
-                    <a href="reportes">
+                    <a href="ReporteGeneral">
                       <i class="bi bi-plus-circle"></i>
-                      <span>Reportes</span>
+                      <span>Reporte General</span>
                     </a>
                   </li>
                   <li>
-                    <a href="reporte_graficos">
-                      <i class="bi bi-list-ul"></i>
-                      <span>Reportes Graficos</span>
+                    <a href="ReporteDiario">
+                      <i class="bi bi-plus-circle"></i>
+                      <span>Reporte Diario</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="ReporteMensual">
+                      <i class="bi bi-plus-circle"></i>
+                      <span>Reporte Mensual</span>
                     </a>
                   </li>
                 </ul>
               </li>
-            <?php endif; ?>
-
+            </li>
+          <?php endif; ?>
+          <div class="nav-item">
+            <a class="nav-link collapsed" data-bs-toggle="collapse" href="#gestionReportesGraficos" role="button" aria-expanded="false" aria-controls="gestionUsuarios">
+              <i class="bi bi-people"></i>
+              <span>Reportes Graficos</span>
+              <i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="gestionReportesGraficos" class="nav-content collapse" data-bs-parent="#sidebar-nav">  
+              <li>
+                <a href="reporte_graficos">
+                  <i class="bi bi-list-ul"></i>
+                  <span>Reportes Graficos</span>
+                </a>
+              </li>
+            </ul>
+          </div>
           <!-- Opciones Generales -->
           <li class="nav-heading">Ajustes</li>
           <li class="nav-item">

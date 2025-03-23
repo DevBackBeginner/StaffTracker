@@ -8,8 +8,8 @@
                 <th class="fs-6">Identificación</th>
                 <th class="fs-6">Rol</th>
                 <th class="fs-6">Marca del Equipo</th>
-                <th class="fs-6">Código del Equipo</th>
-                <th class="fs-6">Tipo de Equipo</th>
+                <th class="fs-6">Código</th>
+                <th class="fs-6">Tipo</th>
                 <th class="fs-6">Estado</th>
             </tr>
         </thead>

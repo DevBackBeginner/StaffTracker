@@ -16,52 +16,46 @@ $(document).ready(function() {
                 text: 'PDF', // Texto del botón
                 className: 'btn-export',
                 customize: function(doc) {
-                    // Aplicar estilo al encabezado (color verde y texto blanco)
-                    doc.content[1].table.headerRows = 1; // Asegurar que la cabecera se repita en cada página
+                    // Personalización del PDF (igual que antes)
+                    doc.content[1].table.headerRows = 1;
                     doc.content[1].table.body[0].forEach(function(cell) {
-                        cell.fillColor = '#007832'; // Color de fondo verde
-                        cell.color = '#ffffff'; // Color del texto blanco
-                        cell.alignment = 'center'; // Alinear el texto al centro
+                        cell.fillColor = '#007832';
+                        cell.color = '#ffffff';
+                        cell.alignment = 'center';
                     });
-
-                    // Reducir el tamaño del texto en el PDF
-                    doc.defaultStyle.fontSize = 8; // Tamaño de fuente general
-                    doc.styles.tableHeader.fontSize = 9; // Tamaño de fuente para la cabecera
-                    doc.styles.tableBodyEven.fontSize = 8; // Tamaño de fuente para filas pares
-                    doc.styles.tableBodyOdd.fontSize = 8; // Tamaño de fuente para filas impares
-
-                    // Centrar la tabla en el PDF
+                    doc.defaultStyle.fontSize = 8;
+                    doc.styles.tableHeader.fontSize = 9;
+                    doc.styles.tableBodyEven.fontSize = 8;
+                    doc.styles.tableBodyOdd.fontSize = 8;
                     doc.content[1].layout = {
                         hLineWidth: function(i, node) {
-                            return 0.5; // Grosor de las líneas horizontales
+                            return 0.5;
                         },
                         vLineWidth: function(i, node) {
-                            return 0.5; // Grosor de las líneas verticales
+                            return 0.5;
                         },
                         hLineColor: function(i, node) {
-                            return '#cccccc'; // Color de las líneas horizontales
+                            return '#cccccc';
                         },
                         vLineColor: function(i, node) {
-                            return '#cccccc'; // Color de las líneas verticales
+                            return '#cccccc';
                         },
                         paddingLeft: function(i, node) {
-                            return 10; // Espaciado izquierdo
+                            return 10;
                         },
                         paddingRight: function(i, node) {
-                            return 10; // Espaciado derecho
+                            return 10;
                         },
                         paddingTop: function(i, node) {
-                            return 5; // Espaciado superior
+                            return 5;
                         },
                         paddingBottom: function(i, node) {
-                            return 5; // Espaciado inferior
+                            return 5;
                         },
                         fillColor: function(i, node) {
-                            return (i === 0) ? '#007832' : null; // Color de fondo para la cabecera
+                            return (i === 0) ? '#007832' : null;
                         }
                     };
-
-                    // Centrar la tabla en la página
                     doc.content[1].alignment = 'center';
                 }
             }

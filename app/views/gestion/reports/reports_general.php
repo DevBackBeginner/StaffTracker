@@ -1,7 +1,6 @@
 <?php
 include_once __DIR__ . '/../dashboard/layouts/header_main.php';
 ?>
-    <script src="assets/css/reports.css"></script>
 
     <!-- jQuery y DataTables -->
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -16,14 +15,20 @@ include_once __DIR__ . '/../dashboard/layouts/header_main.php';
     <!-- Estilos de DataTables y Buttons -->
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.2.2/css/buttons.dataTables.min.css">
-  
+
+    <!-- Estilo personalizado para los botones -->
+    <style>
+        .dt-buttons {
+            margin-left: 20px; /* Margen a la izquierda de los botones */
+        }
+    </style>
 
     <div class="pagetitle">
         <h1>Reporte General</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="Inicio">Home</a></li>
-                <li class="breadcrumb-item active">Registro de Salidas</li>
+                <li class="breadcrumb-item active">Reporte General</li>
             </ol>
         </nav>
     </div>
@@ -34,7 +39,6 @@ include_once __DIR__ . '/../dashboard/layouts/header_main.php';
             <tr>
                 <th>#</th> <!-- Columna para el contador -->
                 <th>Nombre</th>
-                <th>Apellidos</th>
                 <th>Identificación</th>
                 <th>Teléfono</th>
                 <th>Rol</th>
@@ -49,8 +53,7 @@ include_once __DIR__ . '/../dashboard/layouts/header_main.php';
             foreach ($usuarios as $usuario): ?>
             <tr>
                 <td><?= $contador; ?></td> <!-- Mostramos el contador -->
-                <td><?= $usuario['nombre']; ?></td>
-                <td><?= $usuario['apellidos']; ?></td>
+                <td><?= $usuario['nombre'] . "  " . $usuario['apellidos']; ?></td>
                 <td><?= $usuario['numero_identidad']; ?></td>
                 <td><?= $usuario['telefono']; ?></td>
                 <td><?= $usuario['rol']; ?></td>
@@ -63,7 +66,7 @@ include_once __DIR__ . '/../dashboard/layouts/header_main.php';
             endforeach; ?>
         </tbody>
     </table>
-
+    
     <script src="assets/js/reports.js"></script>
 
 <?php

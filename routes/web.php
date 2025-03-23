@@ -77,7 +77,10 @@ Router::get('registrar-acceso-visitantes', [GestionVisitantesController::class, 
 // Rutas para reportes
 // ==================================================
 
-Router::get('reportes', [ReportController::class, 'Reportes']);
+Router::get('ReporteGeneral', [ReportController::class, 'ReporteGeneral']);
+Router::get('ReporteDiario', [ReportController::class, 'ReporteDiario']);
+Router::get('ReporteMensual', [ReportController::class, 'ReporteMensual']);
+
 Router::get('reporte_graficos', [ReportController::class, 'generarReporteGraficos']);
 
 ?>
