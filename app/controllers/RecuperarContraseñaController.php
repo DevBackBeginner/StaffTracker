@@ -141,7 +141,7 @@
             $mail = new PHPMailer(true);
             
             try {
-                // 1. Configuración SMTP (usa variables de entorno en producción)
+                // 1. Configuración SMTP
                 $mail->isSMTP();
                 $mail->Host = getenv('SMTP_HOST') ?: 'smtp.gmail.com';
                 $mail->SMTPAuth = true;
@@ -151,17 +151,31 @@
                 $mail->Port = getenv('SMTP_PORT') ?: 587;
                 $mail->Timeout = 15;
 
-                // 2. Configurar remitente y destinatario
-                $mail->setFrom(getenv('SMTP_FROM_EMAIL') ?: 'stafftracker84@gmail.com', 
-                            getenv('SMTP_FROM_NAME') ?: 'Sistema StaffTracker');
+                // 2. Configuración CRÍTICA para caracteres especiales
+                $mail->CharSet = 'UTF-8';
+                $mail->Encoding = 'base64';
+                
+                // 3. Configurar remitente y destinatario
+                $mail->setFrom(
+                    getenv('SMTP_FROM_EMAIL') ?: 'stafftracker84@gmail.com', 
+                    mb_encode_mimeheader(
+                        getenv('SMTP_FROM_NAME') ?: 'Sistema StaffTracker',
+                        'UTF-8',
+                        'Q'
+                    )
+                );
                 $mail->addAddress($correo);
                 $mail->isHTML(true);
-                $mail->Subject = 'Recuperación de Contraseña - StaffTracker';
                 
-                // 3. Generar URL COMPLETA y ABSOLUTA
+                // 4. Asunto con codificación correcta
+                $mail->Subject = mb_encode_mimeheader(
+                    'Recuperación de Contraseña - StaffTracker',
+                    'UTF-8',
+                    'Q'
+                );
+                
+                // 5. Generar URL y contenido
                 $resetUrl = $this->generateResetUrl($token);
-                
-                // 4. Contenido del correo con URL explícita
                 $mail->Body = $this->createEmailBody($resetUrl);
                 $mail->AltBody = "Para recuperar tu contraseña, visita: {$resetUrl}";
 
@@ -191,7 +205,12 @@
         private function createEmailBody(string $resetUrl): string
         {
             return <<<HTML
-            <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+            <!DOCTYPE html>
+            <html lang="es">
+            <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+            </head>
+            <body style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
                 <h2 style="color: #2c3e50;">Recuperación de Contraseña</h2>
                 <p>Haz clic en este botón para restablecer tu contraseña:</p>
                 
@@ -213,7 +232,8 @@
                 <p style="margin-top: 20px; font-size: 0.9em; color: #666;">
                     Este enlace expirará en 1 hora. Si no solicitaste este cambio, ignora este mensaje.
                 </p>
-            </div>
+            </body>
+            </html>
         HTML;
         }
     }
