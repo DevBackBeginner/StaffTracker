@@ -61,8 +61,6 @@ class LoginController {
         }
     }
 
-   
-
     public function Logout() {
         // Iniciar la sesión si no está iniciada
         if (session_status() === PHP_SESSION_NONE) {
