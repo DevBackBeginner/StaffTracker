@@ -12,7 +12,7 @@
             <?php echo htmlspecialchars($_COOKIE['flash_success']); ?>
         </div>
     <?php endif; ?>
-    <form action="procesar-restablecer-contraseña" method="POST">
+    <form action="procesar-restablecer-contrasena" method="POST">
         <input type="hidden" name="token" value="<?php echo htmlspecialchars($_GET['token'] ?? ''); ?>">
         <div class="form-group">
             <label for="password">Nueva Contraseña:</label>

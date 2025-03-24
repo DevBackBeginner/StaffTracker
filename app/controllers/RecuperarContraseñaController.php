@@ -2,7 +2,7 @@
     session_start(); // Inicia la sesión para gestionar variables de sesión
 
     // Cargar el autoload de Composer desde la carpeta assets
-    require_once __DIR__ . '/../../public/assets/vendor/autoload.php';
+    require_once __DIR__ . '/../../vendor/autoload.php';
     require_once __DIR__ . '/../Models/RecuperarContraseñaModelo.php'; // Incluye el modelo que maneja la base de datos
 
     use PHPMailer\PHPMailer\PHPMailer;
@@ -12,10 +12,21 @@
     class RecuperarContraseñaController
     {
         private $recuperarModelo;
-
+        private $mailer;
         public function __construct()
         {
             $this->recuperarModelo = new RecuperarContraseñaModelo();
+            $this->mailer = new PHPMailer(true);
+        
+            // Configuración básica de PHPMailer
+            $this->mailer->SMTPOptions = [
+                'ssl' => [
+                    'verify_peer' => false,
+                    'verify_peer_name' => false,
+                    'allow_self_signed' => true
+                ]
+            ];
+            $this->mailer->Timeout = 30; // 30 segundos de timeout
         }
 
         /**
@@ -67,7 +78,17 @@
         /**
          * Muestra el formulario para restablecer la contraseña.
          */
-        public function mostrarRestablecerContrasena($token) {
+        public function mostrarRestablecerContrasena(): void
+        {
+            // Obtener el token de la URL (método GET ?token=valor)
+            $token = $_GET['token'] ?? '';
+            
+            if (empty($token)) {
+                setcookie("flash_error", "Token no proporcionado", time() + 5, "/");
+                header("Location: Login");
+                exit;
+            }
+
             // Verificar si el token es válido
             $usuario = $this->recuperarModelo->buscarPorToken($token);
 
@@ -79,7 +100,6 @@
                 exit;
             }
         }
-
         /**
          * Procesa el restablecimiento de la contraseña.
          */
@@ -116,38 +136,85 @@
         /**
          * Envía un correo electrónico con el enlace de recuperación.
          */
-        private function enviarCorreoRecuperacion($correo, $token) {
-            // Crear una instancia de PHPMailer
+        private function enviarCorreoRecuperacion(string $correo, string $token): bool 
+        {
             $mail = new PHPMailer(true);
-
+            
             try {
-                // Configuración del servidor SMTP
+                // 1. Configuración SMTP (usa variables de entorno en producción)
                 $mail->isSMTP();
-                $mail->Host = 'smtp.tudominio.com'; // Servidor SMTP
+                $mail->Host = getenv('SMTP_HOST') ?: 'smtp.gmail.com';
                 $mail->SMTPAuth = true;
-                $mail->Username = 'stafftracker84@gmail.com'; // Tu correo
-                $mail->Password = 'idgb fjgj boux wxpa'; // Tu contraseña
-                $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; // Encriptación TLS
-                $mail->Port = 587; // Puerto SMTP
+                $mail->Username = getenv('SMTP_USER') ?: 'stafftracker84@gmail.com';
+                $mail->Password = getenv('SMTP_PASS') ?: 'idgb fjgj boux wxpa';
+                $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+                $mail->Port = getenv('SMTP_PORT') ?: 587;
+                $mail->Timeout = 15;
 
-                // Remitente y destinatario
-                $mail->setFrom('stafftracker84@gmail.com', 'stafftracker');
-                $mail->addAddress($correo); // Correo del destinatario
-
-                // Contenido del correo
+                // 2. Configurar remitente y destinatario
+                $mail->setFrom(getenv('SMTP_FROM_EMAIL') ?: 'stafftracker84@gmail.com', 
+                            getenv('SMTP_FROM_NAME') ?: 'Sistema StaffTracker');
+                $mail->addAddress($correo);
                 $mail->isHTML(true);
-                $mail->Subject = 'Recuperación de Contraseña';
-                $mail->Body = "Para recuperar tu contraseña, haz clic en el siguiente enlace: 
-                            <a href='http://localhost/ControlAsistencia/public/restablecer-contrasena?token=$token'>Restablecer Contraseña</a>";
+                $mail->Subject = 'Recuperación de Contraseña - StaffTracker';
+                
+                // 3. Generar URL COMPLETA y ABSOLUTA
+                $resetUrl = $this->generateResetUrl($token);
+                
+                // 4. Contenido del correo con URL explícita
+                $mail->Body = $this->createEmailBody($resetUrl);
+                $mail->AltBody = "Para recuperar tu contraseña, visita: {$resetUrl}";
 
-                // Enviar el correo
-                $mail->send();
-                return true;
+                return $mail->send();
+                
             } catch (Exception $e) {
-                // Si hay un error, puedes registrarlo o manejarlo
-                error_log("Error al enviar el correo: " . $mail->ErrorInfo);
+                error_log("[Email Error] Para: {$correo} - " . $e->getMessage());
                 return false;
             }
+        }
+
+        /**
+         * Genera la URL absoluta completa para restablecer contraseña
+         */
+        private function generateResetUrl(string $token): string
+        {
+            $protocol = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') ? 'https://' : 'http://';
+            $host = $_SERVER['HTTP_HOST'];
+            $path = '/controlAsistencia/public/restablecer-contrasena'; // Ruta exacta
+            
+            return $protocol . $host . $path . '?token=' . urlencode($token);
+        }
+
+        /**
+         * Crea el cuerpo HTML del correo con URL completa en el botón
+         */
+        private function createEmailBody(string $resetUrl): string
+        {
+            return <<<HTML
+            <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+                <h2 style="color: #2c3e50;">Recuperación de Contraseña</h2>
+                <p>Haz clic en este botón para restablecer tu contraseña:</p>
+                
+                <div style="text-align: center; margin: 25px 0;">
+                    <a href="{$resetUrl}" 
+                    style="display: inline-block; background-color: #3498db; color: white; 
+                            padding: 12px 24px; text-decoration: none; border-radius: 5px; 
+                            font-weight: bold; margin: 10px 0;">
+                    Restablecer Contraseña
+                    </a>
+                </div>
+                
+                <p>O copia y pega esta URL en tu navegador:</p>
+                <div style="background: #f5f5f5; padding: 10px; border-radius: 5px; 
+                            word-break: break-all; font-family: monospace;">
+                    {$resetUrl}
+                </div>
+                
+                <p style="margin-top: 20px; font-size: 0.9em; color: #666;">
+                    Este enlace expirará en 1 hora. Si no solicitaste este cambio, ignora este mensaje.
+                </p>
+            </div>
+        HTML;
         }
     }
 ?>

@@ -198,22 +198,22 @@
                 </ul>
               </li>
             </li>
+            <div class="nav-item">
+              <a class="nav-link collapsed" data-bs-toggle="collapse" href="#gestionReportesGraficos" role="button" aria-expanded="false" aria-controls="gestionUsuarios">
+                <i class="bi bi-people"></i>
+                <span>Reportes Graficos</span>
+                <i class="bi bi-chevron-down ms-auto"></i>
+              </a>
+              <ul id="gestionReportesGraficos" class="nav-content collapse" data-bs-parent="#sidebar-nav">  
+                <li>
+                  <a href="reporte_graficos">
+                    <i class="bi bi-list-ul"></i>
+                    <span>Reportes Graficos</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
           <?php endif; ?>
-          <div class="nav-item">
-            <a class="nav-link collapsed" data-bs-toggle="collapse" href="#gestionReportesGraficos" role="button" aria-expanded="false" aria-controls="gestionUsuarios">
-              <i class="bi bi-people"></i>
-              <span>Reportes Graficos</span>
-              <i class="bi bi-chevron-down ms-auto"></i>
-            </a>
-            <ul id="gestionReportesGraficos" class="nav-content collapse" data-bs-parent="#sidebar-nav">  
-              <li>
-                <a href="reporte_graficos">
-                  <i class="bi bi-list-ul"></i>
-                  <span>Reportes Graficos</span>
-                </a>
-              </li>
-            </ul>
-          </div>
           <!-- Opciones Generales -->
           <li class="nav-heading">Ajustes</li>
           <li class="nav-item">

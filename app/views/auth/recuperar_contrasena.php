@@ -34,7 +34,7 @@
 
         <!-- Enlace para volver al inicio de sesión -->
         <div class="back-to-login-link">
-            <a href="/login">Volver al Inicio de Sesión</a>
+            <a href="login">Volver al Inicio de Sesión</a>
         </div>
     </div>
 </div>

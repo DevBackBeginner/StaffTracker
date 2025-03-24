@@ -3,105 +3,139 @@ require_once '../config/DataBase.php';
 
 class RecuperarContraseñaModelo {
     private $db;
-    private const PASSWORD_ALGORITHM = PASSWORD_BCRYPT; // Algoritmo de cifrado
+    private const PASSWORD_ALGORITHM = PASSWORD_BCRYPT;
+    private const TOKEN_EXPIRATION = '+1 hour';
+    private const DB_TIMEOUT = 30; // 30 segundos de timeout
 
     public function __construct() {
         $conn = new DataBase();
         $this->db = $conn->getConnection();
+        // Configurar timeout para la conexión
+        $this->db->setAttribute(PDO::ATTR_TIMEOUT, self::DB_TIMEOUT);
+        $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        
+        date_default_timezone_set('America/Bogota'); // Cambia por tu zona horaria
+
     }
 
-    /**
-     * Busca un usuario por su correo electrónico.
-     *
-     * @param string $correo El correo electrónico del usuario.
-     * @return array|false Retorna los datos del usuario o false si no se encuentra.
-     */
-    public function buscarPorCorreo($correo) {
+    public function buscarPorCorreo(string $correo): ?array {
         try {
-            $sql = "SELECT  ua.*,
-                            u.nombre, u.apellidos, u.telefono, u.numero_identidad, u.rol
+            $sql = "SELECT ua.*, u.nombre, u.apellidos, u.telefono, u.numero_identidad, u.rol
                     FROM usuarios_autenticados ua
                     JOIN usuarios u ON ua.usuario_id = u.id
-                    WHERE ua.correo = :correo";
+                    WHERE ua.correo = :correo
+                    LIMIT 1"; // Añadido LIMIT para optimización
             $stmt = $this->db->prepare($sql);
             $stmt->execute(['correo' => $correo]);
-            return $stmt->fetch(PDO::FETCH_ASSOC);
+            return $stmt->fetch(PDO::FETCH_ASSOC) ?: null;
         } catch (PDOException $e) {
             error_log("Error en buscarPorCorreo: " . $e->getMessage());
-            return false;
+            return null;
         }
     }
 
-    /**
-     * Guarda el token de recuperación y su fecha de expiración.
-     *
-     * @param int $usuarioId El ID del usuario.
-     * @param string $token El token de recuperación.
-     * @param string $expiry La fecha de expiración del token.
-     * @return bool Retorna true si la operación fue exitosa, false en caso contrario.
-     */
-    public function guardarTokenRecuperacion($usuarioId, $token, $expiry) {
+    public function guardarTokenRecuperacion(int $usuarioId, string $token, ?string $expiry = null): bool {
+        $this->db->beginTransaction(); // Iniciar transacción
         try {
-            $stmt = $this->db->prepare('UPDATE usuarios_autenticados SET reset_token = :token, reset_token_expiry = :expiry WHERE id = :id');
-            return $stmt->execute(['token' => $token, 'expiry' => $expiry, 'id' => $usuarioId]);
+            $expiry = $expiry ?? date('Y-m-d H:i:s', strtotime(self::TOKEN_EXPIRATION));
+            
+            // Primero eliminamos cualquier token existente
+            $stmt = $this->db->prepare(
+                'UPDATE usuarios_autenticados 
+                SET reset_token = NULL, 
+                    reset_token_expiry = NULL 
+                WHERE id = :id'
+            );
+            $stmt->execute(['id' => $usuarioId]);
+            
+            // Luego guardamos el nuevo token
+            $stmt = $this->db->prepare(
+                'UPDATE usuarios_autenticados 
+                 SET reset_token = :token, 
+                    reset_token_expiry = :expiry 
+                 WHERE id = :id'
+            );
+            $result = $stmt->execute([
+                'token' => $token,
+                'expiry' => $expiry,
+                'id' => $usuarioId
+            ]);
+            
+            $this->db->commit();
+            return $result;
         } catch (PDOException $e) {
+            $this->db->rollBack();
             error_log("Error en guardarTokenRecuperacion: " . $e->getMessage());
             return false;
         }
     }
 
-    /**
-     * Busca un usuario por su token de recuperación.
-     *
-     * @param string $token El token de recuperación.
-     * @return array|false Retorna los datos del usuario o false si no se encuentra.
-     */
-    public function buscarPorToken($token) {
+    public function buscarPorToken(string $token): ?array {
         if (empty($token)) {
-            return false;
+            return null;
         }
 
         try {
-            $stmt = $this->db->prepare('SELECT * FROM usuarios_autenticados WHERE reset_token = :token AND reset_token_expiry > NOW()');
+            $stmt = $this->db->prepare(
+                'SELECT ua.*, u.nombre, u.apellidos 
+                FROM usuarios_autenticados ua
+                JOIN usuarios u ON ua.usuario_id = u.id
+                WHERE reset_token = :token 
+                AND reset_token_expiry > NOW()
+                LIMIT 1'
+            );
             $stmt->execute(['token' => $token]);
-            return $stmt->fetch(PDO::FETCH_ASSOC);
+            return $stmt->fetch(PDO::FETCH_ASSOC) ?: null;
         } catch (PDOException $e) {
             error_log("Error en buscarPorToken: " . $e->getMessage());
-            return false;
+            return null;
         }
     }
 
-    /**
-     * Actualiza la contraseña de un usuario.
-     *
-     * @param int $usuarioId El ID del usuario.
-     * @param string $contrasena La nueva contraseña.
-     * @return bool Retorna true si la operación fue exitosa, false en caso contrario.
-     */
-    public function actualizarContrasena($usuarioId, $contrasena) {
-        if (empty($contrasena)) {
+    public function actualizarContrasena(int $usuarioId, string $contrasena): bool {
+        if (empty($contrasena) || strlen($contrasena) < 8) {
             return false;
         }
 
+        $this->db->beginTransaction();
         try {
+            // Verificar que el usuario existe
+            $stmt = $this->db->prepare('SELECT id FROM usuarios_autenticados WHERE id = :id');
+            $stmt->execute(['id' => $usuarioId]);
+            if (!$stmt->fetch()) {
+                return false;
+            }
+
             $hashedPassword = password_hash($contrasena, self::PASSWORD_ALGORITHM);
-            $stmt = $this->db->prepare('UPDATE usuarios_autenticados SET contrasena = :contrasena WHERE id = :id');
-            return $stmt->execute(['contrasena' => $hashedPassword, 'id' => $usuarioId]);
+            $stmt = $this->db->prepare(
+                'UPDATE usuarios_autenticados 
+                    SET contrasena = :contrasena, 
+                        reset_token = NULL, 
+                        reset_token_expiry = NULL 
+                    WHERE id = :id'
+            );
+            $result = $stmt->execute([
+                'contrasena' => $hashedPassword,
+                'id' => $usuarioId
+            ]);
+            
+            $this->db->commit();
+            return $result;
         } catch (PDOException $e) {
+            $this->db->rollBack();
             error_log("Error en actualizarContrasena: " . $e->getMessage());
             return false;
         }
     }
 
-    /**
-     * Elimina el token de recuperación de un usuario.
-     *
-     * @param int $usuarioId El ID del usuario.
-     * @return bool Retorna true si la operación fue exitosa, false en caso contrario.
-     */
-    public function eliminarTokenRecuperacion($usuarioId) {
+    public function eliminarTokenRecuperacion(int $usuarioId): bool {
         try {
-            $stmt = $this->db->prepare('UPDATE usuarios_autenticados SET reset_token = NULL, reset_token_expiry = NULL WHERE id = :id');
+            $stmt = $this->db->prepare(
+                'UPDATE usuarios_autenticados 
+                 SET reset_token = NULL, 
+                     reset_token_expiry = NULL 
+                 WHERE id = :id'
+            );
             return $stmt->execute(['id' => $usuarioId]);
         } catch (PDOException $e) {
             error_log("Error en eliminarTokenRecuperacion: " . $e->getMessage());
@@ -109,4 +143,3 @@ class RecuperarContraseñaModelo {
         }
     }
 }
-?>
