@@ -15,6 +15,14 @@ Router::post("obtenerdatosfiltrados", [DashboardController::class, 'obtenerDatos
 Router::get("Login", [LoginController::class, "mostrarLogin"]);
 Router::post("enviarLogin", [LoginController::class, "procesarLogin"]);
 Router::get("logout", [LoginController::class, "Logout"]);
+Router::get('recuperar-contrasena', [RecuperarContraseñaController::class, "mostrarRecuperarContrasena"]);
+Router::post('procesar-recuperar-contrasena', [RecuperarContraseñaController::class, 'procesarRecuperarContrasena']);
+Router::get('restablecer-contrasena', [RecuperarContraseñaController::class, "mostrarRestablecerContrasena"]);
+Router::post('procesar-restablecer-contrasena', [RecuperarContraseñaController::class, 'procesarRestablecerContrasena']);
+
+
+
+
 // ==================================================
 // Rutas para el perfil de usuario
 // ==================================================

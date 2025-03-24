@@ -22,7 +22,6 @@
             $stmt->execute(['correo' => $correo]);
             return $stmt->fetch(PDO::FETCH_ASSOC);
         }
-
         
     }
 ?>
