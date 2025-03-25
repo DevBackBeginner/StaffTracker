@@ -7,13 +7,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>StaffTracker</title>
-    <link rel="icon" href="/ControlAsistencia/public/assets/img/logo.png" type="image/x-icon">
+    <link rel="icon" href="assets/img/logo.png" type="image/x-icon">
 
     <!-- Stylesheets -->
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Poppins:400,500,600%7CTeko:300,400,500%7CMaven+Pro:500">
-    <link rel="stylesheet" href="/ControlAsistencia/public/assets/css/bootstrap.css">
-    <link rel="stylesheet" href="/ControlAsistencia/public/assets/css/fonts.css">
-    <link rel="stylesheet" href="/ControlAsistencia/public/assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.css">
+    <link rel="stylesheet" href="assets/css/fonts.css">
+    <link rel="stylesheet" href="assets/css/style.css">
     <style>
         .ie-panel {
             display: none;
@@ -41,7 +41,7 @@
 <body>
     <div class="ie-panel">
         <a href="http://windows.microsoft.com/en-US/internet-explorer/">
-            <img src="/ControlAsistencia/public/assets/img/sena1.jpg" height="42" width="820" alt="Advertencia: Navegador obsoleto.">
+            <img src="assets/img/sena1.jpg" height="42" width="820" alt="Advertencia: Navegador obsoleto.">
         </a>
     </div>
 
@@ -59,7 +59,7 @@
             <section class="section swiper-container swiper-slider swiper-slider-classic" data-loop="true" data-autoplay="4859" data-simulate-touch="true" data-direction="vertical" data-nav="false">
                 <div class="swiper-wrapper text-center">
                     <!-- Slide 1 -->
-                    <div class="swiper-slide" data-slide-bg="/ControlAsistencia/public/assets/img/sena1.jpg" style="box-shadow: 0 8px 16px 0 #007832;">
+                    <div class="swiper-slide" data-slide-bg="assets/img/sena1.jpg" style="box-shadow: 0 8px 16px 0 #007832;">
                         <div class="swiper-slide-caption section-md">
                             <div class="container">
                                 <h1 class="wow fadeInLeft" data-wow-delay="0" style="color: white; text-shadow: 2px 2px 4px #007832; font-size: 5em;">Registro Ágil y Seguro</h1>
@@ -70,7 +70,7 @@
                         </div>
                     </div>
                     <!-- Slide 2 -->
-                    <div class="swiper-slide" data-slide-bg="/ControlAsistencia/public/assets/img/sena2.jpg" style="box-shadow: 0 8px 16px 0 #007832;">
+                    <div class="swiper-slide" data-slide-bg="assets/img/sena2.jpg" style="box-shadow: 0 8px 16px 0 #007832;">
                         <div class="swiper-slide-caption section-md">
                             <div class="container">
                                 <h1 class="wow fadeInLeft" data-wow-delay="0" style="color: white; text-shadow: 2px 2px 4px #007832; font-size: 5em;">Gestión de Visitantes</h1>
@@ -81,7 +81,7 @@
                         </div>
                     </div>
                     <!-- Slide 3 -->
-                    <div class="swiper-slide" data-slide-bg="/ControlAsistencia/public/assets/img/sena3.jpg" style="box-shadow: 0 8px 16px 0 #007832;">
+                    <div class="swiper-slide" data-slide-bg="assets/img/sena3.jpg" style="box-shadow: 0 8px 16px 0 #007832;">
                         <div class="swiper-slide-caption section-md">
                             <div class="container">
                                 <h1 class="wow fadeInLeft" data-wow-delay="0" style="color: white; text-shadow: 2px 2px 4px #007832; font-size: 5em;">Seguridad y Control</h1>
@@ -99,7 +99,7 @@
     <div class="container">
         <div class="row row-30 justify-content-center align-items-center">
             <div class="col-md-7 col-lg-5 col-xl-6 text-lg-left wow fadeInUp">
-                <img src="/ControlAsistencia/public/assets/img/seguridad.jpg" alt="Seguridad" class="img-fluid"/>
+                <img src="assets/img/seguridad.jpg" alt="Seguridad" class="img-fluid"/>
             </div>
             <div class="col-lg-7 col-xl-6">
                 <div class="row row-30">
@@ -128,7 +128,7 @@
                             <div class="box-icon-modern-icon">
                                 <i class="fas fa-headset"></i> <!-- Ícono de headset -->
                             </div>
-                            <h5 class="box-icon-modern-title" style="font-size: 1.5em;"><a href="#">CONTROL DE VISITAS</a></h5>
+                            <h5 class="box-icon-modern-title" style="font-size: 1.5em;"><a href="#">CONTROL DE VISITANTES</a></h5>
                             <div class="box-icon-modern-decor"></div>
                             <p class="box-icon-modern-text" style="color: #00304D; font-size: 1.3em;">
                                 Los visitantes registran sus datos y motivo de ingreso de manera rápida y eficiente.
@@ -160,7 +160,7 @@
         <div class="row row-30 justify-content-center">
             <div class="col-md-3 mb-5 wow fadeInUp" data-wow-delay=".1s">
                 <div class="team-classic team-classic-lg p-4 border rounded shadow-sm position-relative" style="padding-top: 80px; min-height: 350px;">
-                    <img src="/ControlAsistencia/public/assets/img/logo.png" alt="Badend Echo - Backend" class="img-fluid rounded-circle position-absolute" 
+                    <img src="assets/img/logo.png" alt="Badend Echo - Backend" class="img-fluid rounded-circle position-absolute" 
                          style="top: 20px; left: 50%; transform: translateX(-50%); width: 120px; height: 120px;">
                     <div class="team-classic-caption mt-5">
                         <h4 class="team-classic-name">
@@ -179,7 +179,7 @@
 
             <div class="col-md-3 mb-5 wow fadeInUp" data-wow-delay=".2s">
                 <div class="team-classic team-classic-lg p-4 border rounded shadow-sm position-relative" style="padding-top: 80px; min-height: 350px;">
-                    <img src="/ControlAsistencia/public/assets/img/logo.png" alt="Juan Manuel - Frontend" class="img-fluid rounded-circle position-absolute" 
+                    <img src="assets/img/logo.png" alt="Juan Manuel - Frontend" class="img-fluid rounded-circle position-absolute" 
                          style="top: 20px; left: 50%; transform: translateX(-50%); width: 120px; height: 120px;">
                     <div class="team-classic-caption mt-5">
                         <h4 class="team-classic-name">
@@ -198,7 +198,7 @@
 
             <div class="col-md-3 mb-5 wow fadeInUp" data-wow-delay=".3s">
                 <div class="team-classic team-classic-lg p-4 border rounded shadow-sm position-relative" style="padding-top: 80px; min-height: 350px;">
-                    <img src="/ControlAsistencia/public/assets/img/logo.png" alt="Brayan - Beta Tester" class="img-fluid rounded-circle position-absolute" 
+                    <img src="assets/img/logo.png" alt="Brayan - Beta Tester" class="img-fluid rounded-circle position-absolute" 
                          style="top: 20px; left: 50%; transform: translateX(-50%); width: 120px; height: 120px;">
                     <div class="team-classic-caption mt-5">
                         <h4 class="team-classic-name">
@@ -217,7 +217,7 @@
 
             <div class="col-md-3 mb-5 wow fadeInUp" data-wow-delay=".4s">
                 <div class="team-classic team-classic-lg p-4 border rounded shadow-sm position-relative" style="padding-top: 80px; min-height: 350px;">
-                    <img src="/ControlAsistencia/public/assets/img/logo.png" alt="Cristian - Developer" class="img-fluid rounded-circle position-absolute" 
+                    <img src="assets/img/logo.png" alt="Cristian - Developer" class="img-fluid rounded-circle position-absolute" 
                          style="top: 20px; left: 50%; transform: translateX(-50%); width: 120px; height: 120px;">
                     <div class="team-classic-caption mt-5">
                         <h4 class="team-classic-name">
@@ -293,10 +293,10 @@
                     </div>
                     <div class="col-lg-6 text-center wow fadeInUp" data-wow-delay=".1s">
                         <div class="owl-carousel owl-style-1" data-items="2" data-stage-padding="0" data-loop="true" data-margin="0" data-mouse-drag="true" data-autoplay="true">
-                            <a class="box-device" href="#"><img src="/ControlAsistencia/public/assets/img/carnet.jpg" alt="Registro por Carné" width="313" height="580" /></a>
-                            <a class="box-device" href="#"><img src="/ControlAsistencia/public/assets/img/visitantes.jpg" alt="Registro de Visitantes" width="313" height="580" /></a>
-                            <a class="box-device" href="#"><img src="/ControlAsistencia/public/assets/img/programacion.jpg" alt="Programación de Accesos" width="313" height="580" /></a>
-                            <a class="box-device" href="#"><img src="/ControlAsistencia/public/assets/img/guarda.jpg" alt="Administración de Guardias" width="313" height="580" /></a>
+                            <a class="box-device" href="#"><img src="assets/img/carnet.jpg" alt="Registro por Carné" width="313" height="580" /></a>
+                            <a class="box-device" href="#"><img src="assets/img/visitantes.jpg" alt="Registro de Visitantes" width="313" height="580" /></a>
+                            <a class="box-device" href="#"><img src="assets/img/programacion.jpg" alt="Programación de Accesos" width="313" height="580" /></a>
+                            <a class="box-device" href="#"><img src="assets/img/guarda.jpg" alt="Administración de Guardias" width="313" height="580" /></a>
                         </div>
                     </div>
                 </div>
@@ -314,7 +314,7 @@
             <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInRight">
                 <article class="team-classic team-classic-lg" style="margin-bottom: 30px;">
                     <a class="team-classic-figure" href="#">
-                        <img src="/ControlAsistencia/public/assets/img/instructor.jpg" alt="Instructores" width="420" height="424"/>
+                        <img src="assets/img/instructor.jpg" alt="Instructores" width="420" height="424"/>
                     </a>
                     <div class="team-classic-caption">
                         <h4 class="team-classic-name"><a href="#" style="color: white; text-shadow: 2px 2px 4px #007832; font-size: 1.5em;">Instructores</a></h4>
@@ -325,7 +325,7 @@
             <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInRight" data-wow-delay=".1s">
                 <article class="team-classic team-classic-lg" style="margin-bottom: 30px;">
                     <a class="team-classic-figure" href="#">
-                        <img src="/ControlAsistencia/public/assets/img/directivos.jpg" alt="Funcionarios" width="420" height="424"/>
+                        <img src="assets/img/directivos.jpg" alt="Funcionarios" width="420" height="424"/>
                     </a>
                     <div class="team-classic-caption">
                         <h4 class="team-classic-name"><a href="#" style="color: white; text-shadow: 2px 2px 4px #007832; font-size: 1.5em;">Funcionarios</a></h4>
@@ -336,7 +336,7 @@
             <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInRight" data-wow-delay=".2s">
                 <article class="team-classic team-classic-lg" style="margin-bottom: 30px;">
                     <a class="team-classic-figure" href="#">
-                        <img src="/ControlAsistencia/public/assets/img/visitantesena.jpg" alt="Visitantes" width="420" height="424"/>
+                        <img src="assets/img/visitantesena.jpg" alt="Visitantes" width="420" height="424"/>
                     </a>
                     <div class="team-classic-caption">
                         <h4 class="team-classic-name"><a href="#" style="color: white; text-shadow: 2px 2px 4px #007832; font-size: 1.5em;">Visitantes</a></h4>
@@ -364,7 +364,7 @@
         opacity: 0.9; /* Opacidad para hacer más suave el fondo */
         transition: transform 0.3s ease, opacity 0.3s ease; /* Transiciones para el efecto hover */
     " target="_blank">
-        <img src="/ControlAsistencia/public/assets/img/senaaire.jpg" alt="Centro de Desarrollo Agroindustrial" width="1600" height="310" style="display: block; margin: auto;">
+        <img src="assets/img/senaaire.jpg" alt="Centro de Desarrollo Agroindustrial" width="1600" height="310" style="display: block; margin: auto;">
     </a>
 </section>
 
@@ -374,10 +374,10 @@
     </div>
 
     <!-- Scripts -->
-    <script src="/ControlAsistencia/public/assets/js/jquery.js"></script>
-    <script src="/ControlAsistencia/public/assets/js/bootstrap.bundle.min.js"></script>
-    <script src="/ControlAsistencia/public/assets/js/swiper-bundle.min.js"></script>
-    <script src="/ControlAsistencia/public/assets/js/scripts.js"></script>
+    <script src="assets/js/jquery.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/swiper-bundle.min.js"></script>
+    <script src="assets/js/scripts.js"></script>
 </body>
 </html>
 
