@@ -1,1 +1,4 @@
 [24-Mar-2025 11:03:59 America/Bogota] Error en registrarEntrada: Este usuario ya ha registrado su entrada
+[25-Mar-2025 16:24:59 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\StaffTracker\app\views\gestion\reports\reports_general.php on line 70
+[25-Mar-2025 16:24:59 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\StaffTracker\app\views\gestion\reports\reports_general.php on line 70
+[25-Mar-2025 16:24:59 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\StaffTracker\app\views\gestion\reports\reports_general.php on line 70

@@ -9,7 +9,7 @@
     <h1>Registro de Salidas</h1>
     <nav>
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="Inicio">Home</a></li>
+            <li class="breadcrumb-item"><a href="Inicio">Inicio</a></li>
             <li class="breadcrumb-item active">Registro de Salidas</li>
         </ol>
     </nav>
@@ -54,9 +54,29 @@
 <!-- Modal -->
 <?php include_once 'modal_salida.php' ?>
 
+<script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
+
+<script src="assets/js/footer_main.js"></script>
+<script src="assets/vendor/chart.js/chart.umd.js"></script>
+
+<script src="assets/vendor/echarts/echarts.min.js"></script>
+
+<script src="assets/vendor/chart.js/chart.js"></script>
+
+<script src="assets/vendor/quill/quill.js"></script>
+
+<script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
+
+<script src="assets/vendor/tinymce/tinymce.min.js"></script>
+
+<script src="assets/vendor/php-email-form/validate.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script src="assets/js/script.js"></script>
+
+<script src="assets/js/main_home.js"></script>
+
+<script src="assets/js/footer.js"></script>
 <!-- <script src="assets/js/registro_salida.js"></script>  -->
 
-<?php
-// Incluimos el footer que contiene la estructura HTML final
-include_once __DIR__ . '/../dashboard/layouts/footer_main.php';
-?>

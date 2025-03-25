@@ -39,7 +39,7 @@
                 <div class="card-body pt-3">
                     <ul class="nav nav-tabs nav-tabs-bordered">
                         <li class="nav-item">
-                            <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview">Resumen</button>
+                            <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview">Informacion</button>
                         </li>
                         <li class="nav-item">
                             <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit">Editar Perfil</button>
@@ -83,8 +83,8 @@
                         <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
                             <form method="POST" action="actualizar" enctype="multipart/form-data" class="container mt-4 p-4 border rounded shadow-sm bg-light">
                                 <div class="row mb-3 justify-content-center">
-                                    <label for="profileImage" class="col-md-4 col-lg-3 col-form-label text-center">Imagen de Perfil</label>
-                                    <div class="col-md-8 col-lg-9 text-center">
+                                    <label for="profileImage" class="col-md-4 col-lg-3 col-form-label text-center"></label>
+                                    <div class="col-12 d-flex flex-column align-items-center">
                                         <img src="<?= $_SESSION['usuario']['foto_perfil'] ?? 'default.png' ?>" alt="Perfil" class="rounded-circle">
                                         <div class="pt-2">
                                             <input type="file" name="imagen" id="imagen" style="display: none;" accept="image/*">
@@ -168,5 +168,28 @@
     </div>
 </section>
 
+<script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
+
+<script src="assets/js/footer_main.js"></script>
+<script src="assets/vendor/chart.js/chart.umd.js"></script>
+
+<script src="assets/vendor/echarts/echarts.min.js"></script>
+
+<script src="assets/vendor/chart.js/chart.js"></script>
+
+<script src="assets/vendor/quill/quill.js"></script>
+
+<script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
+
+<script src="assets/vendor/tinymce/tinymce.min.js"></script>
+
+<script src="assets/vendor/php-email-form/validate.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script src="assets/js/script.js"></script>
+
+<script src="assets/js/main_home.js"></script>
+
+<script src="assets/js/footer.js"></script>
 <script src="assets/js/perfil.js"></script>
-<?php include_once __DIR__ . '/../../views/gestion/dashboard/layouts/footer_main.php'; ?>

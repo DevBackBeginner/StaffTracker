@@ -7,7 +7,7 @@ include_once __DIR__ . '/../dashboard/layouts/header_main.php';
     <h1>Formulario de Registro Guardas</h1>
     <nav>
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="Inicio">Home</a></li>
+            <li class="breadcrumb-item"><a href="Inicio">Inicio</a></li>
             <li class="breadcrumb-item"><a href="panel">Registro Guardas</a></li>
         </ol>
     </nav>
@@ -34,7 +34,7 @@ include_once __DIR__ . '/../dashboard/layouts/header_main.php';
                         <form class="row g-3 needs-validation" action="registro_guarda" method="POST" novalidate>
                             <!-- Primera fila: Nombre, Apellidos -->
                             <div class="col-md-6">
-                                <label for="nombre" class="form-label fw-bold" style="color: #007832;">Nombre</label>
+                                <label for="nombre" class="form-label fw-bold" style="color: #007832;">Nombres</label>
                                 <div class="input-group">
                                     <span class="input-group-text"><i class="bi bi-person"></i></span>
                                     <input type="text" name="nombre" class="form-control" id="nombre" required>
@@ -52,7 +52,7 @@ include_once __DIR__ . '/../dashboard/layouts/header_main.php';
 
                             <!-- Segunda fila: Número de Identidad, Teléfono -->
                             <div class="col-md-6">
-                                <label for="numero_identidad" class="form-label fw-bold" style="color: #007832;">Identificación</label>
+                                <label for="numero_identidad" class="form-label fw-bold" style="color: #007832;">Numero de Identificación</label>
                                 <div class="input-group">
                                     <span class="input-group-text"><i class="bi bi-card-text"></i></span>
                                     <input type="text" name="numero_identidad" class="form-control" id="numero_identidad" required>
@@ -94,7 +94,27 @@ include_once __DIR__ . '/../dashboard/layouts/header_main.php';
 
 <script src="assets/js/registro_guardas.js"></script>
 
-<?php
-// Incluimos el pie de página (footer) que cierra la estructura HTML.
-include_once __DIR__ . '/../dashboard/layouts/footer_main.php';
-?>
+<script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
+
+<script src="assets/js/footer_main.js"></script>
+<script src="assets/vendor/chart.js/chart.umd.js"></script>
+
+<script src="assets/vendor/echarts/echarts.min.js"></script>
+
+<script src="assets/vendor/chart.js/chart.js"></script>
+
+<script src="assets/vendor/quill/quill.js"></script>
+
+<script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
+
+<script src="assets/vendor/tinymce/tinymce.min.js"></script>
+
+<script src="assets/vendor/php-email-form/validate.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script src="assets/js/script.js"></script>
+
+<script src="assets/js/main_home.js"></script>
+
+<script src="assets/js/footer.js"></script>

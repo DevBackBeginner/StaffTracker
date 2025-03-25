@@ -4,7 +4,7 @@
         <h1>Formulario de Registro Visitantes</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="Inicio">Home</a></li>
+                <li class="breadcrumb-item"><a href="Inicio">Inicio</a></li>
                 <li class="breadcrumb-item"><a href="panel">Registro Visitantes</a></li>
             </ol>
         </nav>
@@ -30,7 +30,7 @@
                             <form action="registrar_visitante" method="POST" class="row g-3 needs-validation" onsubmit="return validarFormulario()" novalidate>
                                 <!-- Primera fila: Nombre, Apellido -->
                                 <div class="col-md-6">
-                                    <label for="nombre" class="form-label fw-bold" style="color: #007832;">Nombre</label>
+                                    <label for="nombre" class="form-label fw-bold" style="color: #007832;">Nombres</label>
                                     <div class="input-group">
                                         <span class="input-group-text"><i class="bi bi-person"></i></span>
                                         <input type="text" name="nombre" id="nombre" class="form-control" placeholder="Nombre" required>
@@ -38,7 +38,7 @@
                                     <div class="invalid-feedback">Por favor, ingrese su nombre.</div>
                                 </div>
                                 <div class="col-md-6">
-                                    <label for="apellido" class="form-label fw-bold" style="color: #007832;">Apellido</label>
+                                    <label for="apellido" class="form-label fw-bold" style="color: #007832;">Apellidos</label>
                                     <div class="input-group">
                                         <span class="input-group-text"><i class="bi bi-person"></i></span>
                                         <input type="text" name="apellido" id="apellido" class="form-control" placeholder="Apellido" required>
@@ -143,4 +143,27 @@
     </div>
     <script src="assets/js/registro_visitantes.js"></script>
 
-<?php include_once __DIR__ . '/../dashboard/layouts/footer_main.php'; ?>
+    <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
+
+<script src="assets/js/footer_main.js"></script>
+<script src="assets/vendor/chart.js/chart.umd.js"></script>
+
+<script src="assets/vendor/echarts/echarts.min.js"></script>
+
+<script src="assets/vendor/chart.js/chart.js"></script>
+
+<script src="assets/vendor/quill/quill.js"></script>
+
+<script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
+
+<script src="assets/vendor/tinymce/tinymce.min.js"></script>
+
+<script src="assets/vendor/php-email-form/validate.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script src="assets/js/script.js"></script>
+
+<script src="assets/js/main_home.js"></script>
+
+<script src="assets/js/footer.js"></script>

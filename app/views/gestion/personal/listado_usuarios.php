@@ -16,14 +16,14 @@
                     <div class="card-body p-4">
                         <form method="GET" action="" class="row g-3">
                             <div class="col-md-4">
-                                <label for="nombre" class="form-label fw-bold" style="color: #007832;">Nombre</label>
+                                <label for="nombre" class="form-label fw-bold" style="color: #007832;">Nombres</label>
                                 <div class="input-group">
                                     <span class="input-group-text"><i class="bi bi-person"></i></span>
                                     <input type="text" name="nombre" id="nombre" class="form-control" placeholder="Nombre" value="<?= htmlspecialchars($nombre) ?>">
                                 </div>
                             </div>
                             <div class="col-md-4">
-                                <label for="documento" class="form-label fw-bold" style="color: #007832;">Idetificación</label>
+                                <label for="documento" class="form-label fw-bold" style="color: #007832;">Numero de Identificación</label>
                                 <div class="input-group">
                                     <span class="input-group-text"><i class="bi bi-card-text"></i></span>
                                     <input type="text" name="documento" id="documento" class="form-control" placeholder="Documento" value="<?= htmlspecialchars($documento) ?>">
@@ -31,14 +31,17 @@
                             </div>
                             <div class="col-md-4">
                                 <label for="rol" class="form-label fw-bold" style="color: #007832;">Rol</label>
-                                <select name="rol" id="rol" class="form-select">
-                                    <option value="">Todos los roles</option>
-                                    <option value="Instructor" <?= $rol === 'Instructor' ? 'selected' : '' ?>>Instructor</option>
-                                    <option value="Funcionario" <?= $rol === 'Funcionario' ? 'selected' : '' ?>>Funcionario</option>
-                                    <option value="Directivo" <?= $rol === 'Directivo' ? 'selected' : '' ?>>Directivo</option>
-                                    <option value="Apoyo" <?= $rol === 'Apoyo' ? 'selected' : '' ?>>Apoyo</option>
-                                    <option value="Visitante" <?= $rol === 'Visitante' ? 'selected' : '' ?>>Visitante</option>
-                                </select>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="bi bi-shield-lock"></i></span> <!-- Icono agregado -->
+                                    <select name="rol" id="rol" class="form-select">
+                                        <option value="">Todos los roles</option>
+                                        <option value="Instructor" <?= $rol === 'Instructor' ? 'selected' : '' ?>>Instructores</option>
+                                        <option value="Funcionario" <?= $rol === 'Funcionario' ? 'selected' : '' ?>>Funcionarios</option>
+                                        <option value="Directivo" <?= $rol === 'Directivo' ? 'selected' : '' ?>>Directivos</option>
+                                        <option value="Apoyo" <?= $rol === 'Apoyo' ? 'selected' : '' ?>>Apoyos</option>
+                                        <option value="Visitante" <?= $rol === 'Visitante' ? 'selected' : '' ?>>Visitantes</option>
+                                    </select>
+                                </div>
                             </div>
                             <div class="col-12 mt-4">
                                 <button type="submit" class="btn btn-success w-100 py-2 fw-bold" style="background-color: #007832; border-color: #007832;">
@@ -68,7 +71,7 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th>Nombre</th>
+                                    <th>Nombres</th>
                                     <th>Apellidos</th>
                                     <th>Identificación</th>
                                     <th>Rol</th>
@@ -113,7 +116,7 @@
                                         </td>
                                         <td>
                                             <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editarUsuarioModal" data-id="<?= $us['id'] ?>">
-                                                Editar
+                                                <i class="bi bi-pencil"></i> Editar  <!-- Icono agregado -->
                                             </button>
                                         </td>
                                         <td>
@@ -146,12 +149,12 @@
                                         <a class="page-link" 
                                             href="?rol=<?= urlencode($rol) ?>&nombre=<?= urlencode($nombre) ?>&documento=<?= urlencode($documento) ?>&orden=<?= urlencode($orden) ?>&direccion=<?= urlencode($direccion) ?>&pagina=<?= $pagina - 1 ?>" 
                                             aria-label="Anterior">
-                                            <span aria-hidden="true">&laquo;</span>
+                                            <span aria-hidden="true">«</span>
                                         </a>
                                     </li>
                                 <?php else: ?>
                                     <li class="page-item disabled">
-                                        <span class="page-link" aria-hidden="true">&laquo;</span>
+                                        <span class="page-link" aria-hidden="true">«</span>
                                     </li>
                                 <?php endif; ?>
 
@@ -169,12 +172,12 @@
                                         <a class="page-link" 
                                             href="?rol=<?= urlencode($rol) ?>&nombre=<?= urlencode($nombre) ?>&documento=<?= urlencode($documento) ?>&orden=<?= urlencode($orden) ?>&direccion=<?= urlencode($direccion) ?>&pagina=<?= $pagina + 1 ?>" 
                                             aria-label="Siguiente">
-                                            <span aria-hidden="true">&raquo;</span>
+                                            <span aria-hidden="true">»</span>
                                         </a>
                                     </li>
                                 <?php else: ?>
                                     <li class="page-item disabled">
-                                        <span class="page-link" aria-hidden="true">&raquo;</span>
+                                        <span class="page-link" aria-hidden="true">»</span>
                                     </li>
                                 <?php endif; ?>
                             </ul>
@@ -189,4 +192,29 @@
 <!-- Script para manejar el modal -->
 <script src="assets/js/listado_usuarios.js"></script>
 
-<?php include_once __DIR__ . '/../dashboard/layouts/footer_main.php'; ?>
+<script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
+
+<script src="assets/js/footer_main.js"></script>
+<script src="assets/vendor/chart.js/chart.umd.js"></script>
+
+<script src="assets/vendor/echarts/echarts.min.js"></script>
+
+<script src="assets/vendor/chart.js/chart.js"></script>
+
+<script src="assets/vendor/quill/quill.js"></script>
+
+<script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
+
+<script src="assets/vendor/tinymce/tinymce.min.js"></script>
+
+<script src="assets/vendor/php-email-form/validate.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script src="assets/js/script.js"></script>
+
+<script src="assets/js/main_home.js"></script>
+
+<script src="assets/js/footer.js"></script>
+<!-- Asegúrate de incluir Bootstrap Icons en el head -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">

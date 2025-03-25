@@ -27,7 +27,7 @@ include_once __DIR__ . '/../dashboard/layouts/header_main.php';
         <h1>Reporte General</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="Inicio">Home</a></li>
+                <li class="breadcrumb-item"><a href="Inicio">Inicio</a></li>
                 <li class="breadcrumb-item active">Reporte General</li>
             </ol>
         </nav>
@@ -38,8 +38,8 @@ include_once __DIR__ . '/../dashboard/layouts/header_main.php';
         <thead>
             <tr>
                 <th>#</th> <!-- Columna para el contador -->
-                <th>Nombre</th>
-                <th>Identificación</th>
+                <th>Nombres</th>
+                <th>Numero de Identificación</th>
                 <th>Teléfono</th>
                 <th>Rol</th>
                 <th>Fecha</th>
@@ -69,6 +69,27 @@ include_once __DIR__ . '/../dashboard/layouts/header_main.php';
     
     <script src="assets/js/reports.js"></script>
 
-<?php
-include_once __DIR__ . '/../dashboard/layouts/footer_main.php';
-?>
+    <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
+
+    <script src="assets/js/footer_main.js"></script>
+    <script src="assets/vendor/chart.js/chart.umd.js"></script>
+    
+    <script src="assets/vendor/echarts/echarts.min.js"></script>
+    
+    <script src="assets/vendor/chart.js/chart.js"></script>
+
+    <script src="assets/vendor/quill/quill.js"></script>
+
+    <script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
+
+    <script src="assets/vendor/tinymce/tinymce.min.js"></script>
+
+    <script src="assets/vendor/php-email-form/validate.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="assets/js/script.js"></script>
+
+    <script src="assets/js/main_home.js"></script>
+
+    <script src="assets/js/footer.js"></script>

@@ -4,8 +4,8 @@
             <tr>
                 <th class="fs-6">Fecha</th>
                 <th class="fs-6">Hora Entrada</th>
-                <th class="fs-6">Nombre</th>
-                <th class="fs-6">Identificación</th>
+                <th class="fs-6">Nombres</th>
+                <th class="fs-6">Numero de Identificación</th>
                 <th class="fs-6">Rol</th>
                 <th class="fs-6">Marca del Equipo</th>
                 <th class="fs-6">Código</th>

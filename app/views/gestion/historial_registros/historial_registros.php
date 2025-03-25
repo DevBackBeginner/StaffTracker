@@ -37,7 +37,7 @@
                             <div class="row g-3">
                                 <!-- Campo: Documento -->
                                 <div class="col-md-6">
-                                    <label for="documentoInput" class="form-label fw-bold text-success">Documento</label>
+                                    <label for="documentoInput" class="form-label fw-bold text-success">Numero de Identificacion</label>
                                     <div class="input-group">
                                         <span class="input-group-text bg-success text-white"><i class="bi bi-credit-card"></i></span>
                                         <input type="text" 
@@ -50,7 +50,7 @@
 
                                 <!-- Campo: Nombre -->
                                 <div class="col-md-6">
-                                    <label for="nombreInput" class="form-label fw-bold text-success">Nombre</label>
+                                    <label for="nombreInput" class="form-label fw-bold text-success">Nombres</label>
                                     <div class="input-group">
                                         <span class="input-group-text bg-success text-white"><i class="bi bi-person"></i></span>
                                         <input type="text" 
@@ -74,6 +74,29 @@
         ?>
     </div>
     <script src="assets/js/historial_registros.js"></script>
-<?php
-    include_once __DIR__ . '/../dashboard/layouts/footer_main.php';
-?>
+    
+<script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
+
+<script src="assets/js/footer_main.js"></script>
+<script src="assets/vendor/chart.js/chart.umd.js"></script>
+
+<script src="assets/vendor/echarts/echarts.min.js"></script>
+
+<script src="assets/vendor/chart.js/chart.js"></script>
+
+<script src="assets/vendor/quill/quill.js"></script>
+
+<script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
+
+<script src="assets/vendor/tinymce/tinymce.min.js"></script>
+
+<script src="assets/vendor/php-email-form/validate.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script src="assets/js/script.js"></script>
+
+<script src="assets/js/main_home.js"></script>
+
+<script src="assets/js/footer.js"></script>
+
