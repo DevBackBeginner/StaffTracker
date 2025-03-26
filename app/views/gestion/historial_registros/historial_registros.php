@@ -28,45 +28,42 @@
                         unset($_SESSION['tipo_mensaje']);
                         ?>
                     <?php endif; ?>
-                    <!-- Filtro de Búsqueda -->
-                    <div class="card shadow-sm mb-2">
-                        <div class="card-header bg-success text-white">
-                            <h5 class="mb-0"><i class="bi bi-funnel"></i> Filtros de Búsqueda</h5>
-                        </div>
-                        <div class="card-body">
-                            <div class="row g-3">
-                                <!-- Campo: Documento -->
-                                <div class="col-md-6">
-                                    <label for="documentoInput" class="form-label fw-bold text-success">Numero de Identificacion</label>
-                                    <div class="input-group">
-                                        <span class="input-group-text bg-success text-white"><i class="bi bi-credit-card"></i></span>
-                                        <input type="text" 
-                                            class="form-control" 
-                                            id="documentoInput" 
-                                            placeholder="Ej: 12345678"
-                                            aria-label="Documento">
-                                    </div>
-                                </div>
-
-                                <!-- Campo: Nombre -->
-                                <div class="col-md-6">
-                                    <label for="nombreInput" class="form-label fw-bold text-success">Nombres</label>
-                                    <div class="input-group">
-                                        <span class="input-group-text bg-success text-white"><i class="bi bi-person"></i></span>
-                                        <input type="text" 
-                                            class="form-control" 
-                                            id="nombreInput" 
-                                            placeholder="Ej: Ana Pérez"
-                                            aria-label="Nombre">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+            <!-- Filtro de Búsqueda -->
+<div class="card shadow-sm mb-2">
+    <div class="card-header bg-success text-white text-center"> <!-- Centrar texto -->
+        <h5 class="mb-0"><i class="bi bi-funnel"></i> Filtros de Búsqueda</h5>
+    </div>
+    <div class="card-body">
+        <div class="row g-3">
+            <!-- Campo: Documento -->
+            <div class="col-md-6">
+                <label for="documentoInput" class="form-label fw-bold text-success">Número de Identificación</label>
+                <div class="input-group">
+                    <span class="input-group-text bg-white text-success"><i class="bi bi-credit-card"></i></span>
+                    <input type="text" 
+                        class="form-control" 
+                        id="documentoInput" 
+                        placeholder="Ej: 12345678"
+                        aria-label="Documento">
                 </div>
             </div>
-        </section>
+
+            <!-- Campo: Nombre -->
+            <div class="col-md-6">
+                <label for="nombreInput" class="form-label fw-bold text-success">Nombres</label>
+                <div class="input-group">
+                    <span class="input-group-text bg-white text-success"><i class="bi bi-person"></i></span>
+                    <input type="text" 
+                        class="form-control" 
+                        id="nombreInput" 
+                        placeholder="Ej: Ana Pérez"
+                        aria-label="Nombre">
+                </div>
+            </div>
+        </div>
     </div>
+</div>
+
     <div class="d-flex align-items-stretch">
         <?php
         // Incluir la tabla de usuarios
