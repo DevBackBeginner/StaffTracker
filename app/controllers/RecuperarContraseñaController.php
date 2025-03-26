@@ -65,11 +65,11 @@
                     } else {
                         setcookie("flash_error", "Error al enviar el correo. Intenta nuevamente.", time() + 5, "/");
                     }
-                    header("Location: Login");
+                    header("Location: login");
                     exit;
                 } else {
                     setcookie("flash_success", "Si el correo existe, recibirás un enlace de recuperación.", time() + 5, "/");
-                    header("Location: Login");
+                    header("Location: login");
                     exit;
                 }
             }
@@ -85,7 +85,7 @@
             
             if (empty($token)) {
                 setcookie("flash_error", "Token no proporcionado", time() + 5, "/");
-                header("Location: Login");
+                header("Location: login");
                 exit;
             }
 
@@ -96,7 +96,7 @@
                 include_once __DIR__ . '/../Views/auth/restablecer_contraseña.php';
             } else {
                 setcookie("flash_error", "El enlace de recuperación es inválido o ha expirado.", time() + 5, "/");
-                header("Location: Login");
+                header("Location: login");
                 exit;
             }
         }
@@ -119,16 +119,16 @@
 
                     // Mostrar un mensaje de éxito
                     setcookie("flash_success", "Contraseña actualizada correctamente.", time() + 5, "/");
-                    header("Location: Login");
+                    header("Location: login");
                     exit;
                 } else {
                     setcookie("flash_error", "El enlace de recuperación es inválido o ha expirado.", time() + 5, "/");
-                    header("Location: Login");
+                    header("Location: login");
                     exit;
                 }
             } else {
                 setcookie("flash_error", "Acceso no autorizado.", time() + 5, "/");
-                header("Location: Login");
+                header("Location: login");
                 exit;
             }
         }
@@ -194,7 +194,7 @@
         {
             $protocol = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') ? 'https://' : 'http://';
             $host = $_SERVER['HTTP_HOST'];
-            $path = '/controlAsistencia/public/restablecer-contrasena'; // Ruta exacta
+            $path = '/StaffTracker/public/restablecer-contrasena'; // Ruta exacta
             
             return $protocol . $host . $path . '?token=' . urlencode($token);
         }

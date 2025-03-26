@@ -9,7 +9,7 @@
     <h1>Registro de Salidas</h1>
     <nav>
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="Inicio">Home</a></li>
+            <li class="breadcrumb-item"><a href="Inicio">Inicio</a></li>
             <li class="breadcrumb-item active">Registro de Salidas</li>
         </ol>
     </nav>
@@ -54,9 +54,10 @@
 <!-- Modal -->
 <?php include_once 'modal_salida.php' ?>
 
-<!-- <script src="assets/js/registro_salida.js"></script>  -->
-
 <?php
 // Incluimos el footer que contiene la estructura HTML final
 include_once __DIR__ . '/../dashboard/layouts/footer_main.php';
 ?>
+
+<!-- <script src="assets/js/registro_salida.js"></script>  -->
+

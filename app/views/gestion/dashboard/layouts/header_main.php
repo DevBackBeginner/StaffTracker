@@ -33,11 +33,14 @@
       <link href="assets/vendor/quill/quill.snow.css" rel="stylesheet">
       <link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet">
       <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
+      
+      <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 
 
       <!-- Estilos personalizados -->
       <link href="assets/css/header_main.css" rel="stylesheet">
-    </head>
+
+      </head>
     <body>
 
     <!-- ======= Header ======= -->
@@ -108,6 +111,7 @@
           </li><!-- End Dashboard Nav -->
           <?php if (isset($_SESSION['usuario']['rol']) && $_SESSION['usuario']['rol'] === 'Guarda'): ?>
             <!-- Registrar Visitantes -->
+            <li class="nav-heading">Administración</li>
             <li class="nav-item">
               <a class="nav-link collapsed" href="formulario_registro_visitante">
                 <i class="bi bi-person-plus"></i>

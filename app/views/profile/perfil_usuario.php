@@ -39,7 +39,7 @@
                 <div class="card-body pt-3">
                     <ul class="nav nav-tabs nav-tabs-bordered">
                         <li class="nav-item">
-                            <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview">Resumen</button>
+                            <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview">Informacion</button>
                         </li>
                         <li class="nav-item">
                             <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit">Editar Perfil</button>
@@ -51,7 +51,7 @@
                     <div class="tab-content pt-2">
                         <div class="tab-pane fade show active profile-overview" id="profile-overview">
                             <h5 class="card-title">Acerca de</h5>
-                            <p class="text-muted">Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Tempora libero non est unde veniam est qui dolor. Ut sunt iure rerum quae quisquam autem eveniet perspiciatis odit. Fuga sequi sed ea saepe at unde.</p>
+                            <p class="text-muted">informacion del guarda/admin</p>
 
                             <h5 class="card-title">Detalles del Perfil</h5>
                             <div class="row">
@@ -83,8 +83,8 @@
                         <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
                             <form method="POST" action="actualizar" enctype="multipart/form-data" class="container mt-4 p-4 border rounded shadow-sm bg-light">
                                 <div class="row mb-3 justify-content-center">
-                                    <label for="profileImage" class="col-md-4 col-lg-3 col-form-label text-center">Imagen de Perfil</label>
-                                    <div class="col-md-8 col-lg-9 text-center">
+                                    <label for="profileImage" class="col-md-4 col-lg-3 col-form-label text-center"></label>
+                                    <div class="col-12 d-flex flex-column align-items-center">
                                         <img src="<?= $_SESSION['usuario']['foto_perfil'] ?? 'default.png' ?>" alt="Perfil" class="rounded-circle">
                                         <div class="pt-2">
                                             <input type="file" name="imagen" id="imagen" style="display: none;" accept="image/*">
@@ -169,4 +169,5 @@
 </section>
 
 <script src="assets/js/perfil.js"></script>
+
 <?php include_once __DIR__ . '/../../views/gestion/dashboard/layouts/footer_main.php'; ?>

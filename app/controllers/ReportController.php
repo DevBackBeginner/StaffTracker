@@ -53,10 +53,7 @@
             // Obtener el total de usuarios desde el modelo
             $totalUsuarios = $this->reporteModelo->obtenerTotalUsuarios();
 
-            // Validar si hay datos
-            if (empty($ingresosPorHora)) {
-                throw new Exception("No se encontraron datos para generar el reporte.");
-            }
+         
             
             // Validar el formato de los datos
             foreach ($ingresosPorHora as $registro) {

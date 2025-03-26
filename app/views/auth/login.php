@@ -6,7 +6,7 @@
     <div class="login-card">
         <!-- Contenedor circular para la imagen -->
         <div class="login-image-container">
-            <img src="/ControlAsistencia/public/assets/img/logo.png" alt="Login Image" class="login-image">
+            <img src="assets/img/logo.png" alt="Login Image" class="login-image">
         </div>
         
         <h2 class="login-title">Iniciar Sesión</h2>

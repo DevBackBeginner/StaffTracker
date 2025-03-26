@@ -8,8 +8,8 @@ $totalPaginas = $totalPaginas ?? 1;
 
 <div id="tabla-body" class="card-body bg-white rounded shadow-sm">
     <!-- Encabezado de la sección -->
-    <div class="mb-4 border-bottom">
-        <h4 class="card-title text-dark mb-0">
+    <div class="mb-4 border-bottom bg-success">
+        <h4 class="card-title text-white mb-0 text-center">
             <i class="bi bi-table me-2"></i>Registro General
         </h4>
     </div>

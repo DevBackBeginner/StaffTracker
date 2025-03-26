@@ -10,6 +10,7 @@
     background-position: center; /* Centra la imagen de fondo */
     background-repeat: no-repeat; /* Evita que la imagen se repita */
     padding: 20px; /* Añade un poco de padding */
+    animation: fadeIn 1s ease-out; /* Animación de entrada */
 }
 
 /* Estilo para la tarjeta de login */
@@ -21,10 +22,30 @@
     width: 100%;
     max-width: 400px;
     transition: transform 0.3s ease; /* Transición suave */
+    opacity: 0;
+    transform: translateY(-20px);
+    animation: slideIn 0.5s forwards ease-out; /* Animación de entrada de la tarjeta */
 }
 
 .login-card:hover {
     transform: translateY(-5px); /* Efecto hover */
+}
+
+/* Animación para entrada suave */
+@keyframes slideIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
 }
 
 /* Contenedor circular para logo */
@@ -35,11 +56,25 @@
     overflow: hidden; /* Oculta cualquier desbordamiento */
     margin: 0 auto 20px; /* Centrar y margen inferior */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra del logo */
+    animation: bounceIn 1s ease-out; /* Animación de entrada del logo */
 }
 
 .login-image {
     width: 100%; /* Hacer que la imagen ocupe todo el contenedor */
     height: auto; /* Mantener la relación de aspecto */
+}
+
+/* Animación para el logo */
+@keyframes bounceIn {
+    0% {
+        transform: scale(0);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
 }
 
 /* Título */

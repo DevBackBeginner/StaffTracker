@@ -3,9 +3,9 @@
 <link rel="apple-touch-icon" href="assets/img/logo.png">
 <title>StaffTracker</title>
 <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Poppins:400,500,600%7CTeko:300,400,500%7CMaven+Pro:500">
-<link rel="stylesheet" href="/ControlAsistencia/public/assets/css/bootstrap.css">
-<link rel="stylesheet" href="/ControlAsistencia/public/assets/css/fonts.css">
-<link rel="stylesheet" href="/ControlAsistencia/public/assets/css/style.css">
+<link rel="stylesheet" href="assets/css/bootstrap.css">
+<link rel="stylesheet" href="assets/css/fonts.css">
+<link rel="stylesheet" href="assets/css/style.css">
 <style>.ie-panel{display: none;background: #212121;padding: 10px 0;box-shadow: 3px 3px 5px 0 rgba(0,0,0,.3);clear: both;text-align:center;position: relative;z-index: 1;} html.ie-10 .ie-panel, html.lt-ie-10 .ie-panel {display: block;}</style>
 </head>
 <body>
@@ -27,7 +27,7 @@
                                 <!-- RD Navbar Brand-->
                                 <div class="rd-navbar-brand">
                                     <a class="brand" href="Inicio">
-                                        <img src="/controlasistencia/public/assets/img/logo.png" alt="" width="223" height="50"/>
+                                        <img src="assets/img/logo.png" alt="" width="223" height="50"/>
                                         <span style="font-size: 24px; font-weight: 600; color: #007832; margin-left: 10px; vertical-align: middle;">StaffTracker</span>
                                     </a>
                                 </div>
@@ -36,7 +36,7 @@
                                 <div class="rd-navbar-nav-wrap">
                                     <ul class="rd-navbar-nav">
                                         <li class="rd-nav-item active"><a class="rd-nav-link" href="Inicio">Inicio</a></li>
-                                        <li class="rd-nav-item"><a class="rd-nav-link" href="Login">Ingresar</a></li>
+                                        <li class="rd-nav-item"><a class="rd-nav-link" href="login">Ingresar</a></li>
                                     </ul>
                                 </div>
                             </div>

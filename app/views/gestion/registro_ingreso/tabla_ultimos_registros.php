@@ -4,8 +4,8 @@
             <tr>
                 <th class="fs-6">Fecha</th>
                 <th class="fs-6">Hora Entrada</th>
-                <th class="fs-6">Nombre</th>
-                <th class="fs-6">Identificación</th>
+                <th class="fs-6">Nombres</th>
+                <th class="fs-6">Numero de Identificación</th>
                 <th class="fs-6">Rol</th>
                 <th class="fs-6">Marca del Equipo</th>
                 <th class="fs-6">Código</th>
@@ -46,8 +46,8 @@
             <?php endforeach; ?>
         </tbody>
     </table>
-<?php else: ?>
-    <div class="alert alert-info text-center mt-4" role="alert">
+    <?php else: ?>
+    <div class="alert alert-success text-center mt-4" role="alert">
         No hay registros de asistencia aún.
     </div>
 <?php endif; ?>

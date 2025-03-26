@@ -27,7 +27,7 @@ include_once __DIR__ . '/../dashboard/layouts/header_main.php';
         <h1>Reporte Diario</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="Inicio">Home</a></li>
+                <li class="breadcrumb-item"><a href="Inicio">Inicio</a></li>
                 <li class="breadcrumb-item active">Reporte Diario</li>
             </ol>
         </nav>
@@ -38,8 +38,8 @@ include_once __DIR__ . '/../dashboard/layouts/header_main.php';
         <thead>
             <tr>
                 <th>#</th> <!-- Columna para el contador -->
-                <th>Nombre</th>
-                <th>Identificación</th>
+                <th>Nombres</th>
+                <th>Numero de Identificación</th>
                 <th>Teléfono</th>
                 <th>Rol</th>
                 <th>Fecha</th>
@@ -68,7 +68,9 @@ include_once __DIR__ . '/../dashboard/layouts/header_main.php';
     </table>
 
     <script src="assets/js/reports_diarios.js"></script>
-
-    <?php
+    
+<?php
+// Incluimos el footer que contiene la estructura HTML final
 include_once __DIR__ . '/../dashboard/layouts/footer_main.php';
 ?>
+

@@ -28,52 +28,49 @@
                         unset($_SESSION['tipo_mensaje']);
                         ?>
                     <?php endif; ?>
-                    <!-- Filtro de Búsqueda -->
-                    <div class="card shadow-sm mb-2">
-                        <div class="card-header bg-success text-white">
-                            <h5 class="mb-0"><i class="bi bi-funnel"></i> Filtros de Búsqueda</h5>
-                        </div>
-                        <div class="card-body">
-                            <div class="row g-3">
-                                <!-- Campo: Documento -->
-                                <div class="col-md-6">
-                                    <label for="documentoInput" class="form-label fw-bold text-success">Documento</label>
-                                    <div class="input-group">
-                                        <span class="input-group-text bg-success text-white"><i class="bi bi-credit-card"></i></span>
-                                        <input type="text" 
-                                            class="form-control" 
-                                            id="documentoInput" 
-                                            placeholder="Ej: 12345678"
-                                            aria-label="Documento">
-                                    </div>
-                                </div>
+            <!-- Filtro de Búsqueda -->
+<div class="card shadow-sm mb-2">
+    <div class="card-header bg-success text-white text-center"> <!-- Centrar texto -->
+        <h5 class="mb-0"><i class="bi bi-funnel"></i> Filtros de Búsqueda</h5>
+    </div>
+    <div class="card-body">
+        <div class="row g-3">
+<!-- Campo: Documento -->
+<div class="col-md-6">
+    <label for="documentoInput" class="form-label fw-bold text-success">Número de Identificación</label>
+    <div class="input-group">
+        <span class="input-group-text bg-white text-dark"><i class="bi bi-credit-card" style="color: black;"></i></span>
+        <input type="text" 
+            class="form-control" 
+            id="documentoInput" 
+            placeholder="Ej: 12345678"
+            aria-label="Documento">
+    </div>
+</div>
 
-                                <!-- Campo: Nombre -->
-                                <div class="col-md-6">
-                                    <label for="nombreInput" class="form-label fw-bold text-success">Nombre</label>
-                                    <div class="input-group">
-                                        <span class="input-group-text bg-success text-white"><i class="bi bi-person"></i></span>
-                                        <input type="text" 
-                                            class="form-control" 
-                                            id="nombreInput" 
-                                            placeholder="Ej: Ana Pérez"
-                                            aria-label="Nombre">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+<!-- Campo: Nombre -->
+<div class="col-md-6">
+    <label for="nombreInput" class="form-label fw-bold text-success">Nombres</label>
+    <div class="input-group">
+        <span class="input-group-text bg-white text-dark"><i class="bi bi-person" style="color: black;"></i></span>
+        <input type="text" 
+            class="form-control" 
+            id="nombreInput" 
+            placeholder="Ej: Ana Pérez"
+            aria-label="Nombre">
     </div>
-    <div class="d-flex align-items-stretch">
-        <?php
-        // Incluir la tabla de usuarios
-        require_once __DIR__ . "/tabla_historial.php";
-        ?>
-    </div>
-    <script src="assets/js/historial_registros.js"></script>
+</div>
+
+<div class="d-flex align-items-stretch">
+    <?php
+    // Incluir la tabla de usuarios
+    require_once __DIR__ . "/tabla_historial.php";
+    ?>
+</div>
+
+<script src="assets/js/historial_registros.js"></script>
+
 <?php
-    include_once __DIR__ . '/../dashboard/layouts/footer_main.php';
+// Incluimos el footer que contiene la estructura HTML final
+include_once __DIR__ . '/../dashboard/layouts/footer_main.php';
 ?>

@@ -1,7 +1,16 @@
 <?php include_once __DIR__ . '/../../views/layouts/header.php'; ?>
 
+<!-- Vincula el archivo de estilos -->
+<link rel="stylesheet" href="assets/css/recuperacion.css">
+<title>StaffTracker</title>
 <div class="login-container">
     <div class="login-card">
+        
+        <!-- Contenedor circular para la imagen -->
+        <div class="login-image-container">
+            <img src="assets/img/logo.png" alt="Logo" class="login-image">
+        </div>
+
         <h2 class="login-title">Recuperar Contraseña</h2>
 
         <!-- Mostrar mensajes flash utilizando cookies -->

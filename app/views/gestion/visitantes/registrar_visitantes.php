@@ -4,7 +4,7 @@
         <h1>Formulario de Registro Visitantes</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="Inicio">Home</a></li>
+                <li class="breadcrumb-item"><a href="Inicio">Inicio</a></li>
                 <li class="breadcrumb-item"><a href="panel">Registro Visitantes</a></li>
             </ol>
         </nav>
@@ -30,7 +30,7 @@
                             <form action="registrar_visitante" method="POST" class="row g-3 needs-validation" onsubmit="return validarFormulario()" novalidate>
                                 <!-- Primera fila: Nombre, Apellido -->
                                 <div class="col-md-6">
-                                    <label for="nombre" class="form-label fw-bold" style="color: #007832;">Nombre</label>
+                                    <label for="nombre" class="form-label fw-bold" style="color: #007832;">Nombres</label>
                                     <div class="input-group">
                                         <span class="input-group-text"><i class="bi bi-person"></i></span>
                                         <input type="text" name="nombre" id="nombre" class="form-control" placeholder="Nombre" required>
@@ -38,7 +38,7 @@
                                     <div class="invalid-feedback">Por favor, ingrese su nombre.</div>
                                 </div>
                                 <div class="col-md-6">
-                                    <label for="apellido" class="form-label fw-bold" style="color: #007832;">Apellido</label>
+                                    <label for="apellido" class="form-label fw-bold" style="color: #007832;">Apellidos</label>
                                     <div class="input-group">
                                         <span class="input-group-text"><i class="bi bi-person"></i></span>
                                         <input type="text" name="apellido" id="apellido" class="form-control" placeholder="Apellido" required>
@@ -103,23 +103,29 @@
                                                 <input type="text" name="codigo" class="form-control" placeholder="Código del computador">
                                             </div>
                                         </div>
-
-                                        <div class="mb-3 col-md-6">
+                                        <div class="row">
+                                        <div class="col-md-6 mb-3">
                                             <label class="form-label" style="color: #007832;">¿Trae mouse?</label>
-                                            <div class="form-check">
-                                                <input type="checkbox" name="mouse" id="mouse" class="form-check-input" value="Sí"> <!-- Sin required -->
-                                                <label for="mouse" class="form-check-label">Sí</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text"><i class="bi bi-mouse"></i></span>
+                                                <div class="form-check ms-2 d-flex align-items-center">
+                                                    <input type="checkbox" name="mouse" id="mouse" class="form-check-input" value="Sí">
+                                                    <label for="mouse" class="form-check-label ms-2">Sí</label>
+                                                </div>
                                             </div>
                                         </div>
-
-                                        <!-- Checkbox para teclado -->
                                         <div class="mb-3 col-md-6">
                                             <label class="form-label" style="color: #007832;">¿Trae teclado?</label>
-                                            <div class="form-check">
-                                                <input type="checkbox" name="teclado" id="teclado" class="form-check-input" value="Sí"> <!-- Sin required -->
-                                                <label for="teclado" class="form-check-label">Sí</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text"><i class="bi bi-keyboard"></i></span>
+                                                <div class="form-check ms-2 d-flex align-items-center">
+                                                    <input type="checkbox" name="teclado" id="teclado" class="form-check-input" value="Sí">
+                                                    <label for="teclado" class="form-check-label ms-2">Sí</label>
+                                                </div>
                                             </div>
                                         </div>
+                                    </div>
+                                </div>
 
                                         
                                         <div class="col-md-6">
@@ -142,5 +148,8 @@
         </section>
     </div>
     <script src="assets/js/registro_visitantes.js"></script>
-
-<?php include_once __DIR__ . '/../dashboard/layouts/footer_main.php'; ?>
+    
+<?php
+// Incluimos el footer que contiene la estructura HTML final
+include_once __DIR__ . '/../dashboard/layouts/footer_main.php';
+?>

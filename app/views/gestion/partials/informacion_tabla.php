@@ -1,5 +1,5 @@
 <div id="resultados">
-    <table class="table table-hover table-striped">
+    <table class="table table-hover table-striped text-center ">
         <thead class="thead-dark">
             <tr>
                 <!-- Nuevas columnas -->
@@ -7,7 +7,7 @@
                 <th>Hora de Entrada</th>
                 <th>Hora de Salida</th>
                 <!-- Columnas comunes -->
-                <th>Nombre</th>
+                <th>Nombres</th>
                 <th>Identificación</th>
 
                 <th>Telefono</th>

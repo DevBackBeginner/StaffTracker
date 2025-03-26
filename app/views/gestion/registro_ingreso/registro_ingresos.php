@@ -8,7 +8,7 @@ include_once __DIR__ . '/../dashboard/layouts/header_main.php';
         <h1>Registro de Entradas</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="Inicio">Home</a></li>
+                <li class="breadcrumb-item"><a href="Inicio">Inicio</a></li>
                 <li class="breadcrumb-item active">Registro de Entradas</li>
             </ol>
         </nav>
@@ -54,8 +54,11 @@ include_once __DIR__ . '/../dashboard/layouts/header_main.php';
     <?php include_once 'modal_entrada.php' ?>
 
     <script src="assets/js/registro_ingreso.js"></script> 
-
+    
 <?php
-// Incluimos el footer que contiene la estructura HTML final
-include_once __DIR__ . '/../dashboard/layouts/footer_main.php';
+    // Incluimos el footer que contiene la estructura HTML final
+    include_once __DIR__ . '/../dashboard/layouts/footer_main.php';
 ?>
+
+
+   

@@ -27,7 +27,7 @@ class LoginController {
             if (empty($correo) || empty($contrasena)) {
                 // Se crea una cookie que durará 5 segundos
                 setcookie("flash_error", "Por favor, ingresa tu correo y contraseña.", time() + 5, "/");
-                header("Location: Login");
+                header("Location: login");
                 exit;
             }
 
@@ -51,12 +51,12 @@ class LoginController {
             } else {
                 // Establece un mensaje de error en una cookie
                 setcookie("flash_error", "Correo electrónico o contraseña incorrectos.", time() + 5, "/");
-                header("Location: Login");
+                header("Location: login");
                 exit;
             }
         } else {
             setcookie("flash_error", "Acceso no autorizado.", time() + 5, "/");
-            header("Location: Login");
+            header("Location: login");
             exit;
         }
     }

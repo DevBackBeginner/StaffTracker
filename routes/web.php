@@ -12,7 +12,7 @@ require_once '../config/DataBase.php';
 Router::get("Inicio", [DashboardController::class, "mostrarDashBoard"]);
 Router::get('/', [DashboardController::class, "mostrarDashBoard"]);
 Router::post("obtenerdatosfiltrados", [DashboardController::class, 'obtenerDatosFiltrados']);
-Router::get("Login", [LoginController::class, "mostrarLogin"]);
+Router::get("login", [LoginController::class, "mostrarLogin"]);
 Router::post("enviarLogin", [LoginController::class, "procesarLogin"]);
 Router::get("logout", [LoginController::class, "Logout"]);
 Router::get('recuperar-contrasena', [RecuperarContraseñaController::class, "mostrarRecuperarContrasena"]);
