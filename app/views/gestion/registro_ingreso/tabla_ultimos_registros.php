@@ -46,8 +46,8 @@
             <?php endforeach; ?>
         </tbody>
     </table>
-<?php else: ?>
-    <div class="alert alert-info text-center mt-4" role="alert">
+    <?php else: ?>
+    <div class="alert alert-success text-center mt-4" role="alert">
         No hay registros de asistencia aún.
     </div>
 <?php endif; ?>

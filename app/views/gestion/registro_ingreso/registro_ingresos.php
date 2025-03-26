@@ -59,6 +59,7 @@ include_once __DIR__ . '/../dashboard/layouts/header_main.php';
     <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
 
 <script src="assets/js/footer_main.js"></script>
+
 <script src="assets/vendor/chart.js/chart.umd.js"></script>
 
 <script src="assets/vendor/echarts/echarts.min.js"></script>

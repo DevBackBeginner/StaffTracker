@@ -51,7 +51,7 @@
                     <div class="tab-content pt-2">
                         <div class="tab-pane fade show active profile-overview" id="profile-overview">
                             <h5 class="card-title">Acerca de</h5>
-                            <p class="text-muted">Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Tempora libero non est unde veniam est qui dolor. Ut sunt iure rerum quae quisquam autem eveniet perspiciatis odit. Fuga sequi sed ea saepe at unde.</p>
+                            <p class="text-muted">informacion del guarda/admin</p>
 
                             <h5 class="card-title">Detalles del Perfil</h5>
                             <div class="row">

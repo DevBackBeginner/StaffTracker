@@ -103,23 +103,29 @@
                                                 <input type="text" name="codigo" class="form-control" placeholder="Código del computador">
                                             </div>
                                         </div>
-
-                                        <div class="mb-3 col-md-6">
+                                        <div class="row">
+                                        <div class="col-md-6 mb-3">
                                             <label class="form-label" style="color: #007832;">¿Trae mouse?</label>
-                                            <div class="form-check">
-                                                <input type="checkbox" name="mouse" id="mouse" class="form-check-input" value="Sí"> <!-- Sin required -->
-                                                <label for="mouse" class="form-check-label">Sí</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text"><i class="bi bi-mouse"></i></span>
+                                                <div class="form-check ms-2 d-flex align-items-center">
+                                                    <input type="checkbox" name="mouse" id="mouse" class="form-check-input" value="Sí">
+                                                    <label for="mouse" class="form-check-label ms-2">Sí</label>
+                                                </div>
                                             </div>
                                         </div>
-
-                                        <!-- Checkbox para teclado -->
                                         <div class="mb-3 col-md-6">
                                             <label class="form-label" style="color: #007832;">¿Trae teclado?</label>
-                                            <div class="form-check">
-                                                <input type="checkbox" name="teclado" id="teclado" class="form-check-input" value="Sí"> <!-- Sin required -->
-                                                <label for="teclado" class="form-check-label">Sí</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text"><i class="bi bi-keyboard"></i></span>
+                                                <div class="form-check ms-2 d-flex align-items-center">
+                                                    <input type="checkbox" name="teclado" id="teclado" class="form-check-input" value="Sí">
+                                                    <label for="teclado" class="form-check-label ms-2">Sí</label>
+                                                </div>
                                             </div>
                                         </div>
+                                    </div>
+                                </div>
 
                                         
                                         <div class="col-md-6">

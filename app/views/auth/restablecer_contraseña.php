@@ -1,7 +1,7 @@
 <?php include_once __DIR__ . '/../../views/layouts/header.php'; ?>
 <!-- Vincula el archivo de estilos -->
 <link rel="stylesheet" href="../public/assets/css/recuperacion.css">
-
+<title>StaffTracker</title>
 <div class="login-container">
     <div class="login-card">
         <!-- Contenedor circular para el logo -->

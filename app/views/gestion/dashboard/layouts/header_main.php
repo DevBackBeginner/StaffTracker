@@ -108,6 +108,7 @@
           </li><!-- End Dashboard Nav -->
           <?php if (isset($_SESSION['usuario']['rol']) && $_SESSION['usuario']['rol'] === 'Guarda'): ?>
             <!-- Registrar Visitantes -->
+            <li class="nav-heading">Administración</li>
             <li class="nav-item">
               <a class="nav-link collapsed" href="formulario_registro_visitante">
                 <i class="bi bi-person-plus"></i>

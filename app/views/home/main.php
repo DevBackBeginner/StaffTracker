@@ -64,7 +64,7 @@
                             <div class="container">
                                 <h1 class="wow fadeInLeft" data-wow-delay="0" style="color: white; text-shadow: 2px 2px 4px #007832; font-size: 5em;">Registro Ágil y Seguro</h1>
                                 <p class="text-width-large wow fadeInRight" data-wow-delay="100" style="color: white; text-shadow: 2px 2px 4px #007832; font-size: 1.5em;">
-                                    El sistema "SENA Villeta" permite el control eficiente del ingreso y salida de instructores, administrativos y visitantes mediante escaneo de credenciales.
+                                    El sistema StaffTracker permite el control eficiente del ingreso y salida de instructores, administrativos y visitantes mediante escaneo de credenciales.
                                 </p>
                             </div>
                         </div>
@@ -86,7 +86,7 @@
                             <div class="container">
                                 <h1 class="wow fadeInLeft" data-wow-delay="0" style="color: white; text-shadow: 2px 2px 4px #007832; font-size: 5em;">Seguridad y Control</h1>
                                 <p class="text-width-large wow fadeInRight" data-wow-delay="100" style="color: white; text-shadow: 2px 2px 4px #007832; font-size: 1.5em;">
-                                    Optimiza la supervisión del acceso a las instalaciones del SENA, garantizando un entorno seguro y organizado para todos.
+                                    Optimiza la supervisión del acceso a las instalaciones del Centro de desarrollo agroindustrial y empresarial, garantizando un entorno seguro y organizado para todos.
                                 </p>
                             </div>
                         </div>
@@ -164,7 +164,7 @@
                          style="top: 20px; left: 50%; transform: translateX(-50%); width: 120px; height: 120px;">
                     <div class="team-classic-caption mt-5">
                         <h4 class="team-classic-name">
-                            <a href="#" style="color: #00304D; font-size: 1.5em;">Badend Echo - Backend</a>
+                            <a href="#" style="color: #00304D; font-size: 1.5em;">Helbert Morela - Backend</a>
                         </h4>
                         <p class="team-classic-status" style="font-size: 1.2em; color: #555;">Desarrollador Backend</p>
                         <div class="social-links mt-2">
@@ -187,10 +187,10 @@
                         </h4>
                         <p class="team-classic-status" style="font-size: 1.2em; color: #555;">Desarrollador Frontend</p>
                         <div class="social-links mt-2">
-                            <a href="https://github.com/juanmanuel" target="_blank"><i class="fab fa-github"></i> GitHub</a> |
+                            <a href="https://github.com/ZackerMax2003" target="_blank"><i class="fab fa-github"></i> GitHub</a> |
                             <a href="https://linkedin.com/in/juanmanuel" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a> |
-                            <a href="mailto:juanmanuel@example.com">Correo</a>
-                            <p class="mt-2" style="color: #777;">Cel: +123 456 7891</p>
+                            <a href="juancho73x@gmail.com">Correo</a>
+                            <p class="mt-2" style="color: #777;">Cel: +57 3204374207</p>
                         </div>
                     </div>
                 </div>
@@ -206,10 +206,10 @@
                         </h4>
                         <p class="team-classic-status" style="font-size: 1.2em; color: #555;">Beta Tester</p>
                         <div class="social-links mt-2">
-                            <a href="https://github.com/brayan" target="_blank"><i class="fab fa-github"></i> GitHub</a> |
+                            <a href="https://github.com/yanbra31" target="_blank"><i class="fab fa-github"></i> GitHub</a> |
                             <a href="https://linkedin.com/in/brayan" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a> |
-                            <a href="mailto:brayan@example.com">Correo</a>
-                            <p class="mt-2" style="color: #777;">Cel: +123 456 7892</p>
+                            <a href="infantebrayan22@gmaill.com">Correo</a>
+                            <p class="mt-2" style="color: #777;">Cel: +57 3114623033</p>
                         </div>
                     </div>
                 </div>
@@ -245,7 +245,7 @@
             <div class="container-fluid">
                 <h2 class="wow fadeInLeft" style="font-size: 2.5em;">Nuestro Propósito</h2>
                 <p class="quote-jean wow fadeInRight" data-wow-delay=".1s" style="color: #00304D; font-size: 1.2em;">
-                    El objetivo principal de StaffTracker es simplificar y agilizar el proceso de registro de entrada y salida de las personas que ingresan al centro de desarrollo agroindustrial y empresarial SENA Villeta. Este sistema permite escanear los carnet de los instructores, directivos y funcionarios, capturando automáticamente la fecha y hora de su ingreso. Además, se podrá registrar visitantes con su motivo de visita y datos personales para un control preciso.
+                    El objetivo principal de StaffTracker es simplificar y agilizar el proceso de registro de entrada y salida de las personas que ingresan al centro de desarrollo agroindustrial y empresarial. Este sistema permite escanear los carnet de los instructores, directivos y funcionarios, capturando automáticamente la fecha y hora de su ingreso. Además, se podrá registrar visitantes con su motivo de visita y datos personales para un control preciso.
                 </p>
             </div>
         </section>
@@ -279,7 +279,7 @@
                                 <div class="tab-pane fade" id="tabs-6-3">
                                     <h5 class="font-weight-normal" style="font-size: 1.5em;">Seguridad y Control</h5>
                                     <p style="color: #00304D; font-size: 1.2em;">
-                                        Gracias al registro detallado de entradas y salidas, nuestro sistema mejora la seguridad en las instalaciones del SENA, permitiendo tener un historial completo de los accesos.
+                                        Gracias al registro detallado de entradas y salidas, nuestro sistema mejora la seguridad en las instalaciones del Centro de desarrollo agroindustrial y empresarial, permitiendo tener un historial completo de los accesos.
                                     </p>
                                 </div>
                                 <div class="tab-pane fade" id="tabs-6-4">
@@ -351,7 +351,7 @@
 
 
 <!-- Bottom Banner -->
-<h2 style="margin: 40px 0;">Centro de desarrollo agroindustrial y empresarial SENA Villeta</h2>
+<h2 style="margin: 40px 0;">Centro de desarrollo agroindustrial y empresarial</h2>
 
 <section class="section section-fluid" style="margin-top: 30px; padding-bottom: 20px;"> <!-- Ajusta el valor según necesites -->
     <a class="section-banner" href="https://www.templatemonster.com/intense-multipurpose-html-template.html" style="
