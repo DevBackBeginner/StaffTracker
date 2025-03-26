@@ -1,3 +1,4 @@
+
 document.addEventListener('DOMContentLoaded', function () {
     // ==============================================
     // INICIALIZACIÓN DE COMPONENTES Y VARIABLES
@@ -264,7 +265,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Cerrar modales con botones personalizados
     // Cerrar modales con botones personalizados
     document.querySelectorAll('.btn-cerrar-modal').forEach(btnCerrar => {
         btnCerrar.addEventListener('click', () => {

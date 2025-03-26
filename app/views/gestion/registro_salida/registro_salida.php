@@ -59,5 +59,5 @@
 include_once __DIR__ . '/../dashboard/layouts/footer_main.php';
 ?>
 
-<!-- <script src="assets/js/registro_salida.js"></script>  -->
+<script src="assets/js/registro_salida.js"></script>
 

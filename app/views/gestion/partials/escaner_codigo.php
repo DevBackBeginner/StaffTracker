@@ -1,48 +1,48 @@
- <!-- Pestañas -->
 
- <div id="tabla-body" class="card-body bg-white rounded shadow-sm">
     <!-- Encabezado de la sección -->
     <div class="mb-4 border-bottom bg-success">
         <h4 class="card-title text-white mb-0 text-center">
             <i class="bi bi-table me-2"></i>Registros
         </h4>
     </div>
-<ul class="nav nav-tabs mb-3" id="myTab" role="tablist">
-<li class="nav-item" role="presentation">
-    <button class="nav-link active" id="tab1-tab" data-bs-toggle="tab" data-bs-target="#tab1" type="button" role="tab" aria-controls="tab1" aria-selected="true">
-        Escaner
-    </button>
-</li>
-<li class="nav-item" role="presentation">
-    <button class="nav-link" id="tab2-tab" data-bs-toggle="tab" data-bs-target="#tab2" type="button" role="tab" aria-controls="tab2" aria-selected="false">
-        Identificación
-    </button>
-</li>
-</ul>
+    
+    <ul class="nav nav-tabs mb-3" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="tab1-tab" data-bs-toggle="tab" data-bs-target="#tab1" type="button" role="tab" aria-controls="tab1" aria-selected="true">
+                Escaner
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="tab2-tab" data-bs-toggle="tab" data-bs-target="#tab2" type="button" role="tab" aria-controls="tab2" aria-selected="false">
+                Identificación
+            </button>
+        </li>
+    </ul>
 
-<!-- Contenido de las pestañas -->
-<div class="tab-content" id="myTabContent">
-<!-- Pestaña 1 -->
-<div class="tab-pane fade show active" id="tab1" role="tabpanel" aria-labelledby="tab1-tab">
-    <form id="form-escaneo" method="POST" onsubmit="event.preventDefault();">
-        <div class="mt-2">
-            <label for="codigo" class="form-label fw-bold" style="color: #007832;">Identifación</label>
-            <div class="input-group">
-                <span class="input-group-text"><i class="bi bi-upc-scan"></i></span>
-                <input type="text" id="codigo" name="codigo" placeholder="Escanea el código aquí" class="form-control" autofocus>
-            </div>
+    <!-- Contenido de las pestañas -->
+    <div class="tab-content" id="myTabContent">
+        <!-- Pestaña 1 -->
+        <div class="tab-pane fade show active" id="tab1" role="tabpanel" aria-labelledby="tab1-tab">
+            <form id="form-escaneo" method="POST" onsubmit="event.preventDefault();">
+                <div class="mt-2">
+                    <label for="codigo" class="form-label fw-bold" style="color: #007832;">Identifación</label>
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="bi bi-upc-scan"></i></span>
+                        <input type="text" id="codigo" name="codigo" placeholder="Escanea el código aquí" class="form-control" autofocus>
+                    </div>
+                </div>
+            </form>
         </div>
-    </form>
-</div>
 
-<!-- Pestaña 2 -->
-<div class="tab-pane fade" id="tab2" role="tabpanel" aria-labelledby="tab2-tab">
-    <form id="form-escaneo" method="POST" onsubmit="event.preventDefault();">
-        <div class="mt-2">
-            <label for="codigo" class="form-label fw-bold" style="color: #007832;">Identifación</label>
-            <div class="input-group">
-                <span class="input-group-text"><i class="bi bi-upc-scan"></i></span>
-                <input type="text" id="codigo2" placeholder="Ingresa el número de identificación aquí" class="form-control">                                            </div>
+        <!-- Pestaña 2 -->
+        <div class="tab-pane fade" id="tab2" role="tabpanel" aria-labelledby="tab2-tab">
+            <form id="form-escaneo" method="POST" onsubmit="event.preventDefault();">
+                <div class="mt-2">
+                    <label for="codigo" class="form-label fw-bold" style="color: #007832;">Identifación</label>
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="bi bi-upc-scan"></i></span>
+                        <input type="text" id="codigo2" placeholder="Ingresa el número de identificación aquí" class="form-control">                                            </div>
+                </div>
+            </form>
         </div>
-    </form>
-</div>
+    </div>
