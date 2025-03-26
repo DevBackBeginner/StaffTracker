@@ -63,7 +63,7 @@ class RegistrarGuardasController {
             $passwordHash = password_hash($password, PASSWORD_DEFAULT);
     
             // Establecer la foto de perfil estándar
-            $fotoPerfil = 'assets/img/perfiles/default.png'; // Ruta de la imagen estándar
+            $fotoPerfil = 'assets/img/perfiles/default.webp'; // Ruta de la imagen estándar
     
             // Insertar el nuevo guarda en la base de datos
             try {
