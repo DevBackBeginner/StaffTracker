@@ -27,6 +27,25 @@
                                 ?>
                             <?php endif; ?>
 
+                            <style>
+    /* Estilos para los inputs y selects al hacer clic (enfoque) */
+    .form-control:focus,
+    .form-select:focus {
+        outline: none; /* Elimina el borde azul predeterminado */
+        border: 2px solid #007832; /* Borde verde alrededor del input/select cuando se hace clic */
+        box-shadow: none; /* Elimina cualquier sombra alrededor del input/select */
+    }
+
+    /* Estilos por defecto para los campos de input y select */
+    .form-control,
+    .form-select {
+        border: 1px solid #ccc; /* Borde gris claro */
+        border-radius: 4px; /* Bordes redondeados */
+        padding: 10px; /* Relleno de los campos */
+    }
+</style>
+
+    
                             <form action="registrar_visitante" method="POST" class="row g-3 needs-validation" onsubmit="return validarFormulario()" novalidate>
                                 <!-- Primera fila: Nombre, Apellido -->
                                 <div class="col-md-6">
@@ -118,9 +137,9 @@
                                             <label class="form-label" style="color: #007832;">¿Trae teclado?</label>
                                             <div class="input-group">
                                                 <span class="input-group-text"><i class="bi bi-keyboard"></i></span>
-                                                <div class="form-check ms-2 d-flex align-items-center">
+                                                <div class="form-check ms-2 d-flex align-items-center ">
                                                     <input type="checkbox" name="teclado" id="teclado" class="form-check-input" value="Sí">
-                                                    <label for="teclado" class="form-check-label ms-2">Sí</label>
+                                                    <label for="teclado" class="form-check-label ms-2 ">Sí</label>
                                                 </div>
                                             </div>
                                         </div>

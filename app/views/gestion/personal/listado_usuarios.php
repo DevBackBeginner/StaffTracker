@@ -61,7 +61,17 @@
                 </div>
                 <?php unset($_SESSION['mensaje'], $_SESSION['tipo_mensaje']); ?>
             <?php endif; ?>
-            
+            <style>
+    .input-group input:focus {
+        outline: none; /* Elimina el borde azul predeterminado */
+        border: 2px solid #007832; /* Borde verde alrededor del input cuando se hace clic */
+        box-shadow: none; /* Elimina cualquier sombra alrededor del input */
+    }
+
+
+</style>
+<div class="input-group">
+    
             <div class="col-12">
                 <div class="card shadow-lg mb-2">
                     <div class="card-header text-center text-white" style="background-color: green;">
