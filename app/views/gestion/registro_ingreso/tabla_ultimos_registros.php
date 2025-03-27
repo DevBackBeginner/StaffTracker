@@ -1,5 +1,5 @@
 <?php if (!empty($ultimosRegistros)): ?>
-    <table class="table table-bordered table-hover">
+    <table class="table table-bordered table-hover text-center">
         <thead class="thead-light">
             <tr>
                 <th class="fs-6">Fecha</th>

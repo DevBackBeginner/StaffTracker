@@ -13,6 +13,25 @@
             </ol>
         </nav>
     </div>
+    
+    <style>
+    /* Estilos para los inputs y selects al hacer clic (enfoque) */
+    .form-control:focus,
+    .form-select:focus {
+        outline: none; /* Elimina el borde azul predeterminado */
+        border: 2px solid #007832; /* Borde verde alrededor del input/select cuando se hace clic */
+        box-shadow: none; /* Elimina cualquier sombra alrededor del input/select */
+    }
+
+    /* Estilos por defecto para los campos de input y select */
+    .form-control,
+    .form-select {
+        border: 1px solid #ccc; /* Borde gris claro */
+        border-radius: 4px; /* Bordes redondeados */
+        padding: 10px; /* Relleno de los campos */
+    }
+</style>
+
     <div class="container-fluid"> <!-- Cambiado a container-fluid para ocupar el 100% del ancho -->
         <section class="section register py-4">
             <div class="row">
@@ -39,7 +58,7 @@
                                 <div class="col-md-6">
                                     <label for="documentoInput" class="form-label fw-bold text-success">Documento</label>
                                     <div class="input-group">
-                                        <span class="input-group-text bg-success text-white"><i class="bi bi-credit-card"></i></span>
+                                        <span class="input-group-text  text-black"><i class="bi bi-credit-card"></i></span>
                                         <input type="text" 
                                             class="form-control" 
                                             id="documentoInput" 
@@ -52,7 +71,7 @@
                                 <div class="col-md-6">
                                     <label for="nombreInput" class="form-label fw-bold text-success">Nombre</label>
                                     <div class="input-group">
-                                        <span class="input-group-text bg-success text-white"><i class="bi bi-person"></i></span>
+                                        <span class="input-group-text  text-black"><i class="bi bi-person"></i></span>
                                         <input type="text" 
                                             class="form-control" 
                                             id="nombreInput" 

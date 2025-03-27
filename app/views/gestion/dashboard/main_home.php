@@ -173,7 +173,7 @@
                 <div class="carousel-item">
                     <div class="carousel-content">
                         <h3><i class="fas fa-users"></i> Perfil</h3>
-                        <p>Registra instructores y consulta información de usuarios registrados fácilmente.</p>
+                        <p>En este apartado podras ver informacion de tu perfil.</p>
                     </div>
                 </div>
             <?php endif; ?>
@@ -191,6 +191,31 @@
                         <p>Registra visitantes con datos personales y motivo de visita para mayor control y seguridad.</p>
                     </div>
                 </div>
+                <div class="carousel-item">
+    <div class="carousel-content">
+        <h3><i class="fas fa-sign-in-alt"></i> Registro de Entrada</h3>
+        <p>Registrara la entrada de instructores,administrativos mediante carnet o numero de documento.</p>
+    </div>
+</div>
+<div class="carousel-item">
+    <div class="carousel-content">
+        <h3><i class="fas fa-sign-out-alt"></i> Registrar de Salida</h3>
+        <p>Registrara la salida de instructores,administrativos mediante carnet o numero de documento.</p>
+    </div>
+</div>
+<div class="carousel-item">
+    <div class="carousel-content">
+        <h3><i class="fas fa-history"></i> Historial de Registro</h3>
+        <p>En este apartado se podra visualizar el historial de registro</p>
+    </div>
+</div>
+
+                <div class="carousel-item">
+                    <div class="carousel-content">
+                        <h3><i class="fas fa-users"></i> Perfil</h3>
+                        <p>En este apartado podras ver informacion de tu perfil.</p>
+                    </div>
+                </div>
             <?php endif; ?>
         </div>
 
@@ -205,36 +230,69 @@
 </div>
 
 <style>
-    .footer-container {
-        margin-top: 200px; /* Desplaza el contenido hacia abajo */
-        
-    }
+.footer-container {
+    margin-top: 200px; /* Desplaza el contenido hacia abajo */
+}
 
-    .carousel-content {
-        background: #f8f9fa;
-        border-radius: 20px;
-        padding: 20px;
-        text-align: center;
-    }
+.carousel-content {
+    background: #f8f9fa;
+    border-radius: 20px;
+    padding: 20px;
+    text-align: center;
+    position: relative; /* Necesario para los controles */
+    padding-bottom: 40px; /* Añadido espacio para evitar superposición con los botones */
+}
 
-    .carousel-content h3 {
-        color: #198754;
-        font-weight: bold;
-        margin-bottom: 10px;
-    }
+.carousel-content h3 {
+    color: #198754;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
 
-    .carousel-content p {
-        color: #6c757d;
-        font-size: 16px;
+.carousel-content p {
+    color: #6c757d;
+    font-size: 16px;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: #198754;
+    border-radius: 50%;
+    padding: 10px;
+}
+
+/* Ajuste de los botones para asegurarse que no se sobrepongan al contenido */
+.carousel-control-prev,
+.carousel-control-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10; /* Asegura que los botones estén encima del contenido */
+}
+
+/* Alineación de los botones */
+.carousel-control-prev {
+    left: 10px; /* Ajusta el margen izquierdo */
+}
+
+.carousel-control-next {
+    right: 10px; /* Ajusta el margen derecho */
+}
+
+/* Responsividad: Ajuste de los botones en pantallas pequeñas */
+@media (max-width: 768px) {
+    .carousel-control-prev,
+    .carousel-control-next {
+        font-size: 1.5rem; /* Ajustar tamaño del texto */
+        width: 40px; /* Ajustar tamaño de los botones */
+        height: 40px;
     }
-    
 
     .carousel-control-prev-icon,
     .carousel-control-next-icon {
-        background-color: #198754;
-        border-radius: 50%;
-        padding: 10px;
+        padding: 8px; /* Ajustar el padding de los íconos */
     }
+}
 </style>
 
 
