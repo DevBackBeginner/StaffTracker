@@ -125,7 +125,7 @@
                 $this->registroModelo->registrarEntrada($fecha, $hora, $asignacionId, $tipo_usuario);
 
                 // Si todo sale bien, mostrar mensaje de éxito
-                $_SESSION['mensaje'] = "Usuario, asignación de computador y entrada registrados correctamente.";
+                $_SESSION['mensaje'] = "Usuario y entrada registrados correctamente.";
                 $_SESSION['tipo_mensaje'] = 'success';
             } catch (Exception $e) {
                 $_SESSION['mensaje'] = "Error al registrar la entrada: " . $e->getMessage();

@@ -28,24 +28,22 @@
                             <?php endif; ?>
 
                             <style>
-    /* Estilos para los inputs y selects al hacer clic (enfoque) */
-    .form-control:focus,
-    .form-select:focus {
-        outline: none; /* Elimina el borde azul predeterminado */
-        border: 2px solid #007832; /* Borde verde alrededor del input/select cuando se hace clic */
-        box-shadow: none; /* Elimina cualquier sombra alrededor del input/select */
-    }
+                                /* Estilos para los inputs y selects al hacer clic (enfoque) */
+                                .form-control:focus,
+                                .form-select:focus {
+                                    outline: none; /* Elimina el borde azul predeterminado */
+                                    border: 2px solid #007832; /* Borde verde alrededor del input/select cuando se hace clic */
+                                    box-shadow: none; /* Elimina cualquier sombra alrededor del input/select */
+                                }
 
-    /* Estilos por defecto para los campos de input y select */
-    .form-control,
-    .form-select {
-        border: 1px solid #ccc; /* Borde gris claro */
-        border-radius: 4px; /* Bordes redondeados */
-        padding: 10px; /* Relleno de los campos */
-    }
-</style>
-
-    
+                                /* Estilos por defecto para los campos de input y select */
+                                .form-control,
+                                .form-select {
+                                    border: 1px solid #ccc; /* Borde gris claro */
+                                    border-radius: 4px; /* Bordes redondeados */
+                                    padding: 10px; /* Relleno de los campos */
+                                }
+                            </style>
                             <form action="registrar_visitante" method="POST" class="row g-3 needs-validation" onsubmit="return validarFormulario()" novalidate>
                                 <!-- Primera fila: Nombre, Apellido -->
                                 <div class="col-md-6">
@@ -145,12 +143,11 @@
                                         </div>
                                     </div>
                                 </div>
-
-                                        
-                                        <div class="col-md-6">
-                                            <input type="hidden" name="tipo_computador" value="Personal"> <!-- Tipo fijo como "Sena" -->
-                                        </div>
+                                
+                                <div class="col-md-6">
+                                    <input type="hidden" name="tipo_computador" value="Personal"> <!-- Tipo fijo como "Sena" -->
                                     </div>
+                                </div>
                                 </div>
 
                                 <!-- Botón de registro -->

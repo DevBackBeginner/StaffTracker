@@ -1,0 +1,12 @@
+[27-Mar-2025 09:58:40 America/Bogota] PHP Warning:  Undefined array key "usuario" in C:\xampp\htdocs\StaffTracker\app\Views\gestion\dashboard\layouts\header_main.php on line 3
+[27-Mar-2025 09:58:40 America/Bogota] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\StaffTracker\app\Views\gestion\dashboard\layouts\header_main.php on line 3
+[27-Mar-2025 09:58:40 America/Bogota] PHP Warning:  Undefined array key "usuario" in C:\xampp\htdocs\StaffTracker\app\Views\gestion\dashboard\layouts\header_main.php on line 3
+[27-Mar-2025 09:58:40 America/Bogota] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\StaffTracker\app\Views\gestion\dashboard\layouts\header_main.php on line 3
+[27-Mar-2025 10:05:00 America/Bogota] PHP Warning:  Undefined array key "usuario" in C:\xampp\htdocs\StaffTracker\app\Views\gestion\dashboard\layouts\header_main.php on line 3
+[27-Mar-2025 10:05:00 America/Bogota] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\StaffTracker\app\Views\gestion\dashboard\layouts\header_main.php on line 3
+[27-Mar-2025 10:05:00 America/Bogota] PHP Warning:  Undefined array key "usuario" in C:\xampp\htdocs\StaffTracker\app\Views\gestion\dashboard\layouts\header_main.php on line 3
+[27-Mar-2025 10:05:00 America/Bogota] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\StaffTracker\app\Views\gestion\dashboard\layouts\header_main.php on line 3
+[27-Mar-2025 10:11:42 America/Bogota] PHP Warning:  Undefined array key "usuario" in C:\xampp\htdocs\StaffTracker\app\Views\gestion\dashboard\layouts\header_main.php on line 3
+[27-Mar-2025 10:11:42 America/Bogota] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\StaffTracker\app\Views\gestion\dashboard\layouts\header_main.php on line 3
+[27-Mar-2025 10:11:42 America/Bogota] PHP Warning:  Undefined array key "usuario" in C:\xampp\htdocs\StaffTracker\app\Views\gestion\dashboard\layouts\header_main.php on line 3
+[27-Mar-2025 10:11:42 America/Bogota] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\StaffTracker\app\Views\gestion\dashboard\layouts\header_main.php on line 3

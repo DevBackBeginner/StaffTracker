@@ -30,12 +30,16 @@ include_once __DIR__ . '/../dashboard/layouts/header_main.php';
             <div class="col-12"> <!-- Ocupa el 100% del ancho -->
                 <div class="card mb-3 shadow-sm">
                     <div class="card-body p-4">
-                        <!-- Captura de mensajes generales -->
                         <?php if (!empty($_SESSION['mensaje'])): ?>
-                            <div class="alert <?= $_SESSION['tipo_mensaje'] === 'error' ? 'alert-danger' : 'alert-success' ?> alert-dismissible fade show" role="alert">
-                                <?= htmlspecialchars($_SESSION['mensaje']) ?>
-                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                            </div>
+                            <script>
+                                Swal.fire({
+                                    title: '<?= $_SESSION['tipo_mensaje'] === 'error' ? 'Error' : 'Éxito' ?>',
+                                    text: "<?= addslashes($_SESSION['mensaje']) ?>",
+                                    icon: '<?= $_SESSION['tipo_mensaje'] === 'error' ? 'error' : 'success' ?>',
+                                    confirmButtonText: 'Aceptar',
+                                    confirmButtonColor: '#007832'  // Color personalizado aquí
+                                });
+                            </script>
                             <?php
                             unset($_SESSION['mensaje']);
                             unset($_SESSION['tipo_mensaje']);

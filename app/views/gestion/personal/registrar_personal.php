@@ -35,15 +35,24 @@
                         <div class="card-body p-4">
                             <!-- Mostrar mensajes de éxito o error -->
                             <?php if (isset($_SESSION['mensaje'])): ?>
-                                <div class="alert <?php echo $_SESSION['tipo_mensaje'] === 'success' ? 'alert-success' : 'alert-danger'; ?> alert-dismissible fade show" role="alert">
-                                    <?php echo $_SESSION['mensaje']; ?>
-                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                </div>
+                                <script>
+                                    Swal.fire({
+                                        title: '<?= $_SESSION['tipo_mensaje'] === 'success' ? 'Éxito' : 'Error' ?>',
+                                        text: "<?= addslashes($_SESSION['mensaje']) ?>",
+                                        icon: '<?= $_SESSION['tipo_mensaje'] === 'success' ? 'success' : 'error' ?>',
+                                        confirmButtonText: 'Aceptar',
+                                        confirmButtonColor: '#007832',  // Verde corporativo
+                                        background: '#ffffff',          // Fondo blanco
+                                        allowOutsideClick: false,       // Obligar a hacer clic en el botón
+                                        customClass: {
+                                            popup: 'animate__animated animate__fadeInDown' // Animación
+                                        }
+                                    });
+                                </script>
                                 <?php
-                                // Limpiar el mensaje después de mostrarlo
                                 unset($_SESSION['mensaje']);
                                 unset($_SESSION['tipo_mensaje']);
-                            ?>
+                                ?>
                             <?php endif; ?>
 
                             <form class="row g-3 needs-validation" action="registrar_personal" method="POST" novalidate onsubmit="return validarFormulario()">

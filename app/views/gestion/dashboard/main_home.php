@@ -136,166 +136,198 @@
         </div>
     </div>
 </section>
-<div class="container footer-container"> <!-- Contenedor con espaciado extra -->
-    <div id="carouselFooter" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
-        <div class="carousel-inner">
-            <?php if ($_SESSION['usuario']['rol'] === 'Admin'): ?>
-                <div class="carousel-item active">
-                    <div class="carousel-content">
-                        <h3><i class="fas fa-home"></i> Inicio</h3>
-                        <p>Visualiza el panel de control con información clave del sistema, incluyendo registros de usuarios, funcionarios y visitantes.</p>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="carousel-content">
-                        <h3><i class="fas fa-user-shield"></i> Registrar Guardas</h3>
-                        <p>Incorpora nuevos guardas al sistema ingresando sus datos personales y asignándoles acceso específico.</p>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="carousel-content">
-                        <h3><i class="fas fa-users"></i> Gestión de Usuarios</h3>
-                        <p>Registra instructores y consulta información de usuarios registrados fácilmente.</p>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="carousel-content">
-                        <h3><i class="fas fa-users"></i> Reportes</h3>
-                        <p>En este apartado se podran descargar los reportes generales, diarios y mensuales</p>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="carousel-content">
-                        <h3><i class="fas fa-users"></i> Reportes Graficos</h3>
-                        <p>En este apartartado se podra visualizar graficamente</p>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="carousel-content">
-                        <h3><i class="fas fa-users"></i> Perfil</h3>
-                        <p>En este apartado podras ver informacion de tu perfil.</p>
-                    </div>
-                </div>
-            <?php endif; ?>
 
-            <?php if ($_SESSION['usuario']['rol'] === 'Guarda'): ?>
-                <div class="carousel-item active">
-                    <div class="carousel-content">
-                        <h3><i class="fas fa-home"></i> Inicio</h3>
-                        <p>Visualiza el panel de control con información clave del sistema, incluyendo registros de usuarios, funcionarios y visitantes.</p>
+<footer class="footer-white-cards py-4">
+    <div class="container">
+        <div id="whiteCardsCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="6000">
+            <div class="carousel-inner">
+                <?php if ($_SESSION['usuario']['rol'] === 'Admin'): ?>
+                    <!-- Slide 1 para Admin -->
+                    <div class="carousel-item active">
+                        <div class="row g-3">
+                            <div class="col-md-4">
+                                <div class="card h-100 shadow-sm">
+                                    <div class="card-body text-center">
+                                        <div class="icon-circle bg-primary mb-3">
+                                            <i class="fas fa-home text-white"></i>
+                                        </div>
+                                        <h4 class="card-title">Inicio</h4>
+                                        <p class="card-text text-muted">Panel de control con registros de usuarios, funcionarios y visitantes.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card h-100 shadow-sm">
+                                    <div class="card-body text-center">
+                                        <div class="icon-circle bg-primary mb-3">
+                                            <i class="fas fa-user-shield text-white"></i>
+                                        </div>
+                                        <h4 class="card-title">Guardas</h4>
+                                        <p class="card-text text-muted">Registro y gestión de guardas de seguridad.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card h-100 shadow-sm">
+                                    <div class="card-body text-center">
+                                        <div class="icon-circle bg-primary mb-3">
+                                            <i class="fas fa-users text-white"></i>
+                                        </div>
+                                        <h4 class="card-title">Usuarios</h4>
+                                        <p class="card-text text-muted">Gestión completa de usuarios del sistema.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="carousel-content">
-                        <h3><i class="fas fa-user-plus"></i> Registrar Visitantes</h3>
-                        <p>Registra visitantes con datos personales y motivo de visita para mayor control y seguridad.</p>
+                    
+                    <!-- Slide 2 para Admin -->
+                    <div class="carousel-item">
+                        <div class="row g-3">
+                            <div class="col-md-4">
+                                <div class="card h-100 shadow-sm">
+                                    <div class="card-body text-center">
+                                        <div class="icon-circle bg-primary mb-3">
+                                            <i class="fas fa-file-alt text-white"></i>
+                                        </div>
+                                        <h4 class="card-title">Reportes</h4>
+                                        <p class="card-text text-muted">Generación de reportes en diferentes formatos.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card h-100 shadow-sm">
+                                    <div class="card-body text-center">
+                                        <div class="icon-circle bg-primary mb-3">
+                                            <i class="fas fa-chart-bar text-white"></i>
+                                        </div>
+                                        <h4 class="card-title">Gráficos</h4>
+                                        <p class="card-text text-muted">Visualización de datos estadísticos.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card h-100 shadow-sm">
+                                    <div class="card-body text-center">
+                                        <div class="icon-circle bg-primary mb-3">
+                                            <i class="fas fa-user text-white"></i>
+                                        </div>
+                                        <h4 class="card-title">Perfil</h4>
+                                        <p class="card-text text-muted">Gestión de tu cuenta de usuario.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="carousel-item">
-    <div class="carousel-content">
-        <h3><i class="fas fa-sign-in-alt"></i> Registro de Entrada</h3>
-        <p>Registrara la entrada de instructores,administrativos mediante carnet o numero de documento.</p>
-    </div>
-</div>
-<div class="carousel-item">
-    <div class="carousel-content">
-        <h3><i class="fas fa-sign-out-alt"></i> Registrar de Salida</h3>
-        <p>Registrara la salida de instructores,administrativos mediante carnet o numero de documento.</p>
-    </div>
-</div>
-<div class="carousel-item">
-    <div class="carousel-content">
-        <h3><i class="fas fa-history"></i> Historial de Registro</h3>
-        <p>En este apartado se podra visualizar el historial de registro</p>
-    </div>
-</div>
 
-                <div class="carousel-item">
-                    <div class="carousel-content">
-                        <h3><i class="fas fa-users"></i> Perfil</h3>
-                        <p>En este apartado podras ver informacion de tu perfil.</p>
+                <?php elseif ($_SESSION['usuario']['rol'] === 'Guarda'): ?>
+                    <!-- Slide 1 para Guarda -->
+                    <div class="carousel-item active">
+                        <div class="row g-3">
+                            <div class="col-md-4">
+                                <div class="card h-100 shadow-sm">
+                                    <div class="card-body text-center">
+                                        <div class="icon-circle bg-primary mb-3">
+                                            <i class="fas fa-home text-white"></i>
+                                        </div>
+                                        <h4 class="card-title">Inicio</h4>
+                                        <p class="card-text text-muted">Resumen de actividades y registros.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card h-100 shadow-sm">
+                                    <div class="card-body text-center">
+                                        <div class="icon-circle bg-primary mb-3">
+                                            <i class="fas fa-user-plus text-white"></i>
+                                        </div>
+                                        <h4 class="card-title">Visitantes</h4>
+                                        <p class="card-text text-muted">Registro de visitantes temporales.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card h-100 shadow-sm">
+                                    <div class="card-body text-center">
+                                        <div class="icon-circle bg-primary mb-3">
+                                            <i class="fas fa-sign-in-alt text-white"></i>
+                                        </div>
+                                        <h4 class="card-title">Entradas</h4>
+                                        <p class="card-text text-muted">Control de acceso al establecimiento.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+                    
+                    <!-- Slide 2 para Guarda -->
+                    <div class="carousel-item">
+                        <div class="row g-3">
+                            <div class="col-md-4">
+                                <div class="card h-100 shadow-sm">
+                                    <div class="card-body text-center">
+                                        <div class="icon-circle bg-primary mb-3">
+                                            <i class="fas fa-sign-out-alt text-white"></i>
+                                        </div>
+                                        <h4 class="card-title">Salidas</h4>
+                                        <p class="card-text text-muted">Registro de salidas del personal.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card h-100 shadow-sm">
+                                    <div class="card-body text-center">
+                                        <div class="icon-circle bg-primary mb-3">
+                                            <i class="fas fa-history text-white"></i>
+                                        </div>
+                                        <h4 class="card-title">Historial</h4>
+                                        <p class="card-text text-muted">Consulta de registros históricos.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card h-100 shadow-sm">
+                                    <div class="card-body text-center">
+                                        <div class="icon-circle bg-primary mb-3">
+                                            <i class="fas fa-user text-white"></i>
+                                        </div>
+                                        <h4 class="card-title">Perfil</h4>
+                                        <p class="card-text text-muted">Gestión de tu cuenta de usuario.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <?php endif; ?>
+            </div>
+
+            <!-- Indicadores personalizados con color #00304D -->
+            <div class="text-center mt-4">
+                <div class="carousel-indicators position-static mx-auto">
+                    <button type="button" 
+                            data-bs-target="#whiteCardsCarousel" 
+                            data-bs-slide-to="0" 
+                            class="active" 
+                            style="background-color: #00304D; width: 10px; height: 10px; border-radius: 50%; border: none; margin: 0 5px;"></button>
+                    <button type="button" 
+                            data-bs-target="#whiteCardsCarousel" 
+                            data-bs-slide-to="1" 
+                            style="background-color: #00304D; width: 10px; height: 10px; border-radius: 50%; border: none; margin: 0 5px;"></button>
                 </div>
-            <?php endif; ?>
+            </div>
         </div>
 
-        <!-- Botones de navegación mejorados -->
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselFooter" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon"></span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselFooter" data-bs-slide="next">
-            <span class="carousel-control-next-icon"></span>
-        </button>
+        <!-- Información adicional -->
+        <div class="footer-info mt-4 pt-3 text-center border-top">
+            <p class="mb-1 text-dark">© <?= date('Y') ?> StaffTracker - Sistema de Control de Accesos</p>
+            <p class="mb-0 small text-muted">
+                <span class="badge bg-primary"><?= htmlspecialchars($_SESSION['usuario']['nombre']) ?></span>
+                <span class="badge bg-secondary ms-2"><?= htmlspecialchars($_SESSION['usuario']['rol']) ?></span>
+            </p>
+        </div>
     </div>
-</div>
-
-<style>
-.footer-container {
-    margin-top: 200px; /* Desplaza el contenido hacia abajo */
-}
-
-.carousel-content {
-    background: #f8f9fa;
-    border-radius: 20px;
-    padding: 20px;
-    text-align: center;
-    position: relative; /* Necesario para los controles */
-    padding-bottom: 40px; /* Añadido espacio para evitar superposición con los botones */
-}
-
-.carousel-content h3 {
-    color: #198754;
-    font-weight: bold;
-    margin-bottom: 10px;
-}
-
-.carousel-content p {
-    color: #6c757d;
-    font-size: 16px;
-}
-
-.carousel-control-prev-icon,
-.carousel-control-next-icon {
-    background-color: #198754;
-    border-radius: 50%;
-    padding: 10px;
-}
-
-/* Ajuste de los botones para asegurarse que no se sobrepongan al contenido */
-.carousel-control-prev,
-.carousel-control-next {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 10; /* Asegura que los botones estén encima del contenido */
-}
-
-/* Alineación de los botones */
-.carousel-control-prev {
-    left: 10px; /* Ajusta el margen izquierdo */
-}
-
-.carousel-control-next {
-    right: 10px; /* Ajusta el margen derecho */
-}
-
-/* Responsividad: Ajuste de los botones en pantallas pequeñas */
-@media (max-width: 768px) {
-    .carousel-control-prev,
-    .carousel-control-next {
-        font-size: 1.5rem; /* Ajustar tamaño del texto */
-        width: 40px; /* Ajustar tamaño de los botones */
-        height: 40px;
-    }
-
-    .carousel-control-prev-icon,
-    .carousel-control-next-icon {
-        padding: 8px; /* Ajustar el padding de los íconos */
-    }
-}
-</style>
-
-
+</footer>
+ 
 
 <?php 
     // Incluye el archivo de pie de página principal

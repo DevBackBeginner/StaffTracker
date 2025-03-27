@@ -14,23 +14,6 @@
         </ol>
     </nav>
 </div>
-<style>
-    /* Estilos para los inputs y selects al hacer clic (enfoque) */
-    .form-control:focus,
-    .form-select:focus {
-        outline: none; /* Elimina el borde azul predeterminado */
-        border: 2px solid #007832; /* Borde verde alrededor del input/select cuando se hace clic */
-        box-shadow: none; /* Elimina cualquier sombra alrededor del input/select */
-    }
-
-    /* Estilos por defecto para los campos de input y select */
-    .form-control,
-    .form-select {
-        border: 1px solid #ccc; /* Borde gris claro */
-        border-radius: 4px; /* Bordes redondeados */
-        padding: 10px; /* Relleno de los campos */
-    }
-</style>
 
 <div class="container-fluid">
     <section class="section register py-4">
@@ -39,13 +22,25 @@
                 <div class="card mb-3 shadow-sm">
                     <div class="card-body p-4">
                         <!-- Captura de mensajes generales -->
-                        <?php if (!empty($_SESSION['mensaje'])): ?>
-                            <div class="alert <?= $_SESSION['mensaje']['tipo'] === 'danger' ? 'alert-danger' : ($_SESSION['mensaje']['tipo'] === 'warning' ? 'alert-warning' : 'alert-success') ?> alert-dismissible fade show" role="alert">
-                                <?= htmlspecialchars($_SESSION['mensaje']['texto']) ?>
-                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                            </div>
+                        <?php if (isset($_SESSION['mensaje'])): ?>
+                            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                            <script>
+                                Swal.fire({
+                                    title: '<?= $_SESSION['tipo_mensaje'] === 'success' ? 'Éxito' : 'Error' ?>',
+                                    text: "<?= addslashes($_SESSION['mensaje']) ?>",
+                                    icon: '<?= $_SESSION['tipo_mensaje'] === 'success' ? 'success' : 'error' ?>',
+                                    confirmButtonText: 'Aceptar',
+                                    confirmButtonColor: '#007832',  // Verde corporativo
+                                    background: '#ffffff',          // Fondo blanco
+                                    allowOutsideClick: false,       // Obligar a hacer clic en el botón
+                                    customClass: {
+                                        popup: 'animate__animated animate__fadeInDown' // Animación
+                                    }
+                                });
+                            </script>
                             <?php
                             unset($_SESSION['mensaje']);
+                            unset($_SESSION['tipo_mensaje']);
                             ?>
                         <?php endif; ?>
                         <!-- Escaner de carnets y/o documento de identidad -->

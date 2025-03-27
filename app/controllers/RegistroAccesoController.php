@@ -230,21 +230,6 @@
         // ==============================
 
         /**
-         * Devuelve una respuesta JSON estandarizada
-         * @param bool $success Estado de la operación
-         * @param string $message Mensaje descriptivo
-         * @param int $code Código HTTP
-         */
-        private function jsonResponse(bool $success, string $message, int $code = 200): void {
-            http_response_code($code); // Establece el código de respuesta HTTP
-            echo json_encode([
-                'success' => $success,
-                'message' => $message
-            ]);
-            exit; // Termina la ejecución del script
-        }
-
-        /**
          * Obtiene un usuario por su código de identificación
          * @param string $codigo Código del usuario
          * @return array|null Datos del usuario o null
