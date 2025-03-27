@@ -13,6 +13,17 @@ include_once __DIR__ . '/../dashboard/layouts/header_main.php';
     </nav>
 </div>
 
+<style>
+    .input-group input:focus {
+        outline: none; /* Elimina el borde azul predeterminado */
+        border: 2px solid #007832; /* Borde verde alrededor del input cuando se hace clic */
+        box-shadow: none; /* Elimina cualquier sombra alrededor del input */
+    }
+
+
+</style>
+<div class="input-group">
+    
 <div class="container-fluid"> <!-- Cambiado a container-fluid para ocupar el 100% del ancho -->
     <section class="section register py-4">
         <div class="row">

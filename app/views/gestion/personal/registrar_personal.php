@@ -8,6 +8,25 @@
             </ol>
         </nav>
     </div>
+    <style>
+    /* Estilos para los inputs y selects al hacer clic (enfoque) */
+    .form-control:focus,
+    .form-select:focus {
+        outline: none; /* Elimina el borde azul predeterminado */
+        border: 2px solid #007832; /* Borde verde alrededor del input/select cuando se hace clic */
+        box-shadow: none; /* Elimina cualquier sombra alrededor del input/select */
+    }
+
+    /* Estilos por defecto para los campos de input y select */
+    .form-control,
+    .form-select {
+        border: 1px solid #ccc; /* Borde gris claro */
+        border-radius: 4px; /* Bordes redondeados */
+        padding: 10px; /* Relleno de los campos */
+    }
+</style>
+
+    
     <div class="container-fluid">
         <section class="section register py-4">
             <div class="row">
@@ -108,7 +127,7 @@
                                             <label for="ubicacion" class="form-label fw-bold" style="color: #007832;">Ubicación</label>
                                             <div class="input-group">
                                                 <span class="input-group-text"><i class="bi bi-geo-alt"></i></span>
-                                                <input type="text" name="ubicacion" class="form-control mt-2" placeholder="Ubicación">
+                                                <input type="text" name="ubicacion" class="form-control " placeholder="Ubicación">
                                             </div>
                                         </div>
                                     </div>

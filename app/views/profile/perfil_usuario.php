@@ -27,12 +27,23 @@
                     ?>
                 <?php endif; ?>
                 <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
-                    <img src="<?= $_SESSION['usuario']['foto_perfil'] ?>" alt="Perfil" class="rounded-circle mb-3" style="width: 150px; height: 150px;">
+                    <img src="<?= $_SESSION['usuario']['foto_perfil'] ?>" alt="Perfil" class="rounded-circle mb-3" style="width: 100%; height: 100%;">
                     <h2><?= htmlspecialchars($_SESSION['usuario']['nombre']) ?></h2>
                     <h3><?= ($_SESSION['usuario']['rol'] === 'Admin') ? 'Administrador' : (htmlspecialchars($_SESSION['usuario']['rol']) === 'Guarda' ? 'Guardia de portería' : htmlspecialchars($_SESSION['usuario']['rol'])) ?></h3>
                 </div>
             </div>
         </div>
+        <style>
+    .mb-3 input:focus {
+        outline: none; /* Elimina el borde azul predeterminado */
+        border: 2px solid #007832; /* Borde verde alrededor del input cuando se hace clic */
+        box-shadow: none; /* Elimina cualquier sombra alrededor del input */
+    }
+
+    .mb-3 .form-control {
+        border-radius: 0.25rem; /* Asegura que los bordes no se vean cuadrados */
+    }
+</style>
 
         <div class="col-xl-8">
             <div class="card">
@@ -97,7 +108,8 @@
                                         </div>
                                     </div>
                                 </div>
-
+                                                
+    
                                 <div class="mb-3">
                                     <label for="nombre" class="form-label">Nombres</label>
                                     <input name="nombre" type="text" class="form-control" id="nombre" value="<?= htmlspecialchars($_SESSION['usuario']['nombre'] ?? '') ?>" required>
@@ -167,6 +179,8 @@
         </div>
     </div>
 </section>
+
+
 
 <script src="assets/js/perfil.js"></script>
 
