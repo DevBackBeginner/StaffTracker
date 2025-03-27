@@ -52,8 +52,7 @@
             $ingresosPorHora = $this->reporteModelo->obtenerIngresosPorHora();
             // Obtener el total de usuarios desde el modelo
             $totalUsuarios = $this->reporteModelo->obtenerTotalUsuarios();
-
-         
+            
             
             // Validar el formato de los datos
             foreach ($ingresosPorHora as $registro) {

@@ -52,7 +52,7 @@ include_once __DIR__ . '/../dashboard/layouts/header_main.php';
 
                             <!-- Segunda fila: Número de Identidad, Teléfono -->
                             <div class="col-md-6">
-                                <label for="numero_identidad" class="form-label fw-bold" style="color: #007832;">Numero de Identificación</label>
+                                <label for="numero_identidad" class="form-label fw-bold" style="color: #007832;">Identificación</label>
                                 <div class="input-group">
                                     <span class="input-group-text"><i class="bi bi-card-text"></i></span>
                                     <input type="text" name="numero_identidad" class="form-control" id="numero_identidad" required>
