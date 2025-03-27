@@ -32,7 +32,7 @@
                             <div class="col-md-4">
                                 <label for="rol" class="form-label fw-bold" style="color: #007832;">Rol</label>
                                 <div class="input-group">
-                                    <span class="input-group-text"><i class="bi bi-shield-lock"></i></span> <!-- Icono agregado -->
+                                    <span class="input-group-text"><i class="bi bi-shield-lock"></i></span>
                                     <select name="rol" id="rol" class="form-select">
                                         <option value="">Todos los roles</option>
                                         <option value="Instructor" <?= $rol === 'Instructor' ? 'selected' : '' ?>>Instructores</option>
@@ -53,87 +53,84 @@
                 </div>
             </div>
         </div>
+
         <div class="row">
-    <!-- Mostrar mensajes de éxito o error -->
-    <?php if (isset($_SESSION['mensaje'])): ?>
-        <div class="alert <?php echo ($_SESSION['tipo_mensaje'] === 'success') ? 'alert-success' : 'alert-danger'; ?> text-center">
-            <?php echo $_SESSION['mensaje']; ?>
-        </div>
-        <?php unset($_SESSION['mensaje'], $_SESSION['tipo_mensaje']); ?>
-    <?php endif; ?>
-    
-    <div class="col-12">
-        <div class="card mb-3 shadow-lg">
-            <div class="card-header text-center text-white" style="background-color: green;">
-                <h5 class="mb-0">Lista de Usuarios</h5>
-            </div>
-            <div class="card-body p-4" style="background-color:rgb(255, 255, 255);"> <!-- Fondo verde -->
-                <table class="table table-striped table-hover text-center text-red">
-                    <thead class="bg-success">
-                
-                        <tr>
-                            <th>Nombres</th>
-                            <th>Apellidos</th>
-                            <th>Identificación</th>
-                            <th>Rol</th>
-                            <th>Teléfono</th>
-                            <th>Información Adicional</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php foreach ($usuario as $us): ?>
-                            <tr>
-                                <td><?= htmlspecialchars($us['nombre']) ?></td>
-                                <td><?= htmlspecialchars($us['apellidos']) ?></td>
-                                <td><?= htmlspecialchars($us['numero_identidad']) ?></td>
-                                <td><?= htmlspecialchars($us['rol']) ?></td>
-                                <td><?= htmlspecialchars($us['telefono']) ?></td>
-                                <td>
-                                    <?php
-                                    switch ($us['rol']) {
-                                        case 'Instructor':
-                                            echo "Curso: " . htmlspecialchars($us['curso']) . "<br>Ubicación: " . htmlspecialchars($us['ubicacion']);
-                                            break;
-                                        case 'Funcionario':
-                                            echo "Área: " . htmlspecialchars($us['area']) . "<br>Puesto: " . htmlspecialchars($us['puesto']);
-                                            break;
-                                        case 'Directivo':
-                                            echo "Cargo: " . htmlspecialchars($us['cargo']) . "<br>Departamento: " . htmlspecialchars($us['departamento']);
-                                            break;
-                                        case 'Apoyo':
-                                            echo "Área de Trabajo: " . htmlspecialchars($us['area_trabajo']);
-                                            break;
-                                        case 'Visitante':
-                                            echo "Asunto: " . htmlspecialchars($us['asunto']);
-                                            break;
-                                        default:
-                                            echo "Sin información adicional.";
-                                    }
-                                    ?>
-                                </td>
-                                <td>
-                                    <button type="button" class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#editarUsuarioModal" data-id="<?= $us['id'] ?>">
-                                        <i class="bi bi-pencil"></i> Editar
-                                    </button>
-                                    <form method="POST" action="EliminarUsuario" style="display: inline;">
-                                        <input type="hidden" name="id" value="<?= $us['id'] ?>">
-                                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de eliminar este usuario?');">
-                                            <i class="bi bi-trash"></i> Eliminar
-                                        </button>
-                                    </form>
-                                </td>
-                            </tr>
-                        <?php endforeach; ?>
-                    </tbody>
-                </table>
-            </div>
-            <div class="row">
-                <div class="col-12">
-                    <div class="card mb-3 shadow-sm">
-                        <div class="card-body p-4">
+            <?php if (isset($_SESSION['mensaje'])): ?>
+                <div class="alert <?= ($_SESSION['tipo_mensaje'] === 'success') ? 'alert-success' : 'alert-danger' ?> text-center mb-2">
+                    <?= $_SESSION['mensaje'] ?>
+                </div>
+                <?php unset($_SESSION['mensaje'], $_SESSION['tipo_mensaje']); ?>
+            <?php endif; ?>
+            
+            <div class="col-12">
+                <div class="card shadow-lg mb-2">
+                    <div class="card-header text-center text-white" style="background-color: green;">
+                        <h5 class="mb-0">Lista de Usuarios</h5>
+                    </div>
+                    <div class="card-body p-4" style="background-color:rgb(255, 255, 255);">
+                        <table class="table table-striped table-hover text-center text-red mb-2">
+                            <thead class="bg-success">
+                                <tr>
+                                    <th>Nombres</th>
+                                    <th>Apellidos</th>
+                                    <th>Identificación</th>
+                                    <th>Rol</th>
+                                    <th>Teléfono</th>
+                                    <th>Información Adicional</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($usuario as $us): ?>
+                                    <tr>
+                                        <td><?= htmlspecialchars($us['nombre']) ?></td>
+                                        <td><?= htmlspecialchars($us['apellidos']) ?></td>
+                                        <td><?= htmlspecialchars($us['numero_identidad']) ?></td>
+                                        <td><?= htmlspecialchars($us['rol']) ?></td>
+                                        <td><?= htmlspecialchars($us['telefono']) ?></td>
+                                        <td>
+                                            <?php
+                                            switch ($us['rol']) {
+                                                case 'Instructor':
+                                                    echo "Curso: " . htmlspecialchars($us['curso']) . "<br>Ubicación: " . htmlspecialchars($us['ubicacion']);
+                                                    break;
+                                                case 'Funcionario':
+                                                    echo "Área: " . htmlspecialchars($us['area']) . "<br>Puesto: " . htmlspecialchars($us['puesto']);
+                                                    break;
+                                                case 'Directivo':
+                                                    echo "Cargo: " . htmlspecialchars($us['cargo']) . "<br>Departamento: " . htmlspecialchars($us['departamento']);
+                                                    break;
+                                                case 'Apoyo':
+                                                    echo "Área de Trabajo: " . htmlspecialchars($us['area_trabajo']);
+                                                    break;
+                                                case 'Visitante':
+                                                    echo "Asunto: " . htmlspecialchars($us['asunto']);
+                                                    break;
+                                                default:
+                                                    echo "Sin información adicional.";
+                                            }
+                                            ?>
+                                        </td>
+                                        <td>
+                                            <button type="button" class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#editarUsuarioModal" data-id="<?= $us['id'] ?>">
+                                                <i class="bi bi-pencil"></i> Editar
+                                            </button>
+                                            <form method="POST" action="EliminarUsuario" style="display: inline;">
+                                                <input type="hidden" name="id" value="<?= $us['id'] ?>">
+                                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de eliminar este usuario?');">
+                                                    <i class="bi bi-trash"></i> Eliminar
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+
+                        <!-- Paginación integrada -->
+                        <div class="mt-2">
                             <nav aria-label="Paginación">
-                                <ul class="pagination justify-content-center">
+                                <ul class="pagination justify-content-center mb-0">
                                     <?php if ($pagina > 1): ?>
                                         <li class="page-item">
                                             <a class="page-link" 
@@ -177,17 +174,13 @@
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 </div>
 
 <!-- Modal para Editar Usuario -->
 <?php include_once 'modal-editar.php' ?>
 
-
 <!-- Script para manejar el modal -->
 <script src="assets/js/listado_usuarios.js"></script>
 
-<?php
-// Incluimos el footer que contiene la estructura HTML final
-include_once __DIR__ . '/../dashboard/layouts/footer_main.php';
-?>
+<?php include_once __DIR__ . '/../dashboard/layouts/footer_main.php'; ?>

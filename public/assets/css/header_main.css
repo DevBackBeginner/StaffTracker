@@ -111,7 +111,7 @@ h6 {
 .dropdown-menu .dropdown-header,
 .dropdown-menu .dropdown-footer {
   text-align: center;
-  font-size: 15px;
+  font-size: 14px;
   padding: 10px 25px;
 }
 
@@ -294,7 +294,7 @@ h6 {
 .accordion-flush .accordion-body {
   padding: 0 0 15px 0;
   color: #3e4f6f;
-  font-size: 15px;
+  font-size: 14px;
 }
 
 /* Breadcrumbs */
@@ -678,7 +678,7 @@ h6 {
 .sidebar-nav .nav-link {
   display: flex;
   align-items: center;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 600;
   color: #007832;
   transition: 0.3;
@@ -890,7 +890,7 @@ h6 {
 }
 
 .dashboard .news h4 {
-  font-size: 15px;
+  font-size: 14px;
   margin-left: 95px;
   font-weight: bold;
   margin-bottom: 5px;
@@ -1023,7 +1023,7 @@ h6 {
 
 .profile .profile-overview .row {
   margin-bottom: 20px;
-  font-size: 15px;
+  font-size: 14px;
 }
 
 .profile .profile-overview .card-title {

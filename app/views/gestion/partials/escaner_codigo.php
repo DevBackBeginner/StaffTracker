@@ -1,11 +1,14 @@
-
-    <!-- Encabezado de la sección -->
-    <div class="mb-4 border-bottom bg-success">
-        <h4 class="card-title text-white mb-0 text-center">
-            <i class="bi bi-table me-2"></i>Registros
-        </h4>
+<!-- Título con fondo verde al 100% -->
+<div class="container-fluid bg-success text-white p-2 mb-3">
+    <div class="row">
+        <div class="col-12 text-center">
+            <h4 class="mb-0">Sistema de Escaneo e Identificación</h4>
+        </div>
     </div>
-    
+</div>
+
+<!-- Pestañas -->
+<div class="container">
     <ul class="nav nav-tabs mb-3" id="myTab" role="tablist">
         <li class="nav-item" role="presentation">
             <button class="nav-link active" id="tab1-tab" data-bs-toggle="tab" data-bs-target="#tab1" type="button" role="tab" aria-controls="tab1" aria-selected="true">
@@ -25,7 +28,7 @@
         <div class="tab-pane fade show active" id="tab1" role="tabpanel" aria-labelledby="tab1-tab">
             <form id="form-escaneo" method="POST" onsubmit="event.preventDefault();">
                 <div class="mt-2">
-                    <label for="codigo" class="form-label fw-bold" style="color: #007832;">Identifación</label>
+                    <label for="codigo" class="form-label fw-bold" style="color: #007832;">Identificación</label>
                     <div class="input-group">
                         <span class="input-group-text"><i class="bi bi-upc-scan"></i></span>
                         <input type="text" id="codigo" name="codigo" placeholder="Escanea el código aquí" class="form-control" autofocus>
@@ -38,11 +41,13 @@
         <div class="tab-pane fade" id="tab2" role="tabpanel" aria-labelledby="tab2-tab">
             <form id="form-escaneo" method="POST" onsubmit="event.preventDefault();">
                 <div class="mt-2">
-                    <label for="codigo" class="form-label fw-bold" style="color: #007832;">Identifación</label>
+                    <label for="codigo" class="form-label fw-bold" style="color: #007832;">Identificación</label>
                     <div class="input-group">
                         <span class="input-group-text"><i class="bi bi-upc-scan"></i></span>
-                        <input type="text" id="codigo2" placeholder="Ingresa el número de identificación aquí" class="form-control">                                            </div>
+                        <input type="text" id="codigo2" placeholder="Ingresa el número de identificación aquí" class="form-control">
+                    </div>
                 </div>
             </form>
         </div>
     </div>
+</div>

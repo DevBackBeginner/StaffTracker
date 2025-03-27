@@ -234,7 +234,7 @@
                     </div>
                 </div>
 
-                                    <div class="carousel-item">
+                <div class="carousel-item">
                     <div class="d-flex justify-content-center align-items-center h-100 p-4" style="height: 300px;">
                         <div class="text-center">
                             <h3 class="text-success"><i class="fas fa-user"></i> Perfil</h3>
@@ -252,6 +252,7 @@
         <button class="carousel-control-next" type="button" data-bs-target="#carouselFooter" data-bs-slide="next" aria-label="Next">
             <span class="carousel-control-next-icon bg-success" aria-hidden="true"></span>
         </button>
+
     </div>
 </div> <!-- Fin del contenedor -->
 
