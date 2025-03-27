@@ -206,33 +206,33 @@
         {
             return <<<HTML
             <!DOCTYPE html>
-            <html lang="es">
-            <head>
-                <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-            </head>
-            <body style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-                <h2 style="color: #2c3e50;">Recuperación de Contraseña</h2>
-                <p>Haz clic en este botón para restablecer tu contraseña:</p>
-                
-                <div style="text-align: center; margin: 25px 0;">
-                    <a href="{$resetUrl}" 
-                    style="display: inline-block; background-color: #3498db; color: white; 
-                            padding: 12px 24px; text-decoration: none; border-radius: 5px; 
-                            font-weight: bold; margin: 10px 0;">
-                    Restablecer Contraseña
-                    </a>
-                </div>
-                
-                <p>O copia y pega esta URL en tu navegador:</p>
-                <div style="background: #f5f5f5; padding: 10px; border-radius: 5px; 
-                            word-break: break-all; font-family: monospace;">
-                    {$resetUrl}
-                </div>
-                
-                <p style="margin-top: 20px; font-size: 0.9em; color: #666;">
-                    Este enlace expirará en 1 hora. Si no solicitaste este cambio, ignora este mensaje.
-                </p>
-            </body>
+                <html lang="es">
+                <head>
+                    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+                </head>
+                <body style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+                    <h2 style="color: #2c3e50;">Recuperación de Contraseña</h2>
+                    <p>Haz clic en este botón para restablecer tu contraseña:</p>
+                    
+                    <div style="text-align: center; margin: 25px 0;">
+                        <a href="{$resetUrl}" 
+                        style="display: inline-block; background-color: #3498db; color: white; 
+                                padding: 12px 24px; text-decoration: none; border-radius: 5px; 
+                                font-weight: bold; margin: 10px 0;">
+                        Restablecer Contraseña
+                        </a>
+                    </div>
+                    
+                    <p>O copia y pega esta URL en tu navegador:</p>
+                    <div style="background: #f5f5f5; padding: 10px; border-radius: 5px; 
+                                word-break: break-all; font-family: monospace;">
+                        {$resetUrl}
+                    </div>
+                    
+                    <p style="margin-top: 20px; font-size: 0.9em; color: #666;">
+                        Este enlace expirará en 1 hora. Si no solicitaste este cambio, ignora este mensaje.
+                    </p>
+                </body>
             </html>
         HTML;
         }

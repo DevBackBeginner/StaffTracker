@@ -156,20 +156,20 @@
               <li class="nav-item">
                 <a class="nav-link collapsed" data-bs-toggle="collapse" href="#gestionUsuarios" role="button" aria-expanded="false" aria-controls="gestionUsuarios">
                   <i class="bi bi-people"></i>
-                  <span>Gestión de Usuarios</span>
+                  <span>Gestión de Personal</span>
                   <i class="bi bi-chevron-down ms-auto"></i>
                 </a>
                 <ul id="gestionUsuarios" class="nav-content collapse" data-bs-parent="#sidebar-nav">
                   <li>
                     <a href="formulario_registro_personal">
                       <i class="bi bi-plus-circle"></i>
-                      <span>Crear Usuario</span>
+                      <span>Crear Personal</span>
                     </a>
                   </li>
                   <li>
                     <a href="Listado_Usuarios">
                       <i class="bi bi-list-ul"></i>
-                      <span>Listado de Usuarios</span>
+                      <span>Listado de Personal</span>
                     </a>
                   </li>
                 </ul>

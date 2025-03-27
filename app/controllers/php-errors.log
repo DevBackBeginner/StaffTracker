@@ -10,3 +10,9 @@
 [27-Mar-2025 10:11:42 America/Bogota] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\StaffTracker\app\Views\gestion\dashboard\layouts\header_main.php on line 3
 [27-Mar-2025 10:11:42 America/Bogota] PHP Warning:  Undefined array key "usuario" in C:\xampp\htdocs\StaffTracker\app\Views\gestion\dashboard\layouts\header_main.php on line 3
 [27-Mar-2025 10:11:42 America/Bogota] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\StaffTracker\app\Views\gestion\dashboard\layouts\header_main.php on line 3
+[27-Mar-2025 20:06:06 Europe/Berlin] Información del rol 'Directivo' eliminada para el usuario 2.
+[27-Mar-2025 14:52:35 America/Bogota] PHP Warning:  Undefined array key "usuario" in C:\xampp\htdocs\StaffTracker\app\Views\gestion\dashboard\layouts\header_main.php on line 3
+[27-Mar-2025 14:52:35 America/Bogota] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\StaffTracker\app\Views\gestion\dashboard\layouts\header_main.php on line 3
+[27-Mar-2025 14:52:35 America/Bogota] PHP Warning:  Undefined array key "usuario" in C:\xampp\htdocs\StaffTracker\app\Views\gestion\dashboard\layouts\header_main.php on line 3
+[27-Mar-2025 14:52:35 America/Bogota] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\StaffTracker\app\Views\gestion\dashboard\layouts\header_main.php on line 3
+[27-Mar-2025 15:25:22 America/Bogota] Error en registrarEntrada: Ya se ha registrado la entrada a Nike Air Max 270sfas

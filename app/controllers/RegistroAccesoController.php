@@ -80,7 +80,7 @@
                 // Verificar si ya tiene un registro de entrada
                 $registro = $this->registroAcceso->obtenerAsistenciaDelDia($asignacion_id, date('Y-m-d'));
                 if ($registro && $registro['hora_entrada']) {
-                    throw new Exception('Este usuario ya ha registrado su entrada', 400);
+                    throw new Exception('Ya se ha registrado la entrada a ' . $usuario['nombre'], 400);
                 }
         
                 // Registrar nueva entrada

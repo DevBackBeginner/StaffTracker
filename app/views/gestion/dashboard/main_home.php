@@ -137,7 +137,7 @@
     </div>
 </section>
 
-<footer class="footer-white-cards py-4">
+<footer class="py-4" style="background-color: transparent;">
     <div class="container">
         <div id="whiteCardsCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="6000">
             <div class="carousel-inner">
@@ -146,9 +146,9 @@
                     <div class="carousel-item active">
                         <div class="row g-3">
                             <div class="col-md-4">
-                                <div class="card h-100 shadow-sm">
+                                <div class="card h-100 shadow-sm bg-white">
                                     <div class="card-body text-center">
-                                        <div class="icon-circle bg-primary mb-3">
+                                        <div class="icon-circle bg-success mb-3" style="background-color: #007832 !important; margin-top: 15px;">
                                             <i class="fas fa-home text-white"></i>
                                         </div>
                                         <h4 class="card-title">Inicio</h4>
@@ -157,9 +157,9 @@
                                 </div>
                             </div>
                             <div class="col-md-4">
-                                <div class="card h-100 shadow-sm">
+                                <div class="card h-100 shadow-sm bg-white">
                                     <div class="card-body text-center">
-                                        <div class="icon-circle bg-primary mb-3">
+                                        <div class="icon-circle bg-success mb-3" style="background-color: #007832 !important; margin-top: 15px;">
                                             <i class="fas fa-user-shield text-white"></i>
                                         </div>
                                         <h4 class="card-title">Guardas</h4>
@@ -168,9 +168,9 @@
                                 </div>
                             </div>
                             <div class="col-md-4">
-                                <div class="card h-100 shadow-sm">
+                                <div class="card h-100 shadow-sm bg-white">
                                     <div class="card-body text-center">
-                                        <div class="icon-circle bg-primary mb-3">
+                                        <div class="icon-circle bg-success mb-3" style="background-color: #007832 !important; margin-top: 15px;">
                                             <i class="fas fa-users text-white"></i>
                                         </div>
                                         <h4 class="card-title">Usuarios</h4>
@@ -185,9 +185,9 @@
                     <div class="carousel-item">
                         <div class="row g-3">
                             <div class="col-md-4">
-                                <div class="card h-100 shadow-sm">
+                                <div class="card h-100 shadow-sm bg-white">
                                     <div class="card-body text-center">
-                                        <div class="icon-circle bg-primary mb-3">
+                                        <div class="icon-circle bg-success mb-3" style="background-color: #007832 !important; margin-top: 15px;">
                                             <i class="fas fa-file-alt text-white"></i>
                                         </div>
                                         <h4 class="card-title">Reportes</h4>
@@ -196,9 +196,9 @@
                                 </div>
                             </div>
                             <div class="col-md-4">
-                                <div class="card h-100 shadow-sm">
+                                <div class="card h-100 shadow-sm bg-white">
                                     <div class="card-body text-center">
-                                        <div class="icon-circle bg-primary mb-3">
+                                        <div class="icon-circle bg-success mb-3" style="background-color: #007832 !important; margin-top: 15px;">
                                             <i class="fas fa-chart-bar text-white"></i>
                                         </div>
                                         <h4 class="card-title">Gráficos</h4>
@@ -207,9 +207,9 @@
                                 </div>
                             </div>
                             <div class="col-md-4">
-                                <div class="card h-100 shadow-sm">
+                                <div class="card h-100 shadow-sm bg-white">
                                     <div class="card-body text-center">
-                                        <div class="icon-circle bg-primary mb-3">
+                                        <div class="icon-circle bg-success mb-3" style="background-color: #007832 !important; margin-top: 15px;">
                                             <i class="fas fa-user text-white"></i>
                                         </div>
                                         <h4 class="card-title">Perfil</h4>
@@ -225,9 +225,9 @@
                     <div class="carousel-item active">
                         <div class="row g-3">
                             <div class="col-md-4">
-                                <div class="card h-100 shadow-sm">
+                                <div class="card h-100 shadow-sm bg-white">
                                     <div class="card-body text-center">
-                                        <div class="icon-circle bg-primary mb-3">
+                                        <div class="icon-circle bg-success mb-3" style="background-color: #007832 !important; margin-top: 15px;">
                                             <i class="fas fa-home text-white"></i>
                                         </div>
                                         <h4 class="card-title">Inicio</h4>
@@ -236,9 +236,9 @@
                                 </div>
                             </div>
                             <div class="col-md-4">
-                                <div class="card h-100 shadow-sm">
+                                <div class="card h-100 shadow-sm bg-white">
                                     <div class="card-body text-center">
-                                        <div class="icon-circle bg-primary mb-3">
+                                        <div class="icon-circle bg-success mb-3" style="background-color: #007832 !important; margin-top: 15px;">
                                             <i class="fas fa-user-plus text-white"></i>
                                         </div>
                                         <h4 class="card-title">Visitantes</h4>
@@ -247,9 +247,9 @@
                                 </div>
                             </div>
                             <div class="col-md-4">
-                                <div class="card h-100 shadow-sm">
+                                <div class="card h-100 shadow-sm bg-white">
                                     <div class="card-body text-center">
-                                        <div class="icon-circle bg-primary mb-3">
+                                        <div class="icon-circle bg-success mb-3" style="background-color: #007832 !important; margin-top: 15px;">
                                             <i class="fas fa-sign-in-alt text-white"></i>
                                         </div>
                                         <h4 class="card-title">Entradas</h4>
@@ -264,9 +264,9 @@
                     <div class="carousel-item">
                         <div class="row g-3">
                             <div class="col-md-4">
-                                <div class="card h-100 shadow-sm">
+                                <div class="card h-100 shadow-sm bg-white">
                                     <div class="card-body text-center">
-                                        <div class="icon-circle bg-primary mb-3">
+                                        <div class="icon-circle bg-success mb-3" style="background-color: #007832 !important; margin-top: 15px;">
                                             <i class="fas fa-sign-out-alt text-white"></i>
                                         </div>
                                         <h4 class="card-title">Salidas</h4>
@@ -275,9 +275,9 @@
                                 </div>
                             </div>
                             <div class="col-md-4">
-                                <div class="card h-100 shadow-sm">
+                                <div class="card h-100 shadow-sm bg-white">
                                     <div class="card-body text-center">
-                                        <div class="icon-circle bg-primary mb-3">
+                                        <div class="icon-circle bg-success mb-3" style="background-color: #007832 !important; margin-top: 15px;">
                                             <i class="fas fa-history text-white"></i>
                                         </div>
                                         <h4 class="card-title">Historial</h4>
@@ -286,9 +286,9 @@
                                 </div>
                             </div>
                             <div class="col-md-4">
-                                <div class="card h-100 shadow-sm">
+                                <div class="card h-100 shadow-sm bg-white">
                                     <div class="card-body text-center">
-                                        <div class="icon-circle bg-primary mb-3">
+                                        <div class="icon-circle bg-success mb-3" style="background-color: #007832 !important; margin-top: 15px;">
                                             <i class="fas fa-user text-white"></i>
                                         </div>
                                         <h4 class="card-title">Perfil</h4>
@@ -308,27 +308,17 @@
                             data-bs-target="#whiteCardsCarousel" 
                             data-bs-slide-to="0" 
                             class="active" 
-                            style="background-color: #00304D; width: 10px; height: 10px; border-radius: 50%; border: none; margin: 0 5px;"></button>
+                            style="background-color: #007832; width: 10px; height: 10px; border-radius: 50%; border: none; margin: 0 5px;"></button>
                     <button type="button" 
                             data-bs-target="#whiteCardsCarousel" 
                             data-bs-slide-to="1" 
-                            style="background-color: #00304D; width: 10px; height: 10px; border-radius: 50%; border: none; margin: 0 5px;"></button>
+                            style="background-color: #007832; width: 10px; height: 10px; border-radius: 50%; border: none; margin: 0 5px;"></button>
                 </div>
             </div>
         </div>
-
-        <!-- Información adicional -->
-        <div class="footer-info mt-4 pt-3 text-center border-top">
-            <p class="mb-1 text-dark">© <?= date('Y') ?> StaffTracker - Sistema de Control de Accesos</p>
-            <p class="mb-0 small text-muted">
-                <span class="badge bg-primary"><?= htmlspecialchars($_SESSION['usuario']['nombre']) ?></span>
-                <span class="badge bg-secondary ms-2"><?= htmlspecialchars($_SESSION['usuario']['rol']) ?></span>
-            </p>
-        </div>
     </div>
 </footer>
- 
-
+</main>
 <?php 
     // Incluye el archivo de pie de página principal
     include_once __DIR__ . '/layouts/footer_main.php'; 

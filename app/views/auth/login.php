@@ -16,6 +16,7 @@
         if (isset($_COOKIE['flash_error'])) {
             echo "<p class='error-message'>" . htmlspecialchars($_COOKIE['flash_error']) . "</p>";
         }
+        
         if (isset($_COOKIE['flash_success'])) {
             echo "<p class='success-message'>" . htmlspecialchars($_COOKIE['flash_success']) . "</p>";
         }
