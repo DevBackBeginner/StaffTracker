@@ -45,7 +45,6 @@
                         <?php endif; ?>
                         <!-- Escaner de carnets y/o documento de identidad -->
                         <?php include_once __DIR__ . "/../partials/escaner_codigo.php"  ;?>
-
                         </div>
                     </div>
                 </div>
@@ -67,6 +66,7 @@
 <!-- Modal -->
 <?php include_once 'modal_salida.php' ?>
 
+<script src="assets/js/registro_salida.js"></script>
 
 <?php
 // Incluimos el footer que contiene la estructura HTML final
