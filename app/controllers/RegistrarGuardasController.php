@@ -21,55 +21,65 @@ class RegistrarGuardasController {
         include_once __DIR__ . '/../Views/gestion/registro_guardas/registro_guardas.php';
     }
 
-    // Método para procesar el registro de un nuevo guarda
     public function registrarGuardas() {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') { // Verifica si la solicitud es de tipo POST
-    
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Capturar y sanitizar los datos del formulario
             $nombre = htmlspecialchars(trim($_POST['nombre']), ENT_QUOTES, 'UTF-8');
             $apellido = htmlspecialchars(trim($_POST['apellido']), ENT_QUOTES, 'UTF-8');
-            $telefono = trim($_POST['telefono']); // Capturar el teléfono
-            $numeroIdentidad = trim($_POST['numero_identidad']); // Capturar el número de identidad
+            $tipo_documento = htmlspecialchars(trim($_POST['tipo_documento']), ENT_QUOTES, 'UTF-8');
+            $telefono = trim($_POST['telefono']);
+            $numeroIdentidad = trim($_POST['numero_identidad']);
             $correo = filter_var(trim($_POST['correo']), FILTER_SANITIZE_EMAIL);
     
-            // Validar que los campos no estén vacíos
-            if (empty($nombre) || empty($apellido) || empty($numeroIdentidad) || empty($correo) || empty($telefono)) {
+            // Tipos de documento permitidos
+            $tiposDocumentoPermitidos = ['CC', 'CE', 'TI', 'PA', 'NIT', 'OTRO'];
+    
+            // Validar campos obligatorios
+            if (empty($nombre) || empty($apellido) || empty($tipo_documento) || 
+                empty($numeroIdentidad) || empty($correo) || empty($telefono)) {
                 $_SESSION['mensaje'] = "Todos los campos son obligatorios.";
                 $_SESSION['tipo_mensaje'] = 'error';
-                header('Location: registrar_guardas'); // Redirigir al formulario
+                header('Location: registrar_guardas');
                 exit();
             }
     
-            // Validar que el teléfono contenga solo números
+            // Validar tipo de documento
+            if (!in_array($tipo_documento, $tiposDocumentoPermitidos)) {
+                $_SESSION['mensaje'] = "Tipo de documento no válido.";
+                $_SESSION['tipo_mensaje'] = 'error';
+                header('Location: registrar_guardas');
+                exit();
+            }
+    
+            // Validar formato del teléfono
             if (!preg_match('/^[0-9]+$/', $telefono)) {
                 $_SESSION['mensaje'] = "El teléfono debe contener solo números.";
                 $_SESSION['tipo_mensaje'] = 'error';
-                header('Location: registrar_guardas'); // Redirigir al formulario
+                header('Location: registrar_guardas');
                 exit();
             }
     
-            // Validar que el número de documento contenga solo números
-            if (!preg_match('/^[0-9]+$/', $numeroIdentidad)) {
-                $_SESSION['mensaje'] = "El número de documento debe contener solo números.";
+            // Validar formato del número de documento según tipo
+            if (!preg_match('/^[0-9]+$/', $numeroIdentidad) && $tipo_documento !== 'OTRO') {
+                $_SESSION['mensaje'] = "El número de documento debe contener solo números para este tipo de documento.";
                 $_SESSION['tipo_mensaje'] = 'error';
-                header('Location: registrar_guardas'); // Redirigir al formulario
+                header('Location: registrar_guardas');
                 exit();
             }
     
             // La contraseña será el número de identidad
             $password = $numeroIdentidad;
-    
-            // Hashear la contraseña antes de guardarla en la base de datos
             $passwordHash = password_hash($password, PASSWORD_DEFAULT);
     
-            // Establecer la foto de perfil estándar
-            $fotoPerfil = 'assets/img/perfiles/default.webp'; // Ruta de la imagen estándar
+            // Foto de perfil estándar
+            $fotoPerfil = 'assets/img/perfiles/default.webp';
     
             // Insertar el nuevo guarda en la base de datos
             try {
                 $resultado = $this->guardasModel->registrarGuarda(
                     $nombre,
                     $apellido,
+                    $tipo_documento,
                     $telefono,
                     $numeroIdentidad,
                     $correo,
@@ -78,25 +88,22 @@ class RegistrarGuardasController {
                 );
     
                 if ($resultado) {
-                    $_SESSION['mensaje'] = "Guarda registrado con exito.";
+                    $_SESSION['mensaje'] = "Guarda registrado con éxito.";
                     $_SESSION['tipo_mensaje'] = 'success';
                 } else {
                     $_SESSION['mensaje'] = "Error al registrar el guarda.";
                     $_SESSION['tipo_mensaje'] = 'error';
                 }
             } catch (PDOException $e) {
-                // Capturar errores específicos de la base de datos
                 $errorCode = $e->getCode();
     
-                if ($errorCode === '23000') { // Código de error para violación de restricción única
+                if ($errorCode === '23000') {
                     $errorMessage = $e->getMessage();
     
                     if (strpos($errorMessage, 'numero_identidad') !== false) {
                         $_SESSION['mensaje'] = "El número de documento ya está registrado.";
                     } elseif (strpos($errorMessage, 'correo') !== false) {
                         $_SESSION['mensaje'] = "El correo electrónico ya está registrado.";
-                    } elseif (strpos($errorMessage, 'nombre') !== false) {
-                        $_SESSION['mensaje'] = "El nombre ya está registrado.";
                     } else {
                         $_SESSION['mensaje'] = "Error al registrar el guarda: " . $e->getMessage();
                     }
@@ -106,12 +113,10 @@ class RegistrarGuardasController {
     
                 $_SESSION['tipo_mensaje'] = 'error';
             } catch (Exception $e) {
-                // Capturar cualquier otro error
                 $_SESSION['mensaje'] = "Error: " . $e->getMessage();
                 $_SESSION['tipo_mensaje'] = 'error';
             }
     
-            // Redirigir al formulario después de procesar el registro
             header('Location: registrar_guardas');
             exit();
         }

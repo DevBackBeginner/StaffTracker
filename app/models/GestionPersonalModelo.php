@@ -13,77 +13,68 @@
             $this->db = $conn->getConnection();
         }
 
-        public function registrarUsuario($nombre, $apellido, $telefono, $numero_identidad, $rol, $datosAdicionales)
+        public function registrarUsuario($nombre, $apellido, $tipo_documento, $numero_identidad, $telefono, $rol, $datosLaborales)
         {
             try {
+                // Validar campos obligatorios
+                if (empty($nombre) || empty($apellido) || empty($tipo_documento) || empty($numero_identidad) || empty($rol)) {
+                    throw new Exception("Datos básicos del usuario incompletos");
+                }
 
-                // Iniciar una transacción
+                if (!isset($datosLaborales['cargo'])) {
+                    throw new Exception("El campo 'cargo' es obligatorio");
+                }
+
+                // Validar tipo de documento
+                $tiposPermitidos = ['CC', 'CE', 'TI', 'PA', 'NIT', 'OTRO'];
+                if (!in_array($tipo_documento, $tiposPermitidos)) {
+                    throw new Exception("Tipo de documento no válido");
+                }
+
+                // Iniciar transacción
                 $this->db->beginTransaction();
 
-                // Insertar en la tabla de usuarios (tabla común)
-                $sqlUsuario = "INSERT INTO usuarios (nombre, apellidos, telefono, numero_identidad, rol) 
-                            VALUES (:nombre, :apellido, :telefono, :numero_identidad, :rol)";
+                // 1. Insertar en tabla usuarios (con tipo_documento)
+                $sqlUsuario = "INSERT INTO usuarios 
+                            (nombre, apellidos, tipo_documento, numero_identidad, telefono, rol) 
+                            VALUES 
+                            (:nombre, :apellido, :tipo_documento, :numero_identidad, :telefono, :rol)";
+                
                 $stmtUsuario = $this->db->prepare($sqlUsuario);
                 $stmtUsuario->execute([
                     ':nombre' => $nombre,
                     ':apellido' => $apellido,
-                    ':telefono' => $telefono,
+                    ':tipo_documento' => $tipo_documento,
                     ':numero_identidad' => $numero_identidad,
+                    ':telefono' => $telefono,
                     ':rol' => $rol
                 ]);
 
-                // Obtener el ID del usuario recién insertado
                 $usuario_id = $this->db->lastInsertId();
 
-                // Insertar en la tabla correspondiente según el rol
-                switch ($rol) {
-                    case 'Funcionario':
-                        $tabla = 'funcionarios';
-                        $campos = ['area' => $datosAdicionales['area'], 'puesto' => $datosAdicionales['puesto']];
-                        break;
-                    case 'Instructor':
-                        $tabla = 'instructores';
-                        $campos = ['curso' => $datosAdicionales['curso'], 'ubicacion' => $datosAdicionales['ubicacion']];
-                        break;
-                    case 'Directiva':
-                        $tabla = 'directivos';
-                        $campos = ['cargo' => $datosAdicionales['cargo'], 'departamento' => $datosAdicionales['departamento']];
-                        break;
-                    case 'Apoyo':
-                        $tabla = 'apoyo';
-                        $campos = ['area_trabajo' => $datosAdicionales['area_trabajo']];
-                        break;
-                    default:
-                        throw new Exception("Rol no válido: $rol");
-                }
+                // 2. Insertar en informacion_laboral
+                $sqlLaboral = "INSERT INTO informacion_laboral 
+                            (usuario_id, cargo, tipo_contrato) 
+                            VALUES 
+                            (:usuario_id, :cargo, :tipo_contrato)";
+                
+                $stmtLaboral = $this->db->prepare($sqlLaboral);
+                $stmtLaboral->execute([
+                    ':usuario_id' => $usuario_id,
+                    ':cargo' => $datosLaborales['cargo'],
+                    ':tipo_contrato' => $datosLaborales['tipo_contrato'] ?? null
+                ]);
 
-                // Construir la consulta SQL dinámicamente
-                $columnas = implode(', ', array_keys($campos));
-                $placeholders = ':' . implode(', :', array_keys($campos));
-
-                $sql = "INSERT INTO $tabla (usuario_id, $columnas) VALUES (:usuario_id, $placeholders)";
-                $stmt = $this->db->prepare($sql);
-
-                // Asignar los valores a los parámetros
-                $params = [':usuario_id' => $usuario_id];
-                foreach ($campos as $campo => $valor) {
-                    $params[":$campo"] = $valor;
-                }
-
-                // Ejecutar la consulta
-                $stmt->execute($params);
-
-                // Confirmar la transacción
+                // Confirmar transacción
                 $this->db->commit();
 
-                // Devolver el ID del usuario registrado
                 return $usuario_id;
+
             } catch (Exception $e) {
-                // Revertir la transacción en caso de error
+                // Revertir en caso de error
                 if ($this->db->inTransaction()) {
                     $this->db->rollBack();
                 }
-                // Registrar el error
                 error_log("Error al registrar usuario: " . $e->getMessage());
                 return false;
             }
@@ -94,19 +85,13 @@
             // Calcular el offset
             $offset = ($pagina - 1) * $limite;
 
-            // Construir la consulta SQL con JOIN
-            $sql = "SELECT u.id, u.nombre, u.apellidos, u.telefono, u.numero_identidad, u.rol, 
-                        i.curso, i.ubicacion, 
-                        f.area, f.puesto, 
-                        d.cargo, d.departamento, 
-                        a.area_trabajo, 
-                        v.asunto
+            // Construir la consulta SQL simplificada
+            $sql = "SELECT 
+                        u.*,
+                        il.cargo,
+                        il.tipo_contrato
                     FROM usuarios u
-                    LEFT JOIN instructores i ON u.id = i.usuario_id AND u.rol = 'Instructor'
-                    LEFT JOIN funcionarios f ON u.id = f.usuario_id AND u.rol = 'Funcionario'
-                    LEFT JOIN directivos d ON u.id = d.usuario_id AND u.rol = 'Directivo'
-                    LEFT JOIN apoyo a ON u.id = a.usuario_id AND u.rol = 'Apoyo'
-                    LEFT JOIN visitantes v ON u.id = v.usuario_id AND u.rol = 'Visitante'
+                    LEFT JOIN informacion_laboral il ON u.id = il.usuario_id
                     WHERE 1=1";
 
             // Aplicar filtros
@@ -114,10 +99,16 @@
                 $sql .= " AND u.rol = :rol";
             }
             if (!empty($filtros['nombre'])) {
-                $sql .= " AND u.nombre LIKE :nombre";
+                $sql .= " AND (u.nombre LIKE :nombre OR u.apellidos LIKE :nombre)";
             }
             if (!empty($filtros['documento'])) {
                 $sql .= " AND u.numero_identidad LIKE :documento";
+            }
+            if (!empty($filtros['cargo'])) {
+                $sql .= " AND il.cargo LIKE :cargo";
+            }
+            if (!empty($filtros['tipo_contrato'])) {
+                $sql .= " AND il.tipo_contrato = :tipo_contrato";
             }
 
             // Aplicar ordenamiento
@@ -139,6 +130,13 @@
             if (!empty($filtros['documento'])) {
                 $stmt->bindValue(':documento', "%{$filtros['documento']}%", PDO::PARAM_STR);
             }
+            if (!empty($filtros['cargo'])) {
+                $stmt->bindValue(':cargo', "%{$filtros['cargo']}%", PDO::PARAM_STR);
+            }
+            if (!empty($filtros['tipo_contrato'])) {
+                $stmt->bindValue(':tipo_contrato', $filtros['tipo_contrato'], PDO::PARAM_STR);
+            }
+            
             $stmt->bindValue(':limite', $limite, PDO::PARAM_INT);
             $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
 
@@ -180,112 +178,83 @@
             return $stmt->fetch(PDO::FETCH_ASSOC)['total'];
         }
 
-        public function actualizarUsuario($id, $nombre, $apellido, $documento, $rol, $telefono, $infoAdicional)
+        public function actualizarUsuario($id, $nombre, $apellido, $documento, $rol, $telefono, $datosLaborales)
         {
             try {
-                // Iniciar una transacción
+                // Validar campos obligatorios
+                if (empty($id) || empty($nombre) || empty($apellido) || empty($documento) || empty($rol)) {
+                    throw new Exception("Datos básicos del usuario incompletos");
+                }
+
+                if (!isset($datosLaborales['cargo'])) {
+                    throw new Exception("El campo 'cargo' es obligatorio");
+                }
+
+                // Iniciar transacción
                 $this->db->beginTransaction();
 
-                // Validar que el ID y la información adicional no estén vacíos
-                if (empty($id) || empty($infoAdicional)) {
-                    throw new Exception("El ID o la información adicional están vacíos.");
-                }
+                // 1. Actualizar datos básicos en tabla usuarios
+                $sqlUsuario = "UPDATE usuarios SET 
+                            nombre = :nombre, 
+                            apellidos = :apellido, 
+                            numero_identidad = :documento, 
+                            rol = :rol, 
+                            telefono = :telefono 
+                            WHERE id = :id";
+                
+                $stmtUsuario = $this->db->prepare($sqlUsuario);
+                $stmtUsuario->execute([
+                    ':nombre' => $nombre,
+                    ':apellido' => $apellido,
+                    ':documento' => $documento,
+                    ':rol' => $rol,
+                    ':telefono' => $telefono,
+                    ':id' => $id
+                ]);
 
-                // Obtener el rol actual del usuario
-                $query = "SELECT rol FROM usuarios WHERE id = ?";
-                $stmt = $this->db->prepare($query);
-                $stmt->execute([$id]);
-                $rolActual = $stmt->fetchColumn();
+                // 2. Actualizar o insertar en informacion_laboral
+                $sqlCheck = "SELECT COUNT(*) FROM informacion_laboral WHERE usuario_id = :id";
+                $stmtCheck = $this->db->prepare($sqlCheck);
+                $stmtCheck->execute([':id' => $id]);
+                $existeRegistro = $stmtCheck->fetchColumn() > 0;
 
-                if ($rolActual === false) {
-                    throw new Exception("No se encontró el usuario con ID $id.");
-                }
-
-                // Si el rol ha cambiado, eliminar la información del rol anterior
-                if ($rolActual !== $rol) {
-                    $this->eliminarInformacionRol($id, $rolActual);
-                }
-
-                // Actualizar los datos comunes en la tabla de usuarios
-                $queryUpdate = "UPDATE usuarios SET nombre = ?, apellidos = ?, numero_identidad = ?, rol = ?, telefono = ? WHERE id = ?";
-                $stmtUpdate = $this->db->prepare($queryUpdate);
-                $stmtUpdate->execute([$nombre, $apellido, $documento, $rol, $telefono, $id]);
-
-                // Insertar o actualizar la información adicional del nuevo rol
-                $configuracionRoles = [
-                    'Instructor'  => ['tabla' => 'instructores',  'campos' => ['curso', 'ubicacion']],
-                    'Funcionario' => ['tabla' => 'funcionarios', 'campos' => ['area', 'puesto']],
-                    'Directivo'   => ['tabla' => 'directivos',   'campos' => ['cargo', 'departamento']],
-                    'Apoyo'       => ['tabla' => 'apoyo',       'campos' => ['area_trabajo']],
-                    'Visitante'   => ['tabla' => 'visitantes',   'campos' => ['asunto']],
-                ];
-
-                // Verificar si el rol es válido
-                if (!isset($configuracionRoles[$rol])) {
-                    throw new Exception("Rol no válido: $rol");
-                }
-
-                // Obtener la tabla y los campos según el rol
-                $tabla = $configuracionRoles[$rol]['tabla'];
-                $campos = $configuracionRoles[$rol]['campos'];
-
-                // Verificar si ya existe un registro para este usuario_id
-                $queryCheck = "SELECT COUNT(*) FROM $tabla WHERE usuario_id = ?";
-                $stmtCheck = $this->db->prepare($queryCheck);
-                $stmtCheck->execute([$id]);
-                $existe = $stmtCheck->fetchColumn() > 0;
-
-                // Construir la consulta SQL (UPDATE o INSERT)
-                if ($existe) {
-                    $camposUpdate = implode(' = ?, ', $campos) . ' = ?';
-                    $query = "UPDATE $tabla SET $camposUpdate WHERE usuario_id = ?";
+                if ($existeRegistro) {
+                    // Actualizar registro existente
+                    $sqlLaboral = "UPDATE informacion_laboral SET 
+                                cargo = :cargo, 
+                                tipo_contrato = :tipo_contrato 
+                                WHERE usuario_id = :usuario_id";
                 } else {
-                    $camposInsert = implode(', ', $campos);
-                    $placeholders = implode(', ', array_fill(0, count($campos), '?'));
-                    $query = "INSERT INTO $tabla (usuario_id, $camposInsert) VALUES (?, $placeholders)";
+                    // Insertar nuevo registro
+                    $sqlLaboral = "INSERT INTO informacion_laboral 
+                                (usuario_id, cargo, tipo_contrato) 
+                                VALUES 
+                                (:usuario_id, :cargo, :tipo_contrato)";
                 }
 
-                // Preparar y ejecutar la consulta
-                $stmt = $this->db->prepare($query);
+                $stmtLaboral = $this->db->prepare($sqlLaboral);
+                $stmtLaboral->execute([
+                    ':usuario_id' => $id,
+                    ':cargo' => $datosLaborales['cargo'],
+                    ':tipo_contrato' => $datosLaborales['tipo_contrato'] ?? null
+                ]);
 
-                // Construir los valores para la consulta
-                $valores = [];
-                foreach ($campos as $campo) {
-                    if (!isset($infoAdicional[$campo])) {
-                        throw new Exception("El campo '$campo' no está presente en la información adicional.");
-                    }
-                    $valores[] = $infoAdicional[$campo];
-                }
-
-                // Ordenar los valores según el tipo de consulta (UPDATE o INSERT)
-                if ($existe) {
-                    $valores[] = $id; // Para UPDATE: valores + usuario_id
-                } else {
-                    array_unshift($valores, $id); // Para INSERT: usuario_id + valores
-                }
-
-                // Ejecutar la consulta
-                $stmt->execute($valores);
-
-                // Confirmar la transacción
+                // Confirmar transacción
                 $this->db->commit();
 
-                return true; // Indicar que la operación fue exitosa
+                return true;
+
             } catch (Exception $e) {
-                // Revertir la transacción en caso de error
+                // Revertir en caso de error
                 if ($this->db->inTransaction()) {
                     $this->db->rollBack();
                 }
-
-                // Registrar el error
                 error_log("Error en actualizarUsuario: " . $e->getMessage());
-
-                // Retornar false para indicar que la operación falló
                 return false;
             }
         }
 
-       /**
+        /**
          * Elimina un usuario de la base de datos.
          *
          * @param int $id El ID del usuario a eliminar.
@@ -311,33 +280,6 @@
                 error_log("Error al eliminar usuario: " . $e->getMessage());
                 return false;
             }
-        }
-        // Eliminar la información del rol anterior
-        private function eliminarInformacionRol($id, $rol)
-        {
-            switch ($rol) {
-                case 'Instructor':
-                    $query = "DELETE FROM instructores WHERE usuario_id = ?";
-                    break;
-                case 'Funcionario':
-                    $query = "DELETE FROM funcionarios WHERE usuario_id = ?";
-                    break;
-                case 'Directivo':
-                    $query = "DELETE FROM directivos WHERE usuario_id = ?";
-                    break;
-                case 'Apoyo':
-                    $query = "DELETE FROM apoyo WHERE usuario_id = ?";
-                    break;
-                case 'Visitante':
-                    $query = "DELETE FROM visitantes WHERE usuario_id = ?";
-                    break;
-                default:
-                    throw new Exception("Rol no válido: $rol");
-            }
-        
-            $stmt = $this->db->prepare($query);
-            $stmt->execute([$id]);
-            error_log("Información del rol '$rol' eliminada para el usuario $id.");
         }
     }
 ?>

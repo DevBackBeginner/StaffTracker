@@ -16,3 +16,174 @@
 [27-Mar-2025 14:52:35 America/Bogota] PHP Warning:  Undefined array key "usuario" in C:\xampp\htdocs\StaffTracker\app\Views\gestion\dashboard\layouts\header_main.php on line 3
 [27-Mar-2025 14:52:35 America/Bogota] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\StaffTracker\app\Views\gestion\dashboard\layouts\header_main.php on line 3
 [27-Mar-2025 15:25:22 America/Bogota] Error en registrarEntrada: Ya se ha registrado la entrada a Nike Air Max 270sfas
+[27-Mar-2025 15:42:18 America/Bogota] Error en registrarEntrada: Usuario no encontrado
+[27-Mar-2025 15:42:18 America/Bogota] Error en registrarEntrada: Usuario no encontrado
+[27-Mar-2025 15:43:12 America/Bogota] Error en registrarEntrada: Usuario no encontrado
+[27-Mar-2025 15:44:05 America/Bogota] Error en registrarEntrada: Usuario no encontrado
+[27-Mar-2025 15:44:05 America/Bogota] Error en registrarEntrada: Código no proporcionado
+[27-Mar-2025 15:44:24 America/Bogota] Error en registrarEntrada: Usuario no encontrado
+[27-Mar-2025 15:54:25 America/Bogota] Error en registrarEntrada: Usuario no encontrado
+[27-Mar-2025 17:22:24 America/Bogota] Error en registrarEntrada: Ya se ha registrado la entrada a dubler
+[27-Mar-2025 17:22:44 America/Bogota] Error en registrarEntrada: Ya se ha registrado la entrada a Nike Air Max 270sfas
+[28-Mar-2025 10:38:02 America/Bogota] Error en registrarEntrada: Ya se ha registrado la entrada a wdasdsx
+[28-Mar-2025 10:38:06 America/Bogota] Error en registrarEntrada: Ya se ha registrado la entrada a wdasdsx
+[28-Mar-2025 16:41:06 Europe/Berlin] PHP Warning:  Undefined array key "area" in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 107
+[28-Mar-2025 16:41:06 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 107
+[28-Mar-2025 16:41:06 Europe/Berlin] PHP Warning:  Undefined array key "puesto" in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 107
+[28-Mar-2025 16:41:06 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 107
+[28-Mar-2025 16:41:06 Europe/Berlin] PHP Warning:  Undefined array key "area_trabajo" in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 113
+[28-Mar-2025 16:41:06 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 113
+[28-Mar-2025 16:41:06 Europe/Berlin] PHP Warning:  Undefined array key "curso" in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 104
+[28-Mar-2025 16:41:06 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 104
+[28-Mar-2025 16:41:06 Europe/Berlin] PHP Warning:  Undefined array key "ubicacion" in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 104
+[28-Mar-2025 16:41:06 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 104
+[28-Mar-2025 16:41:06 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 110
+[28-Mar-2025 16:41:06 Europe/Berlin] PHP Warning:  Undefined array key "departamento" in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 110
+[28-Mar-2025 16:41:06 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 110
+[28-Mar-2025 16:41:06 Europe/Berlin] PHP Warning:  Undefined array key "curso" in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 104
+[28-Mar-2025 16:41:06 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 104
+[28-Mar-2025 16:41:06 Europe/Berlin] PHP Warning:  Undefined array key "ubicacion" in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 104
+[28-Mar-2025 16:41:06 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 104
+[28-Mar-2025 16:41:06 Europe/Berlin] PHP Warning:  Undefined array key "asunto" in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 116
+[28-Mar-2025 16:41:06 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 116
+[28-Mar-2025 16:41:06 Europe/Berlin] PHP Warning:  Undefined array key "area_trabajo" in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 113
+[28-Mar-2025 16:41:06 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 113
+[28-Mar-2025 16:41:06 Europe/Berlin] PHP Warning:  Undefined array key "curso" in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 104
+[28-Mar-2025 16:41:06 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 104
+[28-Mar-2025 16:41:06 Europe/Berlin] PHP Warning:  Undefined array key "ubicacion" in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 104
+[28-Mar-2025 16:41:06 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 104
+[28-Mar-2025 16:41:06 Europe/Berlin] PHP Warning:  Undefined array key "curso" in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 104
+[28-Mar-2025 16:41:06 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 104
+[28-Mar-2025 16:41:06 Europe/Berlin] PHP Warning:  Undefined array key "ubicacion" in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 104
+[28-Mar-2025 16:41:06 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 104
+[28-Mar-2025 16:41:12 Europe/Berlin] PHP Warning:  Undefined array key "area" in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 107
+[28-Mar-2025 16:41:12 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 107
+[28-Mar-2025 16:41:12 Europe/Berlin] PHP Warning:  Undefined array key "puesto" in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 107
+[28-Mar-2025 16:41:12 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 107
+[28-Mar-2025 16:41:12 Europe/Berlin] PHP Warning:  Undefined array key "area_trabajo" in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 113
+[28-Mar-2025 16:41:12 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 113
+[28-Mar-2025 16:41:12 Europe/Berlin] PHP Warning:  Undefined array key "curso" in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 104
+[28-Mar-2025 16:41:12 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 104
+[28-Mar-2025 16:41:12 Europe/Berlin] PHP Warning:  Undefined array key "ubicacion" in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 104
+[28-Mar-2025 16:41:12 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 104
+[28-Mar-2025 16:41:12 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 110
+[28-Mar-2025 16:41:12 Europe/Berlin] PHP Warning:  Undefined array key "departamento" in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 110
+[28-Mar-2025 16:41:12 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 110
+[28-Mar-2025 16:41:12 Europe/Berlin] PHP Warning:  Undefined array key "curso" in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 104
+[28-Mar-2025 16:41:12 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 104
+[28-Mar-2025 16:41:12 Europe/Berlin] PHP Warning:  Undefined array key "ubicacion" in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 104
+[28-Mar-2025 16:41:12 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 104
+[28-Mar-2025 16:41:12 Europe/Berlin] PHP Warning:  Undefined array key "asunto" in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 116
+[28-Mar-2025 16:41:12 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 116
+[28-Mar-2025 16:41:12 Europe/Berlin] PHP Warning:  Undefined array key "area_trabajo" in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 113
+[28-Mar-2025 16:41:12 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 113
+[28-Mar-2025 16:41:12 Europe/Berlin] PHP Warning:  Undefined array key "curso" in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 104
+[28-Mar-2025 16:41:12 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 104
+[28-Mar-2025 16:41:12 Europe/Berlin] PHP Warning:  Undefined array key "ubicacion" in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 104
+[28-Mar-2025 16:41:12 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 104
+[28-Mar-2025 16:41:12 Europe/Berlin] PHP Warning:  Undefined array key "curso" in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 104
+[28-Mar-2025 16:41:12 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 104
+[28-Mar-2025 16:41:12 Europe/Berlin] PHP Warning:  Undefined array key "ubicacion" in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 104
+[28-Mar-2025 16:41:12 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 104
+[28-Mar-2025 17:26:19 Europe/Berlin] PHP Warning:  Undefined array key "usuario" in C:\xampp\htdocs\StaffTracker\app\Views\gestion\dashboard\layouts\header_main.php on line 3
+[28-Mar-2025 17:26:19 Europe/Berlin] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\StaffTracker\app\Views\gestion\dashboard\layouts\header_main.php on line 3
+[28-Mar-2025 17:26:19 Europe/Berlin] PHP Warning:  Undefined array key "usuario" in C:\xampp\htdocs\StaffTracker\app\Views\gestion\dashboard\layouts\header_main.php on line 3
+[28-Mar-2025 17:26:19 Europe/Berlin] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\StaffTracker\app\Views\gestion\dashboard\layouts\header_main.php on line 3
+[28-Mar-2025 17:28:02 Europe/Berlin] PHP Warning:  Undefined array key "usuario" in C:\xampp\htdocs\StaffTracker\app\Views\gestion\dashboard\layouts\header_main.php on line 3
+[28-Mar-2025 17:28:02 Europe/Berlin] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\StaffTracker\app\Views\gestion\dashboard\layouts\header_main.php on line 3
+[28-Mar-2025 17:28:02 Europe/Berlin] PHP Warning:  Undefined array key "usuario" in C:\xampp\htdocs\StaffTracker\app\Views\gestion\dashboard\layouts\header_main.php on line 3
+[28-Mar-2025 17:28:02 Europe/Berlin] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\StaffTracker\app\Views\gestion\dashboard\layouts\header_main.php on line 3
+[28-Mar-2025 17:28:12 Europe/Berlin] PHP Warning:  Undefined array key "area" in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 107
+[28-Mar-2025 17:28:12 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 107
+[28-Mar-2025 17:28:12 Europe/Berlin] PHP Warning:  Undefined array key "puesto" in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 107
+[28-Mar-2025 17:28:12 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 107
+[28-Mar-2025 17:28:12 Europe/Berlin] PHP Warning:  Undefined array key "area_trabajo" in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 113
+[28-Mar-2025 17:28:12 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 113
+[28-Mar-2025 17:28:12 Europe/Berlin] PHP Warning:  Undefined array key "curso" in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 104
+[28-Mar-2025 17:28:12 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 104
+[28-Mar-2025 17:28:12 Europe/Berlin] PHP Warning:  Undefined array key "ubicacion" in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 104
+[28-Mar-2025 17:28:12 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 104
+[28-Mar-2025 17:28:12 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 110
+[28-Mar-2025 17:28:12 Europe/Berlin] PHP Warning:  Undefined array key "departamento" in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 110
+[28-Mar-2025 17:28:12 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 110
+[28-Mar-2025 17:28:12 Europe/Berlin] PHP Warning:  Undefined array key "curso" in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 104
+[28-Mar-2025 17:28:12 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 104
+[28-Mar-2025 17:28:12 Europe/Berlin] PHP Warning:  Undefined array key "ubicacion" in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 104
+[28-Mar-2025 17:28:12 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 104
+[28-Mar-2025 17:28:12 Europe/Berlin] PHP Warning:  Undefined array key "asunto" in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 116
+[28-Mar-2025 17:28:12 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 116
+[28-Mar-2025 17:28:12 Europe/Berlin] PHP Warning:  Undefined array key "area_trabajo" in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 113
+[28-Mar-2025 17:28:12 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 113
+[28-Mar-2025 17:28:12 Europe/Berlin] PHP Warning:  Undefined array key "curso" in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 104
+[28-Mar-2025 17:28:12 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 104
+[28-Mar-2025 17:28:12 Europe/Berlin] PHP Warning:  Undefined array key "ubicacion" in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 104
+[28-Mar-2025 17:28:12 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 104
+[28-Mar-2025 17:28:12 Europe/Berlin] PHP Warning:  Undefined array key "curso" in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 104
+[28-Mar-2025 17:28:12 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 104
+[28-Mar-2025 17:28:12 Europe/Berlin] PHP Warning:  Undefined array key "ubicacion" in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 104
+[28-Mar-2025 17:28:12 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 104
+[28-Mar-2025 17:45:22 Europe/Berlin] PHP Warning:  Undefined array key "area" in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 107
+[28-Mar-2025 17:45:22 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 107
+[28-Mar-2025 17:45:22 Europe/Berlin] PHP Warning:  Undefined array key "puesto" in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 107
+[28-Mar-2025 17:45:22 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 107
+[28-Mar-2025 17:45:22 Europe/Berlin] PHP Warning:  Undefined array key "area_trabajo" in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 113
+[28-Mar-2025 17:45:22 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 113
+[28-Mar-2025 17:45:22 Europe/Berlin] PHP Warning:  Undefined array key "curso" in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 104
+[28-Mar-2025 17:45:22 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 104
+[28-Mar-2025 17:45:22 Europe/Berlin] PHP Warning:  Undefined array key "ubicacion" in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 104
+[28-Mar-2025 17:45:22 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 104
+[28-Mar-2025 17:45:22 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 110
+[28-Mar-2025 17:45:22 Europe/Berlin] PHP Warning:  Undefined array key "departamento" in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 110
+[28-Mar-2025 17:45:22 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 110
+[28-Mar-2025 17:45:22 Europe/Berlin] PHP Warning:  Undefined array key "curso" in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 104
+[28-Mar-2025 17:45:22 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 104
+[28-Mar-2025 17:45:22 Europe/Berlin] PHP Warning:  Undefined array key "ubicacion" in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 104
+[28-Mar-2025 17:45:22 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 104
+[28-Mar-2025 17:45:22 Europe/Berlin] PHP Warning:  Undefined array key "asunto" in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 116
+[28-Mar-2025 17:45:22 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 116
+[28-Mar-2025 17:45:22 Europe/Berlin] PHP Warning:  Undefined array key "area_trabajo" in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 113
+[28-Mar-2025 17:45:22 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 113
+[28-Mar-2025 17:45:22 Europe/Berlin] PHP Warning:  Undefined array key "curso" in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 104
+[28-Mar-2025 17:45:22 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 104
+[28-Mar-2025 17:45:22 Europe/Berlin] PHP Warning:  Undefined array key "ubicacion" in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 104
+[28-Mar-2025 17:45:22 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 104
+[28-Mar-2025 17:45:22 Europe/Berlin] PHP Warning:  Undefined array key "curso" in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 104
+[28-Mar-2025 17:45:22 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 104
+[28-Mar-2025 17:45:22 Europe/Berlin] PHP Warning:  Undefined array key "ubicacion" in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 104
+[28-Mar-2025 17:45:22 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 104
+[28-Mar-2025 18:07:18 Europe/Berlin] PHP Warning:  Undefined array key "tipo_documento" in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 97
+[28-Mar-2025 18:07:18 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 97
+[28-Mar-2025 18:07:18 Europe/Berlin] PHP Warning:  Undefined array key "tipo_documento" in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 97
+[28-Mar-2025 18:07:18 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 97
+[28-Mar-2025 18:07:18 Europe/Berlin] PHP Warning:  Undefined array key "tipo_documento" in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 97
+[28-Mar-2025 18:07:18 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 97
+[28-Mar-2025 18:07:18 Europe/Berlin] PHP Warning:  Undefined array key "tipo_documento" in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 97
+[28-Mar-2025 18:07:18 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 97
+[28-Mar-2025 18:07:18 Europe/Berlin] PHP Warning:  Undefined array key "tipo_documento" in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 97
+[28-Mar-2025 18:07:18 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 97
+[28-Mar-2025 18:07:18 Europe/Berlin] PHP Warning:  Undefined array key "tipo_documento" in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 97
+[28-Mar-2025 18:07:18 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 97
+[28-Mar-2025 18:07:18 Europe/Berlin] PHP Warning:  Undefined array key "tipo_documento" in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 97
+[28-Mar-2025 18:07:18 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 97
+[28-Mar-2025 18:07:18 Europe/Berlin] PHP Warning:  Undefined array key "tipo_documento" in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 97
+[28-Mar-2025 18:07:18 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 97
+[28-Mar-2025 18:07:18 Europe/Berlin] PHP Warning:  Undefined array key "tipo_documento" in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 97
+[28-Mar-2025 18:07:18 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 97
+[28-Mar-2025 18:07:18 Europe/Berlin] PHP Warning:  Undefined array key "tipo_documento" in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 97
+[28-Mar-2025 18:07:18 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\listado_usuarios.php on line 97
+[28-Mar-2025 18:22:10 Europe/Berlin] PHP Warning:  include_once(contenido_tabla.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\modal-editar.php on line 18
+[28-Mar-2025 18:22:10 Europe/Berlin] PHP Warning:  include_once(): Failed opening 'contenido_tabla.php' for inclusion (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\modal-editar.php on line 18
+[28-Mar-2025 18:22:28 Europe/Berlin] PHP Warning:  include_once(contenido_tabla.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\modal-editar.php on line 18
+[28-Mar-2025 18:22:28 Europe/Berlin] PHP Warning:  include_once(): Failed opening 'contenido_tabla.php' for inclusion (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\modal-editar.php on line 18
+[28-Mar-2025 18:22:31 Europe/Berlin] PHP Warning:  include_once(contenido_tabla.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\modal-editar.php on line 18
+[28-Mar-2025 18:22:31 Europe/Berlin] PHP Warning:  include_once(): Failed opening 'contenido_tabla.php' for inclusion (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\modal-editar.php on line 18
+[28-Mar-2025 18:22:36 Europe/Berlin] PHP Warning:  include_once(contenido_tabla.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\modal-editar.php on line 18
+[28-Mar-2025 18:22:36 Europe/Berlin] PHP Warning:  include_once(): Failed opening 'contenido_tabla.php' for inclusion (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\modal-editar.php on line 18
+[28-Mar-2025 18:22:54 Europe/Berlin] PHP Warning:  include_once(contenido_tabla.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\modal-editar.php on line 18
+[28-Mar-2025 18:22:54 Europe/Berlin] PHP Warning:  include_once(): Failed opening 'contenido_tabla.php' for inclusion (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\modal-editar.php on line 18
+[28-Mar-2025 18:24:44 Europe/Berlin] PHP Warning:  include_once(contenido_tabla.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\modal-editar.php on line 18
+[28-Mar-2025 18:24:44 Europe/Berlin] PHP Warning:  include_once(): Failed opening 'contenido_tabla.php' for inclusion (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\modal-editar.php on line 18
+[28-Mar-2025 18:26:15 Europe/Berlin] PHP Warning:  include_once(contenido_tabla.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\modal-editar.php on line 18
+[28-Mar-2025 18:26:15 Europe/Berlin] PHP Warning:  include_once(): Failed opening 'contenido_tabla.php' for inclusion (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\modal-editar.php on line 18
+[28-Mar-2025 18:28:16 Europe/Berlin] PHP Warning:  include_once(contenido_tabla.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\modal-editar.php on line 18
+[28-Mar-2025 18:28:16 Europe/Berlin] PHP Warning:  include_once(): Failed opening 'contenido_tabla.php' for inclusion (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\StaffTracker\app\Views\gestion\personal\modal-editar.php on line 18

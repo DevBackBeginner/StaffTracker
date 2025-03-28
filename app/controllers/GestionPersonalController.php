@@ -33,31 +33,54 @@
                 // Sanitizar y validar datos básicos
                 $nombre = $this->sanitizarInput($_POST["nombre"]);
                 $apellido = $this->sanitizarInput($_POST["apellido"]);
+                $tipo_documento = $this->sanitizarInput($_POST["tipo_documento"]);
                 $numero_identidad = $this->sanitizarInput($_POST["numero_identidad"]);
                 $telefono = $this->sanitizarInput($_POST["telefono"]);
                 $rol = $this->sanitizarInput($_POST["rol"]);
                 $tiene_computador = $_POST["tiene_computador"]; // 1 para Sí, 0 para No
+                $cargo = $this->sanitizarInput($_POST["cargo"]); // Campo obligatorio
+                $tipo_contrato = $this->sanitizarInput($_POST["tipo_contrato"] ?? null); // Opcional
         
-                // Validar campos básicos
+                // Validar campos básicos (incluyendo los nuevos)
                 $this->validarCamposBasicos($nombre, $apellido, $numero_identidad, $telefono, $rol);
+                
+                // Validar tipo de documento
+                $tiposDocumentoPermitidos = ['CC', 'CE', 'TI', 'PA', 'NIT', 'OTRO'];
+                if (!in_array($tipo_documento, $tiposDocumentoPermitidos)) {
+                    throw new Exception("Tipo de documento no válido");
+                }
+                
+                if (empty($cargo)) {
+                    throw new Exception("El campo 'cargo' es obligatorio");
+                }
         
-                // Validar formato del teléfono y número de documento
+                // Validar formato del teléfono y documento
                 $this->validarTelefono($telefono);
-                $this->validarNumeroDocumento($numero_identidad);
+                $this->validarNumeroDocumento($numero_identidad, $tipo_documento); // Actualizar esta función para recibir tipo_doc
         
-                // Recuperar y validar datos adicionales según el rol
-                $datosAdicionales = $this->obtenerDatosAdicionales($rol);
+                // Preparar datos para informacion_laboral
+                $datosLaborales = [
+                    'cargo' => $cargo,
+                    'tipo_contrato' => $tipo_contrato
+                ];
         
                 // Registrar el usuario
-                $usuario_id = $this->personalModelo->registrarUsuario($nombre, $apellido, $telefono, $numero_identidad, $rol, $datosAdicionales);
+                $usuario_id = $this->personalModelo->registrarUsuario(
+                    $nombre, 
+                    $apellido,
+                    $tipo_documento,
+                    $numero_identidad, 
+                    $telefono, 
+                    $rol, 
+                    $datosLaborales
+                );
         
                 if (!$usuario_id) {
                     throw new Exception("Error al registrar el usuario.");
                 }
         
-                // Manejar el registro del computador y la asignación
+                // Manejar computador (código sin cambios)
                 $computador_id = null;
-                
                 if ($tiene_computador == 1) {
                     $computador_id = $this->registrarComputador();
                     if (!$computador_id) {
@@ -65,22 +88,24 @@
                     }
                 }
         
-                // Registrar la asignación del computador
-                $asignacion_resultado = $this->computadorModelo->registrarAsignacionComputador($usuario_id, $computador_id);
+                // Registrar asignación
+                $asignacion_resultado = $this->computadorModelo->registrarAsignacionComputador(
+                    $usuario_id, 
+                    $computador_id
+                );
         
                 if (!$asignacion_resultado) {
-                    throw new Exception("Error al registrar la asignación del computador.");
+                    throw new Exception("Error al registrar la asignación.");
                 }
         
                 // Éxito
-                $_SESSION['mensaje'] = "Usuario y asignación de computador registrados correctamente.";
+                $_SESSION['mensaje'] = "Registro completado correctamente.";
                 $_SESSION['tipo_mensaje'] = 'success';
+        
             } catch (Exception $e) {
-                // Manejar errores
                 $_SESSION['mensaje'] = $e->getMessage();
                 $_SESSION['tipo_mensaje'] = 'error';
             } finally {
-                // Redirigir al formulario
                 header('Location: formulario_registro_personal');
                 exit();
             }
@@ -140,24 +165,42 @@
                     $documento = $this->sanitizarInput($_POST['documento']);
                     $telefono = $this->sanitizarInput($_POST['telefono']);
                     $rol = $this->sanitizarInput($_POST['rol']);
-            
+                    $cargo = $this->sanitizarInput($_POST['cargo'] ?? ''); // Nuevo campo
+                    $tipo_contrato = $this->sanitizarInput($_POST['tipo_contrato'] ?? null); // Nuevo campo
+
+                    // Validaciones básicas
                     $this->validarCamposBasicos($nombre, $apellido, $documento, $telefono, $rol);
-                    // Validar formato del teléfono 
                     $this->validarTelefono($telefono);
-                    // Validar formato del documento
                     $this->validarNumeroDocumento($documento);
+                    
                     // Validar rol
                     $rolesPermitidos = ['Funcionario', 'Instructor', 'Directivo', 'Apoyo', 'Visitante'];
                     if (!in_array($rol, $rolesPermitidos)) {
                         throw new Exception("Rol no válido.");
                     }
-                    
-                    // Obtener la información adicional según el rol
-                    $infoAdicional = $this->obtenerDatosAdicionales($rol);
-                    // var_dump($infoAdicional);
-                    // exit;
+
+                    // Validar cargo (nuevo campo obligatorio)
+                    if (empty($cargo)) {
+                        throw new Exception("El campo 'cargo' es obligatorio.");
+                    }
+
+                    // Preparar datos laborales
+                    $datosLaborales = [
+                        'cargo' => $cargo,
+                        'tipo_contrato' => $tipo_contrato
+                    ];
+
                     // Actualizar el usuario en la base de datos
-                    $actualizado = $this->personalModelo-> actualizarUsuario($id, $nombre, $apellido, $documento, $rol, $telefono, $infoAdicional);
+                    $actualizado = $this->personalModelo->actualizarUsuario(
+                        $id, 
+                        $nombre, 
+                        $apellido, 
+                        $documento, 
+                        $rol, 
+                        $telefono, 
+                        $datosLaborales
+                    );
+
                     if (!$actualizado) {
                         throw new Exception("Error al actualizar el usuario en la base de datos.");
                     }
@@ -244,44 +287,6 @@
             if (!preg_match('/^[0-9]+$/', $numero_identidad)) {
                 throw new Exception("El número de documento debe tener solo numeros.");
             }
-        }
-        
-        /**
-         * Obtiene y valida los datos adicionales según el rol.
-         */
-        private function obtenerDatosAdicionales($rol)
-        {
-            $datosAdicionales = [];
-            
-            switch ($rol) {
-                case 'Funcionario':
-                    $datosAdicionales['area'] = $this->sanitizarInput($_POST["area"]);
-                    $datosAdicionales['puesto'] = $this->sanitizarInput($_POST["puesto"]);
-                    break;
-                case 'Instructor':
-                    $datosAdicionales['curso'] = $this->sanitizarInput($_POST["curso"]);
-                    $datosAdicionales['ubicacion'] = $this->sanitizarInput($_POST["ubicacion"]);
-                    break;
-                case 'Directivo':
-                    $datosAdicionales['cargo'] = $this->sanitizarInput($_POST["cargo"]);
-                    $datosAdicionales['departamento'] = $this->sanitizarInput($_POST["departamento"]);
-                    break;
-                case 'Apoyo':
-                    $datosAdicionales['area_trabajo'] = $this->sanitizarInput($_POST["area_trabajo"]);
-                    break;
-                case 'Visitante':
-                    $datosAdicionales['asunto'] = $this->sanitizarInput($_POST['asunto']);
-                    break;
-                default:
-                    throw new Exception("Rol no válido: " . $rol);
-            }
-            // Validar que los datos adicionales no estén vacíos
-            foreach ($datosAdicionales as $campo => $valor) {
-                if (empty($valor)) {
-                    throw new Exception("El campo '$campo' es obligatorio para el rol de $rol.");
-                }
-            }
-            return $datosAdicionales;
         }
         
         /**

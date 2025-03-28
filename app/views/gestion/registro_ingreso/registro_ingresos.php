@@ -21,8 +21,8 @@ include_once __DIR__ . '/../dashboard/layouts/header_main.php';
                 <div class="col-12">
                     <div class="card mb-3 shadow-sm">
                         <div class="card-body p-4">
-                            <!-- Captura de mensajes generales -->
-                            <?php if (!empty($_SESSION['mensaje'])): ?>
+                              <!-- Captura de mensajes generales -->
+                             <?php if (!empty($_SESSION['mensaje'])): ?>
                                 <div class="alert <?= $_SESSION['mensaje']['tipo'] === 'danger' ? 'alert-danger' : ($_SESSION['mensaje']['tipo'] === 'warning' ? 'alert-warning' : 'alert-success') ?> alert-dismissible fade show" role="alert">
                                     <?= htmlspecialchars($_SESSION['mensaje']['texto']) ?>
                                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -54,8 +54,6 @@ include_once __DIR__ . '/../dashboard/layouts/header_main.php';
 
     <!-- Modal -->
     <?php include_once 'modal_entrada.php' ?>
-
-    <script src="assets/js/registro_ingreso.js"></script> 
     
 <?php
     // Incluimos el footer que contiene la estructura HTML final

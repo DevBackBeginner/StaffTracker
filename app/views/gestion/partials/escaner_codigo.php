@@ -17,7 +17,7 @@
         </li>
         <li class="nav-item" role="presentation">
             <button class="nav-link" id="tab2-tab" data-bs-toggle="tab" data-bs-target="#tab2" type="button" role="tab" aria-controls="tab2" aria-selected="false">
-               Numero de Identificación
+               Número de Identificación
             </button>
         </li>
     </ul>

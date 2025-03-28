@@ -1,17 +1,16 @@
 <?php if (!empty($ultimosRegistros)): ?>
-    <table class="table table-bordered table-hover">
+    <table class="table table-bordered table-hover text-center">
         <thead class="thead-light">
             <tr>
                 <th class="fs-6">Fecha</th>
                 <th class="fs-6">Hora Entrada</th>
                 <th class="fs-6">Hora Salida</th>
+                <th class="fs-6">Identificación</th>
                 <th class="fs-6">Nombres</th>
-                <th class="fs-6">Numero de Identificación</th>
                 <th class="fs-6">Rol</th>
                 <th class="fs-6">Marca del Equipo</th>
                 <th class="fs-6">Código</th>
                 <th class="fs-6">Tipo</th>
-                <th class="fs-6">Estado</th>
             </tr>
         </thead>
         <tbody>
@@ -20,8 +19,8 @@
                     <td><?php echo htmlspecialchars($registro['fecha']); ?></td>
                     <td><?php echo htmlspecialchars($registro['hora_salida']); ?></td>
                     <td><?php echo htmlspecialchars($registro['hora_salida']); ?></td>
-                    <td><?php echo htmlspecialchars($registro['nombre']); ?></td>
                     <td><?php echo htmlspecialchars($registro['numero_identidad']); ?></td>
+                    <td><?php echo htmlspecialchars($registro['nombre']); ?></td>
                     <td><?php echo htmlspecialchars($registro['rol']); ?></td>
                     <td>
                         <?php echo !empty($registro['marca']) 
@@ -37,12 +36,6 @@
                         <?php echo !empty($registro['tipo']) 
                             ? htmlspecialchars($registro['tipo']) 
                             : 'No registrado'; ?>
-                    </td>
-                    <td>
-                        <span class="badge 
-                            <?php echo ($registro['estado'] === 'Activo') ? 'bg-success' : 'bg-danger'; ?>">
-                            <?php echo htmlspecialchars($registro['estado']); ?>
-                        </span>
                     </td>
                 </tr>
             <?php endforeach; ?>

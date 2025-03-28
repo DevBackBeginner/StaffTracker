@@ -16,7 +16,7 @@ class ReporteModelo {
 
     public function registroGeneral() {
         // Construir la consulta SQL
-        $sql = "SELECT u.id, u.nombre, u.apellidos, u.telefono, u.numero_identidad, u.rol, 
+        $sql = "SELECT u.id, u.nombre, u.apellidos, u.telefono, tipo_documento, u.numero_identidad, u.rol, 
                     r.fecha, r.hora_entrada, r.hora_salida
                 FROM usuarios u
                 INNER JOIN asignaciones_computadores ac ON u.id = ac.usuario_id
@@ -35,7 +35,7 @@ class ReporteModelo {
         $fechaActual = date('Y-m-d');
     
         // Construir la consulta SQL
-        $sql = "SELECT u.id, u.nombre, u.apellidos, u.telefono, u.numero_identidad, u.rol, 
+        $sql = "SELECT u.id, u.nombre, u.apellidos, u.telefono, tipo_documento, u.numero_identidad, u.rol, 
                     r.fecha, r.hora_entrada, r.hora_salida
                 FROM usuarios u
                 INNER JOIN asignaciones_computadores ac ON u.id = ac.usuario_id
@@ -56,7 +56,7 @@ class ReporteModelo {
         $mesActual = date('Y-m');
     
         // Construir la consulta SQL
-        $sql = "SELECT u.id, u.nombre, u.apellidos, u.telefono, u.numero_identidad, u.rol, 
+        $sql = "SELECT u.id, u.nombre, u.apellidos, u.telefono, tipo_documento, u.numero_identidad, u.rol, 
                     r.fecha, r.hora_entrada, r.hora_salida
                 FROM usuarios u
                 INNER JOIN asignaciones_computadores ac ON u.id = ac.usuario_id

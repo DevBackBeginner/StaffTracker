@@ -20,7 +20,6 @@ include_once __DIR__ . '/../dashboard/layouts/header_main.php';
         box-shadow: none; /* Elimina cualquier sombra alrededor del input */
     }
 
-
 </style>
 <div class="input-group">
     
@@ -49,6 +48,34 @@ include_once __DIR__ . '/../dashboard/layouts/header_main.php';
                         <form class="row g-3 needs-validation" action="registro_guarda" method="POST" novalidate>
                             <!-- Primera fila: Nombre, Apellidos -->
                             <div class="col-md-6">
+                                <label for="tipo_documento" class="form-label fw-bold" style="color: #007832;">
+                                    <i class="bi bi-card-text"></i> Tipo de Identificación
+                                </label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="bi bi-card-list"></i></span>
+                                    <select class="form-select" name="tipo_documento" id="tipo_documento" required>
+                                        <option value="" selected disabled>Seleccione...</option>
+                                        <option value="CC">Cédula de Ciudadanía</option>
+                                        <option value="CE">Cédula de Extranjería</option>
+                                        <option value="TI">Tarjeta de Identidad</option>
+                                        <option value="PA">Pasaporte</option>
+                                        <option value="NIT">NIT</option>
+                                        <option value="OTRO">Otro documento</option>
+                                    </select>
+                                </div>
+                                <div class="invalid-feedback">Por favor, seleccione su tipo de identificación.</div>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <label for="numero_identidad" class="form-label fw-bold" style="color: #007832;">Identificación</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="bi bi-card-text"></i></span>
+                                    <input type="text" name="numero_identidad" class="form-control" id="numero_identidad" required>
+                                </div>
+                                <div class="invalid-feedback">Por favor, ingrese su número de identificación.</div>
+                            </div>
+
+                            <div class="col-md-6">
                                 <label for="nombre" class="form-label fw-bold" style="color: #007832;">Nombres</label>
                                 <div class="input-group">
                                     <span class="input-group-text"><i class="bi bi-person"></i></span>
@@ -66,14 +93,7 @@ include_once __DIR__ . '/../dashboard/layouts/header_main.php';
                             </div>
 
                             <!-- Segunda fila: Número de Identidad, Teléfono -->
-                            <div class="col-md-6">
-                                <label for="numero_identidad" class="form-label fw-bold" style="color: #007832;">Identificación</label>
-                                <div class="input-group">
-                                    <span class="input-group-text"><i class="bi bi-card-text"></i></span>
-                                    <input type="text" name="numero_identidad" class="form-control" id="numero_identidad" required>
-                                </div>
-                                <div class="invalid-feedback">Por favor, ingrese su número de identificación.</div>
-                            </div>
+
                             <div class="col-md-6">
                                 <label for="telefono" class="form-label fw-bold" style="color: #007832;">Teléfono</label>
                                 <div class="input-group">
@@ -84,7 +104,7 @@ include_once __DIR__ . '/../dashboard/layouts/header_main.php';
                             </div>
 
                             <!-- Tercera fila: Correo Electrónico -->
-                            <div class="col-md-12">
+                            <div class="col-md-6">
                                 <label for="correo" class="form-label fw-bold" style="color: #007832;">Correo Electrónico</label>
                                 <div class="input-group">
                                     <span class="input-group-text"><i class="bi bi-envelope"></i></span>

@@ -20,7 +20,7 @@ class RecuperarContraseñaModelo {
 
     public function buscarPorCorreo(string $correo): ?array {
         try {
-            $sql = "SELECT ua.*, u.nombre, u.apellidos, u.telefono, u.numero_identidad, u.rol
+            $sql = "SELECT ua.*, u.nombre, u.apellidos, u.telefono, u.tipo_documento, u.numero_identidad, u.rol
                     FROM usuarios_autenticados ua
                     JOIN usuarios u ON ua.usuario_id = u.id
                     WHERE ua.correo = :correo

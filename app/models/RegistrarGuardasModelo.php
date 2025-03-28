@@ -11,22 +11,29 @@
             $this->db = $conn->getConnection();        
         }
 
-        public function registrarGuarda($nombre, $apellidos, $telefono, $numero_identidad, $correo, $passwordHash, $foto_perfil) {
+        public function registrarGuarda($nombre, $apellidos, $tipo_documento, $telefono, $numero_identidad, $correo, $passwordHash, $foto_perfil) {
             try {
+                // Validar tipo de documento
+                $tiposPermitidos = ['CC', 'CE', 'TI', 'PA', 'NIT', 'OTRO'];
+                if (!in_array($tipo_documento, $tiposPermitidos)) {
+                    throw new Exception("Tipo de documento no válido");
+                }
+        
                 // Inicia la transacción
                 $this->db->beginTransaction();
         
-                // Inserta datos en la tabla "usuarios"
+                // Inserta datos en la tabla "usuarios" (con tipo_documento)
                 $stmt = $this->db->prepare("
-                    INSERT INTO usuarios (nombre, apellidos, telefono, numero_identidad, rol)
-                    VALUES (:nombre, :apellidos, :telefono, :numero_identidad, :rol)
+                    INSERT INTO usuarios (nombre, apellidos, tipo_documento, telefono, numero_identidad, rol)
+                    VALUES (:nombre, :apellidos, :tipo_documento, :telefono, :numero_identidad, :rol)
                 ");
                 $stmt->execute([
                     'nombre' => $nombre,
                     'apellidos' => $apellidos,
+                    'tipo_documento' => $tipo_documento,
                     'telefono' => $telefono,
                     'numero_identidad' => $numero_identidad,
-                    'rol' => 'guarda',
+                    'rol' => 'guarda'
                 ]);
         
                 // Obtiene el ID generado
@@ -41,16 +48,33 @@
                     'usuario_id' => $usuario_id,
                     'correo' => $correo,
                     'contrasena' => $passwordHash,
-                    'foto_perfil' => $foto_perfil,
+                    'foto_perfil' => $foto_perfil
                 ]);
         
                 // Confirma la transacción
                 $this->db->commit();
                 return true;
-            } catch (Exception $e) {
+            } catch (PDOException $e) {
                 // Revierte la transacción en caso de error
-                $this->db->rollBack();
-                throw $e; // Lanza la excepción para manejarla en el controlador
+                if ($this->db->inTransaction()) {
+                    $this->db->rollBack();
+                }
+                
+                // Manejo específico de errores de duplicidad
+                if ($e->getCode() == 23000) { // Código de error para violación de restricción única
+                    if (strpos($e->getMessage(), 'numero_identidad') !== false) {
+                        throw new Exception("El número de documento ya está registrado");
+                    } elseif (strpos($e->getMessage(), 'correo') !== false) {
+                        throw new Exception("El correo electrónico ya está registrado");
+                    }
+                }
+                
+                throw new Exception("Error al registrar el guarda: " . $e->getMessage());
+            } catch (Exception $e) {
+                if ($this->db->inTransaction()) {
+                    $this->db->rollBack();
+                }
+                throw $e;
             }
         }
     }

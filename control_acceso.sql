@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 25-03-2025 a las 17:13:37
+-- Tiempo de generación: 28-03-2025 a las 19:53:29
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -20,26 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `control_acceso`
 --
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `apoyo`
---
-
-CREATE TABLE `apoyo` (
-  `usuario_id` int(11) NOT NULL,
-  `area_trabajo` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `apoyo`
---
-
-INSERT INTO `apoyo` (`usuario_id`, `area_trabajo`) VALUES
-(13, 'Limpieza'),
-(14, 'Mantenimiento'),
-(16, 'Logísticas');
 
 -- --------------------------------------------------------
 
@@ -62,30 +42,36 @@ INSERT INTO `asignaciones_computadores` (`id`, `usuario_id`, `computador_id`) VA
 (1, 2, 1),
 (104, 3, NULL),
 (2, 3, 2),
-(3, 4, 3),
 (112, 5, NULL),
 (4, 5, 4),
+(120, 7, NULL),
 (6, 7, 6),
 (7, 8, 7),
 (8, 9, 8),
 (109, 10, NULL),
 (9, 10, 9),
+(121, 12, NULL),
 (11, 12, 11),
 (12, 13, 12),
 (13, 14, 13),
+(122, 14, 78),
 (15, 16, 15),
 (16, 17, 16),
 (108, 19, NULL),
 (18, 19, 18),
 (19, 20, 19),
+(119, 25, NULL),
 (85, 25, 71),
 (86, 25, 72),
+(125, 25, 81),
 (107, 26, NULL),
 (105, 32, NULL),
-(106, 34, NULL),
-(101, 34, 74),
-(103, 34, 76),
-(110, 35, 77);
+(124, 32, 80),
+(127, 32, 83),
+(118, 44, NULL),
+(123, 46, 79),
+(126, 47, 82),
+(130, 55, 85);
 
 -- --------------------------------------------------------
 
@@ -145,72 +131,39 @@ INSERT INTO `computadores` (`id`, `marca`, `codigo`, `tipo_computador`, `mouse`,
 (74, 'asfasfsa', 'fasfagded', 'Personal', 'Si', 'No'),
 (75, 'ewgwegew', 'fewd', 'Personal', 'Si', 'No'),
 (76, 'egergref', '1312wqed', 'Sena', 'Si', 'No'),
-(77, 'wqdqw', 'efdcs', 'Personal', 'No', 'No');
+(77, 'wqdqw', 'efdcs', 'Personal', 'No', 'No'),
+(78, 'vdssvsvdsv', 'xvbff', 'Sena', 'Si', 'Si'),
+(79, 'ñasñ', '33545', 'Sena', 'Si', 'No'),
+(80, 'thntybrgvfcdsx', 'adfdfgdsf', 'Personal', 'Si', 'Si'),
+(81, 'Asus', '424242', 'Sena', 'Si', 'No'),
+(82, 'Nico', '1251151054', 'Personal', 'Si', 'Si'),
+(83, 'Asus', '5662115', 'Sena', 'Si', 'Si'),
+(84, 'gterfcsdx', 'ehthgd24', 'Personal', 'Si', 'Si'),
+(85, 'fasdx', 'csdcdsxs', 'Personal', 'Si', 'Si');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `directivos`
+-- Estructura de tabla para la tabla `informacion_laboral`
 --
 
-CREATE TABLE `directivos` (
+CREATE TABLE `informacion_laboral` (
+  `id` int(11) NOT NULL,
   `usuario_id` int(11) NOT NULL,
   `cargo` varchar(100) NOT NULL,
-  `departamento` varchar(100) NOT NULL
+  `tipo_contrato` enum('Planta','Contratista') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Volcado de datos para la tabla `directivos`
+-- Volcado de datos para la tabla `informacion_laboral`
 --
 
-INSERT INTO `directivos` (`usuario_id`, `cargo`, `departamento`) VALUES
-(2, 'Director', 'Administracions'),
-(8, 'Asistente', 'Finanzas'),
-(9, 'SudAlterno', 'Administración'),
-(10, 'Director', 'Recursos Humana'),
-(12, 'Coordinador', 'Tecnología');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `funcionarios`
---
-
-CREATE TABLE `funcionarios` (
-  `usuario_id` int(11) NOT NULL,
-  `area` varchar(255) NOT NULL,
-  `puesto` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `funcionarios`
---
-
-INSERT INTO `funcionarios` (`usuario_id`, `area`, `puesto`) VALUES
-(5, 'Recursos Humanos', 'Analista'),
-(7, 'Tecnología', 'Desarrollador');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `instructores`
---
-
-CREATE TABLE `instructores` (
-  `usuario_id` int(11) NOT NULL,
-  `curso` varchar(255) NOT NULL,
-  `ubicacion` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `instructores`
---
-
-INSERT INTO `instructores` (`usuario_id`, `curso`, `ubicacion`) VALUES
-(3, 'Redes', 'Aula 104'),
-(4, 'Base de Dato', 'Aula 142'),
-(19, 'ADSI', '4000'),
-(26, 'ADSO', 'Aula 206');
+INSERT INTO `informacion_laboral` (`id`, `usuario_id`, `cargo`, `tipo_contrato`) VALUES
+(1, 55, 'Tecnico', 'Planta'),
+(2, 14, 'hipno', 'Contratista'),
+(3, 46, 'QJWJIDKL', 'Planta'),
+(4, 51, 'Administrador', 'Contratista'),
+(5, 2, 'dass', 'Contratista');
 
 -- --------------------------------------------------------
 
@@ -233,11 +186,18 @@ CREATE TABLE `registros` (
 --
 
 INSERT INTO `registros` (`id`, `asignacion_id`, `fecha`, `hora_entrada`, `hora_salida`, `estado`, `tipo_usuario`) VALUES
-(120, 111, '2025-03-22', '18:45:47', '19:30:00', 'Activo', 'Personal'),
-(121, 104, '2025-03-21', '18:45:54', NULL, 'Activo', 'Personal'),
-(122, 112, '2025-02-13', '18:46:00', '19:35:11', 'Activo', 'Personal'),
-(123, 106, '2025-03-22', '18:46:07', NULL, 'Activo', 'Visitante'),
-(124, 104, '2025-03-24', '11:03:52', NULL, 'Activo', 'Personal');
+(134, 4, '2025-03-27', '10:07:02', '10:07:08', 'Finalizado', 'Personal'),
+(135, 120, '2025-03-27', '10:07:42', '10:07:46', 'Finalizado', 'Personal'),
+(136, 121, '2025-03-27', '10:08:51', '10:08:54', 'Finalizado', 'Personal'),
+(137, 122, '2025-03-27', '10:12:03', '10:12:17', 'Finalizado', 'Personal'),
+(138, 124, '2025-03-27', '15:19:04', NULL, 'Activo', 'Visitante'),
+(139, 105, '2025-03-27', '15:25:17', NULL, 'Activo', 'Visitante'),
+(140, 125, '2025-03-27', '16:03:01', '16:11:51', 'Finalizado', 'Personal'),
+(141, 119, '2025-03-27', '16:27:49', '21:09:06', 'Finalizado', 'Personal'),
+(142, 126, '2025-03-27', '17:16:14', '17:25:05', 'Finalizado', 'Visitante'),
+(143, 127, '2025-03-27', '17:23:13', NULL, 'Activo', 'Visitante'),
+(144, NULL, '2025-03-28', '10:20:24', NULL, 'Activo', 'Visitante'),
+(145, NULL, '2025-03-28', '10:28:57', '10:38:12', 'Finalizado', 'Visitante');
 
 -- --------------------------------------------------------
 
@@ -251,36 +211,39 @@ CREATE TABLE `usuarios` (
   `apellidos` varchar(260) NOT NULL,
   `telefono` varchar(255) NOT NULL,
   `numero_identidad` varchar(20) NOT NULL,
-  `rol` enum('Instructor','Funcionario','Directivo','Apoyo','Visitante','Admin','Guarda') DEFAULT NULL
+  `rol` enum('Instructor','Funcionario','Directivo','Apoyo','Visitante','Admin','Guarda') DEFAULT NULL,
+  `tipo_documento` enum('CC','CE','TI','PA','NIT','OTRO') NOT NULL DEFAULT 'CC' COMMENT 'CC=Cédula de Ciudadanía, CE=Cédula de Extranjería, TI=Tarjeta de Identidad, PA=Pasaporte, NIT=Número de Identificación Tributaria, OTRO=Otro tipo de documento'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`id`, `nombre`, `apellidos`, `telefono`, `numero_identidad`, `rol`) VALUES
-(2, 'Andres', 'Morera Hernández', '2412432532245', '1000000002', 'Directivo'),
-(3, 'Carlos Andres', 'López', '3103456789', '1000000032', 'Instructor'),
-(4, 'Ana', 'Rodríguez', '3104567890', '1000000036', 'Instructor'),
-(5, 'Luis', 'Martínez', '3105678901', '1000000005', 'Funcionario'),
-(7, 'Pedro', 'Sánchez', '3107890123', '1000000007', 'Funcionario'),
-(8, 'Laura', 'Díaz', '3108901234', '1000000001', 'Directivo'),
-(9, 'Roberto', 'García', '3109012345', '1000000009', 'Directivo'),
-(10, 'Carmen', 'Fernández', '3100123456', '1000000010', 'Directivo'),
-(12, 'Patricia', 'Morales', '3102345678', '1000000012', 'Directivo'),
-(13, 'Miguel', 'Torres', '3103456789', '1000000013', 'Apoyo'),
-(14, 'Elena', 'Vargas', '3104567890', '1000000014', 'Apoyo'),
-(16, 'Isabel', 'Rojas', '3106789012', '1000000016', 'Apoyo'),
-(17, 'Fernando', 'Silva', '3107890123', '1000000017', 'Visitante'),
-(19, 'Oscar', 'Guerrero', '3109012321', '1000000019', 'Instructor'),
-(20, 'Lucía', 'Paredes', '3100123456', '1000000020', 'Visitante'),
-(25, 'Helbert Dubler', 'Morera Hernández', '3105738706', '1072745267', 'Admin'),
-(26, 'Felipe', 'Restrepo', '3212439492', '1234567899', 'Instructor'),
-(30, 'Andres', 'Morera Hernández', '2412432532245', '1072745263', 'Guarda'),
-(31, 'ewgweff', 'fewgfewgfw', '414325325234', '323432431', 'Guarda'),
-(32, 'Nike Air Max 270sfas', 'fewfew', '214124133', '341234214131', 'Visitante'),
-(34, 'Andressfsafas', 'gsdgsfd', '412252314', '21523533', 'Visitante'),
-(35, 'Fernandos', 'qegwgwwa', '3105748723', '192301902', 'Visitante');
+INSERT INTO `usuarios` (`id`, `nombre`, `apellidos`, `telefono`, `numero_identidad`, `rol`, `tipo_documento`) VALUES
+(2, 'Andres', 'Morera Hernández', '2412432532245', '1000000002', 'Apoyo', 'CC'),
+(3, 'Carlos Andres', 'López', '3103456789', '1000000032', 'Instructor', 'CC'),
+(5, 'Luis', 'Martínez', '3105678901', '1000000005', 'Funcionario', 'CC'),
+(7, 'Pedro', 'Sánchez', '3107890123', '1000000007', 'Funcionario', 'CC'),
+(8, 'Laura', 'Díaz', '3108901234', '1000000001', 'Directivo', 'CC'),
+(9, 'Roberto', 'García', '3109012345', '1000000009', 'Funcionario', 'CC'),
+(10, 'Carmen', 'Fernández', '3100123456', '1000000010', 'Directivo', 'CC'),
+(12, 'Patricia', 'Morales', '3102345678', '1000000012', 'Directivo', 'CC'),
+(13, 'Miguel', 'Torres', '3103456789', '1000000013', 'Apoyo', 'CC'),
+(14, 'Elena', 'Vargas', '41242413123', '1000000014', 'Directivo', 'CC'),
+(16, 'Isabel', 'Rojas', '3106789012', '1000000016', 'Apoyo', 'CC'),
+(17, 'Fernando', 'Silva', '3107890123', '1000000017', 'Instructor', 'CC'),
+(19, 'Oscar', 'Guerrero', '3109012321', '1000000019', 'Instructor', 'CC'),
+(20, 'Lucía', 'Paredes', '3100123456', '1000000020', 'Visitante', 'CC'),
+(25, 'Helbert Dubler', 'Morera Hernández', '3105738706', '1072745267', 'Admin', 'CC'),
+(26, 'Felipe', 'Restrepo', '3212439492', '1234567899', 'Instructor', 'CC'),
+(32, 'Nike Air Max 270sfas', 'fewfew', '214124133', '341234214131', 'Visitante', 'CC'),
+(44, 'dgsdcs', 'vsdcsdf', '13435', '24124214', 'Instructor', 'CC'),
+(45, 'juan', 'castillo', '320413137', '1007153188', 'Guarda', 'CC'),
+(46, 'Ana', 'dapda', '212345', '313141412', 'Directivo', 'CC'),
+(47, 'dubler', 'jcjxjjx', '321451234', '1201114121', 'Visitante', 'CC'),
+(48, 'Helbert', 'Morera', '3105738706', '123456789', 'Guarda', 'CC'),
+(51, 'Andressfsf', 'dgdsfds', '2412412', '2411253', 'Funcionario', 'CC'),
+(55, 'fdsfsdff', 'dscsdcxscs', '3524352344', '3524352344', 'Apoyo', 'CE');
 
 -- --------------------------------------------------------
 
@@ -303,9 +266,10 @@ CREATE TABLE `usuarios_autenticados` (
 --
 
 INSERT INTO `usuarios_autenticados` (`id`, `usuario_id`, `correo`, `foto_perfil`, `contrasena`, `reset_token`, `reset_token_expiry`) VALUES
-(1, 25, 'morerahelbert9@gmail.com', 'assets/img/perfiles/default.webp', '$2y$10$vhq6XFdiAFCNqhaCfmNvquRA75CXBIbaEuzUsVoF6WzgAdAbGxI0.', NULL, NULL),
-(2, 30, 'kindred@gmail.com', 'assets/img/perfiles/default.webp', '$2y$10$L.qBUpLE8.URQa0NEy70d.CiFuumkxxUXYzIyQgIWNlD2F9zB1afO', NULL, NULL),
-(3, 31, 'mkwfow@gmail.com', 'assets/img/perfiles/default.png', '$2y$10$0YVdOJAExEn6frI2AQ3hhuN/xj0jZrOFqd21NzcprdxZoG5psOJTi', NULL, NULL);
+(1, 25, 'morerahelbert9@gmail.com', 'assets/img/perfiles/default.webp', '$2y$10$JYY2wragjqShLEhdmdNgtOfCUTF1F4ewzpNQtfNXnG8fVmSNhXh42', NULL, NULL),
+(8, 45, 'juancho73x@gmail.com', 'assets/img/perfiles/default.webp', '$2y$10$wYqT3WgxN/Ff.o9jBzFdtOR/hsgqWIHBx6dnEuz6VSjrNgTB63up6', NULL, NULL),
+(9, 48, 'helbertmorera05@gmail.com', 'assets/img/perfiles/default.webp', '$2y$10$tBModFRatPVWV/OlBUUlGOEZbCeAWtflkNfPPAcWgzhZYkehc9SZ.', NULL, NULL),
+(12, 51, 'kindred@gmail.com', 'assets/img/perfiles/default.webp', '$2y$10$3d7L6uQ/GNgIyWWlfGcrne3Cm4caot9YsKtSXTZsG7hnM95mCCuOG', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -324,21 +288,13 @@ CREATE TABLE `visitantes` (
 --
 
 INSERT INTO `visitantes` (`id`, `usuario_id`, `asunto`) VALUES
-(1, 17, 'Reunión de negocios'),
 (12, 20, 'Prueba'),
-(13, 32, 'ewfewd'),
-(15, 34, 'dawsasfs'),
-(16, 35, 'wqdw');
+(13, 32, 'ewfewda'),
+(20, 47, 'Reunión de negocioss');
 
 --
 -- Índices para tablas volcadas
 --
-
---
--- Indices de la tabla `apoyo`
---
-ALTER TABLE `apoyo`
-  ADD PRIMARY KEY (`usuario_id`);
 
 --
 -- Indices de la tabla `asignaciones_computadores`
@@ -356,25 +312,11 @@ ALTER TABLE `computadores`
   ADD UNIQUE KEY `codigo` (`codigo`);
 
 --
--- Indices de la tabla `directivos`
+-- Indices de la tabla `informacion_laboral`
 --
-ALTER TABLE `directivos`
-  ADD PRIMARY KEY (`usuario_id`);
-
---
--- Indices de la tabla `funcionarios`
---
-ALTER TABLE `funcionarios`
-  ADD PRIMARY KEY (`usuario_id`),
-  ADD KEY `idx_funcionarios_area` (`area`),
-  ADD KEY `idx_funcionarios_puesto` (`puesto`);
-
---
--- Indices de la tabla `instructores`
---
-ALTER TABLE `instructores`
-  ADD PRIMARY KEY (`usuario_id`),
-  ADD KEY `idx_usuario_id` (`usuario_id`);
+ALTER TABLE `informacion_laboral`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `usuario_id` (`usuario_id`);
 
 --
 -- Indices de la tabla `registros`
@@ -415,47 +357,47 @@ ALTER TABLE `visitantes`
 -- AUTO_INCREMENT de la tabla `asignaciones_computadores`
 --
 ALTER TABLE `asignaciones_computadores`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=113;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=131;
 
 --
 -- AUTO_INCREMENT de la tabla `computadores`
 --
 ALTER TABLE `computadores`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
+
+--
+-- AUTO_INCREMENT de la tabla `informacion_laboral`
+--
+ALTER TABLE `informacion_laboral`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `registros`
 --
 ALTER TABLE `registros`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=125;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=146;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios_autenticados`
 --
 ALTER TABLE `usuarios_autenticados`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `visitantes`
 --
 ALTER TABLE `visitantes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- Restricciones para tablas volcadas
 --
-
---
--- Filtros para la tabla `apoyo`
---
-ALTER TABLE `apoyo`
-  ADD CONSTRAINT `apoyo_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE;
 
 --
 -- Filtros para la tabla `asignaciones_computadores`
@@ -465,22 +407,10 @@ ALTER TABLE `asignaciones_computadores`
   ADD CONSTRAINT `asignaciones_computadores_ibfk_2` FOREIGN KEY (`computador_id`) REFERENCES `computadores` (`id`) ON DELETE CASCADE;
 
 --
--- Filtros para la tabla `directivos`
+-- Filtros para la tabla `informacion_laboral`
 --
-ALTER TABLE `directivos`
-  ADD CONSTRAINT `directivos_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE;
-
---
--- Filtros para la tabla `funcionarios`
---
-ALTER TABLE `funcionarios`
-  ADD CONSTRAINT `funcionarios_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE;
-
---
--- Filtros para la tabla `instructores`
---
-ALTER TABLE `instructores`
-  ADD CONSTRAINT `instructores_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE;
+ALTER TABLE `informacion_laboral`
+  ADD CONSTRAINT `informacion_laboral_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE;
 
 --
 -- Filtros para la tabla `registros`

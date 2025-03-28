@@ -35,63 +35,73 @@
             $numero_identidad = htmlspecialchars(trim($_POST["numero_identidad"]));
             $telefono = $_POST["telefono"];
             $asunto = htmlspecialchars(trim($_POST["asunto"]), ENT_QUOTES, 'UTF-8');
-            $tiene_computador = $_POST["tiene_computador"]; // 1 para Sí, 0 para No
+            $tiene_computador = $_POST["tiene_computador"]; 
             $rol = 'Visitante';
-
+            $tipo_documento = htmlspecialchars(trim($_POST["tipo_documento"])); // Capturar tipo de documento
+        
             // Validar que los campos no estén vacíos
-            if (empty($nombre) || empty($apellido) || empty($numero_identidad) || empty($telefono) || empty($rol)) {
+            if (empty($nombre) || empty($apellido) || empty($numero_identidad) || empty($telefono) || empty($rol) || empty($tipo_documento)) {
                 $_SESSION['mensaje'] = "Todos los campos son obligatorios.";
                 $_SESSION['tipo_mensaje'] = 'error';
-                header('Location: formulario_registro_visitante'); // Redirigir al formulario
+                header('Location: formulario_registro_visitante');
                 exit();
             }
-
+        
             // Validar que el teléfono contenga solo números
             if (!preg_match('/^[0-9]+$/', $telefono)) {
                 $_SESSION['mensaje'] = "El teléfono debe contener solo números.";
                 $_SESSION['tipo_mensaje'] = 'error';
-                header('Location: formulario_registro_visitante'); // Redirigir al formulario
+                header('Location: formulario_registro_visitante');
                 exit();
             }
-
+        
             // Validar que el número de documento contenga solo números
             if (!preg_match('/^[0-9]+$/', $numero_identidad)) {
                 $_SESSION['mensaje'] = "El número de documento debe contener solo números.";
                 $_SESSION['tipo_mensaje'] = 'error';
-                header('Location: formulario_registro_visitante'); // Redirigir al formulario
+                header('Location: formulario_registro_visitante');
                 exit();
             }
-
-            // Intentar registrar al visitante
-            $usuario_id = $this->visitanteModelo->registroVisitante($nombre, $apellido, $numero_identidad, $telefono, $asunto, $rol);
-
+        
+            // Validar tipo de documento
+            $tiposPermitidos = ['CC', 'CE', 'TI', 'PA', 'NIT', 'OTRO'];
+            if (!in_array($tipo_documento, $tiposPermitidos)) {
+                $_SESSION['mensaje'] = "Tipo de documento no válido.";
+                $_SESSION['tipo_mensaje'] = 'error';
+                header('Location: formulario_registro_visitante');
+                exit();
+            }
+        
+            // Intentar registrar al visitante (actualizado con tipo_documento)
+            $usuario_id = $this->visitanteModelo->registroVisitante($nombre, $apellido, $tipo_documento, $numero_identidad, $telefono, $asunto, $rol);
+        
             if (!$usuario_id) {
                 $_SESSION['mensaje'] = "Error al registrar el usuario.";
                 $_SESSION['tipo_mensaje'] = 'error';
                 header('Location: formulario_registro_visitante');
                 exit();
             }
-
+        
             // Manejar el registro del computador y la asignación
             if ($tiene_computador == 1) {
-                // Si tiene computador, capturar los datos del computador
+                // Capturar datos del computador
                 $marca = htmlspecialchars(trim($_POST["marca"]), ENT_QUOTES, 'UTF-8');
                 $codigo = htmlspecialchars(trim($_POST["codigo"]));
                 $mouse = isset($_POST['mouse']) ? 'Sí' : 'No';
                 $teclado = isset($_POST['teclado']) ? 'Sí' : 'No';
-                $tipo_computador = htmlspecialchars(trim($_POST["tipo_computador"]), ENT_QUOTES, 'UTF-8'); // Capturar el tipo de computador
-
-                // Validar que los campos del computador no estén vacíos
-                if (empty($marca) || empty($codigo) || empty($tipo_computador)) {
-                    $_SESSION['mensaje'] = "Todos los campos del computador son obligatorios.";
+                $tipo_computador = 'Personal'; // Tipo fijo para visitantes
+        
+                // Validar campos del computador
+                if (empty($marca) || empty($codigo)) {
+                    $_SESSION['mensaje'] = "Marca y código del computador son obligatorios.";
                     $_SESSION['tipo_mensaje'] = 'error';
                     header('Location: formulario_registro_visitante');
                     exit();
                 }
-
-                // Registrar el computador en la tabla `computadores`
+        
+                // Registrar el computador
                 $computador_id = $this->computadorModelo->ingresarComputador($marca, $codigo, $mouse, $teclado, $tipo_computador);
-
+        
                 if (!$computador_id) {
                     $_SESSION['mensaje'] = "Error al registrar el computador.";
                     $_SESSION['tipo_mensaje'] = 'error';
@@ -99,39 +109,34 @@
                     exit();
                 }
             } else {
-                // Si no tiene computador, asignar NULL
                 $computador_id = null;
             }
-
-            // var_dump($usuario_id);
-            // exit;
-
-            // Registrar la asignación en la tabla `asignaciones_computadores`
+        
+            // Registrar la asignación del computador
             $asignacionId = $this->computadorModelo->registrarAsignacionComputador($usuario_id, $computador_id);
-
+        
             if (!$asignacionId) {
                 $_SESSION['mensaje'] = "Error al registrar la asignación del computador.";
                 $_SESSION['tipo_mensaje'] = 'error';
                 header('Location: formulario_registro_visitante');
                 exit();
             }
-
-            // Registrar la entrada del visitante en la tabla `registro_acceso`
+        
+            // Registrar la entrada del visitante
             try {
-                $fecha = date('Y-m-d'); // Fecha actual
-                $hora = date('H:i:s'); // Hora actual
-                $tipo_usuario = "Visitante"; // Definir el tipo de usuario en el controlador
-
+                $fecha = date('Y-m-d');
+                $hora = date('H:i:s');
+                $tipo_usuario = "Visitante";
+        
                 $this->registroModelo->registrarEntrada($fecha, $hora, $asignacionId, $tipo_usuario);
-
-                // Si todo sale bien, mostrar mensaje de éxito
-                $_SESSION['mensaje'] = "Usuario y entrada registrados correctamente.";
+        
+                $_SESSION['mensaje'] = "Visitante registrado correctamente.";
                 $_SESSION['tipo_mensaje'] = 'success';
             } catch (Exception $e) {
                 $_SESSION['mensaje'] = "Error al registrar la entrada: " . $e->getMessage();
                 $_SESSION['tipo_mensaje'] = 'error';
             }
-
+        
             header('Location: formulario_registro_visitante');
             exit();
         }

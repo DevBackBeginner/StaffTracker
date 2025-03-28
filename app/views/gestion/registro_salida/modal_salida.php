@@ -2,8 +2,8 @@
 <div class="modal fade" id="modalTieneComputador" tabindex="-1" aria-labelledby="modalTieneComputadorLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-            <div class="modal-header bg-primary text-white">
-                <h5 class="modal-title" id="modalTieneComputadorLabel">Registro de Asistencia</h5>
+            <div class="modal-header bg-success text-white">
+                <h5 class="modal-title" id="modalTieneComputadorLabel">Registro de Salida</h5>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>            </div>
             <div class="modal-body">
                 <p class="mb-3">¿Tienes computador?</p>
@@ -20,15 +20,15 @@
 <div class="modal fade" id="modalTipoComputador" tabindex="-1" aria-labelledby="modalTipoComputadorLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-            <div class="modal-header bg-primary text-white">
+            <div class="modal-header bg-success text-white">
                 <h5 class="modal-title" id="modalTipoComputadorLabel">Tipo de Computador</h5>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <p class="mb-3">¿El computador es Personal o del Sena?</p>
                 <div class="d-grid gap-2">
-                    <button type="button" class="btn btn-primary" id="btnPersonal">Personal</button>
-                    <button type="button" class="btn btn-info" id="btnSena">Sena</button>
+                    <button type="button" class="btn btn-success" id="btnPersonal">Personal</button>
+                    <button type="button" class="btn btn-success" id="btnSena">Equipo Sena</button>
                 </div>
             </div>
         </div>
@@ -39,7 +39,7 @@
 <div class="modal fade" id="modalSeleccionarComputador" tabindex="-1" aria-labelledby="modalSeleccionarComputadorLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-            <div class="modal-header bg-primary text-white">
+            <div class="modal-header bg-success text-white">
                 <h5 class="modal-title" id="modalSeleccionarComputadorLabel">Seleccionar Computador</h5>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
@@ -55,7 +55,7 @@
                 <!-- Contenedor para botones inferiores -->
                 <div class="d-flex gap-2">
                     <!-- Botón Volver -->
-                    <button type="button" class="btn btn-secondary flex-grow-1" id="btnVolverTipoDesdeSeleccion">Volver atrás</button>
+                    <button type="button" class="btn btn-danger flex-grow-1" id="btnVolverTipoDesdeSeleccion">Volver atrás</button>
                     
                     <!-- Botón Registrar Nuevo (se agregará dinámicamente aquí) -->
                 </div>
@@ -68,35 +68,246 @@
 <div class="modal fade" id="modalRegistrarComputador" tabindex="-1" aria-labelledby="modalRegistrarComputadorLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-            <div class="modal-header bg-primary text-white">
-                <h5 class="modal-title" id="modalRegistrarComputadorLabel">Registrar Nuevo Computador</h5>
+            <div class="modal-header bg-success text-white">
+                <h5 class="modal-title" id="modalRegistrarComputadorLabel"> Registrar Nuevo Computador</h5>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <form id="formRegistrarComputador">
                     <div class="mb-3">
-                        <label for="marcaComputador" class="form-label">Marca</label>
+                        <label for="marcaComputador" class="form-label"><i class="bi bi-tag"></i> Marca</label>
                         <input type="text" class="form-control" id="marcaComputador" required>
                     </div>
                     <div class="mb-3">
-                        <label for="codigoComputador" class="form-label">Código</label>
+                        <label for="codigoComputador" class="form-label"><i class="bi bi-keyboard"></i> Código</label>
                         <input type="text" class="form-control" id="codigoComputador" required>
                     </div>
                     <!-- Checkbox para "Tiene mouse" -->
                     <div class="mb-3 form-check">
                         <input type="checkbox" class="form-check-input" id="tieneMouse">
-                        <label class="form-check-label" for="tieneMouse">Tiene mouse</label>
+                        <label class="form-check-label" for="tieneMouse"><i class="bi bi-mouse"></i> Tiene mouse</label>
                     </div>
                     <!-- Checkbox para "Tiene teclado" -->
                     <div class="mb-3 form-check">
                         <input type="checkbox" class="form-check-input" id="tieneTeclado">
-                        <label class="form-check-label" for="tieneTeclado">Tiene teclado</label>
+                        <label class="form-check-label" for="tieneTeclado"><i class="bi bi-keyboard-fill"></i> Tiene teclado</label>
                     </div>
                     <div class="d-grid">
-                        <button type="submit" class="btn btn-success">Registrar</button>
+                        <button type="submit" class="btn btn-success"><i class="bi bi-check-circle"></i> Registrar</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+    // ==============================================
+    // INICIALIZACIÓN DE COMPONENTES Y VARIABLES
+    // ==============================================
+
+    // Modales de Bootstrap
+    const modalTieneComputador = new bootstrap.Modal(document.getElementById('modalTieneComputador'));
+    const modalTipoComputador = new bootstrap.Modal(document.getElementById('modalTipoComputador'));
+    const modalSeleccionarComputador = new bootstrap.Modal(document.getElementById('modalSeleccionarComputador'));
+    const modalRegistrarComputador = new bootstrap.Modal(document.getElementById('modalRegistrarComputador'));
+
+    // Elementos del DOM
+    const selectComputadores = document.getElementById('selectComputadores');
+    const btnSiComputador = document.getElementById('btnSiComputador');
+    const btnNoComputador = document.getElementById('btnNoComputador');
+    const btnPersonal = document.getElementById('btnPersonal');
+    const btnSena = document.getElementById('btnSena');
+    const btnConfirmarPC = document.getElementById('btnConfirmarPC');
+    const formRegistrarComputador = document.getElementById('formRegistrarComputador');
+
+    // Variables de estado
+    let codigoEscaneado = '';  // Almacena el código escaneado del usuario
+    let tipoComputador = null; // Almacena el tipo de computador seleccionado (Personal/Sena)
+
+    // ==============================================
+    // MANEJO DEL ESCÁNER DE CÓDIGO
+    // ==============================================
+    document.getElementById('codigo').addEventListener('input', function (event) {
+        // Limpiar y validar código escaneado
+        codigoEscaneado = this.value.trim();
+
+        // Expresión regular: solo números
+        if (codigoEscaneado.length > 0 && /^\d+$/.test(codigoEscaneado)) {
+            modalTieneComputador.show(); // Mostrar modal inicial
+        } else {
+            alert('⚠️ El código debe contener solo números');
+            this.value = ''; // Limpiar el campo
+        }
+    });
+    
+    document.getElementById('codigo2').addEventListener('keydown', function (event) {
+        if (event.key === 'Enter') { // Verificar si se presionó "Enter"
+            event.preventDefault(); // Evitar el comportamiento por defecto
+
+            // Limpiar y validar código escaneado
+            codigoEscaneado = this.value.trim();
+
+            // Expresión regular: solo números
+            if (codigoEscaneado.length > 0 && /^\d+$/.test(codigoEscaneado)) {
+                modalTieneComputador.show(); // Mostrar modal inicial
+            } else {
+                alert('⚠️ El código debe contener solo números');
+                this.value = ''; // Limpiar el campo
+            }
+        }
+    });
+    // ==============================================
+    // MANEJO DE MODALES
+    // ==============================================
+
+    // ----- Modal 1: ¿Tiene computador? -----
+    btnSiComputador.addEventListener('click', () => {
+        modalTieneComputador.hide();
+        modalTipoComputador.show(); // Mostrar modal de tipo de computador
+    });
+
+    btnNoComputador.addEventListener('click', () => {
+        gestionarAcceso(null);  // Registrar acceso sin computador
+        modalTieneComputador.hide();
+    });
+
+    // ----- Modal 2: Tipo de computador -----
+    btnPersonal.addEventListener('click', () => {
+        if (!codigoEscaneado) {
+            alert('⚠️ Escanea un código primero');
+            return;
+        }
+        tipoComputador = 'Personal';
+        modalTipoComputador.hide();
+        cargarComputadores(tipoComputador, codigoEscaneado); // Cargar computadores personales
+        modalSeleccionarComputador.show();
+    });
+
+    btnSena.addEventListener('click', () => {
+        if (!codigoEscaneado) {
+            alert('⚠️ Escanea un código primero');
+            return;
+        }
+        tipoComputador = 'Sena';
+        modalTipoComputador.hide();
+        cargarComputadores(tipoComputador, codigoEscaneado); // Cargar computadores del Sena
+        modalSeleccionarComputador.show();
+    });
+
+    // ----- Modal 3: Selección de computador -----
+    btnConfirmarPC.addEventListener('click', () => {
+        const computadorId = selectComputadores.value;
+        if (computadorId) {
+            gestionarAcceso(computadorId); // Registrar acceso con computador seleccionado
+            modalSeleccionarComputador.hide();
+        } else {
+            alert('❌ Selecciona un computador de la lista');
+        }
+    });
+
+    // ----- Volver desde Selección de Computador a Tipo de Computador -----
+    document.getElementById('btnVolverTipoDesdeSeleccion').addEventListener('click', () => {
+        modalSeleccionarComputador.hide();
+        modalTipoComputador.show(); // Muestra el modal anterior
+    });
+
+    // ==============================================
+    // FUNCIONES PRINCIPALES
+    // ==============================================
+
+    /**
+     * Carga computadores disponibles desde el servidor
+     * @param {string} tipoComputador - Tipo de computador (Personal/Sena)
+     * @param {string} codigo - Código del usuario
+     */
+    function cargarComputadores(tipoComputador, codigo) {
+        fetch("obtener_computadores", {
+            method: "POST",
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: `tipoComputador=${encodeURIComponent(tipoComputador)}&codigo=${encodeURIComponent(codigo)}`
+        })
+        .then(response => {
+            if (!response.ok) throw new Error('Error en la respuesta');
+            return response.json();
+        })
+        .then(data => {
+            selectComputadores.innerHTML = ""; // Limpiar select
+
+            if (Array.isArray(data) && data.length > 0) {
+                // Llenar con computadores disponibles
+                data.forEach(pc => {
+                    const option = document.createElement("option");
+                    option.value = pc.id;
+                    option.textContent = `${pc.marca} - ${pc.codigo}`;
+                    selectComputadores.appendChild(option);
+                });
+            } else {
+                // Opción por defecto si no hay resultados
+                const option = document.createElement("option");
+                option.textContent = "No hay computadores disponibles";
+                selectComputadores.appendChild(option);
+            }
+        })
+        .catch(error => {
+            console.error("Error al cargar computadores:", error);
+            alert('❌ Error al cargar computadores');
+        });
+    }
+
+    /**
+     * Gestiona el proceso completo de registro de acceso
+     * @param {number|null} computadorId - ID del computador o null
+     */
+    function gestionarAcceso(computadorId) {
+        const formData = new FormData();
+        formData.append('codigo', codigoEscaneado);
+        formData.append('computador_id', computadorId || '');
+
+        fetch('gestion_registro_salida', {
+            method: 'POST',
+            body: formData
+        })
+        .then(async response => {
+            // Verificar si la respuesta no es exitosa (códigos 400, 404, etc.)
+            if (!response.ok) {
+                // Parsear la respuesta como JSON para obtener el mensaje de error
+                const errorData = await response.json();
+                throw new Error(errorData.message || 'Error en la solicitud');
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data.success) {
+                alert(`✅ ${data.message}`);
+                document.getElementById('codigo').value = ''; // Resetear campo
+                window.location.reload(); // Actualizar lista de registros
+            } else {
+                alert(`❌ ${data.message}`);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert(`❌ Error: ${error.message}`);
+        });
+    }
+
+    // Cerrar modales con botones personalizados
+    // Cerrar modales con botones personalizados
+    document.querySelectorAll('.btn-cerrar-modal').forEach(btnCerrar => {
+        btnCerrar.addEventListener('click', () => {
+            // Obtener el modal asociado al botón de cierre
+            const modal = btnCerrar.closest('.modal');
+            // Ocultar el modal usando Bootstrap
+            const modalInstance = bootstrap.Modal.getInstance(modal); // Try to get the instance
+            if (modalInstance) {
+                modalInstance.hide(); // Hide the modal if the instance exists
+            } else {
+                // If the instance doesn't exist, create a new one and hide it
+                new bootstrap.Modal(modal).hide();
+            }
+        });
+    });
+});
+</script>

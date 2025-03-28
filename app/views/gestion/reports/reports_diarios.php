@@ -39,7 +39,8 @@ include_once __DIR__ . '/../dashboard/layouts/header_main.php';
             <tr>
                 <th>#</th> <!-- Columna para el contador -->
                 <th>Nombres</th>
-                <th>Numero de Identificación</th>
+                <th>Tipo de documento</th>
+                <th>N° Identidad</th>
                 <th>Teléfono</th>
                 <th>Rol</th>
                 <th>Fecha</th>
@@ -54,6 +55,7 @@ include_once __DIR__ . '/../dashboard/layouts/header_main.php';
             <tr>
                 <td><?= $contador; ?></td> <!-- Mostramos el contador -->
                 <td><?= $usuario['nombre'] . "  " . $usuario['apellidos']; ?></td>
+                <td><?= $usuario['tipo_documento']; ?></td>
                 <td><?= $usuario['numero_identidad']; ?></td>
                 <td><?= $usuario['telefono']; ?></td>
                 <td><?= $usuario['rol']; ?></td>
