@@ -6,22 +6,20 @@ $page = $page ?? 1;
 $totalPaginas = $totalPaginas ?? 1;
 ?>
 
-<div id="tabla-body" class="card-body bg-white rounded shadow-sm">
-    <!-- Encabezado de la sección -->
-    <div class="mb-4 border-bottom bg-success">
-        <h4 class="card-title text-white mb-0 text-center">
-            <i class="bi bi-table me-2"></i>Registro General
-        </h4>
+<div class="card border-0 shadow-sm">
+    <!-- Encabezado estilo filtros -->
+    <div class="card-header bg-success text-white py-3 px-3">
+        <h6 class="mb-0"><i class="bi bi-table me-1"></i> REGISTRO GENERAL</h6>
     </div>
 
     <!-- Navegación por roles -->
-    <ul class="nav nav-tabs nav-justified">
+    <div class="card-body p-0">
+        <ul class="nav nav-tabs nav-justified">
             <?php
             $roles = [
                 'Instructor' => 'Instructores',
-                'Funcionario' => 'Funcionarios',
+                'Funcionario' => 'Funcionarios', 
                 'Directivo' => 'Directivos',
-                'Apoyo' => 'Apoyos',
                 'Visitante' => 'Visitantes'
             ];
             
@@ -29,8 +27,8 @@ $totalPaginas = $totalPaginas ?? 1;
                 $isActive = $rol === $clave;
             ?>
                 <li class="nav-item">
-                    <a class="nav-link <?= $isActive ? 'active fw-semibold' : 'text-success' ?>"
-                        href="?<?= http_build_query(array_merge($_GET, ['rol' => $clave, 'page' => 1])) ?>">
+                    <a class="nav-link <?= $isActive ? 'active fw-bold text-white' : 'text-success' ?> py-2 px-2"
+                       href="?<?= http_build_query(array_merge($_GET, ['rol' => $clave, 'page' => 1])) ?>">
                         <?= htmlspecialchars($valor) ?>
                     </a>
                 </li>
@@ -39,58 +37,56 @@ $totalPaginas = $totalPaginas ?? 1;
     </div>
 
     <!-- Contenido de la tabla -->
-    <div class="table-responsive mb-4">
-        <?php 
-        $tablaPath = __DIR__ . "/../partials/informacion_tabla.php";
-        if (file_exists($tablaPath)) {
-            include $tablaPath;
-        } else {
-            echo '<div class="alert alert-warning">La tabla no está disponible temporalmente</div>';
-        }
-        ?>
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <?php 
+            $tablaPath = __DIR__ . "/../partials/informacion_tabla.php";
+            if (file_exists($tablaPath)) {
+                include $tablaPath;
+            } else {
+                echo '<div class="alert alert-warning m-2 p-2 small">Datos no disponibles</div>';
+            }
+            ?>
+        </div>
     </div>
 
-    <!-- Paginación estilo profesional -->
-    <?php if ($totalPaginas > 1 && !isset($_GET['documento']) && !isset($_GET['nombre'])): ?>
-        <nav aria-label="Navegación de páginas">
-            <ul class="pagination justify-content-center mb-0">
+    <!-- Paginación -->
+    <?php if ($totalPaginas > 1): ?>
+        <div class="card-footer bg-white py-2 px-3">
+            <ul class="pagination pagination-sm justify-content-center mb-0">
                 <?php
-                $queryParams = array_merge($_GET, ['rol' => $rol]);
+                $queryParams = array_diff_key($_GET, ['page' => '']);
+                $queryParams['rol'] = $rol;
                 
                 // Botón Anterior
-                $prevClass = $page <= 1 ? 'disabled' : '';
+                $prevDisabled = $page <= 1 ? 'disabled' : '';
                 ?>
-                <li class="page-item <?= $prevClass ?>">
+                <li class="page-item <?= $prevDisabled ?>">
                     <a class="page-link text-success" 
-                        href="?<?= http_build_query(array_merge($queryParams, ['page' => $page - 1])) ?>" 
-                        aria-label="Anterior">
-                        <i class="bi bi-chevron-left"></i>
+                       href="?<?= http_build_query(array_merge($queryParams, ['page' => $page - 1])) ?>">
+                        &laquo;
                     </a>
                 </li>
 
-                <?php // Números de página
-                for ($i = 1; $i <= $totalPaginas; $i++): 
-                    $activeClass = $i === $page ? 'active bg-success border-success' : '';
-                ?>
-                    <li class="page-item <?= $activeClass ?>">
-                        <a class="page-link <?= $activeClass ? 'text-white' : 'text-success' ?>" 
-                            href="?<?= http_build_query(array_merge($queryParams, ['page' => $i])) ?>">
+                <?php for ($i = 1; $i <= $totalPaginas; $i++): ?>
+                    <li class="page-item <?= $i === $page ? 'active' : '' ?>">
+                        <a class="page-link <?= $i === $page ? 'bg-success text-white' : 'text-success' ?>" 
+                           href="?<?= http_build_query(array_merge($queryParams, ['page' => $i])) ?>">
                             <?= $i ?>
                         </a>
                     </li>
                 <?php endfor; ?>
 
                 <?php // Botón Siguiente
-                $nextClass = $page >= $totalPaginas ? 'disabled' : '';
+                $nextDisabled = $page >= $totalPaginas ? 'disabled' : '';
                 ?>
-                <li class="page-item <?= $nextClass ?>">
+                <li class="page-item <?= $nextDisabled ?>">
                     <a class="page-link text-success" 
-                        href="?<?= http_build_query(array_merge($queryParams, ['page' => $page + 1])) ?>" 
-                        aria-label="Siguiente">
-                        <i class="bi bi-chevron-right"></i>
+                       href="?<?= http_build_query(array_merge($queryParams, ['page' => $page + 1])) ?>">
+                        &raquo;
                     </a>
                 </li>
             </ul>
-        </nav>
+        </div>
     <?php endif; ?>
 </div>

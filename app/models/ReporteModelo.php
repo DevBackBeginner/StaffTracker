@@ -1,127 +1,143 @@
 <?php
-require_once '../config/DataBase.php';
 
-class ReporteModelo {
-    private $db;
+    require_once '../config/DataBase.php';
 
-    public function __construct() {
-        // Crear una instancia de la clase DataBase para obtener la conexión
-        $conn = new DataBase();
-        // Asignar la conexión establecida a la propiedad $db
-        $this->db = $conn->getConnection();
+    class ReporteModelo {
+        private $db;
 
-        date_default_timezone_set('America/Bogota'); // Cambia por tu zona horaria
+        public function __construct() {
+            // Crear una instancia de la clase DataBase para obtener la conexión
+            $conn = new DataBase();
+            // Asignar la conexión establecida a la propiedad $db
+            $this->db = $conn->getConnection();
 
-    }
+            date_default_timezone_set('America/Bogota'); // Cambia por tu zona horaria
 
-    public function registroGeneral() {
-        // Construir la consulta SQL
-        $sql = "SELECT u.id, u.nombre, u.apellidos, u.telefono, u.numero_identidad, u.rol, 
-                    r.fecha, r.hora_entrada, r.hora_salida
-                FROM usuarios u
-                INNER JOIN asignaciones_computadores ac ON u.id = ac.usuario_id
-                INNER JOIN registros r ON ac.id = r.asignacion_id";
-    
-        // Preparar y ejecutar la consulta
-        $query = $this->db->prepare($sql);
-        $query->execute();
-    
-        // Retornar los resultados como un array asociativo
-        return $query->fetchAll(PDO::FETCH_ASSOC);
-    }
+        }
 
-    public function registroHoy() {
-        // Obtener la fecha actual en formato YYYY-MM-DD
-        $fechaActual = date('Y-m-d');
-    
-        // Construir la consulta SQL
-        $sql = "SELECT u.id, u.nombre, u.apellidos, u.telefono, u.numero_identidad, u.rol, 
-                    r.fecha, r.hora_entrada, r.hora_salida
-                FROM usuarios u
-                INNER JOIN asignaciones_computadores ac ON u.id = ac.usuario_id
-                INNER JOIN registros r ON ac.id = r.asignacion_id
-                WHERE r.fecha = :fechaActual"; // Filtrar por la fecha actual
-    
-        // Preparar y ejecutar la consulta
-        $query = $this->db->prepare($sql);
-        $query->bindParam(':fechaActual', $fechaActual, PDO::PARAM_STR);
-        $query->execute();
-    
-        // Retornar los resultados como un array asociativo
-        return $query->fetchAll(PDO::FETCH_ASSOC);
-    }
-
-    public function registroMensual() {
-        // Obtener el mes y el año actual en formato YYYY-MM
-        $mesActual = date('Y-m');
-    
-        // Construir la consulta SQL
-        $sql = "SELECT u.id, u.nombre, u.apellidos, u.telefono, u.numero_identidad, u.rol, 
-                    r.fecha, r.hora_entrada, r.hora_salida
-                FROM usuarios u
-                INNER JOIN asignaciones_computadores ac ON u.id = ac.usuario_id
-                INNER JOIN registros r ON ac.id = r.asignacion_id
-                WHERE DATE_FORMAT(r.fecha, '%Y-%m') = :mesActual"; // Filtrar por el mes actual
-    
-        // Preparar y ejecutar la consulta
-        $query = $this->db->prepare($sql);
-        $query->bindParam(':mesActual', $mesActual, PDO::PARAM_STR);
-        $query->execute();
-    
-        // Retornar los resultados como un array asociativo
-        return $query->fetchAll(PDO::FETCH_ASSOC);
-    }
-    /**
-     * Obtiene los ingresos por hora, separados por rol.
-     * Incluye la hora, los minutos y el rol.
-     */
-    public function obtenerIngresosPorHora() {
-        try {
-            $query = "
-                SELECT 
-                    HOUR(r.hora_entrada) AS hora, 
-                    MINUTE(r.hora_entrada) AS minuto, 
-                    u.rol, 
-                    COUNT(*) AS total_ingresos
-                FROM 
-                    registros r
-                INNER JOIN 
-                    asignaciones_computadores ac ON r.asignacion_id = ac.id
-                INNER JOIN 
-                    usuarios u ON ac.usuario_id = u.id
-                WHERE 
-                    r.fecha = CURDATE() -- Filtra por el día actual
-                    AND HOUR(r.hora_entrada) BETWEEN 6 AND 23 -- De 6:00 AM a 11:59 PM
-                GROUP BY 
-                    HOUR(r.hora_entrada), MINUTE(r.hora_entrada), u.rol
-                ORDER BY 
-                    hora, minuto, u.rol;
-            ";
-            $stmt = $this->db->query($query);
-            $resultados = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        public function registroGeneral() {
+            $sql = "SELECT 
+                        p.id_persona,
+                        p.nombre,
+                        p.apellido,
+                        p.telefono,
+                        p.tipo_documento,
+                        p.numero_documento,
+                        p.rol,
+                        ris.fecha,
+                        ris.hora_ingreso,
+                        ris.hora_salida,
+                        IFNULL(c.modelo, cs.modelo) AS modelo_computador,
+                        IFNULL(c.codigo, cs.codigo) AS codigo_computador,
+                        ve.tipo_equipo
+                    FROM personas p
+                    INNER JOIN registro_ingreso_salida ris ON p.id_persona = ris.id_persona
+                    LEFT JOIN validacion_equipos ve ON ris.id_validacion_equipo = ve.id
+                    LEFT JOIN computadores c ON (ve.id_equipo = c.id_computador AND ve.tipo_equipo = 'computador_personal')
+                    LEFT JOIN computadores_sena cs ON (ve.id_equipo = cs.id_computador_sena AND ve.tipo_equipo = 'computador_sena')
+                    WHERE ris.hora_ingreso IS NOT NULL
+                    ORDER BY ris.fecha DESC, ris.hora_ingreso DESC";
+        
+            $query = $this->db->prepare($sql);
+            $query->execute();
+            return $query->fetchAll(PDO::FETCH_ASSOC);
+        }
+        
+        public function registroHoy() {
+            $fechaActual = date('Y-m-d');
             
-            // Validar el formato de los datos
-            foreach ($resultados as $registro) {
-                if (!isset($registro['hora']) || !isset($registro['minuto']) || !isset($registro['rol']) || !isset($registro['total_ingresos'])) {
-                    throw new Exception("Los datos no están en el formato esperado.");
+            $sql = "SELECT 
+                        p.id_persona,
+                        p.nombre,
+                        p.apellido,
+                        p.telefono,
+                        p.tipo_documento,
+                        p.numero_documento,
+                        p.rol,
+                        ris.fecha,
+                        ris.hora_ingreso,
+                        ris.hora_salida,
+                        IFNULL(c.modelo, cs.modelo) AS modelo_computador
+                    FROM personas p
+                    LEFT JOIN registro_ingreso_salida ris ON p.id_persona = ris.id_persona
+                    LEFT JOIN validacion_equipos ve ON ris.id_validacion_equipo = ve.id
+                    LEFT JOIN computadores c ON (ve.id_equipo = c.id_computador AND ve.tipo_equipo = 'computador_personal')
+                    LEFT JOIN computadores_sena cs ON (ve.id_equipo = cs.id_computador_sena AND ve.tipo_equipo = 'computador_sena')
+                    WHERE ris.fecha = :fechaActual
+                    ORDER BY ris.hora_ingreso DESC";
+        
+            $query = $this->db->prepare($sql);
+            $query->bindParam(':fechaActual', $fechaActual, PDO::PARAM_STR);
+            $query->execute();
+            return $query->fetchAll(PDO::FETCH_ASSOC);
+        }
+        
+        public function registroMensual() {
+            $mesActual = date('Y-m');
+            
+            $sql = "SELECT 
+                        p.id_persona,
+                        p.nombre,
+                        p.apellido,
+                        p.numero_documento,
+                        p.telefono,
+                        p.rol,
+                        ris.fecha,
+                        ris.hora_ingreso,
+                        ris.hora_salida,
+                        ve.tipo_equipo
+                    FROM personas p
+                    JOIN registro_ingreso_salida ris ON p.id_persona = ris.id_persona
+                    LEFT JOIN validacion_equipos ve ON ris.id_validacion_equipo = ve.id
+                    WHERE DATE_FORMAT(ris.fecha, '%Y-%m') = :mesActual
+                    ORDER BY ris.fecha DESC";
+        
+            $query = $this->db->prepare($sql);
+            $query->bindParam(':mesActual', $mesActual, PDO::PARAM_STR);
+            $query->execute();
+            return $query->fetchAll(PDO::FETCH_ASSOC);
+        }
+        
+        public function obtenerIngresosPorHora() {
+            try {
+                $query = "SELECT 
+                            HOUR(ris.hora_ingreso) AS hora,
+                            MINUTE(ris.hora_ingreso) AS minuto,
+                            p.rol,
+                            COUNT(*) AS total_ingresos
+                        FROM 
+                            registro_ingreso_salida ris
+                        JOIN 
+                            personas p ON ris.id_persona = p.id_persona
+                        WHERE 
+                            ris.fecha = CURDATE()
+                            AND HOUR(ris.hora_ingreso) BETWEEN 6 AND 23
+                        GROUP BY 
+                            HOUR(ris.hora_ingreso), MINUTE(ris.hora_ingreso), p.rol
+                        ORDER BY 
+                            hora, minuto, p.rol";
+        
+                $stmt = $this->db->query($query);
+                $resultados = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                
+                foreach ($resultados as $registro) {
+                    if (!isset($registro['hora']) || !isset($registro['minuto']) || !isset($registro['rol'])) {
+                        throw new Exception("Los datos no están en el formato esperado.");
+                    }
                 }
+                
+                return $resultados;
+            } catch (Exception $e) {
+                error_log("Error en obtenerIngresosPorHora: " . $e->getMessage());
+                return ["error" => "Hubo un problema al obtener los datos."];
             }
-            
-            return $resultados;
-        } catch (Exception $e) {
-            // Registrar el error (opcional)
-            error_log("Error en obtenerIngresosPorHora: " . $e->getMessage());
-            
-            // Retornar un mensaje de error
-            return ["error" => "Hubo un problema al obtener los datos."];
+        }
+        
+        public function obtenerTotalUsuarios() {
+            $query = "SELECT COUNT(*) AS total FROM personas";
+            $stmt = $this->db->query($query);
+            $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
+            return $resultado['total'];
         }
     }
-
-    public function obtenerTotalUsuarios() {
-        $query = "SELECT COUNT(*) AS total FROM usuarios";
-        $stmt = $this->db->query($query);
-        $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $resultado['total'];
-    }
-}
 ?>

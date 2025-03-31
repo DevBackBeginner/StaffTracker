@@ -1,8 +1,11 @@
 <?php
-// Incluimos el encabezado (header) que contiene la estructura HTML inicial, head, etc.
-include_once __DIR__ . '/../dashboard/layouts/header_main.php';
+    // Incluimos el encabezado (header) que contiene la estructura HTML inicial, head, etc.
+    include_once __DIR__ . '/../dashboard/layouts/header_main.php';
+    // Obtener los últimos registros de acceso
+    $ultimosRegistros = $this->registroModelo->obtenerUltimosRegistros();
 ?>
     <link href="assets/css/tablas.css" rel="stylesheet">
+    <link href="assets/css/ingreso.css" rel="stylesheet">
 
     <div class="pagetitle">
         <h1>Registro de Entradas</h1>
@@ -13,23 +16,6 @@ include_once __DIR__ . '/../dashboard/layouts/header_main.php';
             </ol>
         </nav>
     </div>
-    <style>
-    /* Estilos para los inputs y selects al hacer clic (enfoque) */
-    .form-control:focus,
-    .form-select:focus {
-        outline: none; /* Elimina el borde azul predeterminado */
-        border: 2px solid #007832; /* Borde verde alrededor del input/select cuando se hace clic */
-        box-shadow: none; /* Elimina cualquier sombra alrededor del input/select */
-    }
-
-    /* Estilos por defecto para los campos de input y select */
-    .form-control,
-    .form-select {
-        border: 1px solid #ccc; /* Borde gris claro */
-        border-radius: 4px; /* Bordes redondeados */
-        padding: 10px; /* Relleno de los campos */
-    }
-</style>
 
     <div class="container-fluid">
         <section class="section register py-4">
@@ -70,13 +56,10 @@ include_once __DIR__ . '/../dashboard/layouts/header_main.php';
 
     <!-- Modal -->
     <?php include_once 'modal_entrada.php' ?>
-
-    <script src="assets/js/registro_ingreso.js"></script> 
     
+    <script src="assets/js/registro_ingreso.js"></script>
+
 <?php
     // Incluimos el footer que contiene la estructura HTML final
     include_once __DIR__ . '/../dashboard/layouts/footer_main.php';
 ?>
-
-
-   

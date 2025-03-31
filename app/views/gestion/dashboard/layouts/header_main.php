@@ -1,9 +1,10 @@
 <?php
   // Verificar si el usuario está logueado y tiene el rol adecuado
-  if (($_SESSION['usuario']['rol'] !== 'Admin' && $_SESSION['usuario']['rol'] !== 'Guarda')) {
+  if (($_SESSION['usuario']['rol'] !== 'Administrador' && $_SESSION['usuario']['rol'] !== 'Guarda')) {
       header("Location: Inicio");
       exit();
   }
+
 ?>
 <!DOCTYPE html>
 
@@ -35,6 +36,7 @@
       <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
       
       <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
       <!-- Estilos personalizados -->
       <link href="assets/css/header_main.css" rel="stylesheet">
@@ -73,7 +75,7 @@
                       <h6> <?= htmlspecialchars($_SESSION['usuario']['nombre']); ?></h6>
                       <span>
                           <?php 
-                              echo ($_SESSION['usuario']['rol'] === 'admin') ? 'Administrador' : htmlspecialchars($_SESSION['usuario']['rol']); 
+                              echo ($_SESSION['usuario']['rol'] === 'Administrador') ? 'Administrador' : htmlspecialchars($_SESSION['usuario']['rol']); 
                           ?>
                       </span>
                   </li>
@@ -136,7 +138,7 @@
 
             <!-- Consultar Registros -->
             <li class="nav-item">
-              <a class="nav-link collapsed" href="panel_ingreso">
+              <a class="nav-link collapsed" href="historial_registros">
                 <i class="bi bi-list-check"></i>
                 <span>Historial de registros</span>
               </a>
@@ -144,94 +146,124 @@
           <?php endif; ?>
 
           <!-- Opciones exclusivas para Administradores -->
-          <?php if ($_SESSION['usuario']['rol'] === 'Admin'): ?>
+          <?php if ($_SESSION['usuario']['rol'] === 'Administrador'): ?>
             <li class="nav-heading">Administración</li>
-              <li class="nav-item">
-                <a class="nav-link collapsed" href="registrar_guardas">
-                  <i class="bi bi-person"></i>
-                  <span>Registrar Guardas</span>
-                </a>
-              </li><!-- End Registrar Guardas Nav -->
-              <li class="nav-item">
-                <a class="nav-link collapsed" data-bs-toggle="collapse" href="#gestionUsuarios" role="button" aria-expanded="false" aria-controls="gestionUsuarios">
+            <!-- 1. Gestión de Personal (existente) -->
+            <li class="nav-item">
+              <a class="nav-link collapsed" data-bs-toggle="collapse" href="#gestionPersonal" role="button">
                   <i class="bi bi-people"></i>
-                  <span>Gestión de Usuarios</span>
+                  <span>Gestión de Personal</span>
                   <i class="bi bi-chevron-down ms-auto"></i>
+              </a>
+              <ul id="gestionPersonal" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+                  <!-- Items existentes -->
+                  <li>
+                      <a href="formulario_registro_personal">
+                          <i class="bi bi-person-plus"></i>
+                          <span>Registrar Personal</span>
+                      </a>
+                  </li>
+                  <li>
+                      <a href="registrar_guardas">
+                          <i class="bi bi-shield-lock"></i>
+                          <span>Registrar Guardas</span>
+                      </a>
+                  </li>
+                  <li>
+                      <a href="listado_personal">
+                          <i class="bi bi-list-ul"></i>
+                          <span>Listado de Personal</span>
+                      </a>
+                  </li>
+                  
+                  <!-- Nuevo item para listado de guardas (basado en tu estructura) -->
+                  <li>
+                      <a href="listado_guardas">
+                          <i class="bi bi-shield-check"></i>
+                          <span>Listado de Guardas</span>
+                      </a>
+                  </li>
+              </ul>
+            </li>
+
+            <!-- 2. Control de Visitantes (nuevo pero basado en tu tabla visitantes) -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-bs-toggle="collapse" href="#controlVisitantes" role="button">
+                    <i class="bi bi-person-badge"></i>
+                    <span>Control de Visitantes</span>
+                    <i class="bi bi-chevron-down ms-auto"></i>
                 </a>
-                <ul id="gestionUsuarios" class="nav-content collapse" data-bs-parent="#sidebar-nav">
-                  <li>
-                    <a href="formulario_registro_personal">
-                      <i class="bi bi-plus-circle"></i>
-                      <span>Crear Usuario</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="Listado_Usuarios">
-                      <i class="bi bi-list-ul"></i>
-                      <span>Listado de Usuarios</span>
-                    </a>
-                  </li>
+                <ul id="controlVisitantes" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+                    <!-- Basado en tu tabla visitantes -->
+                    <li>
+                        <a href="formulario_registro_visitante">
+                            <i class="bi bi-person-plus"></i>
+                            <span>Registrar Visitante</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="listado_visitantes">
+                            <i class="bi bi-card-list"></i>
+                            <span>Listado de Visitantes</span>
+                        </a>
+                    </li>
                 </ul>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link collapsed" data-bs-toggle="collapse" href="#gestionReportes" role="button" aria-expanded="false" aria-controls="gestionUsuarios">
-                  <i class="bi bi-people"></i>
-                  <span>Reportes</span>
-                  <i class="bi bi-chevron-down ms-auto"></i>
+            </li>
+
+            <!-- 3. Reportes (existente) -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-bs-toggle="collapse" href="#gestionReportes" role="button">
+                    <i class="bi bi-clipboard-data"></i>
+                    <span>Reportes</span>
+                    <i class="bi bi-chevron-down ms-auto"></i>
                 </a>
                 <ul id="gestionReportes" class="nav-content collapse" data-bs-parent="#sidebar-nav">
-                  <li>
-                    <a href="ReporteGeneral">
-                      <i class="bi bi-plus-circle"></i>
-                      <span>Reporte General</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="ReporteDiario">
-                      <i class="bi bi-plus-circle"></i>
-                      <span>Reporte Diario</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="ReporteMensual">
-                      <i class="bi bi-plus-circle"></i>
-                      <span>Reporte Mensual</span>
-                    </a>
-                  </li>
+                    <!-- Items existentes -->
+                    <li>
+                        <a href="ReporteDiario">
+                            <i class="bi bi-calendar-day"></i>
+                            <span>Reporte Diario</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="ReporteMensual">
+                            <i class="bi bi-calendar-month"></i>
+                            <span>Reporte Mensual</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="ReporteGeneral">
+                            <i class="bi bi-graph-up"></i>
+                            <span>Reporte General</span>
+                        </a>
+                    </li>
                 </ul>
-              </li>
             </li>
-            <div class="nav-item">
-              <a class="nav-link collapsed" data-bs-toggle="collapse" href="#gestionReportesGraficos" role="button" aria-expanded="false" aria-controls="gestionUsuarios">
-                <i class="bi bi-people"></i>
-                <span>Reportes Graficos</span>
-                <i class="bi bi-chevron-down ms-auto"></i>
-              </a>
-              <ul id="gestionReportesGraficos" class="nav-content collapse" data-bs-parent="#sidebar-nav">  
-                <li>
-                  <a href="reporte_graficos">
-                    <i class="bi bi-list-ul"></i>
-                    <span>Reportes Graficos</span>
-                  </a>
-                </li>
-              </ul>
-            </div>
+
+            <!-- 4. Reportes Gráficos (existente) -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="reporte_graficos">
+                    <i class="bi bi-bar-chart-line"></i>
+                    <span>Visualizaciones</span>
+                </a>
+            </li>
           <?php endif; ?>
           <!-- Opciones Generales -->
           <li class="nav-heading">Ajustes</li>
-          <li class="nav-item">
-            <a class="nav-link collapsed" href="perfil">
-              <i class="bi bi-person"></i>
-              <span>Perfil</span>
-            </a>
-          </li><!-- End Perfil Nav -->
-          <!-- Cerrar Sesión -->
-          <li class="nav-item">
-            <a class="nav-link collapsed" href="logout">
-              <i class="bi bi-box-arrow-in-right"></i>
-              <span>Cerrar Sesión</span>
-            </a>
-          </li><!-- End Cerrar Sección Nav -->
+            <li class="nav-item">
+              <a class="nav-link collapsed" href="perfil">
+                <i class="bi bi-person"></i>
+                <span>Perfil</span>
+              </a>
+            </li><!-- End Perfil Nav -->
+            <!-- Cerrar Sesión -->
+            <li class="nav-item">
+              <a class="nav-link collapsed" href="logout">
+                <i class="bi bi-box-arrow-in-right"></i>
+                <span>Cerrar Sesión</span>
+              </a>
+            </li><!-- End Cerrar Sección Nav -->
+          </li>
         </ul>
       </aside>
       <main id="main" class="main">

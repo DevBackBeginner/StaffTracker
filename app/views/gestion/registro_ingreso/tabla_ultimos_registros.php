@@ -4,12 +4,12 @@
             <tr>
                 <th class="fs-6">Fecha</th>
                 <th class="fs-6">Hora Entrada</th>
-                <th class="fs-6">Nombres</th>
-                <th class="fs-6">Numero de Identificación</th>
+                <th class="fs-6">Identificación</th>
+                <th class="fs-6">Nombre</th>
                 <th class="fs-6">Rol</th>
-                <th class="fs-6">Marca del Equipo</th>
+                <th class="fs-6">Tipo del computador</th>
+                <th class="fs-6">Modelo del Equipo</th>
                 <th class="fs-6">Código</th>
-                <th class="fs-6">Tipo</th>
                 <th class="fs-6">Estado</th>
             </tr>
         </thead>
@@ -18,9 +18,16 @@
                 <tr>
                     <td><?php echo htmlspecialchars($registro['fecha']); ?></td>
                     <td><?php echo htmlspecialchars($registro['hora_entrada']); ?></td>
-                    <td><?php echo htmlspecialchars($registro['nombre']); ?></td>
                     <td><?php echo htmlspecialchars($registro['numero_identidad']); ?></td>
+                    <td><?php echo htmlspecialchars($registro['nombre']); ?></td>
                     <td><?php echo htmlspecialchars($registro['rol']); ?></td>
+                    <td>
+                        <?= !empty($registro['tipo']) 
+                            ? ($registro['tipo'] === 'computador_sena' ? 'Computador SENA' : 
+                            ($registro['tipo'] === 'computador_personal' ? 'Computador Personal' : 
+                            htmlspecialchars($registro['tipo'])))
+                            : 'No registrado' ?>
+                    </td>
                     <td>
                         <?php echo !empty($registro['marca']) 
                             ? htmlspecialchars($registro['marca']) 
@@ -32,14 +39,9 @@
                             : 'No registrado'; ?>
                     </td>
                     <td>
-                        <?php echo !empty($registro['tipo']) 
-                            ? htmlspecialchars($registro['tipo']) 
-                            : 'No registrado'; ?>
-                    </td>
-                    <td>
                         <span class="badge 
-                            <?php echo ($registro['estado'] === 'Activo') ? 'bg-success' : 'bg-danger'; ?>">
-                            <?php echo htmlspecialchars($registro['estado']); ?>
+                            <?php echo ($registro['estado_presencia'] === 'En la sede') ? 'bg-success' : 'bg-danger'; ?>">
+                            <?php echo htmlspecialchars($registro['estado_presencia']); ?>
                         </span>
                     </td>
                 </tr>

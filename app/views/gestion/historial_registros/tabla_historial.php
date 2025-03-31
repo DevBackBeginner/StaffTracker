@@ -79,9 +79,9 @@ $totalPaginas = $totalPaginas ?? 1;
                 ?>
                 <li class="page-item <?= $nextClass ?>">
                     <a class="page-link text-success" 
-                       href="?<?= http_build_query(array_merge($queryParams, ['page' => $page + 1])) ?>" 
-                       aria-label="Siguiente">
-                       <i class="bi bi-chevron-right"></i>
+                        href="?<?= http_build_query(array_merge($queryParams, ['page' => $page + 1])) ?>" 
+                        aria-label="Siguiente">
+                        <i class="bi bi-chevron-right"></i>
                     </a>
                 </li>
             </ul>

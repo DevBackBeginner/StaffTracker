@@ -1,169 +1,185 @@
 <?php include_once __DIR__ . '/../dashboard/layouts/header_main.php'; ?>
+    <link rel="stylesheet" href="assets/css/registro_personal.css">
     <div class="pagetitle">
         <h1>Registro de Personal</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="Inicio">Inicio</a></li>
+                <li class="breadcrumb-item">Gestion de Personal</li>
+
                 <li class="breadcrumb-item active">Registro de Personal</li>
             </ol>
         </nav>
     </div>
-    <style>
-    /* Estilos para los inputs y selects al hacer clic (enfoque) */
-    .form-control:focus,
-    .form-select:focus {
-        outline: none; /* Elimina el borde azul predeterminado */
-        border: 2px solid #007832; /* Borde verde alrededor del input/select cuando se hace clic */
-        box-shadow: none; /* Elimina cualquier sombra alrededor del input/select */
-    }
 
-    /* Estilos por defecto para los campos de input y select */
-    .form-control,
-    .form-select {
-        border: 1px solid #ccc; /* Borde gris claro */
-        border-radius: 4px; /* Bordes redondeados */
-        padding: 10px; /* Relleno de los campos */
-    }
-</style>
-
-    
     <div class="container-fluid">
-        <section class="section register py-4">
+        <section class="section register py-2">
             <div class="row">
                 <div class="col-12">
                     <div class="card mb-3 shadow-sm">
                         <div class="card-body p-4">
-                            <!-- Mostrar mensajes de éxito o error -->
                             <?php if (isset($_SESSION['mensaje'])): ?>
-                                <div class="alert <?php echo $_SESSION['tipo_mensaje'] === 'success' ? 'alert-success' : 'alert-danger'; ?> alert-dismissible fade show" role="alert">
-                                    <?php echo $_SESSION['mensaje']; ?>
-                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                </div>
+                                <script>
+                                    Swal.fire({
+                                        title: '<?= $_SESSION['tipo_mensaje'] === 'success' ? 'Éxito' : 'Error' ?>',
+                                        text: "<?= addslashes($_SESSION['mensaje']) ?>",
+                                        icon: '<?= $_SESSION['tipo_mensaje'] === 'success' ? 'success' : 'error' ?>',
+                                        confirmButtonText: 'Aceptar',
+                                        confirmButtonColor: '#007832',
+                                        background: '#ffffff',
+                                        allowOutsideClick: false,
+                                        customClass: {
+                                            popup: 'animate__animated animate__fadeInDown'
+                                        }
+                                    });
+                                </script>
                                 <?php
-                                // Limpiar el mensaje después de mostrarlo
                                 unset($_SESSION['mensaje']);
                                 unset($_SESSION['tipo_mensaje']);
-                            ?>
+                                ?>
                             <?php endif; ?>
 
-                            <form class="row g-3 needs-validation" action="registrar_personal" method="POST" novalidate onsubmit="return validarFormulario()">
-                                <!-- Campos comunes -->
+                            <form class="row g-3 needs-validation" action="registrar_personal" method="POST" novalidate>
+                                <!-- Documentación -->
                                 <div class="col-md-6">
-                                    <label for="nombre" class="form-label fw-bold" style="color: #007832;">Nombres</label>
+                                    <label for="tipo_documento" class="form-label fw-bold" style="color: #007832;">
+                                        <i class="bi bi-card-list"></i> Tipo de Documento
+                                    </label>
                                     <div class="input-group">
-                                        <span class="input-group-text"><i class="bi bi-person"></i></span>
-                                        <input type="text" name="nombre" id="nombre" class="form-control" placeholder="Nombre" required>
+                                        <span class="input-group-text bg-light">
+                                            <i class="bi bi-card-heading text-success"></i>
+                                        </span>
+                                        <select name="tipo_documento" id="tipo_documento" class="form-select" required>
+                                            <option value="" selected disabled>Seleccione su documento...</option>
+                                            <option value="CC">Cédula de Ciudadanía</option>
+                                            <option value="CE">Cédula de Extranjería</option>
+                                            <option value="TI">Tarjeta de Identidad</option>
+                                            <option value="PASAPORTE">Pasaporte</option>
+                                            <option value="NIT">NIT</option>
+                                            <option value="OTRO">Otro documento</option>
+                                        </select>
+                                    </div>
+                                    <div class="invalid-feedback">Por favor, seleccione su tipo de documento.</div>
+                                </div>
+                                
+                                <div class="col-md-6">
+                                    <label for="numero_identidad" class="form-label fw-bold" style="color: #007832;">
+                                        <i class="bi bi-card-text"></i> Número de Documento
+                                    </label>
+                                    <div class="input-group">
+                                        <span class="input-group-text bg-light">
+                                            <i class="bi bi-card-text text-success"></i>
+                                        </span>
+                                        <input type="text" name="numero_identidad" id="numero_identidad" class="form-control" placeholder="Ej: 1001234567" required>
+                                    </div>
+                                    <div class="invalid-feedback">Por favor, ingrese su número de documento.</div>
+                                </div>
+
+                                <!-- Información Básica -->
+                                <div class="col-md-6">
+                                    <label for="nombre" class="form-label fw-bold" style="color: #007832;">
+                                        <i class="bi bi-person"></i> Nombres
+                                    </label>
+                                    <div class="input-group">
+                                        <span class="input-group-text bg-light">
+                                            <i class="bi bi-person-circle text-success"></i>
+                                        </span>
+                                        <input type="text" name="nombre" id="nombre" class="form-control" placeholder="Ej: María José" required>
                                     </div>
                                     <div class="invalid-feedback">Por favor, ingrese su nombre.</div>
                                 </div>
+                                
                                 <div class="col-md-6">
-                                    <label for="apellido" class="form-label fw-bold" style="color: #007832;">Apellidos</label>
+                                    <label for="apellido" class="form-label fw-bold" style="color: #007832;">
+                                        <i class="bi bi-person"></i> Apellidos
+                                    </label>
                                     <div class="input-group">
-                                        <span class="input-group-text"><i class="bi bi-person"></i></span>
-                                        <input type="text" name="apellido" id="apellido" class="form-control" placeholder="Apellido" required>
+                                        <span class="input-group-text bg-light">
+                                            <i class="bi bi-person-vcard text-success"></i>
+                                        </span>
+                                        <input type="text" name="apellido" id="apellido" class="form-control" placeholder="Ej: González Pérez" required>
                                     </div>
                                     <div class="invalid-feedback">Por favor, ingrese sus apellidos.</div>
                                 </div>
+
+                                <!-- Contacto -->
                                 <div class="col-md-6">
-                                    <label for="numero_identidad" class="form-label fw-bold" style="color: #007832;">Numero de Identificación</label>
+                                    <label for="telefono" class="form-label fw-bold" style="color: #007832;">
+                                        <i class="bi bi-telephone"></i> Teléfono
+                                    </label>
                                     <div class="input-group">
-                                        <span class="input-group-text"><i class="bi bi-card-text"></i></span>
-                                        <input type="text" name="numero_identidad" id="numero_identidad" class="form-control" placeholder="Número de Identidad" required>
-                                    </div>
-                                    <div class="invalid-feedback">Por favor, ingrese su número de identidad.</div>
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="telefono" class="form-label fw-bold" style="color: #007832;">Teléfono</label>
-                                    <div class="input-group">
-                                        <span class="input-group-text"><i class="bi bi-telephone"></i></span>
-                                        <input type="text" name="telefono" id="telefono" class="form-control" placeholder="Teléfono" required>
+                                        <span class="input-group-text bg-light">
+                                            <i class="bi bi-telephone-outbound text-success"></i>
+                                        </span>
+                                        <input type="text" name="telefono" id="telefono" class="form-control" placeholder="Ej: 3001234567" required>
                                     </div>
                                     <div class="invalid-feedback">Por favor, ingrese su teléfono.</div>
                                 </div>
-                                <div class="col-md-12">
-                                    <label for="rol" class="form-label fw-bold" style="color: #007832;">Rol</label>
+
+                                <!-- Información Laboral -->
+                                <div class="col-md-6">
+                                    <label for="rol" class="form-label fw-bold" style="color: #007832;">
+                                        <i class="bi bi-briefcase"></i> Rol
+                                    </label>
                                     <div class="input-group">
-                                        <span class="input-group-text"><i class="bi bi-briefcase"></i></span>
-                                        <select name="rol" id="rol" class="form-select" required onchange="mostrarCamposAdicionales()">
-                                            <option value="">Seleccione un rol</option>
+                                        <span class="input-group-text bg-light">
+                                            <i class="bi bi-person-gear text-success"></i>
+                                        </span>
+                                        <select name="rol" id="rol" class="form-select" onchange="mostrarCamposAdicionales()" required>
+                                            <option value="" selected disabled>Seleccione su rol...</option>
                                             <option value="Funcionario">Funcionario</option>
                                             <option value="Instructor">Instructor</option>
-                                            <option value="Directiva">Directiva</option>
-                                            <option value="Apoyo">Apoyo</option>
+                                            <option value="Directivo">Directivo</option>
                                         </select>
                                     </div>
                                     <div class="invalid-feedback">Por favor, seleccione un rol.</div>
                                 </div>
 
-                                <!-- Campos adicionales para cada rol -->
-                                <div id="camposFuncionario" class="campos-adicionales col-md-12 d-none">
+                                <!-- Contenedor para Cargo y Tipo de Contrato -->
+                                <div id="camposComunes" class="d-none">
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <label for="area" class="form-label fw-bold" style="color: #007832;">Área</label>
+                                            <label for="cargo" class="form-label fw-bold" style="color: #007832;">
+                                                <i class="bi bi-person-badge"></i> Cargo
+                                            </label>
                                             <div class="input-group">
-                                                <span class="input-group-text"><i class="bi bi-building"></i></span>
-                                                <input type="text" name="area" class="form-control" placeholder="Área">
+                                                <span class="input-group-text bg-light">
+                                                    <i class="bi bi-person-video3 text-success"></i>
+                                                </span>
+                                                <input type="text" name="cargo" id="cargo" class="form-control" placeholder="Ej: Asistente administrativo" required>
                                             </div>
+                                            <div class="invalid-feedback">Por favor, ingrese el cargo.</div>
                                         </div>
                                         <div class="col-md-6">
-                                            <label for="puesto" class="form-label fw-bold" style="color: #007832;">Puesto</label>
+                                            <label for="tipo_contrato" class="form-label fw-bold" style="color: #007832;">
+                                                <i class="bi bi-file-earmark-text"></i> Tipo de Contrato
+                                            </label>
                                             <div class="input-group">
-                                                <span class="input-group-text"><i class="bi bi-briefcase"></i></span>
-                                                <input type="text" name="puesto" class="form-control" placeholder="Puesto">
+                                                <span class="input-group-text bg-light">
+                                                    <i class="bi bi-file-earmark-medical text-success"></i>
+                                                </span>
+                                                <select name="tipo_contrato" id="tipo_contrato" class="form-select" required>
+                                                    <option value="" selected disabled>Seleccione tipo de contrato...</option>
+                                                    <option value="Planta">Planta</option>
+                                                    <option value="Contratista">Contratista</option>
+                                                </select>
                                             </div>
+                                            <div class="invalid-feedback">Por favor, seleccione el tipo de contrato.</div>
                                         </div>
-                                    </div> 
-                                </div>
-                                <div id="camposInstructor" class="campos-adicionales col-md-12 d-none">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <label for="curso" class="form-label fw-bold" style="color: #007832;">Curso</label>
-                                            <div class="input-group">
-                                                <span class="input-group-text"><i class="bi bi-book"></i></span>
-                                                <input type="text" name="curso" class="form-control" placeholder="Curso">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label for="ubicacion" class="form-label fw-bold" style="color: #007832;">Ubicación</label>
-                                            <div class="input-group">
-                                                <span class="input-group-text"><i class="bi bi-geo-alt"></i></span>
-                                                <input type="text" name="ubicacion" class="form-control " placeholder="Ubicación">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div id="camposDirectiva" class="campos-adicionales col-md-12 d-none">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <label for="cargo" class="form-label fw-bold" style="color: #007832;">Cargo</label>
-                                            <div class="input-group">
-                                                <span class="input-group-text"><i class="bi bi-person-badge"></i></span>
-                                                <input type="text" name="cargo" class="form-control" placeholder="Cargo">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label for="departamento" class="form-label fw-bold" style="color: #007832;">Departamento</label>
-                                            <div class="input-group">
-                                                <span class="input-group-text"><i class="bi bi-building"></i></span>
-                                                <input type="text" name="departamento" class="form-control" placeholder="Departamento">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div id="camposApoyo" class="campos-adicionales col-md-12 d-none">
-                                    <div class="input-group">
-                                        <span class="input-group-text"><i class="bi bi-tools"></i></span>
-                                        <input type="text" name="area_trabajo" class="form-control" placeholder="Área de Trabajo">
                                     </div>
                                 </div>
 
-                                <!-- Preguntar si tiene computador -->
+                                <!-- Computador -->
                                 <div class="col-md-12">
-                                    <label for="tiene_computador" class="form-label fw-bold" style="color: #007832;">¿Tiene computador?</label>
+                                    <label for="tiene_computador" class="form-label fw-bold" style="color: #007832;">
+                                        <i class="bi bi-laptop"></i> ¿Tiene computador?
+                                    </label>
                                     <div class="input-group">
-                                        <span class="input-group-text"><i class="bi bi-laptop"></i></span>
+                                        <span class="input-group-text bg-light">
+                                            <i class="bi bi-pc-display text-success"></i>
+                                        </span>
                                         <select name="tiene_computador" id="tiene_computador" class="form-select" onchange="mostrarCamposComputador()" required>
-                                            <option value="">Seleccione una opción</option>
+                                            <option value="" selected disabled>Seleccione una opción...</option>
                                             <option value="1">Sí</option>
                                             <option value="0">No</option>
                                         </select>
@@ -171,62 +187,59 @@
                                     <div class="invalid-feedback">Por favor, seleccione una opción.</div>
                                 </div>
 
-                                <!-- Campos adicionales para computador (se muestran solo si tiene computador) -->
-                                <div id="camposComputador" class="campos-adicionales col-md-12 d-none">
-                                    <div class="col-md-12 mb-3">
-                                        <label for="tipo_computador" class="form-label fw-bold" style="color: #007832;">Tipo de computador</label>
-                                        <div class="input-group">
-                                            <span class="input-group-text"><i class="bi bi-laptop"></i></span>
-                                            <select name="tipo_computador" id="tipo_computador" class="form-select">
-                                                <option value="">Seleccione un tipo</option>
-                                                <option value="Sena">Sena</option>
-                                                <option value="Personal">Personal</option>
-                                            </select>
-                                        </div>
-                                    </div>
+                                <!-- Campos de computador -->
+                                <div id="camposComputador" class="col-md-12 d-none">
                                     <div class="row">
-                                        <div class="col-md-6 mb-3">
-                                            <label for="marca_computador" class="form-label fw-bold" style="color: #007832;">Marca del computador</label>
+                                        <div class="col-md-6">
+                                            <label for="marca" class="form-label fw-bold" style="color: #007832;">
+                                                <i class="bi bi-laptop"></i> Marca del computador
+                                            </label>
                                             <div class="input-group">
-                                                <span class="input-group-text"><i class="bi bi-laptop"></i></span>
-                                                <input type="text" name="marca" class="form-control" placeholder="Marca del computador">
+                                                <span class="input-group-text bg-light">
+                                                    <i class="bi bi-tag text-success"></i>
+                                                </span>
+                                                <input type="text" name="marca" class="form-control" placeholder="Ej: HP, Lenovo, Dell">
                                             </div>
                                         </div>
-                                        <div class="col-md-6 mb-3">
-                                            <label for="codigo_computador" class="form-label fw-bold" style="color: #007832;">Código del computador</label>
+                                        <div class="col-md-6">
+                                            <label for="codigo" class="form-label fw-bold" style="color: #007832;">
+                                                <i class="bi bi-upc-scan"></i> Código del computador
+                                            </label>
                                             <div class="input-group">
-                                                <span class="input-group-text"><i class="bi bi-laptop"></i></span>
-                                                <input type="text" name="codigo" class="form-control" placeholder="Código del computador">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6 mb-3">
-                                            <label class="form-label" style="color: #007832;">¿Trae mouse?</label>
-                                            <div class="input-group">
-                                                <span class="input-group-text"><i class="bi bi-mouse"></i></span>
-                                                <div class="form-check ms-2 d-flex align-items-center">
-                                                    <input type="checkbox" name="mouse" id="mouse" class="form-check-input" value="Sí">
-                                                    <label for="mouse" class="form-check-label ms-2">Sí</label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="mb-3 col-md-6">
-                                            <label class="form-label" style="color: #007832;">¿Trae teclado?</label>
-                                            <div class="input-group">
-                                                <span class="input-group-text"><i class="bi bi-keyboard"></i></span>
-                                                <div class="form-check ms-2 d-flex align-items-center">
-                                                    <input type="checkbox" name="teclado" id="teclado" class="form-check-input" value="Sí">
-                                                    <label for="teclado" class="form-check-label ms-2">Sí</label>
-                                                </div>
+                                                <span class="input-group-text bg-light">
+                                                    <i class="bi bi-upc text-success"></i>
+                                                </span>
+                                                <input type="text" name="codigo" class="form-control" placeholder="Ej: SN-123456789">
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="row mt-3">
+                                        <div class="col-md-6">
+                                            <label class="form-label fw-bold" style="color: #007832;">
+                                                <i class="bi bi-mouse"></i> ¿Trae mouse?
+                                            </label>
+                                            <div class="form-check">
+                                                <input class="form-check-input custom-checkbox" type="checkbox" name="mouse" id="mouse" value="Sí">
+                                                <label class="form-check-label" for="mouse">Sí</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-label fw-bold" style="color: #007832;">
+                                                <i class="bi bi-keyboard"></i> ¿Trae teclado?
+                                            </label>
+                                            <div class="form-check">
+                                                <input class="form-check-input custom-checkbox" type="checkbox" name="teclado" id="teclado" value="Sí">
+                                                <label class="form-check-label" for="teclado">Sí</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <input type="hidden" name="tipo_computador" value="Personal">
                                 </div>
 
+                                <!-- Botón de registro -->
                                 <div class="col-12 mt-4">
                                     <button type="submit" class="btn btn-success w-100 py-2 fw-bold" style="background-color: #007832; border-color: #007832;">
-                                        <i class="bi bi-check-circle me-2"></i>Registrar
+                                        <i class="bi bi-check-circle me-2"></i> Registrar
                                     </button>
                                 </div>
                             </form>
@@ -236,10 +249,7 @@
             </div>
         </section>
     </div>
-    
+
     <script src="assets/js/registro_personal.js"></script>
 
-<?php
-// Incluimos el footer que contiene la estructura HTML final
-include_once __DIR__ . '/../dashboard/layouts/footer_main.php';
-?>
+<?php include_once __DIR__ . '/../dashboard/layouts/footer_main.php'; ?>

@@ -19,7 +19,7 @@
         public function obtenerRegistroDiario()
         {
             $query = "SELECT COUNT(*) as total 
-                    FROM registros 
+                    FROM registro_ingreso_salida 
                     WHERE DATE(fecha) = CURDATE()";
             $stmt = $this->db->query($query);
             return $stmt->fetch(PDO::FETCH_ASSOC)['total'] ?? 0;
@@ -32,7 +32,7 @@
         public function obtenerRegistrosDiaAnterior()
         {
             $query = "SELECT COUNT(*) as total 
-                    FROM registros 
+                    FROM registro_ingreso_salida 
                     WHERE DATE(fecha) = CURDATE() - INTERVAL 1 DAY";
             $stmt = $this->db->query($query);
             return $stmt->fetch(PDO::FETCH_ASSOC)['total'] ?? 0;
@@ -45,7 +45,7 @@
         public function obtenerRegistroSemanal()
         {
             $query = "SELECT COUNT(*) as total 
-                    FROM registros 
+                    FROM registro_ingreso_salida 
                     WHERE WEEK(fecha) = WEEK(CURDATE()) 
                         AND YEAR(fecha) = YEAR(CURDATE())";
             $stmt = $this->db->query($query);
@@ -59,7 +59,7 @@
         public function obtenerRegistrosSemanaAnterior()
         {
             $query = "SELECT COUNT(*) as total 
-                    FROM registros 
+                    FROM registro_ingreso_salida 
                     WHERE WEEK(fecha) = WEEK(CURDATE()) - 1 
                         AND YEAR(fecha) = YEAR(CURDATE())";
             $stmt = $this->db->query($query);
@@ -73,7 +73,7 @@
         public function obtenerRegistroMensual()
         {
             $query = "SELECT COUNT(*) as total 
-                    FROM registros 
+                    FROM registro_ingreso_salida 
                     WHERE MONTH(fecha) = MONTH(CURDATE()) 
                         AND YEAR(fecha) = YEAR(CURDATE())";
             $stmt = $this->db->query($query);
@@ -87,7 +87,7 @@
         public function obtenerRegistroMensualAnterior()
         {
             $query = "SELECT COUNT(*) as total 
-                    FROM registros 
+                    FROM registro_ingreso_salida 
                     WHERE MONTH(fecha) = MONTH(CURDATE() - INTERVAL 1 MONTH) 
                         AND YEAR(fecha) = YEAR(CURDATE() - INTERVAL 1 MONTH)";
             $stmt = $this->db->query($query);
@@ -96,141 +96,138 @@
 
         public function obtenerFuncionariosDiarios()
         {
-            // Lógica para obtener el total de funcionarios registrados hoy
-            $query = "SELECT COUNT(*) as total 
-                    FROM registros 
-                    WHERE DATE(fecha) = CURDATE()
-                        and tipo_usuario = 'Personal'";
-            $stmt = $this->db->query($query);
-            return $stmt->fetch(PDO::FETCH_ASSOC)['total'] ?? 0;
+            $query = "SELECT COUNT(DISTINCT ris.id_persona) as total 
+                    FROM registro_ingreso_salida ris
+                    INNER JOIN personas p ON ris.id_persona = p.id_persona
+                    WHERE DATE(ris.fecha) = CURDATE()
+                    AND p.rol NOT IN ('Administrador', 'Guarda', 'Visitante')";
+            return $this->ejecutarConsultaCount($query);
         }
 
         public function obtenerFuncionariosDiariosAnterior()
         {
-            // Lógica para obtener el total de funcionarios registrados el día anterior
-            $query = "SELECT COUNT(*) as total 
-                    FROM registros 
-                    WHERE DATE(fecha) = DATE_SUB(CURDATE(), INTERVAL 1 DAY)
-                        AND tipo_usuario = 'Personal'";
-            $stmt = $this->db->query($query);
-            return $stmt->fetch(PDO::FETCH_ASSOC)['total'] ?? 0;
+            $query = "SELECT COUNT(DISTINCT ris.id_persona) as total 
+                    FROM registro_ingreso_salida ris
+                    INNER JOIN personas p ON ris.id_persona = p.id_persona
+                    WHERE DATE(ris.fecha) = DATE_SUB(CURDATE(), INTERVAL 1 DAY)
+                    AND p.rol NOT IN ('Administrador', 'Guarda', 'Visitante')";
+            return $this->ejecutarConsultaCount($query);
         }
 
         public function obtenerFuncionariosSemanales()
         {
-            // Lógica para obtener el total de funcionarios registrados esta semana
-            $query = "SELECT COUNT(*) as total 
-                    FROM registros 
-                    WHERE YEARWEEK(fecha, 1) = YEARWEEK(CURDATE(), 1)
-                        AND tipo_usuario = 'Personal'";
-            $stmt = $this->db->query($query);
-            return $stmt->fetch(PDO::FETCH_ASSOC)['total'] ?? 0;
+            $query = "SELECT COUNT(DISTINCT ris.id_persona) as total 
+                    FROM registro_ingreso_salida ris
+                    INNER JOIN personas p ON ris.id_persona = p.id_persona
+                    WHERE YEARWEEK(ris.fecha, 1) = YEARWEEK(CURDATE(), 1)
+                    AND p.rol NOT IN ('Administrador', 'Guarda', 'Visitante')";
+            return $this->ejecutarConsultaCount($query);
         }
 
         public function obtenerFuncionariosSemanalesAnterior()
         {
-            // Lógica para obtener el total de funcionarios registrados la semana anterior
-            $query = "SELECT COUNT(*) as total 
-                    FROM registros 
-                    WHERE YEARWEEK(fecha, 1) = YEARWEEK(DATE_SUB(CURDATE(), INTERVAL 1 WEEK), 1)
-                        AND tipo_usuario = 'Personal'";
-            $stmt = $this->db->query($query);
-            return $stmt->fetch(PDO::FETCH_ASSOC)['total'] ?? 0;
+            $query = "SELECT COUNT(DISTINCT ris.id_persona) as total 
+                    FROM registro_ingreso_salida ris
+                    INNER JOIN personas p ON ris.id_persona = p.id_persona
+                    WHERE YEARWEEK(ris.fecha, 1) = YEARWEEK(DATE_SUB(CURDATE(), INTERVAL 1 WEEK), 1)
+                    AND p.rol NOT IN ('Administrador', 'Guarda', 'Visitante')";
+            return $this->ejecutarConsultaCount($query);
         }
 
         public function obtenerFuncionariosMensuales()
         {
-            // Lógica para obtener el total de funcionarios registrados este mes
-            $query = "SELECT COUNT(*) as total 
-                    FROM registros 
-                    WHERE MONTH(fecha) = MONTH(CURDATE())
-                        AND YEAR(fecha) = YEAR(CURDATE())
-                        AND tipo_usuario = 'Personal'";
-            $stmt = $this->db->query($query);
-            return $stmt->fetch(PDO::FETCH_ASSOC)['total'] ?? 0;
+            $query = "SELECT COUNT(DISTINCT ris.id_persona) as total 
+                    FROM registro_ingreso_salida ris
+                    INNER JOIN personas p ON ris.id_persona = p.id_persona
+                    WHERE MONTH(ris.fecha) = MONTH(CURDATE())
+                    AND YEAR(ris.fecha) = YEAR(CURDATE())
+                    AND p.rol NOT IN ('Administrador', 'Guarda', 'Visitante')";
+            return $this->ejecutarConsultaCount($query);
         }
 
         public function obtenerFuncionariosMensualesAnterior()
         {
-            // Lógica para obtener el total de funcionarios registrados el mes anterior
-            $query = "SELECT COUNT(*) as total 
-                    FROM registros 
-                    WHERE MONTH(fecha) = MONTH(DATE_SUB(CURDATE(), INTERVAL 1 MONTH))
-                        AND YEAR(fecha) = YEAR(DATE_SUB(CURDATE(), INTERVAL 1 MONTH))
-                        AND tipo_usuario = 'Personal'";
-            $stmt = $this->db->query($query);
-            return $stmt->fetch(PDO::FETCH_ASSOC)['total'] ?? 0;
+            $query = "SELECT COUNT(DISTINCT ris.id_persona) as total 
+                    FROM registro_ingreso_salida ris
+                    INNER JOIN personas p ON ris.id_persona = p.id_persona
+                    WHERE MONTH(ris.fecha) = MONTH(DATE_SUB(CURDATE(), INTERVAL 1 MONTH))
+                    AND YEAR(ris.fecha) = YEAR(DATE_SUB(CURDATE(), INTERVAL 1 MONTH))
+                    AND p.rol NOT IN ('Administrador', 'Guarda', 'Visitante')";
+            return $this->ejecutarConsultaCount($query);
         }
-
         public function obtenerVisitantesDiarios()
         {
-            // Lógica para obtener el total de visitantes registrados hoy
-            $query = "SELECT COUNT(*) as total 
-            FROM registros 
-                    WHERE DATE(fecha) = CURDATE()
-                        and tipo_usuario = 'visitante'";
-            $stmt = $this->db->query($query);
-            return $stmt->fetch(PDO::FETCH_ASSOC)['total'] ?? 0;       
+            $query = "SELECT COUNT(DISTINCT ris.id_persona) as total 
+                    FROM registro_ingreso_salida ris
+                    INNER JOIN personas p ON ris.id_persona = p.id_persona
+                    WHERE DATE(ris.fecha) = CURDATE()
+                    AND p.rol = 'Visitante'";
+            return $this->ejecutarConsultaCount($query);
         }
 
         public function obtenerVisitantesDiariosAnterior()
         {
-            // Lógica para obtener el total de visitantes registrados el día anterior
-            $query = "SELECT COUNT(*) as total 
-                    FROM registros 
-                    WHERE DATE(fecha) = CURDATE() - INTERVAL 1 DAY
-                        AND tipo_usuario = 'visitante'";
-            $stmt = $this->db->query($query);
-            return $stmt->fetch(PDO::FETCH_ASSOC)['total'] ?? 0;
+            $query = "SELECT COUNT(DISTINCT ris.id_persona) as total 
+                    FROM registro_ingreso_salida ris
+                    INNER JOIN personas p ON ris.id_persona = p.id_persona
+                    WHERE DATE(ris.fecha) = DATE_SUB(CURDATE(), INTERVAL 1 DAY)
+                    AND p.rol = 'Visitante'";
+            return $this->ejecutarConsultaCount($query);
         }
 
         public function obtenerVisitantesSemanales()
         {
-            // Lógica para obtener el total de visitantes registrados esta semana
-            $query = "SELECT COUNT(*) as total 
-                    FROM registros 
-                    WHERE YEARWEEK(fecha, 1) = YEARWEEK(CURDATE(), 1)
-                        AND tipo_usuario = 'visitante'";
-            $stmt = $this->db->query($query);
-            return $stmt->fetch(PDO::FETCH_ASSOC)['total'] ?? 0;
+            $query = "SELECT COUNT(DISTINCT ris.id_persona) as total 
+                    FROM registro_ingreso_salida ris
+                    INNER JOIN personas p ON ris.id_persona = p.id_persona
+                    WHERE YEARWEEK(ris.fecha, 1) = YEARWEEK(CURDATE(), 1)
+                    AND p.rol = 'Visitante'";
+            return $this->ejecutarConsultaCount($query);
         }
 
         public function obtenerVisitantesSemanalesAnterior()
         {
-            // Lógica para obtener el total de visitantes registrados la semana anterior
-            $query = "SELECT COUNT(*) as total 
-                    FROM registros 
-                    WHERE YEARWEEK(fecha, 1) = YEARWEEK(DATE_SUB(CURDATE(), INTERVAL 1 WEEK), 1)
-                        AND tipo_usuario = 'visitante'";
-            $stmt = $this->db->query($query);
-            return $stmt->fetch(PDO::FETCH_ASSOC)['total'] ?? 0;
+            $query = "SELECT COUNT(DISTINCT ris.id_persona) as total 
+                    FROM registro_ingreso_salida ris
+                    INNER JOIN personas p ON ris.id_persona = p.id_persona
+                    WHERE YEARWEEK(ris.fecha, 1) = YEARWEEK(DATE_SUB(CURDATE(), INTERVAL 1 WEEK), 1)
+                    AND p.rol = 'Visitante'";
+            return $this->ejecutarConsultaCount($query);
         }
 
         public function obtenerVisitantesMensuales()
         {
-            // Lógica para obtener el total de visitantes registrados este mes
-            $query = "SELECT COUNT(*) as total 
-                    FROM registros 
-                    WHERE MONTH(fecha) = MONTH(CURDATE())
-                        AND YEAR(fecha) = YEAR(CURDATE())
-                        AND tipo_usuario = 'visitante'";
-            $stmt = $this->db->query($query);
-            return $stmt->fetch(PDO::FETCH_ASSOC)['total'] ?? 0;
+            $query = "SELECT COUNT(DISTINCT ris.id_persona) as total 
+                    FROM registro_ingreso_salida ris
+                    INNER JOIN personas p ON ris.id_persona = p.id_persona
+                    WHERE MONTH(ris.fecha) = MONTH(CURDATE())
+                    AND YEAR(ris.fecha) = YEAR(CURDATE())
+                    AND p.rol = 'Visitante'";
+            return $this->ejecutarConsultaCount($query);
         }
 
         public function obtenerVisitantesMensualesAnterior()
         {
-            // Lógica para obtener el total de visitantes registrados el mes anterior
-            $query = "SELECT COUNT(*) as total 
-                    FROM registros 
-                    WHERE MONTH(fecha) = MONTH(DATE_SUB(CURDATE(), INTERVAL 1 MONTH))
-                        AND YEAR(fecha) = YEAR(DATE_SUB(CURDATE(), INTERVAL 1 MONTH))
-                        AND tipo_usuario = 'visitante'";
-            $stmt = $this->db->query($query);
-            return $stmt->fetch(PDO::FETCH_ASSOC)['total'] ?? 0;
+            $query = "SELECT COUNT(DISTINCT ris.id_persona) as total 
+                    FROM registro_ingreso_salida ris
+                    INNER JOIN personas p ON ris.id_persona = p.id_persona
+                    WHERE MONTH(ris.fecha) = MONTH(DATE_SUB(CURDATE(), INTERVAL 1 MONTH))
+                    AND YEAR(ris.fecha) = YEAR(DATE_SUB(CURDATE(), INTERVAL 1 MONTH))
+                    AND p.rol = 'Visitante'";
+            return $this->ejecutarConsultaCount($query);
         }
-
-
+        
+        private function ejecutarConsultaCount($query)
+        {
+            try {
+                $stmt = $this->db->prepare($query);
+                $stmt->execute();
+                return (int)($stmt->fetch(PDO::FETCH_ASSOC)['total'] ?? 0);
+            } catch (PDOException $e) {
+                error_log("Error en consulta: " . $e->getMessage());
+                return 0;
+            }
+        }
         /**
          * Calcular el porcentaje de aumento o disminución.
          * @param int $actual Valor actual.
@@ -245,4 +242,5 @@
             return (($actual - $anterior) / $anterior) * 100;
         }
     }
+    
 ?>

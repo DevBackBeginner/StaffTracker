@@ -39,7 +39,7 @@ include_once __DIR__ . '/../dashboard/layouts/header_main.php';
             <tr>
                 <th>#</th> <!-- Columna para el contador -->
                 <th>Nombres</th>
-                <th>Numero de Identificación</th>
+                <th>N° Identificación</th>
                 <th>Teléfono</th>
                 <th>Rol</th>
                 <th>Fecha</th>
@@ -53,12 +53,12 @@ include_once __DIR__ . '/../dashboard/layouts/header_main.php';
             foreach ($usuarios as $usuario): ?>
             <tr>
                 <td><?= $contador; ?></td> <!-- Mostramos el contador -->
-                <td><?= $usuario['nombre'] . "  " . $usuario['apellidos']; ?></td>
-                <td><?= $usuario['numero_identidad']; ?></td>
+                <td><?= $usuario['nombre'] . "  " . $usuario['apellido']; ?></td>
+                <td><?= $usuario['numero_documento']; ?></td>
                 <td><?= $usuario['telefono']; ?></td>
                 <td><?= $usuario['rol']; ?></td>
                 <td><?= $usuario['fecha']; ?></td>
-                <td><?= $usuario['hora_entrada']; ?></td>
+                <td><?= $usuario['hora_ingreso']; ?></td>
                 <td><?= $usuario['hora_salida']; ?></td>
             </tr>
             <?php

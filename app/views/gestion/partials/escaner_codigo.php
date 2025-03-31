@@ -17,7 +17,7 @@
         </li>
         <li class="nav-item" role="presentation">
             <button class="nav-link" id="tab2-tab" data-bs-toggle="tab" data-bs-target="#tab2" type="button" role="tab" aria-controls="tab2" aria-selected="false">
-               Numero de Identificación
+               Número de Identificación
             </button>
         </li>
     </ul>
@@ -39,15 +39,20 @@
 
         <!-- Pestaña 2 -->
         <div class="tab-pane fade" id="tab2" role="tabpanel" aria-labelledby="tab2-tab">
-            <form id="form-escaneo" method="POST" onsubmit="event.preventDefault();">
-                <div class="mt-2">
-                    <label for="codigo" class="form-label fw-bold" style="color: #007832;">Numero de Identificación</label>
-                    <div class="input-group">
-                        <span class="input-group-text"><i class="bi bi-upc-scan"></i></span>
-                        <input type="text" id="codigo2" placeholder="Ingresa el número de identificación aquí" class="form-control">
-                    </div>
-                </div>
-            </form>
+    <form id="form-escaneo" method="POST" onsubmit="event.preventDefault();">
+        <div class="mt-2">
+            <label for="codigo2" class="form-label fw-bold" style="color: #007832;">Número de Identificación</label>
+            <div class="input-group mb-3">
+                <span class="input-group-text"><i class="bi bi-upc-scan"></i></span>
+                <input type="text" id="codigo2" placeholder="Ingresa el número de identificación aquí" class="form-control">
+            </div>
         </div>
+        <div class="d-grid gap-2 mt-3">
+            <button type="button" id="btnVerificarCodigo" class="btn btn-success fw-bold py-2" style="background-color: #007832; border-color: #007832;">
+                <i class="bi bi-check-circle me-2"></i> Verificar Acceso
+            </button>
+        </div>
+    </form>
+</div>
     </div>
 </div>

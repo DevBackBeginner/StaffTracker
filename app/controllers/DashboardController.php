@@ -12,13 +12,13 @@
     {
         // Propiedad privada para almacenar una instancia del modelo DashboardModelo.
         private $dashboardModelo;
-        private $histroialModelo;
+        private $historialModelo;
         // Constructor de la clase. Se ejecuta automáticamente al crear una instancia de DashboardController.
         public function __construct()
         {
             // Inicializa la propiedad $dashboardModelo con una nueva instancia de DashboardModelo.
             $this->dashboardModelo = new DashboardModelo();
-            $this->histroialModelo = new HistorialRegistroModelo();
+            $this->historialModelo = new HistorialRegistroModelo();
         }
 
         /**
@@ -57,9 +57,9 @@
                 $limit = 15;
                 $offset = ($page - 1) * $limit;
             
-                $usuarios = $this->histroialModelo->obtenerUsuariosPorRol($rol, $limit, $offset);
+                $usuarios = $this->historialModelo->obtenerUsuariosPorRol($rol, $limit, $offset);
             
-                $totalUsuarios = $this->histroialModelo->contarUsuariosPorRol($rol);
+                $totalUsuarios = $this->historialModelo->contarUsuariosPorRol($rol);
                 $totalPaginas = ($totalUsuarios > 0) ? ceil($totalUsuarios / $limit) : 1;
 
                 $datosDashboard = $this->obtenerDatosDashboard();

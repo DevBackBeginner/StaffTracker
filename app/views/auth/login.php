@@ -1,6 +1,6 @@
 <?php include_once __DIR__ . '/../../views/layouts/header.php'; ?>
-
 <link rel="stylesheet" href="assets/css/login.css">
+
 <title>StaffTracker</title>
 <div class="login-container">
     <div class="login-card">
@@ -14,10 +14,11 @@
         <!-- Mostrar mensajes flash utilizando cookies -->
         <?php
         if (isset($_COOKIE['flash_error'])) {
-            echo "<p class='error-message'>" . htmlspecialchars($_COOKIE['flash_error']) . "</p>";
+            echo "<p class='error-message'>" . htmlspecialchars($_COOKIE['flash_error'], ENT_QUOTES, 'UTF-8') . "</p>";
         }
+        
         if (isset($_COOKIE['flash_success'])) {
-            echo "<p class='success-message'>" . htmlspecialchars($_COOKIE['flash_success']) . "</p>";
+            echo "<p class='success-message'>" . htmlspecialchars($_COOKIE['flash_success'], ENT_QUOTES, 'UTF-8') . "</p>";
         }
         ?>
 

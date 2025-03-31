@@ -17,21 +17,88 @@
         }
 
         
-        // Obtener computadores según el tipo ("SENA", "Personal")
-        public function obtenerComputadoresPorUsuario($usuarioId, $tipo) {
-            // Consulta SQL para obtener los computadores asignados al usuario
-            $sql = "SELECT c.id, c.marca, c.codigo 
-                    FROM computadores c
-                    INNER JOIN asignaciones_computadores ac ON c.id = ac.computador_id
-                    INNER JOIN usuarios u ON ac.usuario_id = u.id
-                    WHERE u.id = :usuario_id AND c.tipo_computador = :tipo"; // Cambia :codigo por :usuario_id
-            $stmt = $this->db->prepare($sql);
-            $stmt->bindParam(':usuario_id', $usuarioId, PDO::PARAM_INT); // Asegúrate de que coincida con el nombre en la consulta
-            $stmt->bindParam(':tipo', $tipo, PDO::PARAM_STR);
-            $stmt->execute();
+        public function obtenerComputadoresPersonales($idPersona) {
+            // Validar que el ID sea numérico
+            if (!is_numeric($idPersona)) {
+                throw new InvalidArgumentException("ID de persona debe ser numérico");
+            }
         
-            // Retornar los resultados como un array asociativo
-            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $sql = "SELECT 
+                        c.id_computador AS id,
+                        c.modelo, 
+                        c.codigo, 
+                        c.teclado, 
+                        c.mouse, 
+                        'Disponible' AS estado,
+                        'computador_personal' AS tipo
+                    FROM 
+                        computadores c
+                    WHERE 
+                        c.asignado_a = :idPersona";
+            
+            $stmt = $this->db->prepare($sql);
+            $stmt->bindParam(':idPersona', $idPersona, PDO::PARAM_INT);
+            
+            if (!$stmt->execute()) {
+                throw new RuntimeException("Error al ejecutar consulta de computadores personales");
+            }
+        
+            $resultados = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            
+            // Asegurar que todos los IDs son numéricos
+            return array_map(function($item) {
+                $item['id'] = (int)$item['id'];
+                return $item;
+            }, $resultados);
+        }
+        
+        public function obtenerComputadoresSena($idPersona = null) {
+            $sql = $idPersona
+                    ? "SELECT 
+                            cs.id_computador_sena AS id,
+                            cs.modelo, 
+                            cs.codigo, 
+                            cs.teclado, 
+                            cs.mouse, 
+                            cs.estado, 
+                            'computador_sena' AS tipo
+                    FROM 
+                            computadores_sena cs
+                    WHERE 
+                            cs.asignado_a = :idPersona"
+                    : "SELECT 
+                            cs.id_computador_sena AS id,
+                            cs.modelo, 
+                            cs.codigo, 
+                            cs.teclado, 
+                            cs.mouse, 
+                            cs.estado, 
+                            'computador_sena' AS tipo
+                    FROM 
+                            computadores_sena cs
+                    WHERE 
+                            cs.estado = 'Disponible'";
+            
+            $stmt = $this->db->prepare($sql);
+            
+            if ($idPersona) {
+                if (!is_numeric($idPersona)) {
+                    throw new InvalidArgumentException("ID de persona debe ser numérico");
+                }
+                $stmt->bindParam(':idPersona', $idPersona, PDO::PARAM_INT);
+            }
+            
+            if (!$stmt->execute()) {
+                throw new RuntimeException("Error al ejecutar consulta de computadores SENA");
+            }
+        
+            $resultados = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            
+            // Asegurar que todos los IDs son numéricos
+            return array_map(function($item) {
+                $item['id'] = (int)$item['id'];
+                return $item;
+            }, $resultados);
         }
 
         public function ingresarComputador($marca, $codigo, $mouse, $teclado, $tipo_computador)
@@ -63,50 +130,142 @@
             }
         }
 
-        public function registrarAsignacionComputador($usuario_id, $computador_id)
-        {
+        public function obtenerIdPersonaPorDocumento($documento) {
             try {
-                // Consulta SQL para insertar la asignación
-                $sql = "INSERT INTO asignaciones_computadores (usuario_id, computador_id) 
-                        VALUES (:usuario_id, :computador_id)";
+                $stmt = $this->db->prepare("
+                    SELECT id_persona 
+                    FROM personas 
+                    WHERE numero_documento = :documento
+                    LIMIT 1
+                ");
                 
-                // Preparar la consulta
-                $stmt = $this->db->prepare($sql);
-                
-                // Vincular los parámetros
-                $stmt->bindParam(':usuario_id', $usuario_id, PDO::PARAM_INT);
-                
-                // Manejar el valor NULL para computador_id
-                if ($computador_id === null) {
-                    $stmt->bindValue(':computador_id', null, PDO::PARAM_NULL);
-                } else {
-                    $stmt->bindParam(':computador_id', $computador_id, PDO::PARAM_INT);
-                }
-                
-                // Ejecutar la consulta
+                $stmt->bindValue(':documento', $documento, PDO::PARAM_STR);
                 $stmt->execute();
                 
-                // Devolver el ID de la asignación registrada
-                return $this->db->lastInsertId();
+                // Verificar explícitamente si hay resultados
+                if ($stmt->rowCount() > 0) {
+                    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+                    return (int)$result['id_persona']; // Forzar tipo entero
+                }
+                return null;
             } catch (PDOException $e) {
-                // Manejar errores de la base de datos
-                error_log("Error al registrar asignación de computador: " . $e->getMessage());
-                return false; // Retornar false en caso de error
+                error_log("Error en obtenerIdPersonaPorDocumento: " . $e->getMessage());
+                return null;
+            }
+        }
+        
+        public function registrarComputadorPersonal($modelo, $codigo, $teclado, $mouse, $asignado_a) {
+            try {
+                $this->db->beginTransaction();
+                
+                $stmt = $this->db->prepare("
+                    INSERT INTO computadores 
+                    (modelo, codigo, teclado, mouse, asignado_a) 
+                    VALUES (:modelo, :codigo, :teclado, :mouse, :asignado_a)
+                ");
+                
+                // Bind de parámetros con tipos explícitos
+                $stmt->bindValue(':modelo', trim($modelo), PDO::PARAM_STR);
+                $stmt->bindValue(':codigo', trim($codigo), PDO::PARAM_STR);
+                $stmt->bindValue(':teclado', $teclado === 'Si' ? 'Si' : 'No', PDO::PARAM_STR);
+                $stmt->bindValue(':mouse', $mouse === 'Si' ? 'Si' : 'No', PDO::PARAM_STR);
+                $stmt->bindValue(':asignado_a', $asignado_a, PDO::PARAM_INT);
+                
+                $stmt->execute();
+                
+                $id = (int)$this->db->lastInsertId();
+                $this->db->commit();
+                
+                return $id;
+            } catch (PDOException $e) {
+                $this->db->rollBack();
+                error_log("Error en registrarComputadorPersonal: " . $e->getMessage());
+                throw new Exception("Error al registrar computador personal", 0, $e);
+            }
+        }
+        
+        public function registrarComputadorSena($modelo, $codigo, $teclado, $mouse, $estado, $asignado_a) {
+            try {
+                $this->db->beginTransaction();
+                
+                $stmt = $this->db->prepare("
+                    INSERT INTO computadores_sena 
+                    (modelo, codigo, teclado, mouse, estado, asignado_a) 
+                    VALUES (:modelo, :codigo, :teclado, :mouse, :estado, :asignado_a)
+                ");
+                
+                // Validar y bindear parámetros
+                $estado = in_array($estado, ['Disponible', 'Asignado']) ? $estado : 'Disponible';
+                
+                $stmt->bindValue(':modelo', trim($modelo), PDO::PARAM_STR);
+                $stmt->bindValue(':codigo', trim($codigo), PDO::PARAM_STR);
+                $stmt->bindValue(':teclado', $teclado === 'Si' ? 'Si' : 'No', PDO::PARAM_STR);
+                $stmt->bindValue(':mouse', $mouse === 'Si' ? 'Si' : 'No', PDO::PARAM_STR);
+                $stmt->bindValue(':estado', $estado, PDO::PARAM_STR);
+                $stmt->bindValue(':asignado_a', $asignado_a, PDO::PARAM_INT);
+                
+                $stmt->execute();
+                
+                $id = (int)$this->db->lastInsertId();
+                $this->db->commit();
+                
+                return $id;
+            } catch (PDOException $e) {
+                $this->db->rollBack();
+                error_log("Error en registrarComputadorSena: " . $e->getMessage());
+                throw new Exception("Error al registrar computador SENA", 0, $e);
             }
         }
 
+        public function registrarValidacionEquipo($id_equipo, $tipo_equipo) {
+            try {
+                // Validar tipo de equipo
+                $tiposPermitidos = ['computador_personal', 'computador_sena'];
+                if (!in_array($tipo_equipo, $tiposPermitidos)) {
+                    throw new InvalidArgumentException("Tipo de equipo no válido");
+                }
+                
+                $stmt = $this->db->prepare("
+                    INSERT INTO validacion_equipos 
+                    (id_equipo, tipo_equipo, fecha_registro) 
+                    VALUES (:id_equipo, :tipo_equipo, NOW())
+                ");
+                
+                $stmt->bindValue(':id_equipo', (int)$id_equipo, PDO::PARAM_INT);
+                $stmt->bindValue(':tipo_equipo', $tipo_equipo, PDO::PARAM_STR);
+                
+                if (!$stmt->execute()) {
+                    throw new RuntimeException("Error al ejecutar la consulta");
+                }
+                
+                return (int)$this->db->lastInsertId();
+            } catch (PDOException $e) {
+                error_log("Error en registrarValidacionEquipo: " . $e->getMessage());
+                throw new Exception("Error al registrar validación de equipo", 0, $e);
+            }
+        }
 
-        // Registrar la asignación del computador a un usuario (si es que guardas en 'asignaciones_computadores')
-        public function asignarComputador($usuarioId, $computadorId) {
-            // Suponiendo que en 'asignaciones_computadores' guardas la relación
-            $sql = "INSERT INTO asignaciones_computadores (usuario_id, computador_id)
-                    VALUES (:usuario_id, :computador_id)";
+        public function obtenerIdValidacionEquipo($computadorId) {
+            $sql = "SELECT id FROM validacion_equipos 
+                    WHERE id_equipo = ? AND tipo_equipo = 'computador_personal'";
             $stmt = $this->db->prepare($sql);
-            $stmt->bindParam(':usuario_id', $usuarioId, PDO::PARAM_INT);
-            $stmt->bindParam(':computador_id', $computadorId, PDO::PARAM_INT);
+            $stmt->execute([$computadorId]);
+            return $stmt->fetchColumn();
+        }
+
+        public function actualizarEstadoComputadorSena($computador_id, $estado) {
+            $stmt = $this->db->prepare("
+                UPDATE computadores_sena 
+                SET estado = :estado 
+                WHERE id_computador_sena = :id
+            ");
+            $stmt->bindParam(':estado', $estado, PDO::PARAM_STR);
+            $stmt->bindParam(':id', $computador_id, PDO::PARAM_INT);
             return $stmt->execute();
         }
+
         
+
         
     }
 ?>
