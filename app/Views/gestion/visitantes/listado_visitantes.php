@@ -27,7 +27,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <label for="documento" class="form-label fw-bold">Documento</label>
+                                    <label for="documento" class="form-label fw-bold ">Documento</label>
                                     <div class="input-group">
                                         <span class="input-group-text"><i class="bi bi-card-text"></i></span>
                                         <input type="text" name="documento" class="form-control" 
@@ -36,7 +36,7 @@
                                     </div>
                                 </div>
                                 <div class="col-12 mt-3">
-                                    <button type="submit" class="btn btn-primary">
+                                    <button type="submit" class="btn btn-success">
                                         <i class="bi bi-search me-2"></i> Buscar
                                     </button>
                                 </div>
@@ -45,12 +45,12 @@
                     </div>
 
                     <div class="card shadow">
-                        <div class="card-header bg-primary text-white">
+                        <div class="card-header bg-success text-white">
                             <h5 class="mb-0">Listado de Visitantes</h5>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-striped table-hover">
+                                <table class="table table-striped table-hover text-center">
                                     <thead>
                                         <tr>
                                             <th>Nombre</th>

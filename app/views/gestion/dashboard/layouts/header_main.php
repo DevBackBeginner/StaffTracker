@@ -66,7 +66,7 @@
               <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
                 <img src="<?= htmlspecialchars($_SESSION['usuario']['foto_perfil']); ?>" alt="Foto de perfil" class="rounded-circle">
                 <span class="d-none d-md-block dropdown-toggle ps-2">
-                    <?= htmlspecialchars($_SESSION['usuario']['nombre']); ?>
+                    <?= htmlspecialchars($_SESSION['usuario']['rol']); ?>
                 </span>
               </a>
 

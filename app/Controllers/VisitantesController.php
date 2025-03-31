@@ -30,7 +30,7 @@
             try {
                 // Sanitizar y validar datos
                 $nombre = htmlspecialchars(trim($_POST["nombre"] ?? ''), ENT_QUOTES, 'UTF-8');
-                $apellido = htmlspecialchars(trim($_POST["apellidos"] ?? ''), ENT_QUOTES, 'UTF-8');
+                $apellido = htmlspecialchars(trim($_POST["apellido"] ?? ''), ENT_QUOTES, 'UTF-8');
                 $tipo_documento = htmlspecialchars(trim($_POST["tipo_documento"] ?? ''));
                 $numero_documento = htmlspecialchars(trim($_POST["numero_identidad"] ?? ''));
                 $telefono = $_POST["telefono"] ?? '';

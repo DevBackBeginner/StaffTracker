@@ -120,7 +120,7 @@
                                             <td>
                                                 <div class="d-flex justify-content-center gap-2">
                                                     <!-- Botón Editar -->
-                                                    <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#editarUsuarioModal" data-id="<?= $us['id_persona'] ?>">
+                                                    <button type="button" class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#editarUsuarioModal" data-id="<?= $us['id_persona'] ?>">
                                                         <i class="bi bi-pencil"></i>
                                                     </button>
                                                     

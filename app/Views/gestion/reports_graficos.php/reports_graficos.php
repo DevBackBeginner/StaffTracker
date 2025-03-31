@@ -47,7 +47,7 @@ include_once __DIR__ . '/../dashboard/layouts/header_main.php';
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Ingresos por Hora</h5>
+                    <h5 class="card-title text-center">Ingresos por Hora</h5>
                     <canvas id="graficoIngreso"></canvas>
                 </div>
             </div>
