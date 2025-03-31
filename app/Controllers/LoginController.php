@@ -277,7 +277,7 @@
         {
             $protocol = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') ? 'https://' : 'http://';
             $host = $_SERVER['HTTP_HOST'];
-            $path = '/prueba/public/restablecer-contrasena'; // Ruta exacta
+            $path = '/StaffTracker/public/restablecer-contrasena'; // Ruta exacta
             
             return $protocol . $host . $path . '?token=' . urlencode($token);
         }

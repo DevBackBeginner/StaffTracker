@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 31-03-2025 a las 03:31:50
+-- Tiempo de generación: 31-03-2025 a las 18:00:08
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -41,14 +41,12 @@ CREATE TABLE `computadores` (
 --
 
 INSERT INTO `computadores` (`id_computador`, `modelo`, `codigo`, `teclado`, `mouse`, `asignado_a`) VALUES
-(21, 'dx', 'wqe', 'No', 'Si', 29),
 (22, 'fef', 'safas', 'Si', 'No', 30),
 (24, 'Nicosf', '1074fd', 'No', 'Si', 33),
 (25, 'DFDS', 'G3W', 'Si', 'No', 34),
 (26, 'wefew', '31232', 'No', 'Si', 35),
 (27, 'gewgew', 'gwe', 'Si', 'Si', 36),
-(28, 'ewfefwe', 'cdcd', 'No', 'Si', 37),
-(29, 'scs', 'eweqws21', 'Si', 'Si', 39);
+(28, 'ewfefwe', 'cdcd', 'No', 'Si', 37);
 
 -- --------------------------------------------------------
 
@@ -71,8 +69,8 @@ CREATE TABLE `computadores_sena` (
 --
 
 INSERT INTO `computadores_sena` (`id_computador_sena`, `modelo`, `codigo`, `teclado`, `mouse`, `estado`, `asignado_a`) VALUES
-(2, 'Lenovo ThinkPad', 'SNLEN001', 'Si', 'Si', 'Asignado', NULL),
-(4, 'Asus', 'Pruebas3', 'Si', 'No', 'Asignado', NULL);
+(2, 'Lenovo ThinkPad', 'SNLEN001', 'Si', 'Si', 'Disponible', NULL),
+(4, 'Asus', 'Pruebas3', 'Si', 'No', 'Disponible', NULL);
 
 -- --------------------------------------------------------
 
@@ -96,8 +94,7 @@ INSERT INTO `informacion_laboral` (`id`, `persona_id`, `cargo`, `tipo_contrato`)
 (4, 34, 'Administradords', 'Contratista'),
 (5, 35, 'f3e', 'Planta'),
 (6, 36, '2r23efe', 'Contratista'),
-(7, 37, 'dfss', 'Contratista'),
-(8, 39, '4f4e', 'Contratista');
+(7, 37, 'dfss', 'Contratista');
 
 -- --------------------------------------------------------
 
@@ -120,7 +117,8 @@ CREATE TABLE `personal_administrativo` (
 --
 
 INSERT INTO `personal_administrativo` (`id`, `usuario_id`, `correo`, `foto_perfil`, `contrasena`, `reset_token`, `reset_token_expiry`) VALUES
-(2, 6, 'morerahelbert9@gmail.com', 'assets/img/perfiles/default.webp', '$2y$10$r/569KvLwZY7NVUXLmw6fuCVvWIMrC/lnNjWxYVzmgH2g4MoxtOKa', NULL, NULL);
+(2, 6, 'morerahelbert9@gmail.com', 'assets/img/perfiles/default.webp', '$2y$10$r/569KvLwZY7NVUXLmw6fuCVvWIMrC/lnNjWxYVzmgH2g4MoxtOKa', NULL, NULL),
+(4, 40, 'morerahernandezhelbertdubler@gmail.com', 'assets/img/perfiles/default.webp', '$2y$10$NUSiLSLmnTBwnJGpaaWRvuoazp4/bYQd3/BbmNknjVSoj9UBWpowm', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -135,23 +133,23 @@ CREATE TABLE `personas` (
   `tipo_documento` enum('CC','CE','TI','PASAPORTE','NIT') NOT NULL,
   `numero_documento` varchar(20) NOT NULL,
   `telefono` varchar(15) DEFAULT '',
-  `rol` enum('Administrador','Guarda','Instructor','Visitante','Funcionario','Directivo') NOT NULL
+  `rol` enum('Administrador','Guarda','Instructor','Visitante','Funcionario','Directivo') NOT NULL,
+  `estado` enum('Activo','Inactivo') DEFAULT 'Activo' COMMENT 'Estado del usuario: Activo/Inactivo. Por defecto: activo. Usado para borrado lógico'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `personas`
 --
 
-INSERT INTO `personas` (`id_persona`, `nombre`, `apellido`, `tipo_documento`, `numero_documento`, `telefono`, `rol`) VALUES
-(6, 'Helbert Dubler', 'Morera Hernández', 'CC', '1072745267', '3105738706', 'Guarda'),
-(29, 'wx', 'sx', 'CC', '12345670', '2312', 'Instructor'),
-(30, 'ewfe', 'dvsf', 'TI', '41243', '3232', 'Visitante'),
-(33, 'sdgdfsdcsx', 'fwefed', 'PASAPORTE', '43352', '434', 'Instructor'),
-(34, 'rgefr', 'ege', 'CC', '35234221', '34232', 'Directivo'),
-(35, 'fewd', 'fwfe', 'CC', '1242142', '23123', 'Instructor'),
-(36, 'few', 'dsfsd', 'CE', '1232', '31241', 'Funcionario'),
-(37, 'fwfewf', 'wfdx', 'CE', '3221', '23124', 'Funcionario'),
-(39, 'weefee', 'wedcxwx', 'CE', '41353', '2112411', 'Directivo');
+INSERT INTO `personas` (`id_persona`, `nombre`, `apellido`, `tipo_documento`, `numero_documento`, `telefono`, `rol`, `estado`) VALUES
+(6, 'Helbert Dubler', 'Morera Hernández', 'CC', '1072745267', '3105738706', 'Administrador', 'Activo'),
+(30, 'ewfe', 'dvsf', 'TI', '41243', '3232', 'Visitante', 'Activo'),
+(33, 'sdgdfsdcsx', 'fwefed', 'PASAPORTE', '43352', '434', 'Instructor', 'Inactivo'),
+(34, 'rgefr', 'ege', 'CC', '35234221', '34232', 'Directivo', 'Activo'),
+(35, 'fewd', 'fwfe', 'CC', '1242142', '23123', 'Instructor', 'Activo'),
+(36, 'few', 'dsfsd', 'CE', '1232', '31241', 'Funcionario', 'Activo'),
+(37, 'fwfewf', 'wfdx', 'CE', '3221', '23124', 'Funcionario', 'Activo'),
+(40, 'Andrea Rodriguez', 'Sanchez', 'TI', '1072745262', '123456722', 'Guarda', 'Activo');
 
 -- --------------------------------------------------------
 
@@ -174,8 +172,7 @@ CREATE TABLE `registro_ingreso_salida` (
 --
 
 INSERT INTO `registro_ingreso_salida` (`id_registro`, `id_persona`, `id_validacion_equipo`, `fecha`, `hora_ingreso`, `hora_salida`, `estado_presencia`) VALUES
-(35, 29, 25, '2025-03-30', '11:49:13', NULL, 'En la sede'),
-(36, 30, 26, '2025-03-30', '11:49:32', NULL, 'En la sede');
+(36, 30, 26, '2025-03-31', '11:49:32', NULL, 'En la sede');
 
 -- --------------------------------------------------------
 
@@ -202,7 +199,8 @@ INSERT INTO `validacion_equipos` (`id`, `id_equipo`, `tipo_equipo`, `fecha_regis
 (30, 26, 'computador_personal', '2025-03-30 22:47:26'),
 (31, 27, 'computador_personal', '2025-03-30 22:51:28'),
 (32, 28, 'computador_personal', '2025-03-30 23:00:04'),
-(33, 29, 'computador_personal', '2025-03-30 23:18:28');
+(33, 29, 'computador_personal', '2025-03-30 23:18:28'),
+(34, 2, 'computador_sena', '2025-03-31 15:50:55');
 
 -- --------------------------------------------------------
 
@@ -223,7 +221,6 @@ CREATE TABLE `visitantes` (
 --
 
 INSERT INTO `visitantes` (`id_visitante`, `id_persona`, `asunto_visita`, `fecha_visita`, `registrado_por`) VALUES
-(22, 29, 'fd', '2025-03-30', 6),
 (23, 30, 'Pruebas', '2025-03-30', 6);
 
 --
@@ -264,7 +261,8 @@ ALTER TABLE `personal_administrativo`
 --
 ALTER TABLE `personas`
   ADD PRIMARY KEY (`id_persona`),
-  ADD UNIQUE KEY `numero_documento` (`numero_documento`);
+  ADD UNIQUE KEY `numero_documento` (`numero_documento`),
+  ADD KEY `idx_estado` (`estado`);
 
 --
 -- Indices de la tabla `registro_ingreso_salida`
@@ -309,19 +307,19 @@ ALTER TABLE `computadores_sena`
 -- AUTO_INCREMENT de la tabla `informacion_laboral`
 --
 ALTER TABLE `informacion_laboral`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `personal_administrativo`
 --
 ALTER TABLE `personal_administrativo`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `personas`
 --
 ALTER TABLE `personas`
-  MODIFY `id_persona` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `id_persona` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT de la tabla `registro_ingreso_salida`
@@ -333,7 +331,7 @@ ALTER TABLE `registro_ingreso_salida`
 -- AUTO_INCREMENT de la tabla `validacion_equipos`
 --
 ALTER TABLE `validacion_equipos`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT de la tabla `visitantes`
