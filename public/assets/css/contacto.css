@@ -1,0 +1,75 @@
+.ie-panel {
+    display: none;
+    background: #212121;
+    padding: 10px 0;
+    box-shadow: 3px 3px 5px 0 rgba(0,0,0,.3);
+    clear: both;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+html.ie-10 .ie-panel, html.lt-ie-10 .ie-panel {
+    display: block;
+}
+.contact-section {
+    background-color: #f8f9fa;
+    padding: 60px 0;
+}
+.contact-info, .contact-form {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    height: 100%;
+}
+.contact-info h2, .contact-form h2 {
+    font-size: 24px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+}
+.contact-info p {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 15px;
+}
+.contact-info p strong {
+    color: #333;
+}
+.contact-form label {
+    font-weight: 500;
+    color: #333;
+}
+.contact-form .form-control {
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    padding: 10px;
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+.contact-form .form-control:focus {
+    border-color: #28a745;
+    box-shadow: 0 0 5px rgba(40, 167, 69, 0.5);
+}
+.contact-form textarea {
+    resize: none;
+}
+.contact-form .btn-success {
+    background-color: #28a745;
+    border: none;
+    padding: 10px 30px;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+.contact-form .btn-success:hover {
+    background-color: #218838;
+}
+.contact-map iframe {
+    border-radius: 10px;
+    height: 250px;
+    width: 100%;
+    border: none;
+}

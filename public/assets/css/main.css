@@ -1,0 +1,97 @@
+.hero {
+    position: relative;
+}
+
+.carousel-caption {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.08); /* Fondo casi transparente */
+    backdrop-filter: blur(2px); /* Efecto de desenfoque sutil */
+}
+
+.content-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem;
+    border-left: 3px solid rgba(255, 255, 255, 0.3); /* Línea decorativa sutil */
+}
+
+.display-5 {
+    font-size: 2.3rem;
+    color: #fff;
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
+    letter-spacing: -0.5px;
+}
+
+.lead {
+    font-size: 1.2rem;
+    color: #f8f9fa;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    filter: invert(90%);
+}
+
+@media (max-width: 768px) {
+    .carousel-caption {
+        padding: 1rem;
+        backdrop-filter: none;
+    }
+    
+    .display-5 {
+        font-size: 1.6rem;
+        margin-bottom: 0.5rem !important;
+    }
+    
+    .lead {
+        font-size: 1rem;
+    }
+    
+    .content-wrapper {
+        border-left: none;
+        padding: 0.5rem;
+    }
+}
+.services .card {
+    transition: transform 0.3s ease;
+}
+
+.services .card:hover {
+    transform: translateY(-10px);
+}
+
+.icon-wrapper {
+    transition: all 0.3s ease;
+}
+
+.features .row > div {
+    transition: transform 0.3s ease;
+}
+
+.testimonial {
+    background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('../img/fondo.png');
+    background-size: cover;
+    background-position: center;
+}
+
+.bg-gradient-primary {
+    background: linear-gradient(45deg, #007832, #004d1f);
+}
+
+.feature-icon {
+    min-width: 50px;
+    padding-right: 1.5rem;
+}
+
+.bi {
+    transition: transform 0.3s ease;
+}
+
+.feature-item:hover .bi {
+    transform: scale(1.2);
+}

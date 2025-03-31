@@ -1,0 +1,21 @@
+# Activa la reescritura de URLs
+RewriteEngine On
+
+# Redirige todas las peticiones a index.php, excepto archivos y carpetas existentes
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.+)$ index.php?url=$1 [QSA,L]
+
+# Define el índice predeterminado
+DirectoryIndex index.php
+
+# Evita el acceso directo a archivos sensibles
+<FilesMatch "\.(ini|log|sh|sql|php~)$">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
+
+# Habilita CORS (si se necesita para API)
+Header set Access-Control-Allow-Origin "*"
+Header set Access-Control-Allow-Methods "GET, POST, OPTIONS"
+Header set Access-Control-Allow-Headers "Content-Type"

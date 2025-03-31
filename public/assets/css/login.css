@@ -1,0 +1,146 @@
+/* Centrar el contenedor */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Utiliza toda la altura de la ventana */
+    background-color: #f0f2f5; /* Color de fondo más suave */
+    background-image: url('/StaffTracker/public/assets/img/sena1.jpg'); /* Ruta de la imagen de fondo */
+    background-size: cover; /* Ajusta la imagen para cubrir todo el fondo */
+    background-position: center; /* Centra la imagen de fondo */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    padding: 20px; /* Añade un poco de padding */
+}
+
+/* Estilo para la tarjeta de login */
+.login-card {
+    background-color: #ffffff;
+    padding: 40px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Sombra más suave */
+    border-radius: 10px; /* Bordes más redondeados */
+    width: 100%;
+    max-width: 400px;
+    transition: transform 0.3s ease; /* Transición suave */
+}
+
+.login-card:hover {
+    transform: translateY(-5px); /* Efecto hover */
+}
+
+/* Contenedor circular para logo */
+.login-image-container {
+    width: 100px; /* Ajusta el tamaño del contenedor */
+    height: 100px; /* Ajusta el tamaño del contenedor */
+    border-radius: 50%; /* Hacerlo circular */
+    overflow: hidden; /* Oculta cualquier desbordamiento */
+    margin: 0 auto 20px; /* Centrar y margen inferior */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra del logo */
+}
+
+.login-image {
+    width: 100%; /* Hacer que la imagen ocupe todo el contenedor */
+    height: auto; /* Mantener la relación de aspecto */
+}
+
+/* Título */
+.login-title {
+    font-size: 26px; /* Tamaño de fuente más grande */
+    font-weight: bold;
+    margin-bottom: 24px;
+    text-align: center;
+    color: #00304D;
+}
+
+/* Mensaje de error */
+.error-message {
+    background-color: #ff4d4f; /* Color de fondo rojo */
+    color: #ffffff; /* Texto blanco */
+    padding: 12px;
+    border: 1px solid #ff4d4f;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    text-align: center; /* Centrar el texto */
+}
+
+/* Estilo de los grupos de entrada */
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-label {
+    font-size: 14px;
+    color: #00304D;
+    font-weight: 500;
+    margin-bottom: 8px;
+    display: block;
+}
+
+/* Entrada de texto */
+.custom-input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #007832;
+    border-radius: 4px;
+    font-size: 16px;
+    box-sizing: border-box;
+    margin-top: 8px;
+    transition: border-color 0.3s ease; /* Transición suave */
+}
+
+.custom-input:focus {
+    border-color: #005f2e; /* Color de borde al enfocar */
+    outline: none; /* Quitar el outline */
+}
+
+/* Estilo del contenedor de la contraseña y el botón de mostrar/ocultar */
+.input-password-wrapper {
+    position: relative;
+    width: 100%;
+    padding: 4px;
+    border-radius: 4px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+.show-hide-button {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+.icon {
+    width: 20px;
+    height: 20px;
+    fill: none;
+    stroke: #00304D;
+}
+
+/* Botón de enviar */
+.submit-button {
+    width: 100%;
+    padding: 12px;
+    background-color: #007832;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Transición suave */
+}
+
+.submit-button:hover {
+    background-color: #005f2e; /* Color de fondo al pasar el ratón */
+    transform: translateY(-2px); /* Efecto hover */
+}
+
+.eye-icon-container {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+}
