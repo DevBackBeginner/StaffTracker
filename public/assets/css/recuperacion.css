@@ -179,3 +179,47 @@
     top: 50%;
     transform: translateY(-50%);
 }
+
+/* Ajustes específicos para el input de contraseña */
+.input-password-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.custom-input {
+    padding-right: 40px; /* Espacio para el botón del ojo */
+}
+
+.show-hide-button {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.show-hide-button .icon {
+    width: 20px;
+    height: 20px;
+    color: #666;
+    transition: color 0.2s ease;
+}
+
+.show-hide-button:hover .icon {
+    color: #333;
+}
+
+/* Asegurar que el input tenga la altura consistente */
+.custom-input {
+    height: 44px; /* Altura fija para mejor alineación */
+    line-height: 44px;
+}
+

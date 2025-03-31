@@ -15,11 +15,11 @@ Router::post("obtenerdatosfiltrados", [DashboardController::class, 'obtenerDatos
 Router::get("login", [LoginController::class, "mostrarLogin"]);
 Router::post("enviarLogin", [LoginController::class, "procesarLogin"]);
 Router::get("logout", [LoginController::class, "Logout"]);
-Router::get('recuperar-contrasena', [RecuperarContraseñaController::class, "mostrarRecuperarContrasena"]);
-Router::post('procesar-recuperar-contrasena', [RecuperarContraseñaController::class, 'procesarRecuperarContrasena']);
-Router::get('restablecer-contrasena', [RecuperarContraseñaController::class, "mostrarRestablecerContrasena"]);
-Router::post('procesar-restablecer-contrasena', [RecuperarContraseñaController::class, 'procesarRestablecerContrasena']);
 
+Router::get('recuperar-contrasena', [LoginController::class, "mostrarRecuperarContrasena"]);
+Router::post('procesar-recuperar-contrasena', [LoginController::class, 'procesarRecuperarContrasena']);
+Router::get('restablecer-contrasena', [LoginController::class, "mostrarRestablecerContrasena"]);
+Router::post('procesar-restablecer-contrasena', [LoginController::class, 'procesarRestablecerContrasena']);
 
 
 
@@ -37,49 +37,65 @@ Router::post('actualizar-contrasena', [PerfilController::class, 'actualizarContr
 // Rutas para el registro de guardias
 // ==================================================
 
-Router::get("registrar_guardas", [RegistrarGuardasController::class, "formularioRegistroGuardias"]);
-Router::post("registro_guarda", [RegistrarGuardasController::class, "registrarGuardas"]);
+
+Router::get("registrar_guardas", [GuardasController::class, "formularioRegistroGuardias"]);
+Router::post("registro_guarda", [GuardasController::class, "registrarGuardas"]);
+Router::get('listado_guardas', [GuardasController::class, 'listarGuardas']);
+Router::post("EditarGuarda", [GuardasController::class, 'actualizarInformacionGuarda']);
+Router::post("EliminarGuarda", [GuardasController::class, 'eliminarGuarda']);
+
 
 // ==================================================
 // Rutas para el registro de asistencia
 // ==================================================
 
-Router::get('registro_ingreso', [RegistroAccesoController::class, "mostrarRegistroAcceso"]);
-Router::post('gestion_registro_acceso', [RegistroAccesoController::class, 'registrarEntrada']);
-Router::get("registro_salida", [RegistroAccesoController::class, "mostrarRegistroSalida"]);
-Router::post('gestion_registro_salida', [RegistroAccesoController::class, "registrarSalida"]);
+
+Router::get('registro_ingreso', [RegistroController::class, "mostrarRegistroAcceso"]);
+Router::post('registrar_ingreso', [RegistroController::class, 'registrarEntrada']);
+Router::get("registro_salida", [RegistroController::class, "mostrarRegistroSalida"]);
+Router::post('registrar_salida', [RegistroController::class, "registrarSalida"]);
+
 
 // ==================================================
 // Rutas para el manejo de computadores
 // ==================================================
 
-Router::post("registrar_computador", [ComputadorController::class, "registrarComputador"]);
+
+Router::post("registrar_computador", [ComputadorController::class, "registrarComputadorYasignacion"]);
+
 Router::post('obtener_computadores', [ComputadorController::class, 'obtenerComputadores']);
 
 // ==================================================
 // Rutas para el panel de asistencias
 // ==================================================
 
-Router::get('panel_ingreso', [HistorialRegistroController::class, "mostrarUsuarios"]);
+
+Router::get('historial_registros', [HistorialRegistroController::class, "mostrarUsuarios"]);
+
 Router::get('filtro_usuarios', [HistorialRegistroController::class, "filtroUsuarios"]);
 
 // ==================================================
 // Rutas para el registro y edicion de personal
 // ==================================================
 
-Router::get('formulario_registro_personal', [GestionPersonalController::class, 'formularioRegistroPersonal']);
-Router::post('registrar_personal', [GestionPersonalController::class, 'registrarPersonal']);
-Router::get('Listado_Usuarios', [GestionPersonalController::class, 'ListarUsuarios']);
-Router::post('EditarUsuarios', [GestionPersonalController::class, 'editarUsuarios']);
-Router::post('EliminarUsuario', [GestionPersonalController::class, 'eliminarUsuario']);
+
+Router::get('formulario_registro_personal', [PersonalController::class, 'formularioRegistroPersonal']);
+Router::post('registrar_personal', [PersonalController::class, 'registrarPersonal']);
+Router::get('listado_personal', [PersonalController::class, 'listarPersonal']);
+Router::post('EditarPersonal', [PersonalController::class, 'editarPersonal']);
+Router::post('EliminarPersonal', [PersonalController::class, 'desactivarPersonal']);
+
 
 // ==================================================
 // Rutas para el registro de visitantes
 // ==================================================
 
-Router::get('formulario_registro_visitante', [GestionVisitantesController::class, 'formulario_visitante']);
-Router::post('registrar_visitante', [GestionVisitantesController::class, 'registrarVisitante']);
-Router::get('registrar-acceso-visitantes', [GestionVisitantesController::class, 'gestionarAccesoVisitantes']);
+
+Router::get('formulario_registro_visitante', [VisitantesController::class, 'formulario_visitante']);
+Router::post('registrar_visitante', [VisitantesController::class, 'registrarVisitante']);
+Router::get('registrar-acceso-visitantes', [VisitantesController::class, 'gestionarAccesoVisitantes']);
+Router::get('listado_visitantes', [VisitantesController::class, 'listarVisitantes']);
+
 
 // ==================================================
 // Rutas para reportes

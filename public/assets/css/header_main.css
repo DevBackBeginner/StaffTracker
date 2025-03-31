@@ -1168,73 +1168,130 @@ h6 {
   }
 }
 
-/*--------------------------------------------------------------
-# Error 404
---------------------------------------------------------------*/
-.error-404 {
-  padding: 30px;
+
+/* Estilos para los inputs y selects al hacer clic (enfoque) */
+.form-control:focus,
+.form-select:focus {
+    outline: none; /* Elimina el borde azul predeterminado */
+    border: 2px solid #007832; /* Borde verde alrededor del input/select cuando se hace clic */
+    box-shadow: none; /* Elimina cualquier sombra alrededor del input/select */
 }
 
-.error-404 h1 {
-  font-size: 180px;
-  font-weight: 700;
-  color: #007832;
-  margin-bottom: 0;
-  line-height: 150px;
-}
+/* Estilos por defecto para los campos de input y select */
+.form-control,
+.form-select {
+    border: 1px solid #ccc; /* Borde gris claro */
+    border-radius: 4px; /* Bordes redondeados */
+    padding: 10px; /* Relleno de los campos */
+ }
 
-.error-404 h2 {
-  font-size: 24px;
-  font-weight: 700;
-  color: #007832;
-  margin-bottom: 30px;
-}
-
-.error-404 .btn {
-  background: #51678f;
-  color: #fff;
-  padding: 8px 30px;
-}
-
-.error-404 .btn:hover {
-  background: #3e4f6f;
-}
-
-@media (min-width: 992px) {
-  .error-404 img {
-    max-width: 50%;
-  }
-}
 
 /*--------------------------------------------------------------
 # Footer
 --------------------------------------------------------------*/
-footer {
-  font-size: 0.9rem; /* Reducir el tamaño de la fuente */
-  background: #ffffff;
-  margin-top: 40px;
-}
-.containers{
-  width: 100%;
-  margin: 0 auto;
+
+/* Footer con Tarjetas Blancas */
+.footer-white-cards {
+  background-color: #f8f9fa;
 }
 
-.footer .copyright {
-  text-align: center;
-  color: #012970;
+/* Tarjetas blancas */
+.footer-white-cards .card {
+  border: none;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  background-color: white;
 }
 
-.footer .credits {
-  padding-top: 5px;
-  text-align: center;
-  font-size: 13px;
-  color: #012970;
+.footer-white-cards .card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1) !important;
 }
 
-.containers {
-  margin-left: 0;
+/* Iconos circulares */
+.icon-circle {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
 }
 
-.div_footer {
-  margin-left: 0;
+/* Texto de tarjetas */
+.footer-white-cards .card-title {
+  color: #00304D;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.footer-white-cards .card-text {
+  color: #6c757d;
+  font-size: 0.9rem;
+}
+
+/* Controles del carrusel */
+.footer-white-cards .carousel-control-prev,
+.footer-white-cards .carousel-control-next {
+  width: 40px;
+  opacity: 1;
+}
+
+.footer-white-cards .carousel-control-prev {
+  left: -20px;
+}
+
+.footer-white-cards .carousel-control-next {
+  right: -20px;
+}
+
+/* Indicadores */
+.footer-white-cards .carousel-indicators button {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin: 0 5px;
+  opacity: 0.5;
+  transition: all 0.3s ease;
+}
+
+.footer-white-cards .carousel-indicators button.active {
+  opacity: 1;
+  transform: scale(1.2);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .footer-white-cards .carousel-control-prev {
+      left: -10px;
+  }
+  
+  .footer-white-cards .carousel-control-next {
+      right: -10px;
+  }
+  
+  .footer-white-cards .card {
+      margin-bottom: 15px;
+  }
+  
+  .icon-circle {
+      width: 50px;
+      height: 50px;
+      font-size: 1.25rem;
+  }
+}
+
+.form-control:focus,
+.form-select:focus {
+    outline: none;
+    border: 2px solid #007832;
+    box-shadow: none;
+}
+.form-control,
+.form-select {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 10px;
+
 }
