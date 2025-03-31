@@ -184,32 +184,53 @@
             }
         }
 
-        /**
-         * Elimina un usuario de la base de datos.
-         *
-         * @param int $id El ID del usuario a eliminar.
-         * @return bool Retorna true si el usuario fue eliminado, false en caso contrario.
-         */
-        public function eliminarPersona($id)
+        public function obtenerPersonal($id_persona)
         {
+            $stmt = $this->db->prepare("
+                SELECT p.*, 
+                        cs.id_computador_sena, cs.modelo as modelo_sena,
+                        cp.id_computador, cp.modelo as modelo_personal
+                FROM personas p
+                LEFT JOIN computadores_sena cs ON cs.asignado_a = p.id_persona
+                LEFT JOIN computadores cp ON cp.asignado_a = p.id_persona
+                WHERE p.id_persona = ?
+            ");
+            $stmt->execute([$id_persona]);
+            return $stmt->fetch(PDO::FETCH_ASSOC);
+        }
+
+        public function desactivarPersonal($id_persona)
+        {
+            $this->db->beginTransaction();
+            
             try {
-                // Preparar la consulta SQL para eliminar el usuario
-                $query = 'DELETE FROM personas WHERE id_persona = :id';
-                $stmt = $this->db->prepare($query);
-
-                // Vincular el parámetro :id
-                $stmt->bindParam(':id', $id, PDO::PARAM_INT);
-
-                // Ejecutar la consulta
-                $stmt->execute();
-
-                // Verificar si se eliminó alguna fila
-                return $stmt->rowCount() > 0;
+                // 1. Liberar equipos SENA (actualizar estado y quitar asignación)
+                $stmtLiberarSena = $this->db->prepare("
+                    UPDATE computadores_sena 
+                    SET estado = 'Disponible', asignado_a = NULL 
+                    WHERE asignado_a = :id_persona
+                ");
+                $stmtLiberarSena->execute([':id_persona' => $id_persona]);
+                
+                
+                //  Cambiar estado a 'Inactivo'
+                $stmtActualizarUsuario = $this->db->prepare("
+                    UPDATE personas 
+                    SET estado = 'Inactivo' 
+                    WHERE id_persona = :id_persona
+                ");
+                $stmtActualizarUsuario->execute([':id_persona' => $id_persona]);
+                
+                $this->db->commit();
+                return true;
             } catch (PDOException $e) {
-                // Registrar el error (opcional)
-                error_log("Error al eliminar usuario: " . $e->getMessage());
+                $this->db->rollBack();
+                error_log("Error al desactivar usuario ID {$id_persona}: " . $e->getMessage());
                 return false;
             }
         }
+        
+       
+        
     }
 ?>

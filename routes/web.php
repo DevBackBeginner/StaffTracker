@@ -72,7 +72,7 @@ Router::get('formulario_registro_personal', [PersonalController::class, 'formula
 Router::post('registrar_personal', [PersonalController::class, 'registrarPersonal']);
 Router::get('listado_personal', [PersonalController::class, 'listarPersonal']);
 Router::post('EditarPersonal', [PersonalController::class, 'editarPersonal']);
-Router::post('EliminarPersonal', [PersonalController::class, 'eliminarPersonal']);
+Router::post('EliminarPersonal', [PersonalController::class, 'desactivarPersonal']);
 
 // ==================================================
 // Rutas para el registro de visitantes

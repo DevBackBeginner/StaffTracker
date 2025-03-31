@@ -251,32 +251,32 @@
             }
         }
 
-        public function eliminarPersonal()
+        public function desactivarPersonal()
         {
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 try {
-                    // Sanitizar y validar el ID del usuario
-                    $id = $this->sanitizarInput($_POST['id']);
-                    if (empty($id)) {
-                        throw new Exception("El ID del usuario es obligatorio.");
+                    $id_persona = filter_var($_POST['id'], FILTER_SANITIZE_NUMBER_INT);
+                    
+                    // Verificar si el usuario existe
+                    $usuario = $this->personalModelo->obtenerPersonal($id_persona);
+                    if (!$usuario) {
+                        throw new Exception("Usuario no encontrado");
                     }
 
-                    // Eliminar el usuario de la base de datos
-                    $eliminado = $this->personalModelo->eliminarPersona($id);
-                    if (!$eliminado) {
-                        throw new Exception("Error al eliminar el usuario de la base de datos.");
+                    // Desactivar usuario (actualizar rol a 'Inactivo')
+                    $resultado = $this->personalModelo->desactivarPersonal($id_persona);
+                    
+                    if ($resultado) {
+                        $_SESSION['mensaje'] = "Usuario desactivado correctamente";
+                        $_SESSION['tipo_mensaje'] = "success";
+                    } else {
+                        throw new Exception("Error al desactivar el usuario");
                     }
-
-                    // Mensaje de éxito
-                    $_SESSION['mensaje'] = "Usuario eliminado correctamente.";
-                    $_SESSION['tipo_mensaje'] = "success";
                 } catch (Exception $e) {
-                    // Mensaje de error
                     $_SESSION['mensaje'] = $e->getMessage();
                     $_SESSION['tipo_mensaje'] = "error";
                 } finally {
-                    // Redirigir al listado de usuarios
-                    header('Location: listado_personal');
+                    header('Location: listado_usuarios');
                     exit();
                 }
             }
@@ -320,24 +320,6 @@
             }
         }
         
-        /**
-         * Registra un computador y devuelve su ID.
-         */
-        private function registrarComputador()
-        {
-            $marca = $this->sanitizarInput($_POST["marca"]);
-            $codigo = $this->sanitizarInput($_POST["codigo"]);
-            $mouse = isset($_POST['mouse']) ? 'Sí' : 'No';
-            $teclado = isset($_POST['teclado']) ? 'Sí' : 'No';
-            $tipo_computador = $this->sanitizarInput($_POST["tipo_computador"]);
-        
-            // Validar campos del computador
-            if (empty($marca) || empty($codigo) || empty($tipo_computador)) {
-                throw new Exception("Todos los campos del computador son obligatorios.");
-            }
-        
-            // Registrar el computador
-            return $this->computadorModelo->ingresarComputador($marca, $codigo, $mouse, $teclado, $tipo_computador);
-        }
+     
     }
 ?>
