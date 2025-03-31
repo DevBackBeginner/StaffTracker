@@ -42,8 +42,8 @@
                 </div>
                 <div class="col-12"> <!-- Ocupa el 100% del ancho -->
                     <div class="card shadow-sm custom-card">
-                        <div class="card-header bg-custom ">
-                            <h2 class="h5 mb-0 "style="color: #007832;">Últimos Registros</h2>
+                        <div class="card-header bg-custom bg-success text-white text-center">
+                            <h2 class="h5 mb-0 ">Últimos Registros</h2>
                         </div>
                         <div class="card-body">
                             <?php include_once "tabla_ultimos_registros.php"; ?>

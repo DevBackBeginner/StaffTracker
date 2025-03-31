@@ -32,6 +32,7 @@
                     <div class="input-group">
                         <span class="input-group-text"><i class="bi bi-upc-scan"></i></span>
                         <input type="text" id="codigo" name="codigo" placeholder="Escanea el código aquí" class="form-control" autofocus>
+                        
                     </div>
                 </div>
             </form>
@@ -45,13 +46,10 @@
             <div class="input-group mb-3">
                 <span class="input-group-text"><i class="bi bi-upc-scan"></i></span>
                 <input type="text" id="codigo2" placeholder="Ingresa el número de identificación aquí" class="form-control">
+                <button type="button"id="btnVerificarCodigo" class="btn btn-success">Registrar</button>
             </div>
         </div>
-        <div class="d-grid gap-2 mt-3">
-            <button type="button" id="btnVerificarCodigo" class="btn btn-success fw-bold py-2" style="background-color: #007832; border-color: #007832;">
-                <i class="bi bi-check-circle me-2"></i> Verificar Acceso
-            </button>
-        </div>
+       
     </form>
 </div>
     </div>

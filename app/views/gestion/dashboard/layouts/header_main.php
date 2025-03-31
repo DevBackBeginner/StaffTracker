@@ -113,13 +113,30 @@
           <?php if (isset($_SESSION['usuario']['rol']) && $_SESSION['usuario']['rol'] === 'Guarda'): ?>
             <!-- Registrar Visitantes -->
             <li class="nav-heading">Administración</li>
-            <li class="nav-item">
-              <a class="nav-link collapsed" href="formulario_registro_visitante">
-                <i class="bi bi-person-plus"></i>
-                <span>Registrar Visitantes</span>
-              </a>
-            </li><!-- End Registrar Visitantes Nav -->
 
+            <!-- 2. Control de Visitantes (nuevo pero basado en tu tabla visitantes) -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-bs-toggle="collapse" href="#controlVisitantes" role="button">
+                    <i class="bi bi-person-badge"></i>
+                    <span>Control de Visitantes</span>
+                    <i class="bi bi-chevron-down ms-auto"></i>
+                </a>
+                <ul id="controlVisitantes" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+                    <!-- Basado en tu tabla visitantes -->
+                    <li>
+                        <a href="formulario_registro_visitante">
+                            <i class="bi bi-person-plus"></i>
+                            <span>Registrar Visitante</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="listado_visitantes">
+                            <i class="bi bi-card-list"></i>
+                            <span>Listado de Visitantes</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
             <!-- Entrada -->
             <li class="nav-item">
               <a class="nav-link collapsed" href="registro_ingreso">
@@ -186,29 +203,6 @@
               </ul>
             </li>
 
-            <!-- 2. Control de Visitantes (nuevo pero basado en tu tabla visitantes) -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" data-bs-toggle="collapse" href="#controlVisitantes" role="button">
-                    <i class="bi bi-person-badge"></i>
-                    <span>Control de Visitantes</span>
-                    <i class="bi bi-chevron-down ms-auto"></i>
-                </a>
-                <ul id="controlVisitantes" class="nav-content collapse" data-bs-parent="#sidebar-nav">
-                    <!-- Basado en tu tabla visitantes -->
-                    <li>
-                        <a href="formulario_registro_visitante">
-                            <i class="bi bi-person-plus"></i>
-                            <span>Registrar Visitante</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="listado_visitantes">
-                            <i class="bi bi-card-list"></i>
-                            <span>Listado de Visitantes</span>
-                        </a>
-                    </li>
-                </ul>
-            </li>
 
             <!-- 3. Reportes (existente) -->
             <li class="nav-item">

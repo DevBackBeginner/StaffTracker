@@ -6,7 +6,7 @@
                 <h5 class="modal-title" id="modalTieneComputadorLabel">Registro de Salida</h5>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>            </div>
             <div class="modal-body">
-                <p class="mb-3">¿Tienes computador?</p>
+                <p class="mb-3">¿Salida Computador?</p>
                 <div class="d-grid gap-2">
                     <button type="button" class="btn btn-success" id="btnSiComputador">Sí</button>
                     <button type="button" class="btn btn-danger" id="btnNoComputador">No</button>

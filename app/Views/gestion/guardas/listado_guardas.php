@@ -39,6 +39,8 @@
                                     <input type="text" name="nombre" class="form-control" 
                                         placeholder="Buscar por nombre" 
                                         value="<?= htmlspecialchars($_GET['nombre'] ?? '') ?>">
+                                        <button type="submit" class="btn btn-success">
+                                    <i class="bi bi-search me-2"></i> Buscar
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -48,24 +50,23 @@
                                     <input type="text" name="documento" class="form-control" 
                                         placeholder="Buscar por documento" 
                                         value="<?= htmlspecialchars($_GET['documento'] ?? '') ?>">
+                                        <button type="submit" class="btn btn-success">
+                                    <i class="bi bi-search me-2"></i> Buscar
+                                        
                                 </div>
                             </div>
-                            <div class="col-12 mt-3">
-                                <button type="submit" class="btn btn-primary">
-                                    <i class="bi bi-search me-2"></i> Buscar
-                                </button>
-                            </div>
+                          
                         </form>
                     </div>
                 </div>
 
                 <div class="card shadow">
-                    <div class="card-header bg-primary text-white">
+                    <div class="card-header bg-success text-white">
                         <h5 class="mb-0">Listado de Guardas</h5>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-striped table-hover">
+                            <table class="table table-striped table-hover text-center">
                                 <thead>
                                     <tr>
                                         <th>#</th>
@@ -104,7 +105,7 @@
                                                 <div class="d-flex justify-content-center gap-2">
                                                     <!-- Botón Editar con Modal -->
                                                     <button type="button" 
-                                                            class="btn btn-sm btn-primary" 
+                                                            class="btn btn-sm btn-success" 
                                                             data-bs-toggle="modal" 
                                                             data-bs-target="#editarGuardaModal" 
                                                             data-id="<?= $guarda['id_persona'] ?>"
