@@ -155,7 +155,7 @@
             $direccion = in_array($direccion, ['ASC', 'DESC']) ? $direccion : 'ASC';
             
             // Definir límite por página
-            $limite = 10;
+            $limite = 4;
 
             // Preparar filtros
             $filtros = [];
@@ -174,7 +174,10 @@
 
             // Obtener total para paginación
             $totalUsuarios = $this->personalModelo->contarPersonas($filtros);
+
             $totalPaginas = max(1, ceil($totalUsuarios / $limite));
+            // Calcular el número inicial para el contador
+            $contadorInicial = ($pagina - 1) * $limite + 1;
 
             // Pasar datos a la vista
             $data = [
@@ -189,10 +192,10 @@
             ];
 
             // Cargar vista
-            include_once __DIR__ . '/../Views/gestion/personal/listado_usuarios.php';
+            include_once __DIR__ . '/../Views/gestion/personal/listado_personal.php';
         }
 
-        public function editarUsuarios()
+        public function editarPersonal()
         {
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 try {
@@ -230,7 +233,7 @@
                     $actualizado = $this->personalModelo->actualizarUsuario($id,  $nombre,  $apellido, $tipo_documento,  $documento,  $rol,  $telefono,  $datosLaborales);
 
                     if (!$actualizado) {
-                        throw new Exception("Error al actualizar el usuario en la base de datos.");
+                        throw new Exception("Error al actualizar el usuario.");
                     }
 
                     // Mensaje de éxito
@@ -242,13 +245,13 @@
                     $_SESSION['tipo_mensaje'] = "error";
                 } finally {
                     // Redirigir al listado de usuarios
-                    header('Location: Listado_Usuarios');
+                    header('Location: listado_personal');
                     exit();
                 }
             }
         }
 
-        public function eliminarUsuario()
+        public function eliminarPersonal()
         {
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 try {
@@ -259,7 +262,7 @@
                     }
 
                     // Eliminar el usuario de la base de datos
-                    $eliminado = $this->personalModelo->eliminar_Usuario($id);
+                    $eliminado = $this->personalModelo->eliminarPersona($id);
                     if (!$eliminado) {
                         throw new Exception("Error al eliminar el usuario de la base de datos.");
                     }
@@ -273,7 +276,7 @@
                     $_SESSION['tipo_mensaje'] = "error";
                 } finally {
                     // Redirigir al listado de usuarios
-                    header('Location: Listado_Usuarios');
+                    header('Location: listado_personal');
                     exit();
                 }
             }

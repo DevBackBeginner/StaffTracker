@@ -143,64 +143,127 @@ class GuardasController {
     
         // Obtener datos
         $guardas = $this->guardasModel->obtenerGuardas($pagina, $limite, $filtros);
+        
         $totalGuardas = $this->guardasModel->contarGuardas($filtros);
+
         $totalPaginas = ceil($totalGuardas / $limite);
-    
+
+        $contadorInicial = ($pagina - 1) * $limite + 1;
+
         // Cargar vista
         include_once __DIR__ . '/../Views/gestion/guardas/listado_guardas.php';
     }
     
     public function actualizarInformacionGuarda()
     {
-        $id_persona = htmlspecialchars($_POST['id']);
-        $nombre = htmlspecialchars(trim($_POST['nombre']), ENT_QUOTES, 'UTF-8');
-        $apellido = htmlspecialchars(trim($_POST['apellido']), ENT_QUOTES, 'UTF-8');
-        $tipo_documento = $_POST['tipo_documento'];
-        $numerodocumento = $_POST['numero_documento'];
-        $telefono = $_POST['telefono'];
-        $correo = $_POST['correo'];
-         // Tipos de documento permitidos
-        $tiposDocumentoPermitidos = ['CC', 'CE', 'TI', 'PA', 'NIT', 'OTRO'];
+        // Sanitización de inputs
+        $id_persona = filter_var($_POST['id'] ?? '', FILTER_SANITIZE_NUMBER_INT);
+        $nombre = htmlspecialchars(trim($_POST['nombre'] ?? ''), ENT_QUOTES, 'UTF-8');
+        $apellido = htmlspecialchars(trim($_POST['apellido'] ?? ''), ENT_QUOTES, 'UTF-8');
+        $tipo_documento = $_POST['tipo_documento'] ?? '';
+        $numerodocumento = $_POST['numero_documento'] ?? '';
+        $telefono = $_POST['telefono'] ?? '';
+        $correo = filter_var($_POST['correo'] ?? '', FILTER_SANITIZE_EMAIL);
 
-        // Validar campos obligatorios
-        if (empty($id_persona) ||empty($nombre) || empty($apellido) || empty($tipo_documento) || empty($numerodocumento) || empty($correo) || empty($telefono)) {
-            $_SESSION['mensaje'] = "Todos los campos son obligatorios.";
+        //  Lista blanca de tipos de documento
+        $tiposDocumentoPermitidos = ['CC', 'CE', 'TI', 'PASAPORTE', 'NIT', 'OTRO'];
+
+        // Validación de campos obligatorios
+        if (empty($id_persona) || empty($nombre) || empty($apellido) || empty($tipo_documento) || empty($numerodocumento)) {
+            $_SESSION['mensaje'] = "Los campos marcados con * son obligatorios.";
             $_SESSION['tipo_mensaje'] = 'error';
-            header('Location: registrar_guardas');
+            header('Location: listado_guardas');
             exit();
         }
 
-
-        // Validar tipo de documento
+        // Validación de tipo de documento
         if (!in_array($tipo_documento, $tiposDocumentoPermitidos)) {
             $_SESSION['mensaje'] = "Tipo de documento no válido.";
             $_SESSION['tipo_mensaje'] = 'error';
-            header('Location: registrar_guardas');
+            header('Location: listado_guardas');
             exit();
         }
 
-        // Validar formato del teléfono
-        if (!preg_match('/^[0-9]+$/', $telefono)) {
-            $_SESSION['mensaje'] = "El teléfono debe contener solo números.";
+        // Validación de teléfono
+        if (!empty($telefono) && !preg_match('/^[0-9]{7,15}$/', $telefono)) {
+            $_SESSION['mensaje'] = "El teléfono debe contener entre 7 y 15 dígitos numéricos.";
             $_SESSION['tipo_mensaje'] = 'error';
-            header('Location: registrar_guardas');
+            header('Location: listado_guardas');
             exit();
         }
 
-        // Validar formato del número de documento según tipo
-        if (!preg_match('/^[0-9]+$/', $numerodocumento) && $tipo_documento !== 'OTRO') {
-            $_SESSION['mensaje'] = "El número de documento debe contener solo números para este tipo de documento.";
+        // Validación de número de documento
+        if ($tipo_documento !== 'OTRO' && !preg_match('/^[0-9]{5,20}$/', $numerodocumento)) {
+            $_SESSION['mensaje'] = "El número de documento debe contener entre 5 y 20 dígitos para este tipo de documento.";
             $_SESSION['tipo_mensaje'] = 'error';
-            header('Location: registrar_guardas');
+            header('Location: listado_guardas');
+            exit();
+        }
+
+        // Validación de correo electrónico
+        if (!empty($correo) && !filter_var($correo, FILTER_VALIDATE_EMAIL)) {
+            $_SESSION['mensaje'] = "El formato del correo electrónico no es válido.";
+            $_SESSION['tipo_mensaje'] = 'error';
+            header('Location: listado_guardas');
             exit();
         }
 
         try {
-            $actualizarGuarda = $this->guardasModel->ActualizarGuarda($id_persona, $nombre, $apellido, $tipo_documento, $numerodocumento, $telefono, $correo);
-        } catch (\Throwable $th) {
-            //throw $th;
-        }
+            // Actualizar en la base de datos
+            $actualizado = $this->guardasModel->ActualizarGuarda($id_persona, $nombre, $apellido, $tipo_documento, $numerodocumento, $telefono, $correo);
 
+            if ($actualizado) {
+                $_SESSION['mensaje'] = "Datos del guarda actualizados correctamente.";
+                $_SESSION['tipo_mensaje'] = 'success';
+            } else {
+                $_SESSION['mensaje'] = "No se realizaron cambios o ocurrió un error.";
+                $_SESSION['tipo_mensaje'] = 'warning';
+            }
+            
+
+        } catch (\PDOException $e) {
+            // Manejo de errores de base de datos
+            error_log("Error al actualizar guarda: " . $e->getMessage());
+            $_SESSION['mensaje'] = "Ocurrió un error al actualizar los datos. Por favor, intente nuevamente.";
+            $_SESSION['tipo_mensaje'] = 'error';
+            header('Location: listado_guardas');
+            exit();
+        } finally {
+            // Redirigir al listado de usuarios
+            header('Location: listado_guardas');
+            exit();
+        }
+    }
+
+    public function eliminarGuarda()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            try {
+                // Sanitizar y validar el ID del usuario
+                $id = $this->sanitizarInput($_POST['id']);
+                if (empty($id)) {
+                    throw new Exception("El ID del usuario es obligatorio.");
+                }
+
+                // Eliminar el usuario de la base de datos
+                $eliminado = $this->guardasModel->eliminarPersonalGuardia($id);
+                if (!$eliminado) {
+                    throw new Exception("Error al eliminar el usuario de la base de datos.");
+                }
+
+                // Mensaje de éxito
+                $_SESSION['mensaje'] = "Usuario eliminado correctamente.";
+                $_SESSION['tipo_mensaje'] = "success";
+            } catch (Exception $e) {
+                // Mensaje de error
+                $_SESSION['mensaje'] = $e->getMessage();
+                $_SESSION['tipo_mensaje'] = "error";
+            } finally {
+                // Redirigir al listado de usuarios
+                header('Location: listado_guardas');
+                exit();
+            }
+        }
     }
 
     private function sanitizarInput($data) {

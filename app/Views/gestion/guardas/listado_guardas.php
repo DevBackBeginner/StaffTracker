@@ -10,7 +10,21 @@
         </ol>
     </nav>
 </div>
-
+<?php if (!empty($_SESSION['mensaje'])): ?>
+    <script>
+        Swal.fire({
+            title: '<?= $_SESSION['tipo_mensaje'] === 'error' ? 'Error' : 'Éxito' ?>',
+            text: "<?= addslashes($_SESSION['mensaje']) ?>",
+            icon: '<?= $_SESSION['tipo_mensaje'] === 'error' ? 'error' : 'success' ?>',
+            confirmButtonText: 'Aceptar',
+            confirmButtonColor: '#007832'
+        });
+    </script>
+    <?php
+    unset($_SESSION['mensaje']);
+    unset($_SESSION['tipo_mensaje']);
+    ?>
+<?php endif; ?>
 <div class="container-fluid">
     <section class="section">
         <div class="row">
@@ -54,7 +68,7 @@
                             <table class="table table-striped table-hover">
                                 <thead>
                                     <tr>
-                                        <th>ID</th>
+                                        <th>#</th>
                                         <th>Nombre</th>
                                         <th>Apellido</th>
                                         <th>Tipo Documento</th>
@@ -66,18 +80,20 @@
                                 </thead>
                                 <tbody>
                                     <?php if (!empty($guardas)): ?>
+                                        <?php $contador = $contadorInicial; ?>
+
                                         <?php foreach ($guardas as $guarda): ?>
                                         <tr>
-                                            <td><?= htmlspecialchars($guarda['id_persona']) ?></td>
+                                            <td><?= $contador++ ?></td> <!-- Contador secuencial -->
                                             <td><?= htmlspecialchars($guarda['nombre']) ?></td>
                                             <td><?= htmlspecialchars($guarda['apellido']) ?></td>
                                             <td data-tipo-documento="<?= htmlspecialchars($guarda['tipo_documento']) ?>">
                                                 <?= match($guarda['tipo_documento']) {
-                                                    'CC' => 'C.C.',
-                                                    'CE' => 'C.E.',
-                                                    'TI' => 'T.I.',
+                                                    'CC' => 'Cédula de Ciudadanía',
+                                                    'CE' => 'Cédula de Extranjería',
+                                                    'TI' => 'Tarjeta de Identidad',
                                                     'PASAPORTE' => 'Pasaporte',
-                                                    'NIT' => 'NIT',
+                                                    'NIT' => 'Número de Identificación Tributaria',
                                                     default => $guarda['tipo_documento']
                                                 } ?>
                                             </td>

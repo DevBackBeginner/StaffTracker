@@ -84,7 +84,8 @@
             $sql = "SELECT p.*, pa.correo 
                     FROM personas p
                     LEFT JOIN personal_administrativo pa ON p.id_persona = pa.usuario_id
-                    WHERE p.rol = 'Guarda'";
+                    WHERE p.rol = 'Guarda'
+                    AND p.estado = 'Activo'";  // <- Filtro por estado Activo
             
             if (!empty($filtros['nombre'])) {
                 $sql .= " AND (p.nombre LIKE :nombre OR p.apellido LIKE :nombre)";
@@ -110,11 +111,12 @@
             
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
-        
+
         public function contarGuardas($filtros = []) {
             $sql = "SELECT COUNT(*) as total 
                     FROM personas 
-                    WHERE rol = 'Guarda'";
+                    WHERE rol = 'Guarda'
+                    AND estado = 'Activo'";  // <- Filtro por estado Activo
             
             if (!empty($filtros['nombre'])) {
                 $sql .= " AND (nombre LIKE :nombre OR apellido LIKE :nombre)";
@@ -194,5 +196,29 @@
                 return false;
             }
         }
+
+        public function eliminarPersonalGuardia($id)
+        {
+            try {
+                // Preparar la consulta SQL para eliminar el usuario
+                $query = 'DELETE FROM personas WHERE id_persona = :id';
+                $stmt = $this->db->prepare($query);
+
+                // Vincular el parámetro :id
+                $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+
+                // Ejecutar la consulta
+                $stmt->execute();
+
+                // Verificar si se eliminó alguna fila
+                return $stmt->rowCount() > 0;
+            } catch (PDOException $e) {
+                // Registrar el error (opcional)
+                error_log("Error al eliminar usuario: " . $e->getMessage());
+                return false;
+            }
+        }
     }
+
+
 ?>

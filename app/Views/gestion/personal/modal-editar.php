@@ -7,7 +7,7 @@
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form id="formEditarUsuario" action="EditarUsuarios" method="POST">
+                <form id="formEditarUsuario" action="EditarPersonal" method="POST">
                     <input type="hidden" name="id" id="editarId">
                     
                     <div class="row g-3">

@@ -71,13 +71,15 @@
                 <?php endif; ?>
                 <div class="col-12">
                     <div class="card shadow-lg mb-2">
-                        <div class="card-header text-center text-white" style="background-color: green;">
-                            <h5 class="mb-0">Lista de Personal</h5>
+                        <div class="card-header  text-center text-white" style="background-color: green;">
+                            <h5 class="mb-0">Listado de Visitantes</h5>
                         </div>
+                       
                         <div class="card-body p-4" style="background-color:rgb(255, 255, 255);">
                             <table class="table table-striped table-hover text-center mb-2">
                                 <thead class="bg-success text-white">
                                     <tr>
+                                        <th>#</th>
                                         <th>Nombres</th>
                                         <th>Apellidos</th>
                                         <th>Tipo Doc.</th>
@@ -90,8 +92,12 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <?php $contador = $contadorInicial; ?>
+
                                     <?php foreach ($usuarios as $us): ?>
                                         <tr>
+                                            <td><?= $contador++ ?></td> <!-- Contador secuencial -->
+
                                             <td><?= htmlspecialchars($us['nombre']) ?></td>
                                             <td><?= htmlspecialchars($us['apellido']) ?></td>
                                             <td data-tipo-documento="<?= htmlspecialchars($us['tipo_documento']) ?>">
@@ -119,7 +125,7 @@
                                                     </button>
                                                     
                                                     <!-- Botón Eliminar -->
-                                                    <form method="POST" action="EliminarUsuario" class="d-inline">
+                                                    <form method="POST" action="EliminarPersonal" class="d-inline">
                                                         <input type="hidden" name="id" value="<?= $us['id_persona'] ?>">
                                                         <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('¿Estás seguro de eliminar este usuario?');">
                                                             <i class="bi bi-trash"></i>
@@ -187,7 +193,7 @@
 
     <?php include_once "modal-editar.php" ?>
 
-    <script src="assets/js/modal-editar.js"></script>
+    <script src="assets/js/modal-editar-personal.js"></script>
 
 
 <?php include_once __DIR__ . '/../dashboard/layouts/footer_main.php'; ?>

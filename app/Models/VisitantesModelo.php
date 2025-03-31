@@ -64,7 +64,8 @@
             $sql = "SELECT v.*, p.nombre, p.apellido, p.tipo_documento, p.numero_documento, p.telefono
                     FROM visitantes v
                     JOIN personas p ON v.id_persona = p.id_persona
-                    WHERE p.rol = 'Visitante'";
+                    WHERE p.rol = 'Visitante'
+                    AND p.estado = 'Activo'";
             
             // Aplicar filtros
             if (!empty($filtros['nombre'])) {
@@ -96,7 +97,8 @@
             $sql = "SELECT COUNT(*) as total
                     FROM visitantes v
                     JOIN personas p ON v.id_persona = p.id_persona
-                    WHERE p.rol = 'Visitante'";
+                    WHERE p.rol = 'Visitante'
+                    AND p.estado = 'Activo'";
             
             if (!empty($filtros['nombre'])) {
                 $sql .= " AND (p.nombre LIKE :nombre OR p.apellido LIKE :nombre)";

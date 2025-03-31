@@ -24,18 +24,18 @@
             return $stmt->execute([$persona_id, $cargo, $tipo_contrato]);
         }
 
-        public function obtenerPersonas($pagina = 1, $limite = 10, $filtros = [], $orden = 'nombre', $direccion = 'ASC')
-        {
+        public function obtenerPersonas($pagina = 1, $limite = 10, $filtros = [], $orden = 'nombre', $direccion = 'ASC') {
             $offset = ($pagina - 1) * $limite;
             
             $sql = "SELECT p.*, il.cargo, il.tipo_contrato 
                     FROM personas p
                     LEFT JOIN informacion_laboral il ON p.id_persona = il.persona_id
-                    WHERE p.rol IN ('Instructor', 'Funcionario', 'Directivo')"; // Filtro fijo para los roles
+                    WHERE p.rol IN ('Instructor', 'Funcionario', 'Directivo')
+                    AND p.estado = 'Activo'";
             
             // Aplicar filtros adicionales
             if (!empty($filtros['rol'])) {
-                $sql .= " AND p.rol = :rol"; // Filtro adicional si se especifica un rol
+                $sql .= " AND p.rol = :rol";
             }
             if (!empty($filtros['nombre'])) {
                 $sql .= " AND (p.nombre LIKE :nombre OR p.apellido LIKE :nombre)";
@@ -71,17 +71,16 @@
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
-
-        public function contarPersonas($filtros = [])
-        {
+    
+        public function contarPersonas($filtros = []) {
             $sql = "SELECT COUNT(*) as total 
                     FROM personas p
                     LEFT JOIN informacion_laboral il ON p.id_persona = il.persona_id
-                    WHERE p.rol IN ('Instructor', 'Funcionario', 'Directivo')"; // Filtro fijo para los roles
+                    WHERE p.rol IN ('Instructor', 'Funcionario', 'Directivo')
+                    AND p.estado = 'Activo'";
             
-            // Aplicar filtros adicionales
             if (!empty($filtros['rol'])) {
-                $sql .= " AND p.rol = :rol"; // Filtro adicional si se especifica un rol
+                $sql .= " AND p.rol = :rol";
             }
             if (!empty($filtros['nombre'])) {
                 $sql .= " AND (p.nombre LIKE :nombre OR p.apellido LIKE :nombre)";
@@ -92,7 +91,6 @@
             
             $stmt = $this->db->prepare($sql);
             
-            // Bind de parámetros
             if (!empty($filtros['rol'])) {
                 $stmt->bindValue(':rol', $filtros['rol'], PDO::PARAM_STR);
             }
@@ -192,11 +190,11 @@
          * @param int $id El ID del usuario a eliminar.
          * @return bool Retorna true si el usuario fue eliminado, false en caso contrario.
          */
-        public function eliminar_Usuario($id)
+        public function eliminarPersona($id)
         {
             try {
                 // Preparar la consulta SQL para eliminar el usuario
-                $query = 'DELETE FROM usuarios WHERE id = :id';
+                $query = 'DELETE FROM personas WHERE id_persona = :id';
                 $stmt = $this->db->prepare($query);
 
                 // Vincular el parámetro :id

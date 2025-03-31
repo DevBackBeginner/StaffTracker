@@ -38,7 +38,9 @@ Router::post('actualizar-contrasena', [PerfilController::class, 'actualizarContr
 Router::get("registrar_guardas", [GuardasController::class, "formularioRegistroGuardias"]);
 Router::post("registro_guarda", [GuardasController::class, "registrarGuardas"]);
 Router::get('listado_guardas', [GuardasController::class, 'listarGuardas']);
-Router::post("actualizar_guarda", [GuardasController::class, 'actualizarInformacionGuarda']);
+Router::post("EditarGuarda", [GuardasController::class, 'actualizarInformacionGuarda']);
+Router::post("EliminarGuarda", [GuardasController::class, 'eliminarGuarda']);
+
 // ==================================================
 // Rutas para el registro de asistencia
 // ==================================================
@@ -68,9 +70,9 @@ Router::get('filtro_usuarios', [HistorialRegistroController::class, "filtroUsuar
 
 Router::get('formulario_registro_personal', [PersonalController::class, 'formularioRegistroPersonal']);
 Router::post('registrar_personal', [PersonalController::class, 'registrarPersonal']);
-Router::get('Listado_Usuarios', [PersonalController::class, 'listarPersonal']);
-Router::post('EditarUsuarios', [PersonalController::class, 'editarUsuarios']);
-Router::post('EliminarUsuario', [PersonalController::class, 'eliminarUsuario']);
+Router::get('listado_personal', [PersonalController::class, 'listarPersonal']);
+Router::post('EditarPersonal', [PersonalController::class, 'editarPersonal']);
+Router::post('EliminarPersonal', [PersonalController::class, 'eliminarPersonal']);
 
 // ==================================================
 // Rutas para el registro de visitantes

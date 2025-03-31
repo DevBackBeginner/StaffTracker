@@ -170,7 +170,7 @@
                       </a>
                   </li>
                   <li>
-                      <a href="Listado_Usuarios">
+                      <a href="listado_personal">
                           <i class="bi bi-list-ul"></i>
                           <span>Listado de Personal</span>
                       </a>

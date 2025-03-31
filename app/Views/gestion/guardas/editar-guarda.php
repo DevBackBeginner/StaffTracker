@@ -6,9 +6,9 @@
                 <h5 class="modal-title" id="editarGuardaModalLabel">Editar Guarda</h5>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form method="POST" action="ActualizarGuarda">
+            <form method="POST" action="EditarGuarda">
                 <div class="modal-body">
-                    <input type="hidden" name="id_persona" id="edit_guarda_id">
+                    <input type="hidden" name="id" id="edit_guarda_id">
                     
                     <div class="mb-3">
                         <label for="edit_guarda_nombre" class="form-label">Nombre</label>

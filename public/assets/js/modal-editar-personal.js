@@ -6,17 +6,18 @@ document.addEventListener('DOMContentLoaded', function() {
         const row = button.closest('tr');
         const id = button.getAttribute('data-id');
 
-        // Obtener datos de la fila
+        // Obtener datos de la fila (ignorando la primera celda que es el contador)
         const celdas = row.querySelectorAll('td');
         
-        const nombre = celdas[0].innerText;
-        const apellidos = celdas[1].innerText;
-        const tipoDocumento = celdas[2].getAttribute('data-tipo-documento'); // Obtener del atributo data
-        const documento = celdas[3].innerText;
-        const telefono = celdas[4].innerText;
-        const rol = celdas[5].innerText;
-        const cargo = celdas[6].innerText === '---' ? '' : celdas[6].innerText;
-        const tipoContrato = celdas[7].innerText === '---' ? '' : celdas[7].innerText;
+        // Ajustar los índices restando 1 para saltar el contador
+        const nombre = celdas[1].innerText;          // Antes: 0, Ahora: 1
+        const apellidos = celdas[2].innerText;        // Antes: 1, Ahora: 2
+        const tipoDocumento = celdas[3].getAttribute('data-tipo-documento'); // Antes: 2, Ahora: 3
+        const documento = celdas[4].innerText;        // Antes: 3, Ahora: 4
+        const telefono = celdas[5].innerText;         // Antes: 4, Ahora: 5
+        const rol = celdas[6].innerText;              // Antes: 5, Ahora: 6
+        const cargo = celdas[7].innerText === '---' ? '' : celdas[7].innerText; // Antes: 6, Ahora: 7
+        const tipoContrato = celdas[8].innerText === '---' ? '' : celdas[8].innerText; // Antes: 7, Ahora: 8
 
         // Llenar el formulario del modal
         document.getElementById('editarId').value = id;
@@ -24,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('editarApellidos').value = apellidos;
         
         // Establecer valores en los selects
-        setSelectValue('editarTipoDocumento', tipoDocumento); // Usar el valor del atributo data
+        setSelectValue('editarTipoDocumento', tipoDocumento);
         setSelectValue('editarRol', rol);
         setSelectValue('editarTipoContrato', tipoContrato);
         
@@ -33,18 +34,16 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('editarCargo').value = cargo;
     });
 
-    // Función auxiliar para establecer valores en selects
+    // Función auxiliar para establecer valores en selects (se mantiene igual)
     function setSelectValue(selectId, value) {
         const select = document.getElementById(selectId);
         if (!select) return;
         
-        // Si el valor está vacío, seleccionar la primera opción
         if (!value || value === '---') {
             select.selectedIndex = 0;
             return;
         }
         
-        // Buscar la opción que coincida con el valor
         for (let option of select.options) {
             if (option.value === value) {
                 option.selected = true;
@@ -52,7 +51,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         } 
         
-        // Si no se encontró coincidencia, seleccionar el primero
         select.selectedIndex = 0;
     }
 });

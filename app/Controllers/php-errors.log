@@ -1,22 +1,9 @@
-[31-Mar-2025 03:20:23 Europe/Berlin] PHP Warning:  Undefined variable $totalPaginas in C:\xampp\htdocs\prueba\app\Views\gestion\guardas\listado_guardas.php on line 124
-[31-Mar-2025 03:20:23 Europe/Berlin] PHP Warning:  Undefined variable $totalPaginas in C:\xampp\htdocs\prueba\app\Views\gestion\guardas\listado_guardas.php on line 124
-[31-Mar-2025 03:23:36 Europe/Berlin] PHP Warning:  include(ediar-guarda): Failed to open stream: No such file or directory in C:\xampp\htdocs\prueba\app\Views\gestion\guardas\listado_guardas.php on line 162
-[31-Mar-2025 03:23:36 Europe/Berlin] PHP Warning:  include(): Failed opening 'ediar-guarda' for inclusion (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\prueba\app\Views\gestion\guardas\listado_guardas.php on line 162
-[31-Mar-2025 03:23:43 Europe/Berlin] PHP Warning:  include(ediar-guarda): Failed to open stream: No such file or directory in C:\xampp\htdocs\prueba\app\Views\gestion\guardas\listado_guardas.php on line 163
-[31-Mar-2025 03:23:43 Europe/Berlin] PHP Warning:  include(): Failed opening 'ediar-guarda' for inclusion (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\prueba\app\Views\gestion\guardas\listado_guardas.php on line 163
-[31-Mar-2025 03:23:43 Europe/Berlin] PHP Warning:  include(ediar-guarda): Failed to open stream: No such file or directory in C:\xampp\htdocs\prueba\app\Views\gestion\guardas\listado_guardas.php on line 163
-[31-Mar-2025 03:23:43 Europe/Berlin] PHP Warning:  include(): Failed opening 'ediar-guarda' for inclusion (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\prueba\app\Views\gestion\guardas\listado_guardas.php on line 163
-[31-Mar-2025 03:23:43 Europe/Berlin] PHP Warning:  include(ediar-guarda): Failed to open stream: No such file or directory in C:\xampp\htdocs\prueba\app\Views\gestion\guardas\listado_guardas.php on line 163
-[31-Mar-2025 03:23:43 Europe/Berlin] PHP Warning:  include(): Failed opening 'ediar-guarda' for inclusion (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\prueba\app\Views\gestion\guardas\listado_guardas.php on line 163
-[31-Mar-2025 03:23:49 Europe/Berlin] PHP Warning:  include(ediar-guarda): Failed to open stream: No such file or directory in C:\xampp\htdocs\prueba\app\Views\gestion\guardas\listado_guardas.php on line 163
-[31-Mar-2025 03:23:49 Europe/Berlin] PHP Warning:  include(): Failed opening 'ediar-guarda' for inclusion (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\prueba\app\Views\gestion\guardas\listado_guardas.php on line 163
-[31-Mar-2025 03:23:49 Europe/Berlin] PHP Warning:  include(ediar-guarda): Failed to open stream: No such file or directory in C:\xampp\htdocs\prueba\app\Views\gestion\guardas\listado_guardas.php on line 163
-[31-Mar-2025 03:23:49 Europe/Berlin] PHP Warning:  include(): Failed opening 'ediar-guarda' for inclusion (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\prueba\app\Views\gestion\guardas\listado_guardas.php on line 163
-[31-Mar-2025 03:24:59 Europe/Berlin] PHP Warning:  include(ediar-guarda): Failed to open stream: No such file or directory in C:\xampp\htdocs\prueba\app\Views\gestion\guardas\listado_guardas.php on line 163
-[31-Mar-2025 03:24:59 Europe/Berlin] PHP Warning:  include(): Failed opening 'ediar-guarda' for inclusion (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\prueba\app\Views\gestion\guardas\listado_guardas.php on line 163
-[31-Mar-2025 03:25:28 Europe/Berlin] PHP Warning:  include(ediar-guarda): Failed to open stream: No such file or directory in C:\xampp\htdocs\prueba\app\Views\gestion\guardas\listado_guardas.php on line 163
-[31-Mar-2025 03:25:28 Europe/Berlin] PHP Warning:  include(): Failed opening 'ediar-guarda' for inclusion (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\prueba\app\Views\gestion\guardas\listado_guardas.php on line 163
-[31-Mar-2025 03:25:45 Europe/Berlin] PHP Warning:  include(ediar-guarda): Failed to open stream: No such file or directory in C:\xampp\htdocs\prueba\app\Views\gestion\guardas\listado_guardas.php on line 163
-[31-Mar-2025 03:25:45 Europe/Berlin] PHP Warning:  include(): Failed opening 'ediar-guarda' for inclusion (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\prueba\app\Views\gestion\guardas\listado_guardas.php on line 163
-[31-Mar-2025 03:25:45 Europe/Berlin] PHP Warning:  include(ediar-guarda): Failed to open stream: No such file or directory in C:\xampp\htdocs\prueba\app\Views\gestion\guardas\listado_guardas.php on line 163
-[31-Mar-2025 03:25:45 Europe/Berlin] PHP Warning:  include(): Failed opening 'ediar-guarda' for inclusion (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\prueba\app\Views\gestion\guardas\listado_guardas.php on line 163
+[31-Mar-2025 15:07:00 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to undefined method PersonalController::elimiarPersonal() in C:\xampp\htdocs\prueba\core\Router.php:61
+Stack trace:
+#0 C:\xampp\htdocs\prueba\public\index.php(15): core\Router::obtenerRuta()
+#1 {main}
+  thrown in C:\xampp\htdocs\prueba\core\Router.php on line 61
+[31-Mar-2025 15:08:40 Europe/Berlin] Error al eliminar usuario: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'stafftracker.usuarios' doesn't exist
+[31-Mar-2025 15:08:47 Europe/Berlin] Error al eliminar usuario: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'stafftracker.usuarios' doesn't exist
+[31-Mar-2025 15:09:47 Europe/Berlin] Error al eliminar usuario: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'id' in 'where clause'
+[31-Mar-2025 15:09:52 Europe/Berlin] Error al eliminar usuario: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'id' in 'where clause'
