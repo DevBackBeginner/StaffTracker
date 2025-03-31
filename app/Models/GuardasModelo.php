@@ -137,5 +137,62 @@
             
             return (int)$result['total'];
         }
+
+        public function ActualizarGuarda($id_persona, $nombre, $apellido, $tipo_documento, $numerodocumento, $telefono, $correo)
+        {
+            try {
+                // Iniciar transacción para asegurar la atomicidad
+                $this->db->beginTransaction();
+        
+                // Actualizar datos en tabla persona
+                $sqlPersona = "UPDATE personas SET 
+                        nombre = :nombre,
+                        apellido = :apellido,
+                        tipo_documento = :tipo_documento,
+                        numero_documento = :numero_documento,
+                        telefono = :telefono
+                        WHERE id_persona = :id_persona";
+                
+                $stmtPersona = $this->db->prepare($sqlPersona);
+                $stmtPersona->execute([
+                    ':nombre' => $nombre,
+                    ':apellido' => $apellido,
+                    ':tipo_documento' => $tipo_documento,
+                    ':numero_documento' => $numerodocumento,
+                    ':telefono' => $telefono,
+                    ':id_persona' => $id_persona
+                ]);
+        
+                // Verificar si existe en personal_administrativo
+                $sqlAutorizado = "SELECT COUNT(*) FROM personal_administrativo WHERE usuario_id = :id_persona";
+                $stmtAutorizado = $this->db->prepare($sqlAutorizado);
+                $stmtAutorizado->execute([':id_persona' => $id_persona]);
+                $existeGuarda = $stmtAutorizado->fetchColumn() > 0;
+        
+                //  Actualizar correo si existe
+                if ($existeGuarda) {
+                    $sqlActualizar = "UPDATE personal_administrativo SET correo = :correo WHERE usuario_id = :id_persona";
+                    $stmtActualizar = $this->db->prepare($sqlActualizar);
+                    $stmtActualizar->execute([
+                        ':correo' => $correo,
+                        ':id_persona' => $id_persona
+                    ]);
+                }
+        
+                // Confirmar transacción
+                $this->db->commit();
+                
+                return true;
+        
+            } catch (PDOException $e) {
+                // Revertir transacción en caso de error
+                $this->db->rollBack();
+                
+                // Registrar error (opcional)
+                error_log("Error al actualizar guarda: " . $e->getMessage());
+                
+                return false;
+            }
+        }
     }
 ?>

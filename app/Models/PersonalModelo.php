@@ -123,7 +123,7 @@
                 // Iniciar transacción
                 $this->db->beginTransaction();
 
-                // 1. Actualizar datos básicos en tabla personas
+                // Actualizar datos básicos en tabla personas
                 $sqlPersona = "UPDATE personas SET 
                             nombre = :nombre, 
                             apellido = :apellido, 
@@ -144,7 +144,7 @@
                     ':id_persona' => $id_persona
                 ]);
 
-                // 2. Actualizar o insertar en informacion_laboral
+                // Actualizar o insertar en informacion_laboral
                 $sqlCheck = "SELECT COUNT(*) FROM informacion_laboral WHERE persona_id = :id_persona";
                 $stmtCheck = $this->db->prepare($sqlCheck);
                 $stmtCheck->execute([':id_persona' => $id_persona]);

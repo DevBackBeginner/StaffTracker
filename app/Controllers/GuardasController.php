@@ -150,6 +150,59 @@ class GuardasController {
         include_once __DIR__ . '/../Views/gestion/guardas/listado_guardas.php';
     }
     
+    public function actualizarInformacionGuarda()
+    {
+        $id_persona = htmlspecialchars($_POST['id']);
+        $nombre = htmlspecialchars(trim($_POST['nombre']), ENT_QUOTES, 'UTF-8');
+        $apellido = htmlspecialchars(trim($_POST['apellido']), ENT_QUOTES, 'UTF-8');
+        $tipo_documento = $_POST['tipo_documento'];
+        $numerodocumento = $_POST['numero_documento'];
+        $telefono = $_POST['telefono'];
+        $correo = $_POST['correo'];
+         // Tipos de documento permitidos
+        $tiposDocumentoPermitidos = ['CC', 'CE', 'TI', 'PA', 'NIT', 'OTRO'];
+
+        // Validar campos obligatorios
+        if (empty($id_persona) ||empty($nombre) || empty($apellido) || empty($tipo_documento) || empty($numerodocumento) || empty($correo) || empty($telefono)) {
+            $_SESSION['mensaje'] = "Todos los campos son obligatorios.";
+            $_SESSION['tipo_mensaje'] = 'error';
+            header('Location: registrar_guardas');
+            exit();
+        }
+
+
+        // Validar tipo de documento
+        if (!in_array($tipo_documento, $tiposDocumentoPermitidos)) {
+            $_SESSION['mensaje'] = "Tipo de documento no válido.";
+            $_SESSION['tipo_mensaje'] = 'error';
+            header('Location: registrar_guardas');
+            exit();
+        }
+
+        // Validar formato del teléfono
+        if (!preg_match('/^[0-9]+$/', $telefono)) {
+            $_SESSION['mensaje'] = "El teléfono debe contener solo números.";
+            $_SESSION['tipo_mensaje'] = 'error';
+            header('Location: registrar_guardas');
+            exit();
+        }
+
+        // Validar formato del número de documento según tipo
+        if (!preg_match('/^[0-9]+$/', $numerodocumento) && $tipo_documento !== 'OTRO') {
+            $_SESSION['mensaje'] = "El número de documento debe contener solo números para este tipo de documento.";
+            $_SESSION['tipo_mensaje'] = 'error';
+            header('Location: registrar_guardas');
+            exit();
+        }
+
+        try {
+            $actualizarGuarda = $this->guardasModel->ActualizarGuarda($id_persona, $nombre, $apellido, $tipo_documento, $numerodocumento, $telefono, $correo);
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+
+    }
+
     private function sanitizarInput($data) {
         return htmlspecialchars(strip_tags(trim($data)));
     }

@@ -38,7 +38,7 @@ Router::post('actualizar-contrasena', [PerfilController::class, 'actualizarContr
 Router::get("registrar_guardas", [GuardasController::class, "formularioRegistroGuardias"]);
 Router::post("registro_guarda", [GuardasController::class, "registrarGuardas"]);
 Router::get('listado_guardas', [GuardasController::class, 'listarGuardas']);
-
+Router::post("actualizar_guarda", [GuardasController::class, 'actualizarInformacionGuarda']);
 // ==================================================
 // Rutas para el registro de asistencia
 // ==================================================
