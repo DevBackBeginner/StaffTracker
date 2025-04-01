@@ -50,6 +50,14 @@ Router::post('registrar_ingreso', [RegistroController::class, 'registrarEntrada'
 Router::get("registro_salida", [RegistroController::class, "mostrarRegistroSalida"]);
 Router::post('registrar_salida', [RegistroController::class, "registrarSalida"]);
 
+
+
+Router::get('registrar_eventos', [EventosController::class, 'mostrarRegistroEvento']);
+Router::post('RegistrarEvento', [EventosController::class, 'registroEvento']);
+Router::get('registrar_regreso', [EventosController::class, 'mostrarDevolverEventos']);
+Router::post('registrarDevolucion', [EventosController::class, 'registrarDevolucion']);
+
+
 // ==================================================
 // Rutas para el manejo de computadores
 // ==================================================

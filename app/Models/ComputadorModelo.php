@@ -101,6 +101,37 @@
             }, $resultados);
         }
 
+        public function obtenerComputadoresDisponibles()
+        {
+            try {
+                // Consulta SQL para obtener computadores disponibles
+                $query = "
+                    SELECT 
+                        id_computador_sena,
+                        modelo,
+                        codigo,
+                        teclado,
+                        mouse
+                    FROM 
+                        computadores_sena
+                    WHERE 
+                        estado = 'Disponible'
+                    ORDER BY 
+                        modelo ASC
+                ";
+                
+                $stmt = $this->db->prepare($query);
+                $stmt->execute();
+                
+                // Retornar resultados como array asociativo
+                return $stmt->fetchAll(PDO::FETCH_ASSOC);
+                
+            } catch (PDOException $e) {
+                // Registrar error y retornar array vacío en caso de fallo
+                error_log("Error al obtener computadores disponibles: " . $e->getMessage());
+                return [];
+            }
+        }
         public function ingresarComputador($marca, $codigo, $mouse, $teclado, $tipo_computador)
         {
             try {
@@ -264,7 +295,53 @@
             return $stmt->execute();
         }
 
+        public function vincularEquipoAEvento($id_evento, $id_equipo) {
+            $stmt = $this->db->prepare("
+                INSERT INTO equipos_evento 
+                (id_evento, id_equipo_sena)
+                VALUES (?, ?)
+            ");
+            return $stmt->execute([$id_evento, $id_equipo]);
+        }
         
+        public function actualizarEstadoEquipo($id_equipo, $estado, $id_asignado_a) {
+            $stmt = $this->db->prepare("
+                UPDATE computadores_sena 
+                SET estado = :estado,
+                    asignado_a = :asignado_a
+                WHERE id_computador_sena = :id_equipo
+            ");
+            
+            return $stmt->execute([
+                ':estado' => $estado,
+                ':asignado_a' => $id_asignado_a,
+                ':id_equipo' => $id_equipo
+            ]);
+        }
+
+        public function obtenerEquiposPorEvento($idEvento) {
+            $stmt = $this->db->prepare("
+                SELECT 
+                    cs.id_computador_sena,
+                    cs.modelo,
+                    cs.codigo
+                FROM equipos_evento ee
+                JOIN computadores_sena cs ON ee.id_equipo_sena = cs.id_computador_sena
+                WHERE ee.id_evento = ?
+            ");
+            $stmt->execute([$idEvento]);
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
+
+        public function registrarDevolucionEquipo($idEquipo) {
+            $stmt = $this->db->prepare("
+                UPDATE computadores_sena 
+                SET estado = 'Disponible',
+                    asignado_a = NULL
+                WHERE id_computador_sena = ?
+            ");
+            return $stmt->execute([$idEquipo]);
+        }
 
         
     }

@@ -204,7 +204,7 @@
             $this->db->beginTransaction();
             
             try {
-                // 1. Liberar equipos SENA (actualizar estado y quitar asignación)
+                // Liberar equipos SENA (actualizar estado y quitar asignación)
                 $stmtLiberarSena = $this->db->prepare("
                     UPDATE computadores_sena 
                     SET estado = 'Disponible', asignado_a = NULL 
@@ -229,8 +229,5 @@
                 return false;
             }
         }
-        
-       
-        
     }
 ?>

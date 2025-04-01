@@ -1,24 +1,4 @@
-[31-Mar-2025 15:07:00 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to undefined method PersonalController::elimiarPersonal() in C:\xampp\htdocs\prueba\core\Router.php:61
-Stack trace:
-#0 C:\xampp\htdocs\prueba\public\index.php(15): core\Router::obtenerRuta()
-#1 {main}
-  thrown in C:\xampp\htdocs\prueba\core\Router.php on line 61
-[31-Mar-2025 15:08:40 Europe/Berlin] Error al eliminar usuario: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'stafftracker.usuarios' doesn't exist
-[31-Mar-2025 15:08:47 Europe/Berlin] Error al eliminar usuario: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'stafftracker.usuarios' doesn't exist
-[31-Mar-2025 15:09:47 Europe/Berlin] Error al eliminar usuario: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'id' in 'where clause'
-[31-Mar-2025 15:09:52 Europe/Berlin] Error al eliminar usuario: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'id' in 'where clause'
-[31-Mar-2025 17:52:04 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to undefined method PersonalController::eliminarPersonal() in C:\xampp\htdocs\prueba\core\Router.php:61
-Stack trace:
-#0 C:\xampp\htdocs\prueba\public\index.php(15): core\Router::obtenerRuta()
-#1 {main}
-  thrown in C:\xampp\htdocs\prueba\core\Router.php on line 61
-[31-Mar-2025 17:52:20 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to undefined method PersonalController::eliminarPersonal() in C:\xampp\htdocs\prueba\core\Router.php:61
-Stack trace:
-#0 C:\xampp\htdocs\prueba\public\index.php(15): core\Router::obtenerRuta()
-#1 {main}
-  thrown in C:\xampp\htdocs\prueba\core\Router.php on line 61
-[31-Mar-2025 17:52:27 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to undefined method GuardasController::desactivarUsuario() in C:\xampp\htdocs\prueba\core\Router.php:61
-Stack trace:
-#0 C:\xampp\htdocs\prueba\public\index.php(15): core\Router::obtenerRuta()
-#1 {main}
-  thrown in C:\xampp\htdocs\prueba\core\Router.php on line 61
+[31-Mar-2025 21:18:38 America/Bogota] Error al registrar evento: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`stafftracker`.`eventos_especiales`, CONSTRAINT `eventos_especiales_ibfk_1` FOREIGN KEY (`id_registro_ingreso`) REFERENCES `registro_ingreso_salida` (`id_registro`))
+[31-Mar-2025 21:20:32 America/Bogota] Error al registrar evento: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`stafftracker`.`eventos_especiales`, CONSTRAINT `eventos_especiales_ibfk_1` FOREIGN KEY (`id_registro_ingreso`) REFERENCES `registro_ingreso_salida` (`id_registro`))
+[31-Mar-2025 21:47:55 America/Bogota] PHP Warning:  include_once(C:\xampp\htdocs\prueba\app\Controllers/../Views/gestion/eventos/devolver_eventos.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\prueba\app\Controllers\EventosController.php on line 49
+[31-Mar-2025 21:47:55 America/Bogota] PHP Warning:  include_once(): Failed opening 'C:\xampp\htdocs\prueba\app\Controllers/../Views/gestion/eventos/devolver_eventos.php' for inclusion (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\prueba\app\Controllers\EventosController.php on line 49
