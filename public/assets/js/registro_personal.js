@@ -1,3 +1,4 @@
+
   // Función para mostrar campos de Cargo y Contrato
 function mostrarCamposAdicionales() {
     const rol = document.getElementById("rol").value;
@@ -32,3 +33,4 @@ document.addEventListener("DOMContentLoaded", function() {
     mostrarCamposAdicionales();
     mostrarCamposComputador();
 });
+

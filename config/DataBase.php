@@ -1,7 +1,9 @@
 <?php
 class DataBase {
     private $host = "localhost";
+
     private $db = "stafftracker";
+
     private $user = "root";
     private $pass = "";
     private $conn;

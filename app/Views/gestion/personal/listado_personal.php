@@ -71,8 +71,8 @@
                 <?php endif; ?>
                 <div class="col-12">
                     <div class="card shadow-lg mb-2">
-                        <div class="card-header  text-center text-white" style="background-color: green;">
-                            <h5 class="mb-0">Listado de Visitantes</h5>
+                        <div class="card-header  text-center text-white" style="background-color: #007832;">
+                            <h5 class="mb-0">Listado del Personal</h5>
                         </div>
                        
                         <div class="card-body p-4" style="background-color:rgb(255, 255, 255);">
@@ -120,7 +120,7 @@
                                             <td>
                                                 <div class="d-flex justify-content-center gap-2">
                                                     <!-- Botón Editar -->
-                                                    <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#editarUsuarioModal" data-id="<?= $us['id_persona'] ?>">
+                                                    <button type="button" class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#editarUsuarioModal" data-id="<?= $us['id_persona'] ?>">
                                                         <i class="bi bi-pencil"></i>
                                                     </button>
                                                     

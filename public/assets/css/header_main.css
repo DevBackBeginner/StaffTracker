@@ -1168,6 +1168,7 @@ h6 {
   }
 }
 
+
 /* Estilos para los inputs y selects al hacer clic (enfoque) */
 .form-control:focus,
 .form-select:focus {
@@ -1184,9 +1185,11 @@ h6 {
     padding: 10px; /* Relleno de los campos */
  }
 
+
 /*--------------------------------------------------------------
 # Footer
 --------------------------------------------------------------*/
+
 /* Footer con Tarjetas Blancas */
 .footer-white-cards {
   background-color: #f8f9fa;
@@ -1290,4 +1293,5 @@ h6 {
     border: 1px solid #ccc;
     border-radius: 4px;
     padding: 10px;
+
 }

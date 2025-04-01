@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const btnSena = document.getElementById('btnSena');
     const btnConfirmarPC = document.getElementById('btnConfirmarPC');
     const formRegistrarComputador = document.getElementById('formRegistrarComputador');
+
     const btnVerificarCodigo = document.getElementById('btnVerificarCodigo');
 
     // Variables de estado
@@ -80,6 +81,7 @@ document.addEventListener('DOMContentLoaded', function () {
         modalTieneComputador.hide();
     });
 
+
     btnPersonal.addEventListener('click', () => {
         if (!codigoEscaneado) {
             alert('⚠️ Escanea un código primero');
@@ -87,8 +89,10 @@ document.addEventListener('DOMContentLoaded', function () {
         }
         tipoComputador = 'Personal';
         modalTipoComputador.hide();
+
         btnConfirmarPC.disabled = true;
         cargarComputadores(tipoComputador, codigoEscaneado);
+
         modalSeleccionarComputador.show();
     });
 
@@ -158,10 +162,12 @@ document.addEventListener('DOMContentLoaded', function () {
     const btnRegistrarNuevoPC = document.createElement('button');
     btnRegistrarNuevoPC.textContent = 'Registrar Computador';
     btnRegistrarNuevoPC.className = 'btn btn-success flex-grow-1';
+
     btnRegistrarNuevoPC.addEventListener('click', () => {
         modalSeleccionarComputador.hide();
         modalRegistrarComputador.show();
     });
+
 
     document.querySelector('#modalSeleccionarComputador .d-grid').appendChild(btnRegistrarNuevoPC);
 
@@ -173,15 +179,19 @@ document.addEventListener('DOMContentLoaded', function () {
         const tieneMouse = document.getElementById('tieneMouse').checked;
         const tieneTeclado = document.getElementById('tieneTeclado').checked;
 
+
         if (!marca || !codigoPC) {
             alert('⚠️ Completa todos los campos');
             return;
         }
 
+
+
         registrarNuevoComputador(marca, codigoPC, tipoComputador, tieneMouse, tieneTeclado);
     });
 
     // ==============================================
+
     // FUNCIONES PRINCIPALES 
     // ==============================================
 
@@ -237,10 +247,12 @@ document.addEventListener('DOMContentLoaded', function () {
                 select.add(option);
                 select.disabled = true;
                 btnConfirmar.disabled = true;
+
             }
         })
         .catch(error => {
             console.error("Error al cargar computadores:", error);
+
             const select = document.getElementById('selectComputadores');
             select.innerHTML = '';
             const errorOption = new Option("Error al cargar datos", "", true, true);
@@ -347,47 +359,56 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         fetch('registrar_ingreso', {
+
             method: 'POST',
             body: formData
         })
         .then(async response => {
+
             console.log("🔍 Respuesta HTTP:", response.status, response.statusText);
             
             if (!response.ok) {
                 const errorData = await response.json();
                 console.error("Error del servidor:", errorData);
+
                 throw new Error(errorData.message || 'Error en la solicitud');
             }
             return response.json();
         })
         .then(data => {
+
             console.log("📥 Respuesta del backend:", data);
             if (data.success) {
                 alert(`✅ ${data.message}`);
                 document.getElementById('codigo').value = '';
                 window.location.reload();
+
             } else {
                 alert(`❌ ${data.message}`);
             }
         })
         .catch(error => {
+
             console.error("💥 Error completo:", error);
             console.error("Stack trace:", error.stack);
             alert(`❌ Error: ${error.message}`);
         })
         .finally(() => {
             console.groupEnd();
+
         });
     }
 
     // Cerrar modales con botones personalizados
     document.querySelectorAll('.btn-cerrar-modal').forEach(btnCerrar => {
         btnCerrar.addEventListener('click', () => {
+
             const modal = btnCerrar.closest('.modal');
             const modalInstance = bootstrap.Modal.getInstance(modal);
             if (modalInstance) {
                 modalInstance.hide();
             } else {
+
                 new bootstrap.Modal(modal).hide();
             }
         });
