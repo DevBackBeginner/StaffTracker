@@ -3,7 +3,7 @@
     <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header bg-success text-white">
-                <h5 class="modal-title text-center w-100" id="editarUsuarioModalLabel">Editar Usuario</h5>
+                <h5 class="modal-title text-center w-100" id="editarUsuarioModalLabel">Editar Personal</h5>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">

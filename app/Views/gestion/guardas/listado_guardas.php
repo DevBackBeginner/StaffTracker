@@ -61,7 +61,7 @@
                 </div>
 
                 <div class="card shadow">
-                    <div class="card-header bg-success text-white">
+                    <div class="card-header bg-success text-white text-center">
                         <h5 class="mb-0">Listado de Guardas</h5>
                     </div>
                     <div class="card-body">

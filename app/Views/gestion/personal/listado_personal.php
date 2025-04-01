@@ -71,8 +71,8 @@
                 <?php endif; ?>
                 <div class="col-12">
                     <div class="card shadow-lg mb-2">
-                        <div class="card-header  text-center text-white" style="background-color: green;">
-                            <h5 class="mb-0">Listado de Visitantes</h5>
+                        <div class="card-header  text-center text-white" style="background-color: #007832;">
+                            <h5 class="mb-0">Listado del Personal</h5>
                         </div>
                        
                         <div class="card-body p-4" style="background-color:rgb(255, 255, 255);">
